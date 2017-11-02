@@ -29,7 +29,7 @@ hooks:
           runas: root
     BeforeInstall:
         - location: scripts/before-install.sh
-          timeout: 30
+          timeout: 300
           runas: root
     AfterInstall:
         - location: scripts/after-install-www.sh
