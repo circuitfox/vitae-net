@@ -1,0 +1,44 @@
+version: 0.0
+
+os: linux
+
+files:
+    - source: /
+      destination: /home/ubuntu/medscanner
+
+permissions:
+    - object: /var/www/medscanner
+      pattern: "**"
+      owner: www-data
+      group: www-data
+      mode: 4750
+      type:
+          - directory
+    - object: /var/www/medscanner
+      pattern: "**"
+      owner: www-data
+      group: www-data
+      mode: 640
+      type:
+          - directory
+
+hooks:
+    ApplicationStop:
+        - location: scripts/application-stop.sh
+          timeout: 30
+          runas: root
+    BeforeInstall:
+        - location: scripts/before-install.sh
+          timeout: 30
+          runas: root
+    AfterInstall:
+        - location: scripts/after-install-www.sh
+          timeout: 300
+          runas: www-data
+        - location: scripts/after-install-root.sh
+          timeout: 30
+          runas: root
+    ApplicationStart:
+        - location: scripts/application-start.sh
+          timeout: 30
+          runas: root
