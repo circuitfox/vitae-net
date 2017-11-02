@@ -54,6 +54,21 @@ return [
             'engine' => null,
         ],
 
+        'migrate' => [
+            'driver' => 'mysql',
+            'host' => env('MIGRATE_HOST', '127.0.0.1'),
+            'port' => env('MIGRATE_PORT', '3306'),
+            'database' => env('MIGRATE_DATABASE', 'forge'),
+            'username' => env('MIGRATE_USERNAME', 'forge'),
+            'password' => env('MIGRATE_PASSWORD', ''),
+            'unix_socket' => env('MIGRATE_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
