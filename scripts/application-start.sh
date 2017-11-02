@@ -1,3 +1,3 @@
 #!/bin/bash
-service php-fpm start
+service php7.0-fpm start
 service nginx start
