@@ -20,7 +20,7 @@ permissions:
       group: ubuntu
       mode: 640
       type:
-          - directory
+          - file
 
 hooks:
     ApplicationStop:
