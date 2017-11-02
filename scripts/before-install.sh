@@ -2,7 +2,7 @@
 
 # install system dependencies
 apt update
-apt install -y awscli ruby wget php7.0 php7.0-mbstring php7.0-json php7.0-cli php7.0-dom php7.0-fpm php7.0-gd php7.0-xml php7.0-zip php7.0-mcrypt npm 
+apt install -y awscli ruby wget php7.0 php7.0-mbstring php7.0-json php7.0-cli php7.0-dom php7.0-fpm php7.0-gd php7.0-xml php7.0-zip php7.0-mcrypt
 
 # install composer
 if [ ! -f "/usr/local/bin/composer" ]; then

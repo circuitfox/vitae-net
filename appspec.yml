@@ -7,17 +7,17 @@ files:
       destination: /home/ubuntu/medscanner
 
 permissions:
-    - object: /var/www/medscanner
+    - object: /home/ubuntu/medscanner
       pattern: "**"
-      owner: www-data
-      group: www-data
+      owner: ubuntu
+      group: ubuntu
       mode: 4750
       type:
           - directory
-    - object: /var/www/medscanner
+    - object: /home/ubuntu/medscanner
       pattern: "**"
-      owner: www-data
-      group: www-data
+      owner: ubuntu
+      group: ubuntu
       mode: 640
       type:
           - directory
