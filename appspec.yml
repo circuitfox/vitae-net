@@ -34,7 +34,7 @@ hooks:
     AfterInstall:
         - location: scripts/after-install-www.sh
           timeout: 300
-          runas: www-data
+          runas: ubuntu
         - location: scripts/after-install-root.sh
           timeout: 30
           runas: root
