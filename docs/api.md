@@ -25,26 +25,26 @@ always require authentication.
 
 | Route | Method | Description | Authentication |
 |-------|--------|-------------|----------------|
-| `/api/v1/medications` | GET | Get a list of all the medications that can be scanned. | No |
-| `/api/v1/medications/create` | GET | Show the form to add a medication to the database. | Yes |
-| `/api/v1/medications` | POST | Add a medication to the database. | Yes |
-| `/api/v1/medications/{medication}` | GET | Retrieve the given medication from the database. | No |
-| `/api/v1/medications/{medication}/edit` | GET | Show the form to edit a medication. | Yes |
-| `/api/v1/medications/{medication}` | PUT/PATCH | Update the medication in the database. | Yes |
-| `/api/v1/medications/{medication}` | DELETE | Remove the medication from the database. | Yes |
+| `/medications` | GET | Get a list of all the medications that can be scanned. | Yes |
+| `/medications/create` | GET | Show the form to add a medication to the database. | Yes |
+| `/medications` | POST | Add a medication to the database. | Yes |
+| `/medications/{medication}` | GET | Retrieve the given medication from the database. | Yes |
+| `/medications/{medication}/edit` | GET | Show the form to edit a medication. | Yes |
+| `/medications/{medication}` | PUT/PATCH | Update the medication in the database. | Yes |
+| `/medications/{medication}` | DELETE | Remove the medication from the database. | Yes |
 | `/api/v1/medications/verify` | POST | Verify a medication based on its scanned information, returning an object that either contains a description of the medication, or describes the error that occurred. | No |
 
 ### Patients
 
 | Route | Method | Description | Authentication |
 |-------|--------|-------------|----------------|
-| `/api/v1/patients` | GET | Get a list of all the patients that can be scanned. | No |
-| `/api/v1/patients/create` | GET | Show the form to add a patient to the database. | Yes |
-| `/api/v1/patients` | POST | Add a patient to the database. | Yes |
-| `/api/v1/patients/{patient}` | GET | Retrieve the given patient from the database. | No |
-| `/api/v1/patients/{patient}/edit` | GET | Show the form to edit a patient. | Yes |
-| `/api/v1/patients/{patient}` | PUT/PATCH | Update the patient in the database. | Yes |
-| `/api/v1/patients/{patient}` | DELETE | Remove the patient from the database. | Yes |
+| `/patients` | GET | Get a list of all the patients that can be scanned. | Yes |
+| `/patients/create` | GET | Show the form to add a patient to the database. | Yes |
+| `/patients` | POST | Add a patient to the database. | Yes |
+| `/patients/{patient}` | GET | Retrieve the given patient from the database. | Yes |
+| `/patients/{patient}/edit` | GET | Show the form to edit a patient. | Yes |
+| `/patients/{patient}` | PUT/PATCH | Update the patient in the database. | Yes |
+| `/patients/{patient}` | DELETE | Remove the patient from the database. | Yes |
 | `/api/v1/patients/verify` | POST | Verify a patient based on its scanned information, returning an object that either contains a description of the patient, or describes the error that occurred. | No |
 
 ## JSON
