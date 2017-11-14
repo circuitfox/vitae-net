@@ -1,4 +1,4 @@
-##Introduction
+## Introduction
 
 This document contains a list of API endpoints and sample JSON outputs from
 them. These are intended to aid in familiarizing oneself with the application
@@ -7,7 +7,7 @@ represent a numeric id. Routes without an `/api/<version>` prefix are internal
 and are expected to remain stable across application versions. Internal APIs
 always require authentication.
 
-##APIs
+## APIs
 
 ### Users
 
@@ -53,7 +53,7 @@ The following describe the format of the JSON objects passed to and returned by 
 routes. All elements of the form `$name` are variables that will be filled in
 by client code. Some variables may be numbers or booleans in real-world output.
 
-###`/api/v1/medications/verify` - parameters
+### `/api/v1/medications/verify` - parameters
 
 ```json
 {
@@ -62,7 +62,7 @@ by client code. Some variables may be numbers or booleans in real-world output.
 }
 ```
 
-###`/api/v1/medications/verify` - response
+### `/api/v1/medications/verify` - response
 
 Success:
 
@@ -89,7 +89,7 @@ Failure:
 }
 ```
 
-###`/api/v1/patients/verify` - parameters
+### `/api/v1/patients/verify` - parameters
 
 ```json
 {
@@ -100,7 +100,7 @@ Failure:
 }
 ```
 
-###`/api/v1/patients/verify` - response
+### `/api/v1/patients/verify` - response
 
 Success:
 
