@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::middleware("auth")->get('/admin', function() {
+    // TODO: Admin page
+})->name('admin');
