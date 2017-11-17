@@ -20,3 +20,7 @@ Auth::routes();
 Route::middleware("auth")->get('/admin', function() {
     // TODO: Admin page
 })->name('admin');
+
+Route::get('/scan', function () {
+    // FIXME: scanning page
+});
