@@ -15,7 +15,7 @@ class CreateMedicationsTable extends Migration
     {
         Schema::create('medications', function (Blueprint $table) {
             //attributes
-            $table->integer('medication_id');
+            $table->bigIncrements('medication_id');
             $table->string('name');
             $table->integer('dosage_amount');
             $table->string('dosage_unit');
@@ -23,8 +23,6 @@ class CreateMedicationsTable extends Migration
             $table->string('comments')->nullable();
             $table->boolean('stat');
             $table->timestamps();
-            //indexes
-            $table->primary('medication_id');
         });
     }
 
