@@ -14,11 +14,32 @@
       <dd>{{ item.stat }}</dd>
     </dl>
     <hr>
+    <div v-if="form">
+      <input type="hidden" name="name" :value="item.name" :id="`med-name-${id}`">
+      <input type="hidden" name="dosage" :value="item.dosage" :id="`med-dosage-${id}`">
+      <input type="hidden" name="units" :value="item.units" :id="`med-units-${id}`">
+      <input type="hidden" name="instructions" :value="item.instructions" :id="`med-instructions-${id}`">
+      <input type="hidden" name="comments" :value="item.comments" :id="`med-comments-${id}`">
+      <input type="hidden" name="stat" :value="item.stat" :id="`med-stat-${id}`">
+    </div>
   </div>
 </template>
 
 <script>
     export default {
-        props: ['item', 'id']
+        props: {
+            item: {
+                type: Object,
+                required: true,
+            },
+            id: {
+                type: Number,
+                required: true,
+            },
+            form: {
+                type: Boolean,
+                default: false,
+            }
+        }
     }
 </script>

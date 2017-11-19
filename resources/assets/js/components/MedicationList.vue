@@ -5,6 +5,7 @@
     <medication v-for="(item, index) in items"
                 :item="item"
                 :id="index"
+                :form="form"
                 :key="index"
                 @remove="removeMedication"></medication>
   </div>
@@ -14,6 +15,12 @@
     import Medication from './Medication.vue';
 
     export default {
+        props: {
+            form: {
+                type: Boolean,
+                default: false
+            }
+        },
         components: {
             'medication': Medication
         },

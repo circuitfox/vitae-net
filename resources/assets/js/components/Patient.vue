@@ -20,11 +20,25 @@
       <dd>{{ patient.room }}</dd>
     </dl>
     <hr>
+    <div v-if="form">
+      <input type="hidden" name="first_name" :value="patient.first_name" id="patient-first-name">
+      <input type="hidden" name="last_name" :value="patient.last_name" id="patient-last-name">
+      <input type="hidden" name="dob" :value="patient.dob" id="patient-dob">
+      <input type="hidden" name="mrn" :value="patient.mrn" id="patient-mrn">
+      <input type="hidden" name="physician" :value="patient.physician" id="patient-physician">
+      <input type="hidden" name="room" :value="patient.room" id="patient-room">
+    </div>
   </div>
 </template>
 
 <script>
     export default {
+        props: {
+            form: {
+                type: Boolean,
+                default: false,
+            }
+        },
         data() {
             return {
                 patient: {}
