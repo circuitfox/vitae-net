@@ -72,7 +72,7 @@ Success:
   "data": {
     "name": "$name",
     "dosage": "$dosage",
-    "type": "$type",
+    "units": "$units",
     "instructions": "$instructions",
     "comments": "$comments",
     "stat": "$stat"

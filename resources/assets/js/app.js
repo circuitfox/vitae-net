@@ -9,14 +9,19 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+const summaryPage = new Vue({
+    el: '#summary-page',
+    components: {
+        'medication-list': require('./components/MedicationList.vue'),
+        'patient': require('./components/Patient.vue')
+    }
+});
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
+$(function() {
+    // FIXME: Scanning library setup & events
+    // FIXME: find a better way to test this 
+    console.log("patient emit");
+    summaryPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065, sex: 'Male', physician: 'Dr. Jones', room: '12'});
+    console.log("medication emit");
+    summaryPage.$emit('add-medication', {name: 'Wellbutrin', dosage: 100, units: 'mg', instructions: '1 pill by mouth ever 4 hours', comments: '', stat: false});
 });
