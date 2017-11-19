@@ -25,6 +25,7 @@
       <input type="hidden" name="last_name" :value="patient.last_name" id="patient-last-name">
       <input type="hidden" name="dob" :value="patient.dob" id="patient-dob">
       <input type="hidden" name="mrn" :value="patient.mrn" id="patient-mrn">
+      <input type="hidden" name="sex" :value="patient.sex" id="patient-sex">
       <input type="hidden" name="physician" :value="patient.physician" id="patient-physician">
       <input type="hidden" name="room" :value="patient.room" id="patient-room">
     </div>
