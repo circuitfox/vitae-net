@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware("auth")->get('/admin', function() {
-    // TODO: Admin page
+Route::middleware('auth')->get('/admin', function() {
+    return view('admin');
 })->name('admin');
 
 Route::get('/scan', function () {
