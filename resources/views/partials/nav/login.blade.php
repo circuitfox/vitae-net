@@ -11,6 +11,12 @@
     <button type="submit" class="btn btn-default">Sign in</button>
   </form>
 @else
-  <a href="/admin">{{ Auth::user()->name }}</a>
+  <div class="navbar-right">
+    <p class="navbar-text">
+      <span class="glyphicon glyphicon-user"></span>
+      <a class="navbar-link" href="/admin">{{ Auth::user()->name }}</a>
+    </p>
+    <div class="col-md-2"></div>
+  </div>
 @endif
 </div>
