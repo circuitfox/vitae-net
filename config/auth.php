@@ -99,4 +99,5 @@ return [
         ],
     ],
 
+    'default_password' => 'password',
 ];

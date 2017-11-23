@@ -24,3 +24,5 @@ Route::middleware('auth')->get('/admin', function() {
 Route::get('/scan', function () {
     // FIXME: scanning page
 });
+
+Route::middleware('auth')->resource('users', 'UserController');
