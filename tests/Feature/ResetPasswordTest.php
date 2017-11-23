@@ -19,7 +19,7 @@ class ResetPasswordTest extends TestCase
     public function testNoRedirectIfFalse()
     {
         $user = factory(\App\User::class)->create();
-        $response = $this->actingAs($user)->get('/admin');
+        $response = $this->followingRedirects()->actingAs($user)->get('/admin');
         $response->assertViewIs('admin');
     }
 
@@ -49,7 +49,7 @@ class ResetPasswordTest extends TestCase
         $response->assertRedirect();
         $this->assertTrue(!$user->reset_password);
 
-        $response = $this->actingAs($user)->get('/admin');
+        $response = $this->followingRedirects()->actingAs($user)->get('/admin');
         $response->assertViewIs('admin');
     }
 }
