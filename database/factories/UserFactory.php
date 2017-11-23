@@ -24,3 +24,21 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->state(App\User::class, 'admin', function (Faker $faker) {
+    return [
+        'role' => 'admin',
+    ];
+});
+
+$factory->state(App\User::class, 'instructor', function (Faker $faker) {
+    return [
+        'role' => 'instructor',
+    ];
+});
+
+$factory->state(App\User::class, 'reset_password', function (Faker $faker) {
+    return [
+        'reset_password' => true,
+    ];
+});
