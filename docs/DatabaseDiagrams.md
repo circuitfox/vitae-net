@@ -17,7 +17,7 @@ This documents serves as an explanation to the entity-relationship data model di
 ### Phase 1 ERD
 
 **users:** The users table is used for sign-in authentication.
-- The role attribute will have a value of "admin" for system administrators. Other possible values may be devised. This attribute may be altered or completely removed if it is deemed unnecessary.
+- The role attribute represents the user's responsibilities and privilege level within the system. Instructors, identified by the value "instructor", will be able to manage medication and patient data stored in the system. System administrators, identified by the value "admin", will have the ability to create new user accounts in addition to being able to perform all functions an Instructor can.
 
 **medications:** The medications table is used to store a list of all the medication facsimiles available to the nursing department.
 - The medication_id attribute corresponds to the serial identification of a particular medication, such as a UPC, EAN or other product identification code. The value of this is arbitrarily assigned by the system when new medications are added to the list.
@@ -26,7 +26,7 @@ This documents serves as an explanation to the entity-relationship data model di
 - The stat attribute represents whether or not the medication is a stat/prn medication. The value "0"/"FALSE" will indicate the medication is not stat/prn, while "1"/"TRUE" will indicate that the medication is stat/prn.
 
 **patients:** The patients table is used to store information relevant to the virtual patients who may be listed on a medical administration record for the students to interact with.
-- The sex attribute indicates the biological gender of the patient. The value "0"/"FALSE" will indicate the patient is female, while "1"/"TRUE" will indicate the patient is male.
+- The sex attribute indicates the sex of the patient. The value "0"/"FALSE" will indicate the patient is female, while "1"/"TRUE" will indicate the patient is male.
 
 
 ### Phase 2 ERD
