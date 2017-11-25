@@ -30,3 +30,4 @@ Route::post('/scan', function() {
 });
 
 Route::middleware('auth')->resource('users', 'UserController');
+Route::middleware('auth')->resource('medications', 'MedicationController');
