@@ -22,5 +22,9 @@ Route::middleware("auth")->get('/admin', function() {
 })->name('admin');
 
 Route::get('/scan', function () {
-    // FIXME: scanning page
+    return view('summary');
+});
+
+Route::post('/scan', function() {
+    return redirect('/');
 });
