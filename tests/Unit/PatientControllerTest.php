@@ -110,7 +110,7 @@ class PatientControllerTest extends TestCase
                 'first_name' => $patient->first_name,
                 'last_name' => $patient->last_name,
                 'dob' => $patient->date_of_birth,
-                'sex' => $patient->sex ? 'male' : 'female',
+                'sex' => $patient->sex ? 'Male' : 'Female',
                 'physician' => $patient->physician,
                 'room' => $patient->room,
             ],

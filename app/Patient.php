@@ -20,7 +20,7 @@ class Patient extends Model
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'dob' => $this->date_of_birth,
-            'sex' => $this->sex ? 'male' : 'female',
+            'sex' => $this->sex ? 'Male' : 'Female',
             'physician' => $this->physician,
             'room' => $this->room,
         ];
