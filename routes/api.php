@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/v1/medications/verify', 'MedicationController@verify');
+
+Route::post('/v1/patients/verify', 'PatientController@verify');
