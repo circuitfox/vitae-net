@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div id="medication-list" v-if="items.length <= 0">
+  </div>
+  <div id="medication-list" v-else>
     <h3>Medication</h3>
     <hr>
     <medication v-for="(item, index) in items"

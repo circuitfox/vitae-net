@@ -14,13 +14,13 @@
             <div class="form-group">
               <label class="col-md-2 control-label" for="initials">Initials:</label>
               <div class="col-md-3">
-                <input id="initials" class="form-control" type="text" name="initials">
+                <input id="initials" class="form-control" type="text" name="initials" required>
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-2 control-label" for="time">Time:</label>
               <div class="col-md-3">
-                <input id="time" class="form-control" type="time" name="time">
+                <input id="time" class="form-control" type="time" name="time" required>
               </div>
             </div>
             <div class="form-group">
