@@ -17,6 +17,13 @@ const summaryPage = new Vue({
     }
 });
 
+const addPatientPage = new Vue({
+    el: '#patient-form',
+    components: {
+        'patient-form', require('./components/PatientForm.vue')
+    }
+});
+
 $(function() {
     // FIXME: Scanning library setup & events
     // FIXME: find a better way to test this 
@@ -25,4 +32,6 @@ $(function() {
     console.log("medication emit");
     summaryPage.$emit('add-medication', {name: 'Wellbutrin', dosage: 100, units: 'mg', instructions: '1 pill by mouth ever 4 hours', comments: '', stat: false});
     $('#form-extra').show();
+
+    addPatientPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065});
 });
