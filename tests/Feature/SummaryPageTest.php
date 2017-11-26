@@ -25,6 +25,7 @@ class SummaryPageTest extends TestCase
     public function testHiddenForm()
     {
         $response = $this->get('/scan');
+        $prev = url('/');
         $response->assertSee(<<<HTML
           <div id="form-extra" style="display: none">
             <div class="form-group">
@@ -41,7 +42,7 @@ class SummaryPageTest extends TestCase
             </div>
             <div class="form-group">
               <div class="col-md-offset-2 col-md-6">
-                <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
+                <a class="btn btn-default" href="{$prev}">Cancel</a>
                 <button class="btn btn-primary" type="submit">Accept</button>
               </div>
             </div>
