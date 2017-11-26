@@ -40,7 +40,8 @@ class SummaryPageTest extends TestCase
               </div>
             </div>
             <div class="form-group">
-              <div class="col-md-offset-2 col-md-2">
+              <div class="col-md-offset-2 col-md-6">
+                <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
                 <button class="btn btn-primary" type="submit">Accept</button>
               </div>
             </div>
