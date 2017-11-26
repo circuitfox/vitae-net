@@ -20,7 +20,7 @@ const summaryPage = new Vue({
 const addPatientPage = new Vue({
     el: '#patient-form',
     components: {
-        'patient-form', require('./components/PatientForm.vue')
+        'patient-form': require('./components/PatientForm.vue')
     }
 });
 
