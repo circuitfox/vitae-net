@@ -1,8 +1,8 @@
 <template>
-  <div v-if="Object.keys(patient).length === 0">
+  <div id="patient" v-if="Object.keys(patient).length === 0">
     <h3>Scan a patient to begin.</h3>
   </div>
-  <div v-else>
+  <div id="patient" v-else>
     <h3>Patient</h3>
     <hr>
     <dl class='dl-horizontal'>
