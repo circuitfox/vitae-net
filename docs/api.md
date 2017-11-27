@@ -58,7 +58,8 @@ by client code. Some variables may be numbers or booleans in real-world output.
 ```json
 {
   "name": "$name",
-  "dosage": "$dosage"
+  "dosage": "$dosage",
+  "units": "$units",
 }
 ```
 
