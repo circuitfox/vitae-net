@@ -22,5 +22,18 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'role' => $faker->jobTitle,
         'remember_token' => str_random(10),
+        'reset_password' => false,
     ];
 });
+
+$factory->state(App\User::class, 'admin', [
+    'role' => 'admin',
+]);
+
+$factory->state(App\User::class, 'instructor', [
+    'role' => 'instructor',
+]);
+
+$factory->state(App\User::class, 'reset_password', [
+    'reset_password' => true,
+]);
