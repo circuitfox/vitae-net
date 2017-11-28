@@ -28,3 +28,7 @@ Route::get('/scan', function () {
 Route::post('/scan', function() {
     return redirect('/');
 });
+
+Route::middleware('auth')->resource('users', 'UserController');
+Route::middleware('auth')->resource('medications', 'MedicationController');
+Route::middleware('auth')->resource('patients', 'PatientController');

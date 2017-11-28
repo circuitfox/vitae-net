@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Medscanner Admin Page")
+@section("title", "Medscanner Administration - Patient")
 @section("content")
 
 @endsection

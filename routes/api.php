@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/v1/medications/verify', 'MedicationController@verify');
+
+Route::post('/v1/patients/verify', 'PatientController@verify');
