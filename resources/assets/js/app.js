@@ -24,7 +24,14 @@ const addPatientPage = new Vue({
     }
 });
 
-$(function() {
+const medicationForm = new Vue({
+    el: '#medication-form',
+    components: {
+        'medication-form-list': require('./components/MedicationFormList.vue')
+    }
+});
+
+$(() => {
     // FIXME: Scanning library setup & events
     // FIXME: find a better way to test this 
     console.log("patient emit");
@@ -34,4 +41,9 @@ $(function() {
     $('#form-extra').show();
 
     addPatientPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065});
+
+    $('#add-medication').on('click', () => {
+        medicationForm.$emit('add-medication', {name: '', dosage_amount: 0, dosage_unit: ''});
+    });
+    medicationForm.$emit('add-medication', {name: 'Wellbutrin', dosage_amount: 100, dosage_unit: 'mg'});
 });

@@ -9,7 +9,7 @@
                 :id="index"
                 :form="form"
                 :key="index"
-                @remove="removeMedication"></medication>
+                @remove="items.splice(index, 1)"></medication>
   </div>
 </template>
 
@@ -35,9 +35,6 @@
             addMedication(data) {
                 this.items.push(data);
             },
-            removeMedication(id) {
-                this.items.splice(id, 1);
-            }
         },
         created() {
             this.$parent.$on('add-medication', this.addMedication);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i class="pull-right glyphicon glyphicon-remove" @click="$emit('remove', this.id)"></i>
+    <i class="pull-right glyphicon glyphicon-remove" @click="$emit('remove')"></i>
     <dl class='dl-horizontal'>
       <dt>Name:</dt>
       <dd>{{ item.name }}</dd>
