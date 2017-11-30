@@ -20,7 +20,7 @@ class UsersAddAdminUser extends Migration
             'email' => 'admin@example.com',
             'password' => Hash::make(config('auth.default_password')),
             'role' => 'admin',
-            'rese_password' => true
+            'reset_password' => true,
         ]);
     }
 
