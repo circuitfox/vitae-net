@@ -5,6 +5,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Add Patient</div>
     <div class="panel-body">
+      <div id="scan-error-alert"></div>
       <form id="medication-form" class="form-horizontal" action="{{ route('medications.store') }}" method="POST">
         {{ csrf_field() }}
         <medication-form-list :errors="{{ json_encode($errors->getMessages()) }}"
