@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Patient;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class PatientController extends Controller
 {
@@ -46,13 +45,12 @@ class PatientController extends Controller
             'medical_record_number' => 'required|numeric|unique:patients',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'date_of_birth' => 'required|date',
+            'date_of_birth' => 'required|string',
             'sex' => 'required|boolean',
             'physician' => 'required|string',
             'room' => 'required|string',
         ]);
         $data = $request->all();
-        $data['date_of_birth'] = Carbon::parse($data['date_of_birth'])->format('Y-m-d');
         Patient::create($data);
         return redirect('/admin');
     }
@@ -91,13 +89,12 @@ class PatientController extends Controller
         $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'date_of_birth' => 'required|date',
+            'date_of_birth' => 'required|string',
             'sex' => 'required|boolean',
             'physician' => 'required|string',
             'room' => 'required|string',
         ]);
         $data = $request->all();
-        $data['date_of_birth'] = Carbon::parse($data['date_of_birth'])->format('Y-m-d');
         Patient::findOrFail($id)->update($data);
         return redirect('/admin');
     }
@@ -126,15 +123,29 @@ class PatientController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'dob' => 'required|string',
-            'mrn' => 'required|numeric'
+            'mrn' => 'numeric|nullable'
         ]);
         try {
-            $patient = Patient::where([
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
-                'date_of_birth' => $request->input('dob'),
-                'medical_record_number' => $request->input('mrn'),
-            ])->firstOrFail();
+            // Because of how codes scan, the verification routine must do the
+            // following:
+            // - If we have an MRN, search using that only; if it's in the
+            //   database, we'll get a match
+            // - Otherwise, search using the first and last names and the date
+            //   of birth. The first and last names might not be in order,
+            //   though, so we'll check both ways.
+            $patient = Patient::when($request->input('mrn'), function($query) use ($request) {
+                return $query->where('medical_record_number', $request->input('mrn'));
+            }, function ($query) use ($request) {
+                return $query->where([
+                    'first_name' => $request->input('first_name'),
+                    'last_name' => $request->input('last_name'),
+                    'date_of_birth' => $request->input('dob')
+                ])->orWhere([
+                    'first_name' => $request->input('last_name'),
+                    'last_name' => $request->input('first_name'),
+                    'date_of_birth' => $request->input('dob')
+                ]);
+            })->firstOrFail();
             return response()->json([
                 'status' => 'success',
                 'data' => $patient->toApiArray()

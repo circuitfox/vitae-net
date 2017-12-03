@@ -18,7 +18,7 @@ class CreatePatientsTable extends Migration
             $table->integer('medical_record_number');
             $table->string('last_name');
             $table->string('first_name');
-            $table->date('date_of_birth');
+            $table->string('date_of_birth');
             $table->boolean('sex');
             $table->string('physician');
             $table->string('room');

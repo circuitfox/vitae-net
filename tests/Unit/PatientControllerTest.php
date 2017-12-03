@@ -43,7 +43,7 @@ class PatientControllerTest extends TestCase
         $this->assertEquals($patient->medical_record_number, 1234);
         $this->assertEquals($patient->first_name, 'joe');
         $this->assertEquals($patient->last_name, 'smith');
-        $this->assertEquals($patient->date_of_birth, '1990-01-01');
+        $this->assertEquals($patient->date_of_birth, '1/1/1990');
         $this->assertEquals($patient->sex, true);
         $this->assertEquals($patient->physician, 'dr. jones');
         $this->assertEquals($patient->room, '3a');
@@ -94,7 +94,7 @@ class PatientControllerTest extends TestCase
         $this->assertNull(Patient::find($patient->medical_record_number));
     }
 
-    public function testVerify()
+    public function testVerifyWithMRN()
     {
         $patient = factory(Patient::class)->create();
         $response = $this->json('POST', '/api/v1/patients/verify', [
@@ -115,6 +115,29 @@ class PatientControllerTest extends TestCase
                 'room' => $patient->room,
             ],
         ]);
+    }
+
+    public function testVerifyNoMRN()
+    {
+        $patient = factory(Patient::class)->create();
+        $response = $this->json('POST', '/api/v1/patients/verify', [
+            'first_name' => $patient->first_name,
+            'last_name' => $patient->last_name,
+            'dob' => $patient->date_of_birth,
+        ]);
+        $response->assertStatus(200)->assertJson([
+            'status' => 'success',
+            'data' => [
+                'mrn' => $patient->medical_record_number,
+                'first_name' => $patient->first_name,
+                'last_name' => $patient->last_name,
+                'dob' => $patient->date_of_birth,
+                'sex' => $patient->sex ? 'Male' : 'Female',
+                'physician' => $patient->physician,
+                'room' => $patient->room,
+            ],
+        ]);
+
     }
 
     public function testVerifyError()
