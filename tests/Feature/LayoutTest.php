@@ -54,7 +54,8 @@ class LayoutTest extends TestCase
             route('login') .
             '" method="POST">'
         );
-        $response->assertSee('<a class="navbar-link" href="/admin">' . $user->name . '</a>');
+        $response->assertSee('<a class="navbar-link" href="' . url('/admin') . '">' . $user->name . '</a>');
+        $response->assertSee('<a class="navbar-link" href="' . url('/logout') . '">Logout</a>');
     }
 
     public function testHasNoLogin()
