@@ -21,7 +21,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label" for="date_of_birth">Date of Birth:</label>
       <div class="col-md-6">
-        <input id="dob" class="form-control" type="date" name="date_of_birth" :value="patient.dob" required>
+        <input id="dob" class="form-control" type="text" name="date_of_birth" :value="patient.dob" required>
         <span class="help-block" v-if="errors['date_of_birth']">
           <strong>{{ errors.date_of_birth[0] }}</strong>
         </span>
@@ -85,8 +85,6 @@
         methods: {
             setPatient(patient) {
                 this.patient = patient;
-                // parse the dob to the proper format, date inputs want 'yyyy-mm-dd'
-                this.patient.dob = new Date(patient.dob).toISOString().split('T')[0];
             }
         },
         created() {
