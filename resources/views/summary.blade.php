@@ -1,4 +1,4 @@
-@extends("layouts.app");
+@extends("layouts.app")
 @section("title", "Medscanner - Summary Page")
 @section("content")
 <div id="summary-page">
@@ -6,6 +6,7 @@
     <div id="panel" class="panel panel-default">
       <div class="panel-heading">Scan</div>
       <div class="panel-body">
+        <div id="scan-error-alert"></div>
         <form id="scan-form" class="form-horizontal" action="{{ url('/scan') }}" method="POST">
           {{ csrf_field() }}
           <patient :form="true"></patient>
