@@ -32,16 +32,10 @@
           </div>
           <div class="form-group">
             <label for="role" class="col-md-2 control-label">Role:</label>
-            @if (Auth::user()->isAdmin())
               <input type="hidden" class="form-control" id="role" name="role" required value="{{ $user->role }}">
-              <div class="col-md-6" data-toggle="tooltip" title="Admin role cannot be changed">
+              <div class="col-md-6" data-toggle="tooltip" title="Role cannot be changed">
                 <input type="text" class="form-control" id="_role" name="_role" disabled value="{{ $user->role }}">
               </div>
-            @else
-              <div class="col-md-6">
-                <input type="text" class="form-control" id="role" name="role" required value="{{ $user->role }}">
-              </div>
-            @endif
           </div>
           <div class="form-group">
             <label for="password" class="col-md-2 control-label">Password</label>
