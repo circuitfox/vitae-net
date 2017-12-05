@@ -46,7 +46,7 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
             'role' => 'required|string',
         ]);
@@ -97,7 +97,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
         $request->validate([
-            'name' => 'string|nullable',
+            'name' => [
+                'string',
+                'nullable',
+                Rule::unique('users')->ignore($user->id),
+            ],
             'email' => [
                 'email',
                 'nullable',

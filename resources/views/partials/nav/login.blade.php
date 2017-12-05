@@ -3,10 +3,10 @@
   <form class="navbar-form navbar-right" id="login-form" action="{{ route('login') }}" method="POST">
     {{ csrf_field() }}
     <div class="form-group">
-      <input type="text" class="form-control" id="email" name="email" placeholder="Administrator Email">
-      @if ($errors->has('email'))
+      <input type="text" class="form-control" id="name" name="name" placeholder="Administrator Username">
+      @if ($errors->has('name'))
         <span class="help-block">
-          <strong>{{ $errors->first('email') }}</strong>
+          <strong>{{ $errors->first('name') }}</strong>
         </span>
       @endif
     </div>
@@ -22,6 +22,10 @@
   </form>
 @else
   <div class="navbar-right">
+    <div class="navbar-text">
+      <span class="glyphicon glyphicon-cog"></span>
+      <a class="navbar-link" href="{{ url('/users/' . Auth::user()->id . '/edit') }}">Settings</a>
+    </div>
     <div class="navbar-text">
       <span class="glyphicon glyphicon-user"></span>
       <a class="navbar-link" href="{{ url('/admin') }}">{{ Auth::user()->name }}</a>
