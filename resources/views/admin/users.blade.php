@@ -10,7 +10,7 @@
           @if(Auth::check())
             @if (Auth::user()->isAdmin())
               <div class="row">
-                <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#users">
+                <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#users" data-target="#user{{ $user->id }}">
                   @include("partials/user/header", ["user" => $user])
                 </a>
                 <div class="btn-toolbar col-md-4">
@@ -19,7 +19,7 @@
               </div>
             @else
               <a class="accordion collapsed" role="button" data-toggle="collapse"
-                    data-parent="#users">
+                    data-parent="#users" data-target="#user{{ $user->id }}">
                   @include("partials/user/header", ["user" => $user])
               </a>
             @endif
