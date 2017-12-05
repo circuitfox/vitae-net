@@ -154,7 +154,7 @@ class UserControllerTest extends TestCase
         $response = $this->actingAs($user1)->delete('/users/' . $admin->id);
         $response->assertStatus(403);
         $this->assertNotNull(User::find($admin->id));
-        
+
         $response = $this->actingAs($admin)->delete('/users/' . $user1->id);
         $response->assertRedirect();
         $this->assertNull(User::find($user1->id));
