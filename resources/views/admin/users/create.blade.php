@@ -29,18 +29,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="password" class="col-md-2 control-label">Password</label>
-            <div class="col-md-6">
-              <input id="password" type="password" class="form-control" name="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password_confirmation" class="col-md-2 control-label">Confirm Password:</label>
-            <div class="col-md-6">
-              <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
-            </div>
-          </div>
-          <div class="form-group">
             <div class="col-md-2">
               <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
             </div>
