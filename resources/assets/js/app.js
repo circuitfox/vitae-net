@@ -44,7 +44,7 @@ function show_alert(message) {
 }
 
 $(() => {
-    // FIXME: find a better way to test this 
+    // FIXME: find a better way to test this
     $(document).scannerDetection({
         timeBeforeScan: 200,
         startChar: [2],
@@ -95,6 +95,15 @@ $(() => {
             }
         }
     });
+    // FIXME: Scanning library setup & events
+    // FIXME: find a better way to test this
+    console.log("patient emit");
+    summaryPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065, sex: 'Male', physician: 'Dr. Jones', room: '12'});
+    console.log("medication emit");
+    summaryPage.$emit('add-medication', {name: 'Wellbutrin', dosage: 100, units: 'mg', instructions: '1 pill by mouth ever 4 hours', comments: '', stat: false});
+    $('#form-extra').show();
+
+    addPatientPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065});
 
     $('#add-medication').on('click', () => {
         medicationForm.$emit('add-medication', {name: '', dosage_amount: 0, dosage_unit: ''});
@@ -109,4 +118,12 @@ $(() => {
 
     //addPatientPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065});
     //medicationForm.$emit('add-medication', {name: 'Wellbutrin', dosage_amount: 100, dosage_unit: 'mg'});
+    medicationForm.$emit('add-medication', {name: 'Wellbutrin', dosage_amount: 100, dosage_unit: 'mg'});
+
+    $('#user-delete-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var user = button.data('id');
+        var modal = $(this)
+        modal.find('#delete-user').attr('action', '/users/' + user);
+    });
 });
