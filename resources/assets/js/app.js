@@ -44,7 +44,7 @@ function show_alert(message) {
 }
 
 $(() => {
-    // FIXME: find a better way to test this 
+    // FIXME: find a better way to test this
     $(document).scannerDetection({
         timeBeforeScan: 200,
         startChar: [2],
@@ -109,4 +109,11 @@ $(() => {
 
     //addPatientPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065});
     //medicationForm.$emit('add-medication', {name: 'Wellbutrin', dosage_amount: 100, dosage_unit: 'mg'});
+
+    $('#user-delete-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var user = button.data('id');
+        var modal = $(this)
+        modal.find('#delete-user').attr('action', '/users/' + user);
+    });
 });
