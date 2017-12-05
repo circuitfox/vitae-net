@@ -3,7 +3,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label" for="first_name">First Name:</label>
       <div class="col-md-6">
-        <input id="first-name" class="form-control" type="text" name="first_name" :value="patient.fist_name" required>
+        <input id="first-name" class="form-control" type="text" name="first_name" :value="patient.first_name" required>
         <span class="help-block" v-if="errors['first_name']">
           <strong>{{ errors.first_name[0] }}</strong>
         </span>

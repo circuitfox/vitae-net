@@ -11,11 +11,11 @@ export { parse };
 // TODO: How to treat secondary dosages?
 function parse(str) {
     let parsedObj = {type: '', data: {}};
-    let patientRegex = /^(\w+)[,.]? (\w+)(?:DOB:\ ?)?(\d{1,2}[.\/]\d{1,2}[.\/](?:\d{4}|\d{2}XX))(?:(?:MRN:\ ?)?(\d{6}))?$/;
-    let medicationNameRegex = /^[a-zA-Z]+\ ?(?:\((?:[a-zA-Z]\ ?)+\))?\ ?(?:[a-zA-Z]+\ ?)*$/;
-    let medicationNameDosageRegex = /^((?:\d+(?:\.\d+)?% )?(?:[a-zA-Z]+\ ?)+(?:\((?:[a-zA-Z]+\ ?)+\))?) (\d+)\ ?(.*)$/;
-    let medicationDosageNameRegex = /^(\d+(?:\.\d+)?)\ ?([a-zA-Z][0-9mcgElLq \/]+) ((?:(?:\d+(?:\.\d+)?% )?[a-zA-Z-]+\ ?)+)$/;
-    let medicationDosageNameDosageRegex = /^(\d+)\ ?(\w+) ((?:[a-zA-Z]+\ ?)+) (\d+(?:[.,]?\d+)? .*)$/;
+    let patientRegex = /^\x02(\w+)[,.]? (\w+)(?:DOB:\ ?)?(\d{1,2}[.\/]\d{1,2}[.\/](?:\d{4}|\d{2}XX))(?:(?:MRN:\ ?)?(\d{6}))?$/;
+    let medicationNameRegex = /^\x02[a-zA-Z]+\ ?(?:\((?:[a-zA-Z]\ ?)+\))?\ ?(?:[a-zA-Z]+\ ?)*$/;
+    let medicationNameDosageRegex = /^\x02((?:\d+(?:\.\d+)?% )?(?:[a-zA-Z]+\ ?)+(?:\((?:[a-zA-Z]+\ ?)+\))?) (\d+)\ ?(.*)$/;
+    let medicationDosageNameRegex = /^\x02(\d+(?:\.\d+)?)\ ?([a-zA-Z][0-9mcgElLq \/]+) ((?:(?:\d+(?:\.\d+)?% )?[a-zA-Z-]+\ ?)+)$/;
+    let medicationDosageNameDosageRegex = /^\x02(\d+)\ ?(\w+) ((?:[a-zA-Z]+\ ?)+) (\d+(?:[.,]?\d+)? .*)$/;
     let parseStr = patientRegex.exec(str);
     if (parseStr) {
         parsedObj.type = 'patient';
@@ -48,5 +48,6 @@ function parse(str) {
     } else {
         console.error('QR Code "' + str + '" does not parse.');
     }
+    console.log(parsedObj);
     return parsedObj;
 }
