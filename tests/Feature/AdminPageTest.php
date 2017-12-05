@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AdminPageTest extends TestCase
 {
+    use RefreshDatabase;
+    
     public function testHasPanel()
     {
         $user = factory(\App\User::class)->states('admin')->create();
