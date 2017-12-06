@@ -14,7 +14,7 @@
                   @include("partials/patient/header", ["patient" => $patient])
                 </a>
                 <div class="btn-toolbar col-md-4">
-                  <a class="btn btn-primary h3" href="{{ route('patients.edit', ['id' => $patient->medical_record_number]) }}" >Edit</button>
+                  <a class="btn btn-primary h3" href="{{ route('patients.edit', ['id' => $patient->medical_record_number]) }}" >Edit</a>
                   <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#patient-delete-modal" data-id="{{ $patient->medical_record_number }}">Delete</button>
                 </div>
               </div>
