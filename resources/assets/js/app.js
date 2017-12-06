@@ -132,6 +132,6 @@ $(() => {
         var button = $(event.relatedTarget);
         var medication = button.data('id');
         var modal = $(this)
-        modal.find('#delete-medication').attr('action', '/medications/' + user);
+        modal.find('#delete-medication').attr('action', '/medications/' + medication);
     });
 });
