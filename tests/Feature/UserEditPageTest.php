@@ -23,6 +23,7 @@ class UserEditPageTest extends TestCase
         $response->assertSee('<label for="role" class="col-md-2 control-label">Role:</label>');
         $response->assertSee('<input type="hidden" class="form-control" id="role" name="role" required value="'.$user->role.'">');
         $response->assertSee('<input type="text" class="form-control" id="_role" name="_role" disabled value="'.$user->role.'">');
+        $response->assertSee('<input id="old_password" type="password" class="form-control" name="old_password">');
         $response->assertSee('<label for="password" class="col-md-2 control-label">Password</label>');
         $response->assertSee('<input id="password" type="password" class="form-control" name="password">');
         $response->assertSee('<label for="password_confirmation" class="col-md-2 control-label">Confirm Password:</label>');

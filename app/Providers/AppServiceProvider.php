@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
       Schema::defaultStringLength(191);
       Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
-          return Hash::check($value, $parameters[0]);
+          return $value === null || Hash::check($value, $parameters[0]);
       },
       'This must be your current password');
     }

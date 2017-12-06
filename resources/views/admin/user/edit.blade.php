@@ -38,6 +38,12 @@
               </div>
           </div>
           <div class="form-group">
+            <label for="old_password" class="col-md-2 control-label">Old Password</label>
+            <div class="col-md-6" data-toggle="tooltip" title="Type your old password in here">
+              <input id="old_password" type="password" class="form-control" name="old_password">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="password" class="col-md-2 control-label">Password</label>
             <div class="col-md-6">
               <input id="password" type="password" class="form-control" name="password">
@@ -49,13 +55,9 @@
               <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-md-2">
-              <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
-            </div>
-            <div class="col-md-1">
-              <button type="submit" class="btn btn-primary">Update</button>
-            </div>
+          <div class="form-group col-md-offset-2 col-md-4">
+            <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
+            <button type="submit" class="btn btn-primary">Update</button>
           </div>
         </form>
       </div>
