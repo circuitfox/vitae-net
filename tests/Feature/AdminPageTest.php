@@ -24,7 +24,7 @@ class AdminPageTest extends TestCase
   <div class="panel panel-default" id="panel">
     <div class="panel-heading">Administrator Dashboard</div>
     <div class="panel-body">
-      <p>Administrator options:</p>
+            <p>Administrator options:</p>
       <p><a class="btn btn-primary" href="$users">View Users</a>&nbsp;View and edit existing users.</p>
       <p><a class="btn btn-primary" href="$userscreate">Create User</a>&nbsp;Create new user.</p>
       <p><a class="btn btn-primary" href="$meds">View Medications</a>&nbsp;View and edit existing medications.</p>

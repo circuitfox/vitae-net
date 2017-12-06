@@ -122,7 +122,7 @@ class UserController extends Controller
         $data = collect($request->except('password_confirmation'))->reject(function ($d) {
             return is_null($d);
         })->toArray();
-        if ($data['password']) {
+        if (array_key_exists('password', $data)) {
             $data['password'] = Hash::make($data['password']);
         }
         $user->update($data);

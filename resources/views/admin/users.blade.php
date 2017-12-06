@@ -1,26 +1,26 @@
 @extends("layouts.app")
 @section("title", "Medscanner Administration - Users")
 @section("content")
-<div class="container col-md-8 col-md-offset-2">
-  <? $users = App\User::all(); ?>
-  <div class="panel-group" id="users" role="tablist">
-    @foreach ($users as $user)
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab">
-          @if(Auth::check())
-            @if (Auth::user()->isAdmin())
-              <div class="row">
-                <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#users">
-                  @include("partials/user/header", ["user" => $user])
-                </a>
-                <div class="btn-toolbar col-md-4">
-                  <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#user-delete-modal" data-id="{{ $user->id }}">Delete</button>
+  <div class="container col-md-8 col-md-offset-2">
+    <? $users = App\User::all(); ?>
+    <div class="panel-group" id="users" role="tablist">
+      @foreach ($users as $user)
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            @if(Auth::check())
+              @if (Auth::user()->isAdmin())
+                <div class="row">
+                  <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#users" data-target="#user{{ $user->id }}">
+                    @include("partials/user/header", ["user" => $user])
+                  </a>
+                  <div class="btn-toolbar col-md-4">
+                    <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#user-delete-modal" data-id="{{ $user->id }}">Delete</button>
+                  </div>
                 </div>
-              </div>
-            @else
-              <a class="accordion collapsed" role="button" data-toggle="collapse"
-                    data-parent="#users">
-                  @include("partials/user/header", ["user" => $user])
+              @else
+                <a class="accordion collapsed" role="button" data-toggle="collapse"
+                data-parent="#users" data-target="#user{{ $user->id }}">
+                @include("partials/user/header", ["user" => $user])
               </a>
             @endif
           @endif

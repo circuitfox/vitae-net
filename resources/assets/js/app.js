@@ -70,6 +70,7 @@ $(() => {
                         console.error(error);
                     });
                 } else {
+                    console.log(obj.data);
                     addPatientPage.$emit('set-patient', obj.data);
                 }
             } else if (obj.type === 'medication') {
@@ -88,10 +89,13 @@ $(() => {
                         console.error(error);
                     });
                 } else {
+                    console.log(obj.data);
                     medicationForm.$emit('add-medication', obj.data);
                 }
             } else {
                 show_alert('Scanning failed. Unknown code format');
+                console.log(barcode);
+                console.log(obj);
             }
         }
     });
@@ -122,5 +126,12 @@ $(() => {
         var patient = button.data('id');
         var modal = $(this)
         modal.find('#delete-patient').attr('action', '/patients/' + patient);
+    });
+
+    $('#medication-delete-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var medication = button.data('id');
+        var modal = $(this)
+        modal.find('#delete-medication').attr('action', '/medications/' + medication);
     });
 });
