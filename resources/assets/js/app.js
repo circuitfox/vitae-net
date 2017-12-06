@@ -116,4 +116,11 @@ $(() => {
         var modal = $(this)
         modal.find('#delete-user').attr('action', '/users/' + user);
     });
+
+    $('#patient-delete-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var patient = button.data('id');
+        var modal = $(this)
+        modal.find('#delete-patient').attr('action', '/patients/' + patient);
+    });
 });
