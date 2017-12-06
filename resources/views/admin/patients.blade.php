@@ -26,7 +26,7 @@
             @endif
           @endif
         </div>
-        <div id="patient{{ $patient->id }}" class="panel-collapse collapse" role="tabpanel">
+        <div id="patient{{ $patient->medical_record_number }}" class="panel-collapse collapse" role="tabpanel">
           <div class="panel-body">
             @include("partials/patient/body", ["patient" => $patient])
           </div>
