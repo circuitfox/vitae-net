@@ -18,5 +18,5 @@ php artisan key:generate
 php artisan migrate --database=migrate
 
 npm install
-npm run dev
+npm run prod
 rm -rf node_modules/

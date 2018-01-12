@@ -1,0 +1,69 @@
+//JavaScript Code 
+
+f.onchange = function(e) {
+  let file = this.files[0];
+  let elementType;
+  // this is really naïve, the MIME type means nothing and should not be trusted
+  let fileType = file.type.split('/')[0];
+  switch (fileType) {
+    // determine which element to create
+    case 'image': elementType = 'img'; break;
+    case 'video': elementType = 'video'; break;
+    case 'audio': elementType = 'audio'; break;
+    case 'text': // this one may break and should not be there
+      elementType = 'pre';
+      break;
+    default: // We'll use an iframe for unknow elements
+      elementType = 'iframe'; break;
+  }
+
+  let elem = document.createElement(elementType);
+  if (elementType !== 'pre') { // a real media
+    // not really needed here,
+    // but it's always good to revoke a blobURI when not needed anymore
+    elem.onload = e=> { URL.revokeObjectURL(elem.src) };
+
+    elem.src = URL.createObjectURL(file);
+    if(elementType === 'audio' || elementType === 'video'){
+      elem.controls = true;
+      }
+  } else {
+    // so we said we wanted to display text files inside the current document ...
+    let reader = new FileReader();
+    reader.onload = function() {
+      elem.textContent = reader.result;
+    };
+    reader.readAsText(file);
+  }
+  document.body.appendChild(elem);
+}
+
+
+
+
+
+//HTML CODE
+
+<input type="file" id="f">
+
+
+
+//CSS CODE 
+
+iframe {
+  border: none;
+}
+
+
+
+
+
+
+
+
+If you use this website you can input the code and run it and be able to text it out
+
+
+
+https://jsfiddle.net/durga598/7fhoxw8u/
+
