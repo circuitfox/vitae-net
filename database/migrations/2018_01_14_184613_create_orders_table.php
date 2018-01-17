@@ -14,13 +14,16 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
+            //attributes
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->string('path');
-            $table->integer('patient_id')->default(0);
+            $table->string('file_path');
+            $table->integer('patient_id')->nullable();
             $table->boolean('completed')->default(0);
-
+            $table->timestamps();
+            //keys
+            $table->foreign('patient_id')->references('medical_record_number')->on('patients');
         });
     }
 
