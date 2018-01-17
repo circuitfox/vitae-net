@@ -2,11 +2,6 @@
 
 @section('content')
 
-<style>
-table {border: solid 1px lightgrey;}
-td {border-right: solid 1px lightgrey;
-   border-left: solid 1px lightgrey;}
-</style>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-2">

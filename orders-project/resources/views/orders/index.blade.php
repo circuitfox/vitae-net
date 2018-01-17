@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-table {border: solid 1px lightgrey;}
-td {border-right: solid 1px lightgrey;
-   border-left: solid 1px lightgrey;}
-</style>
 <div class="container">
     <div class="row">
         <div class="col-md-30 col-md-offset-0s">
