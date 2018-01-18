@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Lab::class, function (Faker $faker) {
     return [
-      $name = $faker->words(2, true);
+      $name = $faker->words(2, true),
       'name' => $name,
       'description' => $faker->sentence(6, true),
       'file_path' => 'labs/' . $name . rand(1111, 9999) . '.pdf',
