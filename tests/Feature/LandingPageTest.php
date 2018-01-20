@@ -9,21 +9,19 @@ class LandingPageTest extends TestCase
 {
     function testHasPanel()
     {
-        $scan = url('/scan');
+        $medication = url('/medication');
+        $orders = url('/orders');
         $response = $this->get('/');
         $response->assertSee(<<<HTML
 <div class="col-md-offset-2 col-md-8">
   <div class="panel panel-default" id="panel">
-    <div class="panel-heading">Students:</div>
+    <div class="panel-heading">Welcome</div>
     <div class="panel-body">
-      Instructions for using the medscanner system:
-      <ol>
-        <li>Scan a patient's bracelet</li>
-        <li>Scan medication that needs to be administered</li>
-        <li>Complete the summary form</li>
-        <li>Sign and accept the summary form</li>
-      </ol>
-      <a class="btn btn-primary" href="$scan">Begin</a>
+      <p>Select a module:</p>
+      <div class="row">
+        <a class="col-md-offset-3 col-md-2 btn btn-primary" href="$orders">Orders</a>
+        <a class="col-md-offset-1 col-md-2 btn btn-primary" href="$medication">Medication</a>
+      </div>
     </div>
   </div>
 </div>

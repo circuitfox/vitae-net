@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('welcome');
 });
 
@@ -26,7 +26,11 @@ Route::middleware('auth')->get('/admin', function() {
 
 Route::middleware('auth')->get('/home', 'HomeController@index');
 
-Route::get('/scan', function () {
+Route::get('/medication', function() {
+    return view('medication');
+});
+
+Route::get('/scan', function() {
     return view('summary');
 });
 
