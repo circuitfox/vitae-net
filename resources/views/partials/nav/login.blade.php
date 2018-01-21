@@ -1,4 +1,4 @@
-<div class="collapse navbar-collapse">
+<div>
 @if (Auth::guest())
   <form class="navbar-form navbar-right" id="login-form" action="{{ route('login') }}" method="POST">
     {{ csrf_field() }}
@@ -28,6 +28,7 @@
     </div>
     <div class="navbar-text">
       <span class="glyphicon glyphicon-user"></span>
+      <!-- TODO: should redirect to /home -->
       <a class="navbar-link" href="{{ url('/admin') }}">{{ Auth::user()->name }}</a>
     </div>
     <div class="navbar-text">
