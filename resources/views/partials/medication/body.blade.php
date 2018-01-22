@@ -9,7 +9,5 @@
     <p>{{ $medication->instructions }}</p>
     <h5><b><u>Comments:</u></b></h5>
     <p>{{ $medication->comments }}</p>
-    <h5><b><u>Stat:</u></b></h5>
-    <p>{{ $medication->stat ? 'True' : 'False' }}</p>
   </div>
 </div>

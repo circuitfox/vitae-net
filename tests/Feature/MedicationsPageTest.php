@@ -23,8 +23,6 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->instructions . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
-        $response->assertSee('<h5><b><u>Stat:</u></b></h5>');
-        $response->assertSee('<p>' . ($medication->stat ? 'True' : 'False') . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary h3">Edit</a>');
         $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
