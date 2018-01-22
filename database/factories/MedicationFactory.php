@@ -11,6 +11,5 @@ $factory->define(App\Medication::class, function (Faker $faker) {
         'dosage_unit' => $faker->word,
         'instructions' => $faker->sentence,
         'comments' => $faker->sentence,
-        'stat' => $faker->boolean,
     ];
 });

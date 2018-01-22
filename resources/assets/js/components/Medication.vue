@@ -10,8 +10,6 @@
       <dd>{{ item.instructions }}</dd>
       <dt>Comments:</dt>
       <dd>{{ item.comments }}</dd>
-      <dt>Stat:</dt>
-      <dd>{{ item.stat }}</dd>
     </dl>
     <hr>
     <div v-if="form">
@@ -20,7 +18,6 @@
       <input type="hidden" name="units" :value="item.units" :id="`med-units-${id}`">
       <input type="hidden" name="instructions" :value="item.instructions" :id="`med-instructions-${id}`">
       <input type="hidden" name="comments" :value="item.comments" :id="`med-comments-${id}`">
-      <input type="hidden" name="stat" :value="item.stat" :id="`med-stat-${id}`">
     </div>
   </div>
 </template>
