@@ -62,19 +62,6 @@
           </div>
           <div class="form-group">
             <div class="checkbox col-md-offset-2 col-md-2">
-              <label>
-                @if ($medication->stat or old('stat'))
-                  <input type="checkbox" name="stat" id="med-stat" value="1" checked>
-                @else
-                  <input type="checkbox" name="stat" id="med-stat" value="1">
-                @endif
-                Stat
-              </label>
-              @if ($errors->has('stat'))
-                <span class="help-block">
-                  {{ $errors->first('stat') }}
-                </span>
-              @endif
             </div>
           </div>
           <div class="form-group">

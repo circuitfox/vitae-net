@@ -48,12 +48,9 @@ class MedicationController extends Controller
         $now = Carbon::now('utc')->toDateTimeString();
         $this->authorize('create', Medication::class);
         // we can receive multiple medications, so they need to all be
-        // validated. Stat is a checkbox, so it's either true or null.
+        // validated.
         $meds = $request->input('meds.*');
         foreach ($meds as &$med) {
-            if (!isset($med['stat'])) {
-                $med['stat'] = false;
-            }
             $med['created_at'] = $now;
             $med['updated_at'] = $now;
         }
@@ -99,12 +96,8 @@ class MedicationController extends Controller
             'dosage_unit' => 'required|string',
             'instructions' => 'required|string',
             'comments' => 'string|nullable',
-            'stat' => 'boolean|nullable'
         ]);
         $data = $request->all();
-        if (!isset($data['stat'])) {
-            $data['stat'] = false;
-        }
         $med->update($data);
         return redirect('/admin');
     }

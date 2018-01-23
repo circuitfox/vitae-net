@@ -20,10 +20,15 @@ class CreatePatientsTable extends Migration
             $table->string('first_name');
             $table->string('date_of_birth');
             $table->boolean('sex');
+            $table->string('height')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('diagnosis')->nullable();
+            $table->string('allergies')->nullable();
+            $table->string('code_status')->nullable();
             $table->string('physician');
             $table->string('room');
             $table->timestamps();
-            //indexes
+            //keys
             $table->primary('medical_record_number');
         });
     }
