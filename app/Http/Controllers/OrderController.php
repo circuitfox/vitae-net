@@ -44,7 +44,7 @@ class OrderController extends Controller
     $order = new \App\Order;
     $order->name = $name;
     $order->description = request('description');
-    $order->path = $pathInStorage;
+    $order->file_path = $pathInStorage;
     $pat_id = request('patient_id');
     if($pat_id != null) {
     $order->patient_id = request('patient_id');
@@ -111,7 +111,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $orderFile = $order->path;
+        $orderFile = $order->file_path;
         File::delete('storage/' . $orderFile);
         $order->delete();
         return redirect()->route('orders.index')->with('message','Order has been deleted successfully');
