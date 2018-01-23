@@ -29,14 +29,19 @@
                         <td>{{$order-> description}}</td>
                         <td>{{$order-> patient_id}}</td>
                         <td>
-                            <div style="display:inline-block";>
-                            {!! Form::open(array('route'=>['orders.destroy',$order->id], 'method'=>'DELETE')) !!}
-                                {!! link_to_route ('orders.edit', 'Edit', [$order->id], ['class'=>'btn btn-primary']) !!}
-                            |
-                            <a href= "../storage/{{$order-> path}}"  class="btn btn-info" role="button">View Order</a>
-                            |
-                                {!! Form::button ('Delete',['type'=>'submit','class'=>'btn btn-danger']) !!}
-                            {!! Form::close() !!}
+                        <div style="display:inline-block";>
+                              <form action="orders/{{$order-> id}}/edit">
+                                  <input type="submit" value="Edit">
+                              </form>
+                              |
+                              <a href= "../storage/{{$order-> file_path}}"  class="btn btn-info" role="button">View Order</a>
+                              |
+                              <form method='POST' action='/orders/{{$order-> id}}' enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <input type="submit" value="Delete">
+                              </form>
+
                         </div>
                     </td>
                     </tr>
