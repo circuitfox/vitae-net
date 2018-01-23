@@ -47,7 +47,6 @@ class MedicationControllerTest extends TestCase
                 'dosage_unit' => 'mg',
                 'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
-                'stat' => false,
             ]],
         ]);
         $response->assertRedirect('/admin');
@@ -57,7 +56,6 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => 'mg',
             'instructions' => '1 by mouth every 4 hours',
             'comments' => null,
-            'stat' => false,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
@@ -65,7 +63,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->dosage_unit, 'mg');
         $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
         $this->assertNull($med->comments);
-        $this->assertEquals($med->stat, 0);
     }
 
     public function testStoreInstructorOrAdmin()
@@ -79,7 +76,6 @@ class MedicationControllerTest extends TestCase
                 'dosage_unit' => 'mg',
                 'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
-                'stat' => false,
             ]],
         ]);
         $response->assertRedirect('/admin');
@@ -89,7 +85,6 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => 'mg',
             'instructions' => '1 by mouth every 4 hours',
             'comments' => null,
-            'stat' => false,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
@@ -97,7 +92,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->dosage_unit, 'mg');
         $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
         $this->assertNull($med->comments);
-        $this->assertEquals($med->stat, 0);
         $response = $this->actingAs($user)->post('/medications', [
             'meds' => [[
                 'name' => 'Wellbutrin',
@@ -105,7 +99,6 @@ class MedicationControllerTest extends TestCase
                 'dosage_unit' => 'mg',
                 'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
-                'stat' => false,
             ]],
         ]);
         $response->assertStatus(403);
@@ -122,7 +115,6 @@ class MedicationControllerTest extends TestCase
                 'dosage_unit' => 'mg',
                 'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
-                'stat' => false,
                 ],
                 [
                 'name' => 'Aspirin',
@@ -130,7 +122,6 @@ class MedicationControllerTest extends TestCase
                 'dosage_unit' => 'mg',
                 'instructions' => '1 by mouth every 6 hours',
                 'comments' => '',
-                'stat' => true,
                 ],
             ],
         ]);
@@ -141,7 +132,6 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => 'mg',
             'instructions' => '1 by mouth every 4 hours',
             'comments' => null,
-            'stat' => false,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
@@ -149,14 +139,12 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->dosage_unit, 'mg');
         $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
         $this->assertNull($med->comments);
-        $this->assertEquals($med->stat, 0);
         $med = Medication::where([
             'name' => 'Aspirin',
             'dosage_amount' => 50,
             'dosage_unit' => 'mg',
             'instructions' => '1 by mouth every 6 hours',
             'comments' => null,
-            'stat' => true,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Aspirin');
@@ -164,7 +152,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->dosage_unit, 'mg');
         $this->assertEquals($med->instructions, '1 by mouth every 6 hours');
         $this->assertNull($med->comments);
-        $this->assertEquals($med->stat, 1);
     }
 
     public function testStoreStatNullOrEmpty()
@@ -185,7 +172,6 @@ class MedicationControllerTest extends TestCase
                 'dosage_unit' => 'mg',
                 'instructions' => '1 by mouth every 6 hours',
                 'comments' => '',
-                'stat' => null,
                 ],
             ],
         ]);
@@ -197,7 +183,6 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => 'mg',
             'instructions' => '1 by mouth every 4 hours',
             'comments' => null,
-            'stat' => false,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
@@ -205,7 +190,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->dosage_unit, 'mg');
         $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
         $this->assertNull($med->comments);
-        $this->assertEquals($med->stat, 0);
 
         $med = Medication::where([
             'name' => 'Aspirin',
@@ -213,7 +197,6 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => 'mg',
             'instructions' => '1 by mouth every 6 hours',
             'comments' => null,
-            'stat' => false,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Aspirin');
@@ -221,7 +204,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->dosage_unit, 'mg');
         $this->assertEquals($med->instructions, '1 by mouth every 6 hours');
         $this->assertNull($med->comments);
-        $this->assertEquals($med->stat, 0);
     }
 
     public function testShow()
@@ -250,7 +232,6 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => $med->dosage_unit,
             'instructions' => $med->instructions,
             'comments' => '',
-            'stat' => false,
         ]);
         $response->assertRedirect('/admin');
         $med1 = Medication::find($med->medication_id);
@@ -258,7 +239,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med1->dosage_amount, 50);
         $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
         $this->assertEquals($med1->comments, null);
-        $this->assertEquals($med1->stat, 0);
     }
 
     public function testUpdateStatNullOrEmpty()
@@ -278,7 +258,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med1->dosage_amount, 50);
         $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
         $this->assertEquals($med1->comments, null);
-        $this->assertEquals($med1->stat, 0);
 
         $med = factory(Medication::class)->create();
         $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
@@ -287,7 +266,6 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => $med->dosage_unit,
             'instructions' => $med->instructions,
             'comments' => '',
-            'stat' => null,
         ]);
         $response->assertRedirect('/admin');
         $med1 = Medication::find($med->medication_id);
@@ -295,7 +273,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med1->dosage_amount, 50);
         $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
         $this->assertEquals($med1->comments, null);
-        $this->assertEquals($med1->stat, 0);
 
     }
 
@@ -324,7 +301,6 @@ class MedicationControllerTest extends TestCase
                 'units' => $med->dosage_unit,
                 'instructions' => $med->instructions,
                 'comments' => $med->comments,
-                'stat' => $med->stat,
             ]
         ]);
     }

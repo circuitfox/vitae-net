@@ -76,7 +76,6 @@ Success:
     "units": "$units",
     "instructions": "$instructions",
     "comments": "$comments",
-    "stat": "$stat"
   }
 }
 ```

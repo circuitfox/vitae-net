@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PatientsPageTest extends TestCase
+/*class PatientsPageTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -43,4 +43,4 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<button type="submit" class="btn btn-danger col-md-2">Yes</button>');
 
     }
-}
+}*/

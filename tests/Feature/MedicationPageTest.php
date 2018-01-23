@@ -23,7 +23,5 @@ class MedicationPageTest extends TestCase
         $response->assertSee('<p>' . $medication->instructions . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
-        $response->assertSee('<h5><b><u>Stat:</u></b></h5>');
-        $response->assertSee('<p>' . ($medication->stat ? 'True' : 'False') . '</p>');
     }
 }
