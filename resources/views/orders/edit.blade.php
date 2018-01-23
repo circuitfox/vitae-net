@@ -8,7 +8,7 @@
                 <div class="panel-heading">Edit {{$order-> name}}</div>
       <div class="panel-body">
         <div class="container">
-          <form class="form-horizontal" id="order-edit-form" method="POST" action="/orders/{{ $order->medical_record_number }}">
+          <form class="form-horizontal" id="order-edit-form" method="POST" action="/orders/{{ $order->id }}">
             {{ method_field("PUT") }}
             {{ csrf_field() }}
             <div class="form-group">

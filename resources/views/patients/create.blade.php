@@ -9,7 +9,7 @@
   {{ csrf_field() }}
 
   <div class = 'form-group'>
-    <label for='medical_record_number'>medical_record_number: </label>
+    <label for='medical_record_number'>Medical Record Number: </label>
     <input type='text' class='form-control' id='medical_record_number' name='medical_record_number'>
   </div>
 
