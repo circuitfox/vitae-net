@@ -16,15 +16,15 @@
 
                     <h4><strong>Patients:</strong></h4>
                   <div>
-                  <a href='/patients/index' class="btn btn-info" role="button">View All Patients</a>
-                  <a href='/patients/create' class="btn btn-info" role="button">Create New Patient</a><br>
+                  <a href='/patients' class="btn btn-primary" role="button">View All Patients</a>
+                  <a href='/patients/create' class="btn btn-primary" role="button">Create New Patient</a><br>
                 </div>
                 <h4><strong> Orders: </strong></h4>
-                  <a href='/orders/index' class="btn btn-info" role="button">View All Orders</a>
-                  <a href='/orders/create' class="btn btn-info" role="button">Create New Order</a><br>
+                  <a href='/orders' class="btn btn-primary" role="button">View All Orders</a>
+                  <a href='/orders/create' class="btn btn-primary" role="button">Create New Order</a><br>
                   <h4><strong> Labs:</strong></h4>
-                   <a href='/labs/index' class="btn btn-info" role="button">View All Labs</a>
-                   <a href='labs/create' class="btn btn-info" role="button">Create New Lab</a>
+                   <a href='/labs' class="btn btn-primary" role="button">View All Labs</a>
+                   <a href='/labs/create' class="btn btn-primary" role="button">Create New Lab</a>
                    <h4><strong>Assessments:<strong></h4>
                     <a href='#' class="btn btn-info" role="button">View all assessments</a>
                     <a href='#' class="btn btn-info" role="button">Create New Assessment</a>

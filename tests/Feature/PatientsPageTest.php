@@ -9,7 +9,7 @@ class PatientsPageTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testHasPatient()
+    /*public function testHasPatient()
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $patient = factory(\App\Patient::class)->create();
@@ -42,5 +42,5 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<form name="delete-patient" action="" method="post" id="delete-patient">');
         $response->assertSee('<button type="submit" class="btn btn-danger col-md-2">Yes</button>');
 
-    }
+    }*/
 }

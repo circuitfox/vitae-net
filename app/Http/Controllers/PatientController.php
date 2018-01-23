@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Lab;
+use App\Order;
 use App\Patient;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -20,7 +22,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        return view('admin.patients', ['patients' => Patient::all()]);
+        return view('patients.index', ['patients' => Patient::all()]);
     }
 
     /**
@@ -30,7 +32,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('admin.patients.create');
+        return view('patients.create');
     }
 
     /**
@@ -63,7 +65,16 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        return view('admin.patient', ['patient' => Patient::findOrFail($id)]);
+        $patient = Patient::findOrFail($id);
+        $labs = Lab::where('patient_id', $patient->id)->get();
+        $orders = Order::where('patient_id', $patient->id)->where('completed', 1)->get();
+        $pendings = Order::where('patient_id', $patient->id)->where('completed', 0)->get();
+        return view('patients.show', [
+            'patient' => $patient,
+            'labs' => $labs,
+            'orders' => $orders,
+            'pendings' => $pendings,
+        ]);
     }
 
     /**
@@ -74,7 +85,7 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.patient.edit', ['patient' => Patient::findOrFail($id)]);
+        return view('patients.edit', ['patient' => Patient::findOrFail($id)]);
     }
 
     /**

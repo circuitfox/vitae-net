@@ -7,7 +7,7 @@
     <div class="panel-body">
       <p>Select a module:</p>
       <div class="row">
-        <a class="col-md-offset-3 col-md-2 btn btn-primary" href="{{ url('/orders') }}">Orders</a>
+        <a class="col-md-offset-3 col-md-2 btn btn-primary" href="{{ url('/home') }}">Orders</a>
         <a class="col-md-offset-1 col-md-2 btn btn-primary" href="{{ url('/medication') }}">Medication</a>
       </div>
     </div>
