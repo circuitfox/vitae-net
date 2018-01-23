@@ -29,14 +29,18 @@
                         <td>{{$lab-> description}}</td>
                         <td>{{$lab-> patient_id}}</td>
                         <td>
-                            <div style="display:inline-block";>
-                            {!! Form::open(array('route'=>['labs.destroy',$lab->id], 'method'=>'DELETE')) !!}
-                                {!! link_to_route ('labs.edit', 'Edit', [$lab->id], ['class'=>'btn btn-primary']) !!}
-                            |
-                              <a href= "../storage/{{$lab-> path}}"  class="btn btn-info" role="button">View Lab Results</a>
-                              |
-                                {!! Form::button ('Delete',['type'=>'submit','class'=>'btn btn-danger']) !!}
-                            {!! Form::close() !!}
+                        <div style="display:inline-block";>
+                          <form action="labs/{{$lab-> id}}/edit">
+                              <input type="submit" value="Edit">
+                          </form>
+                          |
+                          <a href= "../storage/{{$lab-> file_path}}"  class="btn btn-info" role="button">View Lab</a>
+                          |
+                          <form method='POST' action='/labs/{{$lab-> id}}' enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <input type="submit" value="Delete">
+                          </form>
                         </div>
                     </td>
                     </tr>

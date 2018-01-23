@@ -44,7 +44,7 @@ class LabController extends Controller
     $lab = new \App\Lab;
     $lab->name = $name;
     $lab->description = request('description');
-    $lab->path = $pathInStorage;
+    $lab->file_path = $pathInStorage;
     $lab->patient_id = request('patient_id');
     // save it to the database
     $lab->save();
@@ -98,8 +98,8 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
-        $labFile = $lab->path;
-        File::delete('storage/' . $labFile);
+        $labFile = $lab->file_path;
+        //File::delete('storage/' . $labFile);
         $lab->delete();
         return redirect()->route('labs.index')->with('message','Lab has been deleted successfully');
     }
