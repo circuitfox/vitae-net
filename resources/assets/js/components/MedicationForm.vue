@@ -45,13 +45,6 @@
     </div>
     <div class="form-group">
       <div class="checkbox col-md-offset-2 col-md-2">
-        <label>
-          <input type="checkbox" :name="`meds[${id}][stat]`" :id="`med-stat-${id}`" value="1" :checked="item.stat">
-          Stat
-        </label>
-        <span class="help-block" v-if="errors[`meds.${id}.stat]`]">
-          {{ errors[`meds.${id}.stat`][0] }}
-        </span>
       </div>
     </div>
     <hr>
