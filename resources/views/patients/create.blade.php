@@ -25,7 +25,7 @@
 
   <div class = 'form-group'>
     <label for='date_of_birth'>Date of Birth: </label>
-    <input type='date' class='form-control' id='date_of_birth' name='date_of_birth'>
+    <input type='text' class='form-control' id='date_of_birth' name='date_of_birth'>
   </div>
 
   <div class = 'form-group'>
@@ -56,6 +56,11 @@
   <div class = 'form-group'>
     <label for='physician'>Physician: </label>
     <input type='text' class='form-control' id='physician' name='physician'>
+  </div>
+
+  <div class = 'form-group'>
+    <label for='room'>Room: </label>
+    <input type='text' class='form-control' id='room' name='room'>
   </div>
 
   <div class = 'form-group'>
