@@ -10,7 +10,7 @@ class LandingPageTest extends TestCase
     function testHasPanel()
     {
         $medication = url('/medication');
-        $orders = url('/orders');
+        $orders = url('/home');
         $response = $this->get('/');
         $response->assertSee(<<<HTML
 <div class="col-md-offset-2 col-md-8">

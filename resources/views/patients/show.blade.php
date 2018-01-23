@@ -12,12 +12,11 @@
 
                     <table class= "table">
                         <tr><td>
-                    <strong>MRN:</strong> {{$patient-> MRN}} <br>
+                    <strong>MRN:</strong> {{$patient-> medical_record_number}} <br>
                     <strong>Name:</strong>
-                    {{$patient-> fname}}
-                    {{$patient-> lname}} <br>
+                    {{$patient-> first_name}} {{$patient-> last_name}} <br>
                     <strong>Date Of Birth:</strong>
-                    {{$patient-> DOB}}<br>
+                    {{$patient-> date_of_birth}}<br>
                     <strong>Sex:</strong>
                     {{$patient-> sex}}<br>
                     <strong>Height:</strong>

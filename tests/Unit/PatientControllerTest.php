@@ -15,14 +15,14 @@ class PatientControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/patients');
-        $response->assertViewIs('admin.patients');
+        $response->assertViewIs('patients.index');
     }
 
     public function testCreate()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/patients/create');
-        $response->assertViewIs('admin.patients.create');
+        $response->assertViewIs('patients.create');
     }
 
     public function testStore()
@@ -54,7 +54,7 @@ class PatientControllerTest extends TestCase
         $user = factory(User::class)->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
-        $response->assertViewIs('admin.patient');
+        $response->assertViewIs('patients.show');
     }
 
     public function testEdit()
@@ -62,7 +62,7 @@ class PatientControllerTest extends TestCase
         $user = factory(User::class)->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number . '/edit');
-        $response->assertViewIs('admin.patient.edit');
+        $response->assertViewIs('patients.edit');
     }
 
     public function testUpdate()

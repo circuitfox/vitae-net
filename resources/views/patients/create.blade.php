@@ -9,23 +9,23 @@
   {{ csrf_field() }}
 
   <div class = 'form-group'>
-    <label for='MRN'>MRN: </label>
-    <input type='text' class='form-control' id='MRN' name='MRN'>
+    <label for='medical_record_number'>Medical Record Number: </label>
+    <input type='text' class='form-control' id='medical_record_number' name='medical_record_number'>
   </div>
 
   <div class = 'form-group'>
-    <label for='fname'>First Name: </label>
-    <input type='text' class='form-control' id='fname' name='fname'>
+    <label for='first_name'>First Name: </label>
+    <input type='text' class='form-control' id='first_name' name='first_name'>
   </div>
 
   <div class = 'form-group'>
-    <label for='lname'>Last Name: </label>
-    <input type='text' class='form-control' id='lname' name='lname'>
+    <label for='last_name'>Last Name: </label>
+    <input type='text' class='form-control' id='last_name' name='last_name'>
   </div>
 
   <div class = 'form-group'>
-    <label for='DOB'>Date of Birth: </label>
-    <input type='date' class='form-control' id='DOB' name='DOB'>
+    <label for='date_of_birth'>Date of Birth: </label>
+    <input type='text' class='form-control' id='date_of_birth' name='date_of_birth'>
   </div>
 
   <div class = 'form-group'>
@@ -56,6 +56,11 @@
   <div class = 'form-group'>
     <label for='physician'>Physician: </label>
     <input type='text' class='form-control' id='physician' name='physician'>
+  </div>
+
+  <div class = 'form-group'>
+    <label for='room'>Room: </label>
+    <input type='text' class='form-control' id='room' name='room'>
   </div>
 
   <div class = 'form-group'>
