@@ -11,6 +11,11 @@ $factory->define(App\Patient::class, function (Faker $faker) {
         'first_name' => $faker->firstName,
         'date_of_birth' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'sex' => $faker->boolean,
+        'height' => $faker->numerify('## in.'),
+        'weight' =>  $faker->numerify('### lbs'),
+        'diagnosis' => $faker->words(3, true),
+        'allergies' => $faker->words(6, true),
+        'code_status' => $faker->randomElement($array = ['FULL CODE','DNR','DNI']),
         'physician' => $faker->name,
         'room' => $faker->bothify('###?'),
     ];
