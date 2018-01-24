@@ -15,7 +15,7 @@ $factory->define(App\Patient::class, function (Faker $faker) {
         'weight' =>  $faker->numerify('### lbs'),
         'diagnosis' => $faker->words(3, true),
         'allergies' => $faker->words(6, true),
-        'code_status' => $faker->randomElement($array = array ('FULL CODE','DNR','DNI')),
+        'code_status' => $faker->randomElement($array = array ['FULL CODE','DNR','DNI']),
         'physician' => $faker->name,
         'room' => $faker->bothify('###?'),
     ];
