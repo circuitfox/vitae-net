@@ -39,17 +39,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-2 control-label" for="instructions">Instructions:</label>
-            <div class="col-md-6">
-              <input class="form-control" type="text" name="instructions" id="med-instructions" value="{{ $medication->instructions or old('instructions') }}" required>
-              @if ($errors->has('instructions'))
-                <span class="help-block">
-                  {{ $errors->first('instructions') }}
-                </span>
-              @endif
-            </div>
-          </div>
-          <div class="form-group">
             <label class="col-md-2 control-label" for="comments">Comments:</label>
             <div class="col-md-6">
               <textarea class="form-control" rows="3" name="comments" id="med-comments" value="{{ $medication->comments or old('comments') }}"></textarea>

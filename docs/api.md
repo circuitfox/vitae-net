@@ -74,7 +74,6 @@ Success:
     "name": "$name",
     "dosage": "$dosage",
     "units": "$units",
-    "instructions": "$instructions",
     "comments": "$comments",
   }
 }

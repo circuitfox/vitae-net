@@ -94,7 +94,6 @@ class MedicationController extends Controller
             'name' => 'required|string',
             'dosage_amount' => 'required|numeric',
             'dosage_unit' => 'required|string',
-            'instructions' => 'required|string',
             'comments' => 'string|nullable',
         ]);
         $data = $request->all();

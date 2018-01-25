@@ -19,8 +19,6 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->name . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
         $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
-        $response->assertSee('<h5><b><u>Instructions:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->instructions . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary h3">Edit</a>');

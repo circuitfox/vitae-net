@@ -29,7 +29,6 @@ class CreateMedication extends FormRequest
             'meds.*.name' => 'required|string',
             'meds.*.dosage_amount' => 'required|numeric',
             'meds.*.dosage_unit' => 'required|string',
-            'meds.*.instructions' => 'required|string',
             'meds.*.comments' => 'string|nullable',
         ];
     }

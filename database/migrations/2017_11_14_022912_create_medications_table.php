@@ -19,7 +19,9 @@ class CreateMedicationsTable extends Migration
             $table->string('name');
             $table->integer('dosage_amount');
             $table->string('dosage_unit');
-            $table->string('instructions');
+            $table->integer('second_amount')->nullable();
+            $table->string('second_unit')->nullable();
+            $table->string('second_type')->nullable();
             $table->string('comments')->nullable();
             $table->timestamps();
         });

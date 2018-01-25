@@ -6,8 +6,6 @@
       <dd>{{ item.name }}</dd>
       <dt>Dosage:</dt>
       <dd>{{ item.dosage }} {{ item.units }}</dd>
-      <dt>Instructions:</dt>
-      <dd>{{ item.instructions }}</dd>
       <dt>Comments:</dt>
       <dd>{{ item.comments }}</dd>
     </dl>
@@ -16,7 +14,6 @@
       <input type="hidden" name="name" :value="item.name" :id="`med-name-${id}`">
       <input type="hidden" name="dosage" :value="item.dosage" :id="`med-dosage-${id}`">
       <input type="hidden" name="units" :value="item.units" :id="`med-units-${id}`">
-      <input type="hidden" name="instructions" :value="item.instructions" :id="`med-instructions-${id}`">
       <input type="hidden" name="comments" :value="item.comments" :id="`med-comments-${id}`">
     </div>
   </div>
