@@ -26,15 +26,6 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-2 control-label" :for="`meds[${id}][instructions]`">Instructions:</label>
-      <div class="col-md-6">
-        <input class="form-control" type="text" :name="`meds[${id}][instructions]`" :id="`med-instructions-${id}`" :value="item.instructions" required>
-        <span class="help-block" v-if="errors[`meds.${id}.instructions`]">
-          {{ errors[`meds.${id}.instructions`][0] }}
-        </span>
-      </div>
-    </div>
-    <div class="form-group">
       <label class="col-md-2 control-label" :for="`meds[${id}][comments]`">Comments:</label>
       <div class="col-md-6">
         <textarea class="form-control" rows="3" :name="`meds[${id}][comments]`" :id="`med-comments-${id}`" :value="item.comments"></textarea>

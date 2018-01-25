@@ -10,7 +10,7 @@ class Medication extends Model
 
     protected $fillable = [
       'name', 'dosage_amount', 'dosage_unit',
-      'instructions', 'comments',
+      'comments',
     ];
 
     public function toApiArray() {
@@ -18,7 +18,6 @@ class Medication extends Model
             'name' => $this->name,
             'dosage' => $this->dosage_amount,
             'units' => $this->dosage_unit,
-            'instructions' => $this->instructions,
             'comments' => $this->comments,
         ];
     }

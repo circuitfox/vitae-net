@@ -19,7 +19,6 @@ class MedicationEditPageTest extends TestCase
         $response->assertSee('<input class="form-control" type="text" name="name" value="' . $medication->name . '" id="med-name" required>');
         $response->assertSee('<input class="form-control" type="number" name="dosage_amount" value="' . $medication->dosage_amount . '" id="med-dosage-amount" required>');
         $response->assertSee('<input class="form-control" type="text" name="dosage_unit" value="' . $medication->dosage_unit . '" id="med-dosage-unit" required>');
-        $response->assertSee('<input class="form-control" type="text" name="instructions" id="med-instructions" value="' . $medication->instructions . '" required>');
         $response->assertSee('<textarea class="form-control" rows="3" name="comments" id="med-comments" value="' . $medication->comments . '"></textarea>');
         $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
         $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
