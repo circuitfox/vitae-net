@@ -134,7 +134,7 @@ class MedicationController extends Controller
             ])->firstOrFail();
             return response()->json([
                 'status' => 'success',
-                'data' => $med->toApiArray()
+                'data' => $med->toApiArrayV1()
             ]);
         } catch (ModelNotFoundException $ex) {
             return response()->json([
