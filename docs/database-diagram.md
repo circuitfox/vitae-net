@@ -46,7 +46,7 @@ The orders table is used to store the doctor's orders that will be electronicall
 The medications table is used to store a list of all the facsimile medication dosages available to the nursing department.
 
 - **medication_id:** A unique identification number used to reference medications. These numbers are currently arbitrary and auto-incrementing.
-- **name:** The clinical/brand name of the medication.
+- **name:** The clinical/brand name of the medication. When a single medication contains two names, separate them with a pipe character, e.g.- "Ancef|normal insulin".
 - **dosage_amount:** The numerical measurement of a dosage, e.g. the "12" in "12 milligrams".
 - **dosage_unit:** The form of measurement used, i.e. "milligrams".
 - **second_amount:** Dosage amount for use when a medication dosage contains a second numerical value.
@@ -59,9 +59,9 @@ The medications table is used to store a list of all the facsimile medication do
 | name | dosage_amount | dosage_unit | second_amount | second_unit | second_type | comments |
 |------|---------------|-------------|---------------|-------------|-------------|----------|
 | Lasix | 20 | mg | null | null | null | null |
-| Tylenol #3 Acetaminophen/Codeine | 300 | mg | 30 | mg | combo | Do not confuse with Tylenol #2. |
+| Tylenol #3 Acetaminophen|Codeine | 300 | mg | 30 | mg | combo | Do not confuse with Tylenol #2. |
 | Regular insulin | 100 | units/mL | 10 | mL | amount | Dispose only in hazard waste bin. |
-| Ancef/normal saline | 1 | g | 50 | mL | in | Shake before use. |
+| Ancef|normal saline | 1 | g | 50 | mL | in | Shake before use. |
 
 ### labs
 
