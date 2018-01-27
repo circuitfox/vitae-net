@@ -60,11 +60,11 @@ by client code. Some variables may be numbers or booleans in real-world output.
 ```json
 {
   "name": "$name",
-  "dosage": "$dosage",
-  "units": "$units",
+  "dosage_amount": "$dosage_amount",
+  "dosage_unit": "$dosage_unit",
   "secondary_name": "$secondary_name",
-  "second_dosage": "$second_dosage",
-  "second_units": "$second_units",
+  "second_amount": "$second_amount",
+  "second_unit": "$second_unit",
   "second_type": "$second_type",
 }
 ```
@@ -78,11 +78,11 @@ Success:
   "status": "success",
   "data": {
     "name": "$name",
-    "dosage": "$dosage",
-    "units": "$units",
+    "dosage_amount": "$dosage_amount",
+    "dosage_unit": "$dosage_unit",
     "secondary_name": "$secondary_name",
-    "second_dosage": "$second_dosage",
-    "second_units": "$second_units",
+    "second_amount": "$second_amount",
+    "second_unit": "$second_unit",
     "second_type": "$second_type",
     "comments": "$comments",
   }
@@ -104,8 +104,8 @@ Failure:
 {
   "first_name": "$first_name",
   "last_name": "$last_name",
-  "dob": "$dob",
-  "mrn": "$mrn"
+  "date_of_birth": "$date_of_birth",
+  "medical_record_number": "$medical_record_number"
 }
 ```
 
@@ -119,8 +119,8 @@ Success:
   "data": {
     "first_name": "$first_name",
     "last_name": "$last_name",
-    "dob": "$dob",
-    "mrn": "$mrn",
+    "date_of_birth": "$date_of_birth",
+    "medical_record_number": "$medical_record_number",
     "sex": "$sex",
     "height": "$height",
     "weight": "$weight",
@@ -160,11 +160,11 @@ Success:
   "status": "success",
   "data": {
     "name": "$name",
-    "dosage": "$dosage",
-    "units": "$units",
+    "dosage_amount": "$dosage_amount",
+    "dosage_unit": "$dosage_unit",
     "secondary_name": "$secondary_name",
-    "second_dosage": "$second_dosage",
-    "second_units": "$second_units",
+    "second_amount": "$second_amount",
+    "second_unit": "$second_unit",
     "second_type": "$second_type",
     "comments": "$comments",
   }
@@ -199,8 +199,8 @@ Success:
   "data": {
     "first_name": "$first_name",
     "last_name": "$last_name",
-    "dob": "$dob",
-    "mrn": "$mrn",
+    "date_of_birth": "$date_of_birth",
+    "medical_record_number": "$medical_record_number",
     "sex": "$sex",
     "height": "$height",
     "weight": "$weight",
