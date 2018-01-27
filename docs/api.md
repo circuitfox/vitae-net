@@ -32,7 +32,8 @@ always require authentication.
 | `/medications/{medication}/edit` | GET | Show the form to edit a medication. | Yes |
 | `/medications/{medication}` | PUT/PATCH | Update the medication in the database. | Yes |
 | `/medications/{medication}` | DELETE | Remove the medication from the database. | Yes |
-| `/api/v1/medications/verify` | POST | Verify a medication based on its scanned information, returning an object that either contains a description of the medication, or describes the error that occurred. | No |
+| `/api/v1/medications/verify` | POST | Verify a medication based on its scanned information, returning an object that either contains a description of the medication, or describes the error that occurred. This route verifies off a QR code. | No |
+| `/api/v2/medications/verify` | POST | Verify a medication based on its scanned information, returning an object that either contains a description of the medication, or describes the error that occurred. This route verifies off a barcode. | No |
 
 ### Patients
 
@@ -45,7 +46,8 @@ always require authentication.
 | `/patients/{patient}/edit` | GET | Show the form to edit a patient. | Yes |
 | `/patients/{patient}` | PUT/PATCH | Update the patient in the database. | Yes |
 | `/patients/{patient}` | DELETE | Remove the patient from the database. | Yes |
-| `/api/v1/patients/verify` | POST | Verify a patient based on its scanned information, returning an object that either contains a description of the patient, or describes the error that occurred. | No |
+| `/api/v1/patients/verify` | POST | Verify a patient based on its scanned information, returning an object that either contains a description of the patient, or describes the error that occurred. This route verifies off a QR code. | No |
+| `/api/v2/patients/verify` | POST | Verify a patient based on its scanned information, returning an object that either contains a description of the patient, or describes the error that occurred. This route verifies off a barcode. | No |
 
 ## JSON
 
@@ -60,6 +62,10 @@ by client code. Some variables may be numbers or booleans in real-world output.
   "name": "$name",
   "dosage": "$dosage",
   "units": "$units",
+  "secondary_name": "$secondary_name",
+  "second_dosage": "$second_dosage",
+  "second_units": "$second_units",
+  "second_type": "$second_type",
 }
 ```
 
@@ -74,6 +80,10 @@ Success:
     "name": "$name",
     "dosage": "$dosage",
     "units": "$units",
+    "secondary_name": "$secondary_name",
+    "second_dosage": "$second_dosage",
+    "second_units": "$second_units",
+    "second_type": "$second_type",
     "comments": "$comments",
   }
 }
@@ -112,6 +122,91 @@ Success:
     "dob": "$dob",
     "mrn": "$mrn",
     "sex": "$sex",
+    "height": "$height",
+    "weight": "$weight",
+    "diagnosis": "$diagnosis",
+    "allergies": "$allergies",
+    "code_status": "$code_status",
+    "physician": "$physician",
+    "room": "$room"
+  }
+}
+```
+
+Failure:
+
+```json
+{
+  "status": "error",
+  "data": "$error"
+}
+```
+
+### `/api/v2/medications/verify` - parameters
+
+```json
+{
+  "type": "medication",
+  "code": "$code",
+}
+```
+
+### `/api/v2/medications/verify` - response
+
+Success:
+
+```json
+{
+  "status": "success",
+  "data": {
+    "name": "$name",
+    "dosage": "$dosage",
+    "units": "$units",
+    "secondary_name": "$secondary_name",
+    "second_dosage": "$second_dosage",
+    "second_units": "$second_units",
+    "second_type": "$second_type",
+    "comments": "$comments",
+  }
+}
+```
+
+Failure:
+
+```json
+{
+  "status": "error",
+  "data": "$error"
+}
+```
+
+### `/api/v2/patients/verify` - parameters
+
+```json
+{
+  "type": "patient",
+  "code": "$code",
+}
+```
+
+### `/api/v2/patients/verify` - response
+
+Success:
+
+```json
+{
+  "status": "success",
+  "data": {
+    "first_name": "$first_name",
+    "last_name": "$last_name",
+    "dob": "$dob",
+    "mrn": "$mrn",
+    "sex": "$sex",
+    "height": "$height",
+    "weight": "$weight",
+    "diagnosis": "$diagnosis",
+    "allergies": "$allergies",
+    "code_status": "$code_status",
     "physician": "$physician",
     "room": "$room"
   }
