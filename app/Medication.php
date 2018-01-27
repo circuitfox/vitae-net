@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Medication extends Model
 {
+    public const SECOND_TYPES = ['combo', 'amount', 'in'];
+
+    private const NAME_SEPARATOR = '|';
+
     protected $primaryKey = 'medication_id';
 
     protected $fillable = [
@@ -37,11 +41,11 @@ class Medication extends Model
     }
 
     public function primaryName() {
-        return explode('|', $this->name)[0];
+        return explode($this::NAME_SEPARATOR, $this->name)[0];
     }
 
     public function secondaryName() {
-        $names = explode('|', $this->name);
+        $names = explode($this::NAME_SEPARATOR, $this->name);
         if (array_key_exists(1, $names)) {
             return $names[1];
         } else {

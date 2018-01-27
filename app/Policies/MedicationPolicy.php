@@ -21,4 +21,10 @@ class MedicationPolicy
     {
         return in_array($user->role, ['instructor', 'admin']);
     }
+
+    // TODO: User roles redesign
+    public function update(User $user)
+    {
+        return true;
+    }
 }

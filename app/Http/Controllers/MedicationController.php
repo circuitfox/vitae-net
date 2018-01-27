@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Medication;
-use App\Http\Requests\CreateMedication;
+use App\Http\Requests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -43,13 +43,12 @@ class MedicationController extends Controller
      * @param  \App\Request\CreateMedication  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateMedication $request)
+    public function store(Requests\CreateMedication $request)
     {
         $now = Carbon::now('utc')->toDateTimeString();
-        $this->authorize('create', Medication::class);
-        // we can receive multiple medications, so they need to all be
-        // validated.
         $meds = $request->input('meds.*');
+        // We need to set timestamps for all of these, as insert won't do it for
+        // us.
         foreach ($meds as &$med) {
             $med['created_at'] = $now;
             $med['updated_at'] = $now;
@@ -87,15 +86,9 @@ class MedicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdateMedication $request, $id)
     {
         $med = Medication::findOrFail($id);
-        $request->validate([
-            'name' => 'required|string',
-            'dosage_amount' => 'required|numeric',
-            'dosage_unit' => 'required|string',
-            'comments' => 'string|nullable',
-        ]);
         $data = $request->all();
         $med->update($data);
         return redirect('/admin');
@@ -119,13 +112,8 @@ class MedicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function verify(Request $request)
+    public function verify(Requests\VerifyMedication $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'dosage' => 'required|numeric',
-            'units' => 'required|string',
-        ]);
         try {
             $med = Medication::where([
                 'name' => $request->input('name'),
