@@ -50,6 +50,10 @@ class MedicationController extends Controller
         // We need to set timestamps for all of these, as insert won't do it for
         // us.
         foreach ($meds as &$med) {
+            if (isset($med['secondary_name'])) {
+                $med['name'] = $this->joinNames($med['name'], $med['secondary_name']);
+                unset($med['secondary_name']);
+            }
             $med['created_at'] = $now;
             $med['updated_at'] = $now;
         }
@@ -126,5 +130,16 @@ class MedicationController extends Controller
                 'data' => $ex->getMessage()
             ]);
         }
+    }
+
+    /**
+     * Join two names for storage in the Medication model.
+     *
+     * @param string $name The first name to join
+     * @param string $secondary_name The second name to join
+     */
+    private function joinNames(string $name, string $secondary_name)
+    {
+        return $name . Medication::NAME_SEPARATOR . $secondary_name;
     }
 }

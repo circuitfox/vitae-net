@@ -8,7 +8,7 @@ class Medication extends Model
 {
     public const SECOND_TYPES = ['combo', 'amount', 'in'];
 
-    private const NAME_SEPARATOR = '|';
+    public const NAME_SEPARATOR = '|';
 
     protected $primaryKey = 'medication_id';
 

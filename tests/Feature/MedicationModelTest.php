@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class MedicationModelTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function testFactory()
     {
         $medication = factory(\App\Medication::class)->create();
@@ -19,13 +19,13 @@ class MedicationModelTest extends TestCase
     {
         $medication = factory(\App\Medication::class)->create();
         $arr = $medication->toApiArrayV2();
-        $this->assertEquals($arr['primaryName'], $medication->primaryName());
-        $this->assertEquals($arr['secondaryName'], '');
-        $this->assertEquals($arr['dosage'], $medication->dosage_amount);
-        $this->assertEquals($arr['units'], $medication->dosage_unit);
-        $this->assertEquals($arr['secondAmount'], $medication->second_amount);
-        $this->assertEquals($arr['secondUnits'], $medication->second_unit);
-        $this->assertEquals($arr['secondType'], $medication->second_type);
+        $this->assertEquals($arr['name'], $medication->primaryName());
+        $this->assertEquals($arr['secondary_name'], '');
+        $this->assertEquals($arr['dosage_amount'], $medication->dosage_amount);
+        $this->assertEquals($arr['dosage_unit'], $medication->dosage_unit);
+        $this->assertEquals($arr['second_amount'], $medication->second_amount);
+        $this->assertEquals($arr['second_unit'], $medication->second_unit);
+        $this->assertEquals($arr['second_type'], $medication->second_type);
         $this->assertEquals($arr['comments'], $medication->comments);
     }
 
@@ -33,13 +33,13 @@ class MedicationModelTest extends TestCase
     {
         $medication = factory(\App\Medication::class)->states(['secondary_name'])->create();
         $arr = $medication->toApiArrayV2();
-        $this->assertEquals($arr['primaryName'], $medication->primaryName());
-        $this->assertEquals($arr['secondaryName'], $medication->secondaryName());
-        $this->assertEquals($arr['dosage'], $medication->dosage_amount);
-        $this->assertEquals($arr['units'], $medication->dosage_unit);
-        $this->assertEquals($arr['secondAmount'], $medication->second_amount);
-        $this->assertEquals($arr['secondUnits'], $medication->second_unit);
-        $this->assertEquals($arr['secondType'], $medication->second_type);
+        $this->assertEquals($arr['name'], $medication->primaryName());
+        $this->assertEquals($arr['secondary_name'], $medication->secondaryName());
+        $this->assertEquals($arr['dosage_amount'], $medication->dosage_amount);
+        $this->assertEquals($arr['dosage_unit'], $medication->dosage_unit);
+        $this->assertEquals($arr['second_amount'], $medication->second_amount);
+        $this->assertEquals($arr['second_unit'], $medication->second_unit);
+        $this->assertEquals($arr['second_type'], $medication->second_type);
         $this->assertEquals($arr['comments'], $medication->comments);
     }
 

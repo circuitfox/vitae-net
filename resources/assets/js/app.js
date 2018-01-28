@@ -111,6 +111,7 @@ $(() => {
 
     $('#add-medication').on('click', () => {
         medicationForm.$emit('add-medication', {name: '', dosage_amount: 0, dosage_unit: ''});
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
     deleteModal($, 'user');

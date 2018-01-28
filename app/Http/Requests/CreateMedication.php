@@ -31,6 +31,7 @@ class CreateMedication extends FormRequest
             'meds.*.name' => 'required|string',
             'meds.*.dosage_amount' => 'required|numeric',
             'meds.*.dosage_unit' => 'required|string',
+            'meds.*.secondary_name' => 'string|nullable',
             'meds.*.second_amount' => 'numeric|nullable',
             'meds.*.second_unit' => 'string|nullable',
             'meds.*.second_type' => [

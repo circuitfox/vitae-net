@@ -59,6 +59,102 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->name, 'Wellbutrin');
         $this->assertEquals($med->dosage_amount, 10);
         $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertNull($med->second_amount);
+        $this->assertNull($med->second_unit);
+        $this->assertNull($med->second_type);
+        $this->assertNull($med->comments);
+    }
+
+    public function testStoreWithSecondaries()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'acetominophin|hydrocodeine',
+                'dosage_amount' => 10,
+                'dosage_unit' => 'mg',
+                'second_amount' => 20,
+                'second_unit' => 'mg',
+                'second_type' => 'combo',
+                'comments' => 'not more than four a day',
+            ]],
+        ]);
+        $response->assertRedirect('/admin');
+        $med = Medication::where([
+            'name' => 'acetominophin|hydrocodeine',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mg',
+            'second_amount' => 20,
+            'second_unit' => 'mg',
+            'second_type' => 'combo',
+            'comments' => 'not more than four a day',
+        ])->first();
+        $this->assertNotNull($med);
+        $this->assertEquals($med->primaryName(), 'acetominophin');
+        $this->assertEquals($med->secondaryName(), 'hydrocodeine');
+        $this->assertEquals($med->dosage_amount, 10);
+        $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertEquals($med->second_amount, 20);
+        $this->assertEquals($med->second_unit, 'mg');
+        $this->assertEquals($med->second_type, 'combo');
+        $this->assertEquals($med->comments, 'not more than four a day');
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'ancef|normal saline',
+                'dosage_amount' => 10,
+                'dosage_unit' => 'mg',
+                'second_amount' => 100,
+                'second_unit' => 'mL',
+                'second_type' => 'in',
+                'comments' => '',
+            ]],
+        ]);
+        $response->assertRedirect('/admin');
+        $med = Medication::where([
+            'name' => 'ancef|normal saline',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mg',
+            'second_amount' => 100,
+            'second_unit' => 'mL',
+            'second_type' => 'in',
+            'comments' => null,
+        ])->first();
+        $this->assertEquals($med->primaryName(), 'ancef');
+        $this->assertEquals($med->secondaryName(), 'normal saline');
+        $this->assertEquals($med->dosage_amount, 10);
+        $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'mL');
+        $this->assertEquals($med->second_type, 'in');
+        $this->assertNull($med->comments);
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'regular insulin',
+                'dosage_amount' => 10,
+                'dosage_unit' => 'mL',
+                'second_amount' => 100,
+                'second_unit' => 'units/mL',
+                'second_type' => 'amount',
+                'comments' => '',
+            ]],
+        ]);
+        $response->assertRedirect('/admin');
+        $med = Medication::where([
+            'name' => 'regular insulin',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mL',
+            'second_amount' => 100,
+            'second_unit' => 'units/mL',
+            'second_type' => 'amount',
+            'comments' => null,
+        ])->first();
+        $this->assertEquals($med->primaryName(), 'regular insulin');
+        $this->assertEquals($med->dosage_amount, 10);
+        $this->assertEquals($med->dosage_unit, 'mL');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'units/mL');
+        $this->assertEquals($med->second_type, 'amount');
+        $this->assertEquals($med->secondaryName(), '');
         $this->assertNull($med->comments);
     }
 
@@ -138,6 +234,70 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->name, 'Aspirin');
         $this->assertEquals($med->dosage_amount, 50);
         $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertNull($med->comments);
+    }
+
+    public function testStoreMultipleWithSecondaries()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [
+                [
+                'name' => 'ancef|normal saline',
+                'dosage_amount' => 10,
+                'dosage_unit' => 'mg',
+                'second_amount' => 100,
+                'second_unit' => 'mL',
+                'second_type' => 'in',
+                'comments' => '',
+                ],
+                [
+                'name' => 'acetominophin|aspirin',
+                'dosage_amount' => 50,
+                'dosage_unit' => 'mg',
+                'second_amount' => 100,
+                'second_unit' => 'mg',
+                'second_type' => 'combo',
+                'comments' => '',
+                ],
+            ],
+        ]);
+        $response->assertRedirect('/admin');
+        $med = Medication::where([
+          'name' => 'ancef|normal saline',
+          'dosage_amount' => 10,
+          'dosage_unit' => 'mg',
+          'second_amount' => 100,
+          'second_unit' => 'mL',
+          'second_type' => 'in',
+          'comments' => null,
+        ])->first();
+        $this->assertNotNull($med);
+        $this->assertEquals($med->primaryName(), 'ancef');
+        $this->assertEquals($med->secondaryName(), 'normal saline');
+        $this->assertEquals($med->dosage_amount, 10);
+        $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'mL');
+        $this->assertEquals($med->second_type, 'in');
+        $this->assertNull($med->comments);
+        $med = Medication::where([
+          'name' => 'acetominophin|aspirin',
+          'dosage_amount' => 50,
+          'dosage_unit' => 'mg',
+          'second_amount' => 100,
+          'second_unit' => 'mg',
+          'second_type' => 'combo',
+          'comments' => null,
+        ])->first();
+        $this->assertNotNull($med);
+        $this->assertEquals($med->primaryName(), 'acetominophin');
+        $this->assertEquals($med->secondaryName(), 'aspirin');
+        $this->assertEquals($med->dosage_amount, 50);
+        $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'mg');
+        $this->assertEquals($med->second_type, 'combo');
         $this->assertNull($med->comments);
     }
 
