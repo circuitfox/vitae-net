@@ -27,16 +27,21 @@
     </div>
     <div class="form-group">
       <label class="col-md-2 control-label" :for="`meds[${id}][second_type]`"
-             data-toggle="tooltip" data-placement="right" data-html="1" title="
-Some medications contain extra infromation besides just their name and dosage. These can be divided into three types:
+             data-toggle="tooltip" data-placement="right" title="
+Some medications contain extra infromation besides just their name and dosage.
+These can be divided into three types:
+
 'and' - There is a secondary drug with its own name and dosage
+
 'with' - There is a separate quantity e.g. 10mL with 100 units/mL
+
 'in' - The medication is in some medium, such as 10mL saline
-If none of these conditions apply, leave these fields blank">
+
+If none of these conditions apply, leave these fields blank.">
         Second Type:
       </label>
       <div class="col-md-6">
-        <select :id="`med-second-type-${id}`" class="form-control" name="`meds[${id}][second_type]`" form="medication-form">
+        <select :id="`med-second-type-${id}`" class="form-control" :name="`meds[${id}][second_type]`" form="medication-form">
           <option value="combo">and</option>
           <option value="amount">with</option>
           <option value="in">in</option>
@@ -80,10 +85,6 @@ If none of these conditions apply, leave these fields blank">
         <span class="help-block" v-if="errors[`meds.${id}.comments`]">
           {{ errors[`meds.${id}.comments`][0] }}
         </span>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="checkbox col-md-offset-2 col-md-2">
       </div>
     </div>
     <hr>

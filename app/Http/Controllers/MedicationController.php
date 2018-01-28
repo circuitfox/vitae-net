@@ -52,8 +52,8 @@ class MedicationController extends Controller
         foreach ($meds as &$med) {
             if (isset($med['secondary_name'])) {
                 $med['name'] = $this->joinNames($med['name'], $med['secondary_name']);
-                unset($med['secondary_name']);
             }
+            unset($med['secondary_name']);
             $med['created_at'] = $now;
             $med['updated_at'] = $now;
         }

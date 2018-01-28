@@ -47,15 +47,65 @@ class MedicationModelTest extends TestCase
     {
         $medication = factory(\App\Medication::class)->create();
         $medication1 = factory(\App\Medication::class)->states(['secondary_name'])->create();
-        $this->assertNotEquals('', $medication->primaryName());
-        $this->assertNotEquals('', $medication1->primaryName());
+        $this->assertTrue(empty($medication->secondaryName()));
+        $this->assertFalse(empty($medication1->secondaryName()));
     }
 
     public function testSecondaryName()
     {
         $medication = factory(\App\Medication::class)->create();
         $medication1 = factory(\App\Medication::class)->states(['secondary_name'])->create();
-        $this->assertEquals('', $medication->secondaryName());
-        $this->assertNotEquals('', $medication1->secondaryName());
+        $this->assertTrue(empty($medication->secondaryName()));
+        $this->assertFalse(empty($medication1->secondaryName()));
+    }
+
+    public function testToString()
+    {
+        $medication = factory(\App\Medication::class)->states(['no_secondary'])->create();
+        $this->assertEquals(
+            "{$medication->name} {$medication->dosage_amount} {$medication->dosage_unit}",
+            $medication->toString()
+        );
+    }
+
+    public function testToStringCombo()
+    {
+        $comboMedication = factory(\App\Medication::class)
+            ->states(['secondary_name', 'combo'])
+            ->create();
+        $this->assertEquals(
+            $comboMedication->primaryName()
+            . " {$comboMedication->dosage_amount} {$comboMedication->dosage_unit} / "
+            . $comboMedication->secondaryName()
+            . " {$comboMedication->second_amount} {$comboMedication->second_unit}",
+            $comboMedication->toString()
+        );
+    }
+
+    public function testToStringAmount()
+    {
+        $amountMedication = factory(\App\Medication::class)
+            ->states(['secondary_name', 'amount'])
+            ->create();
+        $this->assertEquals(
+            $amountMedication->primaryName()
+            . " {$amountMedication->dosage_amount} {$amountMedication->dosage_unit} with "
+            . "{$amountMedication->second_amount} {$amountMedication->second_unit}",
+            $amountMedication->toString()
+        );
+    }
+
+    public function testToStringIn()
+    {
+        $inMedication = factory(\App\Medication::class)
+            ->states(['secondary_name', 'in'])
+            ->create();
+        $this->assertEquals(
+            $inMedication->primaryName()
+            . " {$inMedication->dosage_amount} {$inMedication->dosage_unit} in "
+            . $inMedication->secondaryName()
+            . " {$inMedication->second_amount} {$inMedication->second_unit}",
+            $inMedication->toString()
+        );
     }
 }
