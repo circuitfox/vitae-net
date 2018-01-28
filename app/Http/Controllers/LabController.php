@@ -16,7 +16,7 @@ class LabController extends Controller
     public function index()
     {
         $labs = Lab::all();
-        return view('labs.index', compact('labs'));
+        return view('admin.labs', compact('labs'));
     }
 
     /**
@@ -26,7 +26,7 @@ class LabController extends Controller
      */
     public function create()
     {
-        return view('labs.create');
+        return view('admin.labs.create');
     }
 
     /**
@@ -38,7 +38,8 @@ class LabController extends Controller
   public function store(Request $request) {
     $name = request('name');
     $pathInStorage = 'labs/' . $name . rand(1111, 9999) . '.pdf';
-    $path = $request->file('doc')->storeAs('/public', $pathInStorage);
+    // The storage location needs to be changed
+    //$path = $request->file('doc')->storeAs('/public', $pathInStorage);
 
     // create a new patient using the form data
     $lab = new \App\Lab;
@@ -72,7 +73,7 @@ class LabController extends Controller
      */
     public function edit(Lab $lab)
     {
-        return view('labs.edit', compact('lab'));
+        return view('admin.lab.edit', compact('lab'));
     }
 
     /**
@@ -98,8 +99,9 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
-        $labFile = $lab->file_path;
-        //File::delete('storage/' . $labFile);
+        // This needs to be changed once the storage location is changed
+        // $labFile = $lab->file_path;
+        // File::delete('storage/' . $labFile);
         $lab->delete();
         return redirect()->route('labs.index')->with('message','Lab has been deleted successfully');
     }
