@@ -27,10 +27,11 @@ class VerifyMedication extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'dosage' => 'required|numeric',
-            'units' => 'required|string',
-            'second_dosage' => 'numeric|nullable',
-            'second_units' => 'string|nullable',
+            'dosage_amount' => 'required|numeric',
+            'dosage_unit' => 'required|string',
+            'secondary_name' => 'string|nullable',
+            'second_amount' => 'numeric|nullable',
+            'second_unit' => 'string|nullable',
             'second_type' => [
                 'nullable',
                 Rule::in(Medication::SECOND_TYPES),

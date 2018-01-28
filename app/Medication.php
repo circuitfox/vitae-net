@@ -21,21 +21,21 @@ class Medication extends Model
     public function toApiArrayV1() {
         return [
             'name' => $this->primaryName(),
-            'dosage' => $this->dosage_amount,
-            'units' => $this->dosage_unit,
+            'dosage_amount' => $this->dosage_amount,
+            'dosage_unit' => $this->dosage_unit,
             'comments' => $this->comments,
         ];
     }
 
     public function toApiArrayV2() {
         return [
-            'primaryName' => $this->primaryName(),
-            'secondaryName' => $this->secondaryName(),
-            'dosage' => $this->dosage_amount,
-            'units' => $this->dosage_unit,
-            'secondAmount' => $this->second_amount,
-            'secondUnits' => $this->second_unit,
-            'secondType' => $this->second_type,
+            'name' => $this->primaryName(),
+            'secondary_name' => $this->secondaryName(),
+            'dosage_amount' => $this->dosage_amount,
+            'dosage_unit' => $this->dosage_unit,
+            'second_amount' => $this->second_amount,
+            'second_unit' => $this->second_unit,
+            'second_type' => $this->second_type,
             'comments' => $this->comments,
         ];
     }

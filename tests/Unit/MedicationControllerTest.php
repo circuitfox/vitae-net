@@ -189,15 +189,15 @@ class MedicationControllerTest extends TestCase
         $med = factory(Medication::class)->create();
         $response = $this->json('POST', '/api/v1/medications/verify', [
             'name' => $med->name,
-            'dosage' => $med->dosage_amount,
-            'units' => $med->dosage_unit,
+            'dosage_amount' => $med->dosage_amount,
+            'dosage_unit' => $med->dosage_unit,
         ]);
         $response->assertStatus(200)->assertJson([
             'status' => 'success',
             'data' => [
                 'name' => $med->name,
-                'dosage' => $med->dosage_amount,
-                'units' => $med->dosage_unit,
+                'dosage_amount' => $med->dosage_amount,
+                'dosage_unit' => $med->dosage_unit,
                 'comments' => $med->comments,
             ]
         ]);
@@ -207,8 +207,8 @@ class MedicationControllerTest extends TestCase
     {
         $response = $this->json('POST', '/api/v1/medications/verify', [
             'name' => 'Wellbutrin',
-            'dosage' => 10,
-            'units' => 'mg',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mg',
         ]);
         $response->assertStatus(200)->assertJsonStructure([
             'status',

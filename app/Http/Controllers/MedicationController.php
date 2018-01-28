@@ -115,11 +115,7 @@ class MedicationController extends Controller
     public function verify(Requests\VerifyMedication $request)
     {
         try {
-            $med = Medication::where([
-                'name' => $request->input('name'),
-                'dosage_amount' => $request->input('dosage'),
-                'dosage_unit' => $request->input('units')
-            ])->firstOrFail();
+            $med = Medication::where($request->all())->firstOrFail();
             return response()->json([
                 'status' => 'success',
                 'data' => $med->toApiArrayV1()

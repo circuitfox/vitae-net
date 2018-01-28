@@ -5,15 +5,15 @@
       <dt>Name:</dt>
       <dd>{{ item.name }}</dd>
       <dt>Dosage:</dt>
-      <dd>{{ item.dosage }} {{ item.units }}</dd>
+      <dd>{{ item.dosage_amount }} {{ item.dosage_unit }}</dd>
       <dt>Comments:</dt>
       <dd>{{ item.comments }}</dd>
     </dl>
     <hr>
     <div v-if="form">
       <input type="hidden" name="name" :value="item.name" :id="`med-name-${id}`">
-      <input type="hidden" name="dosage" :value="item.dosage" :id="`med-dosage-${id}`">
-      <input type="hidden" name="units" :value="item.units" :id="`med-units-${id}`">
+      <input type="hidden" name="dosage_amount" :value="item.dosage_amount" :id="`med-dosage-amount-${id}`">
+      <input type="hidden" name="dosage_unit" :value="item.dosage_unit" :id="`med-dosage-unit-${id}`">
       <input type="hidden" name="comments" :value="item.comments" :id="`med-comments-${id}`">
     </div>
   </div>
