@@ -59,9 +59,9 @@ The medications table is used to store a list of all the facsimile medication do
 | name | dosage_amount | dosage_unit | second_amount | second_unit | second_type | comments |
 |------|---------------|-------------|---------------|-------------|-------------|----------|
 | Lasix | 20 | mg | null | null | null | null |
-| Tylenol #3 Acetaminophen|Codeine | 300 | mg | 30 | mg | combo | Do not confuse with Tylenol #2. |
+| Tylenol #3 Acetaminophen\|Codeine | 300 | mg | 30 | mg | combo | Do not confuse with Tylenol #2. |
 | Regular insulin | 100 | units/mL | 10 | mL | amount | Dispose only in hazard waste bin. |
-| Ancef|normal saline | 1 | g | 50 | mL | in | Shake before use. |
+| Ancef\|normal saline | 1 | g | 50 | mL | in | Shake before use. |
 
 ### labs
 
