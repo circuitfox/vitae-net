@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('orders.index', compact('orders'));
+        return view('admin.orders', ['orders' => Order::all()]);
     }
 
     /**
@@ -26,7 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        return view('admin.orders.create');
     }
 
     /**
@@ -38,7 +38,8 @@ class OrderController extends Controller
   public function store(Request $request) {
     $name = request('name');
     $pathInStorage = 'orders/' . $name . rand(1111, 9999) . '.pdf';
-    $request->file('doc')->storeAs('/public', $pathInStorage);
+    // TODO: Storage location needs to be changed
+    // $request->file('doc')->storeAs('/public', $pathInStorage);
 
     // create a new patient using the form data
     $order = new \App\Order;
@@ -77,7 +78,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('orders.edit', compact('order'));
+        return view('admin.order.edit', compact('order'));
     }
 
     /**
@@ -111,8 +112,9 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $orderFile = $order->file_path;
-        File::delete('storage/' . $orderFile);
+        // TODO: To be changed with correct storage location
+        // $orderFile = $order->file_path;
+        // File::delete('storage/' . $orderFile);
         $order->delete();
         return redirect()->route('orders.index')->with('message','Order has been deleted successfully');
     }
