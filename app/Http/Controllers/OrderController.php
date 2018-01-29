@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('admin.orders', compact('orders'));
+        return view('admin.orders', ['orders' => Order::all()]);
     }
 
     /**
@@ -38,7 +38,7 @@ class OrderController extends Controller
   public function store(Request $request) {
     $name = request('name');
     $pathInStorage = 'orders/' . $name . rand(1111, 9999) . '.pdf';
-    // Storage location needs to be changed
+    // TODO: Storage location needs to be changed
     // $request->file('doc')->storeAs('/public', $pathInStorage);
 
     // create a new patient using the form data
@@ -112,7 +112,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        // To be changed with correct storage location
+        // TODO: To be changed with correct storage location
         // $orderFile = $order->file_path;
         // File::delete('storage/' . $orderFile);
         $order->delete();

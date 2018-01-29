@@ -16,7 +16,7 @@ class LabController extends Controller
     public function index()
     {
         $labs = Lab::all();
-        return view('admin.labs', compact('labs'));
+        return view('admin.labs', ['labs' => Lab::all()]);
     }
 
     /**
@@ -38,7 +38,7 @@ class LabController extends Controller
   public function store(Request $request) {
     $name = request('name');
     $pathInStorage = 'labs/' . $name . rand(1111, 9999) . '.pdf';
-    // The storage location needs to be changed
+    // TODO: The storage location needs to be changed
     //$path = $request->file('doc')->storeAs('/public', $pathInStorage);
 
     // create a new patient using the form data
@@ -99,7 +99,7 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
-        // This needs to be changed once the storage location is changed
+        // TODO: This needs to be changed once the storage location is changed
         // $labFile = $lab->file_path;
         // File::delete('storage/' . $labFile);
         $lab->delete();
