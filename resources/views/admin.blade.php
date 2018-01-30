@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Medscanner Admin Page")
+@section("title", "Vitae NET Admin Page")
 @section("content")
 <div class="col-md-offset-2 col-md-8">
   <div class="panel panel-default" id="panel">
