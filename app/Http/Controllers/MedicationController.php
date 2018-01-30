@@ -94,6 +94,10 @@ class MedicationController extends Controller
     {
         $med = Medication::findOrFail($id);
         $data = $request->all();
+        if (isset($data['secondary_name'])) {
+            $data['name'] = $this->joinNames($data['name'], $data['secondary_name']);
+        }
+        unset($data['secondary_name']);
         $med->update($data);
         return redirect('/admin');
     }

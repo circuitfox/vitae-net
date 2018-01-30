@@ -8,6 +8,28 @@ class Medication extends Model
 {
     public const SECOND_TYPES = ['combo', 'amount', 'in'];
 
+    /**
+     * Helper function for converting second_type values
+     * to their representation in the edit view <select>
+     * element.
+     *
+     * @param string $type The second_type value
+     * @return string
+     */
+    public static function type_option($type)
+    {
+        switch ($type) {
+          case 'combo':
+              return 'and';
+          case 'amount':
+              return 'with';
+          case 'in':
+              return 'in';
+          default:
+              return '';
+        }
+    }
+
     public const NAME_SEPARATOR = '|';
 
     protected $primaryKey = 'medication_id';

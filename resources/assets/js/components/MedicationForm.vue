@@ -54,7 +54,7 @@ If none of these conditions apply, leave these fields blank.">
     <div class="form-group">
       <label class="col-md-2 control-label" :for="`meds[${id}][secondary_name]`">Name:</label>
       <div class="col-md-6">
-        <input class="form-control" type="text" :name="`meds[${id}][secondary_name]`" :value="item.name" :id="`med-secondary-name-${id}`">
+        <input class="form-control" type="text" :name="`meds[${id}][secondary_name]`" :value="item.secondary_name" :id="`med-secondary-name-${id}`">
         <span class="help-block" v-if="errors[`meds.${id}.secondary_name`]">
           {{ errors[`meds.${id}.secondary_name`][0] }}
         </span>
@@ -65,7 +65,7 @@ If none of these conditions apply, leave these fields blank.">
       <div class="col-md-3">
         <input class="form-control" type="number" :name="`meds[${id}][second_amount]`" :value="item.second_amount" :id="`med-second-amount-${id}`">
         <span class="help-block" v-if="errors[`meds.${id}.second_amount`]">
-          {{ errors[`meds.${id}.dosage_amount`][0] }}
+          {{ errors[`meds.${id}.second_amount`][0] }}
         </span>
       </div>
     </div>

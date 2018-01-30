@@ -332,7 +332,57 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med1->name, $med->name);
         $this->assertEquals($med1->dosage_amount, 50);
         $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
+        $this->assertEquals($med1->second_amount, $med->second_amount);
+        $this->assertEquals($med1->second_unit, $med->second_unit);
+        $this->assertEquals($med1->second_type, $med->second_type);
         $this->assertEquals($med1->comments, null);
+    }
+
+    public function testUpdateSecondaryName()
+    {
+        $user = factory(User::class)->create();
+        $med = factory(Medication::class)
+            ->states(['secondary_name'])
+            ->create();
+        $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
+            'name' => $med->secondaryName(),
+            'dosage_amount' => $med->dosage_amount,
+            'dosage_unit' => $med->dosage_unit,
+            'secondary_name' => $med->primaryName(),
+        ]);
+        $response->assertRedirect('/admin');
+        $med1 = Medication::find($med->medication_id);
+        $this->assertEquals($med1->name, $med->secondaryName() . Medication::NAME_SEPARATOR . $med->primaryName());
+        $this->assertEquals($med1->dosage_amount, $med->dosage_amount);
+        $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
+        $this->assertEquals($med1->second_amount, $med->second_amount);
+        $this->assertEquals($med1->second_unit, $med->second_unit);
+        $this->assertEquals($med1->second_type, $med->second_type);
+        $this->assertEquals($med1->comments, $med->comments);
+    }
+
+    public function testUpdateSecondaryType()
+    {
+        $user = factory(User::class)->create();
+        $med = factory(Medication::class)
+            ->states(['secondary_name', 'in'])
+            ->create();
+        $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
+            'name' => $med->primaryName(),
+            'dosage_amount' => $med->dosage_amount,
+            'dosage_unit' => $med->dosage_unit,
+            'secondary_name' => $med->secondaryName(),
+            'second_type' => 'combo',
+        ]);
+        $response->assertRedirect('/admin');
+        $med1 = Medication::find($med->medication_id);
+        $this->assertEquals($med1->name, $med->name);
+        $this->assertEquals($med1->dosage_amount, $med->dosage_amount);
+        $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
+        $this->assertEquals($med1->second_amount, $med->second_amount);
+        $this->assertEquals($med1->second_unit, $med->second_unit);
+        $this->assertEquals($med1->second_type, 'combo');
+        $this->assertEquals($med1->comments, $med->comments);
     }
 
     public function testDelete()
