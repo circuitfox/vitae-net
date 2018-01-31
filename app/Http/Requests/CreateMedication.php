@@ -29,8 +29,8 @@ class CreateMedication extends FormRequest
         // and they encode to 'meds.x.field'
         return [
             'meds.*.name' => 'required|string',
-            'meds.*.dosage_amount' => 'required|numeric',
-            'meds.*.dosage_unit' => 'required|string',
+            'meds.*.dosage_amount' => 'numeric|nullable',
+            'meds.*.dosage_unit' => 'string|nullable',
             'meds.*.secondary_name' => 'string|nullable',
             'meds.*.second_amount' => 'numeric|nullable',
             'meds.*.second_unit' => 'string|nullable',
