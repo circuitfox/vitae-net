@@ -6,6 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Medication extends Model
 {
+    public const SECOND_TYPES = ['combo', 'amount', 'in'];
+
+    /**
+     * Helper function for converting second_type values
+     * to their representation in the edit view <select>
+     * element.
+     *
+     * @param string $type The second_type value
+     * @return string
+     */
+    public static function type_option($type)
+    {
+        switch ($type) {
+          case 'combo':
+              return 'and';
+          case 'amount':
+              return 'with';
+          case 'in':
+              return 'in';
+          default:
+              return '';
+        }
+    }
+
+    public const NAME_SEPARATOR = '|';
+
     protected $primaryKey = 'medication_id';
 
     protected $fillable = [
@@ -14,34 +40,108 @@ class Medication extends Model
       'comments',
     ];
 
-    public function toApiArrayV1() {
+    public function toApiArrayV1()
+    {
         return [
             'name' => $this->primaryName(),
-            'dosage' => $this->dosage_amount,
-            'units' => $this->dosage_unit,
+            'dosage_amount' => $this->dosage_amount,
+            'dosage_unit' => $this->dosage_unit,
             'comments' => $this->comments,
         ];
     }
 
-    public function toApiArrayV2() {
+    public function toApiArrayV2()
+    {
         return [
-            'primaryName' => $this->primaryName(),
-            'secondaryName' => $this->secondaryName(),
-            'dosage' => $this->dosage_amount,
-            'units' => $this->dosage_unit,
-            'secondAmount' => $this->second_amount,
-            'secondUnits' => $this->second_unit,
-            'secondType' => $this->second_type,
+            'name' => $this->primaryName(),
+            'secondary_name' => $this->secondaryName(),
+            'dosage_amount' => $this->dosage_amount,
+            'dosage_unit' => $this->dosage_unit,
+            'second_amount' => $this->second_amount,
+            'second_unit' => $this->second_unit,
+            'second_type' => $this->second_type,
             'comments' => $this->comments,
         ];
     }
 
-    public function primaryName() {
-        return explode('|', $this->name)[0];
+    /**
+     * Returns a boolean indicating that this medication has secondary information.
+     *
+     * @return bool
+     */
+    public function hasSecondary()
+    {
+        return !(is_null($this->second_amount) && is_null($this->second_unit));
     }
 
-    public function secondaryName() {
-        $names = explode('|', $this->name);
+    /**
+     * Returns a boolean indicating that the secondary information of this
+     * medicaton is an additional medication.
+     *
+     * @return bool
+     */
+    public function isCombo()
+    {
+        return $this->hasSecondary() && $this->second_type === 'combo';
+    }
+
+    /**
+     * Returns a boolean indicating that the secondary information of this
+     * medicaton is an amount (e.g. units/mL).
+     *
+     * @return bool
+     */
+    public function isAmount()
+    {
+        return $this->hasSecondary() && $this->second_type === 'amount';
+    }
+
+    /**
+     * Returns a boolean indicating that the secondary information of this
+     * medicaton is a medium that the medication is in (e.g. saline).
+     *
+     * @return bool
+     */
+    public function isIn()
+    {
+        return $this->hasSecondary() && $this->second_type === 'in';
+    }
+
+    /**
+     * Returns a string representation of this medication.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        if ($this->second_type === 'combo') {
+            return $this->primaryName()
+                . " {$this->dosage_amount} {$this->dosage_unit} / "
+                . $this->secondaryName()
+                . " {$this->second_amount} {$this->second_unit}";
+        } elseif ($this->second_type === 'amount') {
+            return $this->primaryName()
+                . " {$this->dosage_amount} {$this->dosage_unit} with "
+                . "{$this->second_amount} {$this->second_unit}";
+        } elseif ($this->second_type === 'in') {
+            return $this->primaryName()
+                . " {$this->dosage_amount} {$this->dosage_unit} in "
+                . $this->secondaryName()
+                . " {$this->second_amount} {$this->second_unit}";
+        } else {
+            return $this->primaryName()
+                . " {$this->dosage_amount} {$this->dosage_unit}";
+        }
+    }
+
+    public function primaryName()
+    {
+        return explode($this::NAME_SEPARATOR, $this->name)[0];
+    }
+
+    public function secondaryName()
+    {
+        $names = explode($this::NAME_SEPARATOR, $this->name);
         if (array_key_exists(1, $names)) {
             return $names[1];
         } else {

@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Medscanner - Summary Page")
+@section("title", "Vitae NET - Summary Page")
 @section("content")
 <div id="summary-page">
   <div class="col-md-offset-2 col-md-8">

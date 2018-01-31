@@ -1,1 +1,1 @@
-<h3>{{ $medication->name }}</h3>
+<h3>{{ $medication->toString() }}</h3>

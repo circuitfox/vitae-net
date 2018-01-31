@@ -21,3 +21,27 @@ $factory->state(App\Medication::class, 'secondary_name', function (Faker $faker)
         'name' => $faker->word . '|' . $faker->word,
     ];
 });
+
+$factory->state(App\Medication::class, 'no_secondary', function (Faker $faker) {
+    return [
+        'second_type' => null
+    ];
+});
+
+$factory->state(App\Medication::class, 'combo', function (Faker $faker) {
+    return [
+        'second_type' => 'combo'
+    ];
+});
+
+$factory->state(App\Medication::class, 'amount', function (Faker $faker) {
+    return [
+        'second_type' => 'amount'
+    ];
+});
+
+$factory->state(App\Medication::class, 'in', function (Faker $faker) {
+    return [
+        'second_type' => 'in'
+    ];
+});

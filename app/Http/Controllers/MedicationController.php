@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Medication;
-use App\Http\Requests\CreateMedication;
+use App\Http\Requests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -43,14 +43,17 @@ class MedicationController extends Controller
      * @param  \App\Request\CreateMedication  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateMedication $request)
+    public function store(Requests\CreateMedication $request)
     {
         $now = Carbon::now('utc')->toDateTimeString();
-        $this->authorize('create', Medication::class);
-        // we can receive multiple medications, so they need to all be
-        // validated.
         $meds = $request->input('meds.*');
+        // We need to set timestamps for all of these, as insert won't do it for
+        // us.
         foreach ($meds as &$med) {
+            if (isset($med['secondary_name'])) {
+                $med['name'] = $this->joinNames($med['name'], $med['secondary_name']);
+            }
+            unset($med['secondary_name']);
             $med['created_at'] = $now;
             $med['updated_at'] = $now;
         }
@@ -87,16 +90,14 @@ class MedicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdateMedication $request, $id)
     {
         $med = Medication::findOrFail($id);
-        $request->validate([
-            'name' => 'required|string',
-            'dosage_amount' => 'required|numeric',
-            'dosage_unit' => 'required|string',
-            'comments' => 'string|nullable',
-        ]);
         $data = $request->all();
+        if (isset($data['secondary_name'])) {
+            $data['name'] = $this->joinNames($data['name'], $data['secondary_name']);
+        }
+        unset($data['secondary_name']);
         $med->update($data);
         return redirect('/admin');
     }
@@ -119,19 +120,10 @@ class MedicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function verify(Request $request)
+    public function verify(Requests\VerifyMedication $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'dosage' => 'required|numeric',
-            'units' => 'required|string',
-        ]);
         try {
-            $med = Medication::where([
-                'name' => $request->input('name'),
-                'dosage_amount' => $request->input('dosage'),
-                'dosage_unit' => $request->input('units')
-            ])->firstOrFail();
+            $med = Medication::where($request->all())->firstOrFail();
             return response()->json([
                 'status' => 'success',
                 'data' => $med->toApiArrayV1()
@@ -142,5 +134,16 @@ class MedicationController extends Controller
                 'data' => $ex->getMessage()
             ]);
         }
+    }
+
+    /**
+     * Join two names for storage in the Medication model.
+     *
+     * @param string $name The first name to join
+     * @param string $secondary_name The second name to join
+     */
+    private function joinNames(string $name, string $secondary_name)
+    {
+        return $name . Medication::NAME_SEPARATOR . $secondary_name;
     }
 }

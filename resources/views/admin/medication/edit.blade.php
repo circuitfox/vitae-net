@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Medscanner Administration - Medication")
+@section("title", "Vitae NET Administration - Medication")
 @section("content")
   <div class="col-md-offset-2 col-md-8">
     <div class="panel panel-default">
@@ -11,7 +11,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="name">Name:</label>
             <div class="col-md-6">
-              <input class="form-control" type="text" name="name" value="{{ $medication->name or old('name') }}" id="med-name" required>
+              <input class="form-control" type="text" name="name" value="{{ old('name', $medication->primaryName()) }}" id="med-name" required>
               @if ($errors->has('name'))
                 <span class="help-block">
                   {{ $errors->first('name') }}
@@ -34,6 +34,67 @@
               @if ($errors->has('dosage_unit'))
                 <span class="help-block">
                   {{ $errors->first('dosage_unit') }}
+                </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" for="second_type"
+                   data-toggle="tooltip" data-placement="right" title="
+Some medications contain extra infromation besides just their name and dosage.
+These can be divided into three types:
+
+'and' - There is a secondary drug with its own name and dosage
+
+'with' - There is a separate quantity e.g. 10mL with 100 units/mL
+
+'in' - The medication is in some medium, such as 10mL saline
+
+If none of these conditions apply, leave these fields blank.">
+              Second Type:
+            </label>
+            <div class="col-md-6">
+              <select id="med-second-type" class="form-control" name="second_type" form="medication-form">
+                @foreach (App\Medication::SECOND_TYPES as $key)
+                  <option value="{{ App\Medication::type_option($key) }}" selected="{{ old('second_type', $medication->second_type) === $key ? 'selected' : '' }}">
+                @endforeach
+              </select>
+              @if ($errors->has('second_type'))
+                <span class="help-block">
+                  {{ $errors->first('second_type') }}
+                </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" for="secondary_name">Name:</label>
+            <div class="col-md-6">
+              <input class="form-control" type="text" name="secondary_name" value="{{ old('seecondary_name', $medication->secondaryName()) }}" id="med-secondary-name">
+              @if ($errors->has('secondary_name'))
+                <span class="help-block">
+                  {{ $errors->first('secondary_name') }}
+                </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" for="second_amount">Amount:</label>
+            <div class="col-md-3">
+              <input class="form-control" type="number" name="second_amount" value="{{ $medication->second_amount or old('second_amount') }}" id="med-second-amount">
+              @if ($errors->has('second_amount'))
+                <span class="help-block">
+                  {{ $errors->first('second_amount') }}
+                </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" for="second_unit">Unit:</label>
+            <div class="col-md-3">
+              <input class="form-control" type="text" name="second_unit" value="{{ $medication->second_unit or old('second_unit') }}" id="med-second-unit">
+              @if ($errors->has('second_unit'))
+                <span class="help-block">
+                  {{ $errors->first('second_unit') }}
                 </span>
               @endif
             </div>

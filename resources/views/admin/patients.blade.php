@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Medscanner Administration - Patients")
+@section("title", "Vitae NET Administration - Patients")
 @section("content")
 <div class="container col-md-8 col-md-offset-2">
   <? $patients = App\Patient::all(); ?>

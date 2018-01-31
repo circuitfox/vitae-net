@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class MedicationModelTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function testFactory()
     {
         $medication = factory(\App\Medication::class)->create();
@@ -19,13 +19,13 @@ class MedicationModelTest extends TestCase
     {
         $medication = factory(\App\Medication::class)->create();
         $arr = $medication->toApiArrayV2();
-        $this->assertEquals($arr['primaryName'], $medication->primaryName());
-        $this->assertEquals($arr['secondaryName'], '');
-        $this->assertEquals($arr['dosage'], $medication->dosage_amount);
-        $this->assertEquals($arr['units'], $medication->dosage_unit);
-        $this->assertEquals($arr['secondAmount'], $medication->second_amount);
-        $this->assertEquals($arr['secondUnits'], $medication->second_unit);
-        $this->assertEquals($arr['secondType'], $medication->second_type);
+        $this->assertEquals($arr['name'], $medication->primaryName());
+        $this->assertEquals($arr['secondary_name'], '');
+        $this->assertEquals($arr['dosage_amount'], $medication->dosage_amount);
+        $this->assertEquals($arr['dosage_unit'], $medication->dosage_unit);
+        $this->assertEquals($arr['second_amount'], $medication->second_amount);
+        $this->assertEquals($arr['second_unit'], $medication->second_unit);
+        $this->assertEquals($arr['second_type'], $medication->second_type);
         $this->assertEquals($arr['comments'], $medication->comments);
     }
 
@@ -33,13 +33,13 @@ class MedicationModelTest extends TestCase
     {
         $medication = factory(\App\Medication::class)->states(['secondary_name'])->create();
         $arr = $medication->toApiArrayV2();
-        $this->assertEquals($arr['primaryName'], $medication->primaryName());
-        $this->assertEquals($arr['secondaryName'], $medication->secondaryName());
-        $this->assertEquals($arr['dosage'], $medication->dosage_amount);
-        $this->assertEquals($arr['units'], $medication->dosage_unit);
-        $this->assertEquals($arr['secondAmount'], $medication->second_amount);
-        $this->assertEquals($arr['secondUnits'], $medication->second_unit);
-        $this->assertEquals($arr['secondType'], $medication->second_type);
+        $this->assertEquals($arr['name'], $medication->primaryName());
+        $this->assertEquals($arr['secondary_name'], $medication->secondaryName());
+        $this->assertEquals($arr['dosage_amount'], $medication->dosage_amount);
+        $this->assertEquals($arr['dosage_unit'], $medication->dosage_unit);
+        $this->assertEquals($arr['second_amount'], $medication->second_amount);
+        $this->assertEquals($arr['second_unit'], $medication->second_unit);
+        $this->assertEquals($arr['second_type'], $medication->second_type);
         $this->assertEquals($arr['comments'], $medication->comments);
     }
 
@@ -47,15 +47,65 @@ class MedicationModelTest extends TestCase
     {
         $medication = factory(\App\Medication::class)->create();
         $medication1 = factory(\App\Medication::class)->states(['secondary_name'])->create();
-        $this->assertNotEquals('', $medication->primaryName());
-        $this->assertNotEquals('', $medication1->primaryName());
+        $this->assertTrue(empty($medication->secondaryName()));
+        $this->assertFalse(empty($medication1->secondaryName()));
     }
 
     public function testSecondaryName()
     {
         $medication = factory(\App\Medication::class)->create();
         $medication1 = factory(\App\Medication::class)->states(['secondary_name'])->create();
-        $this->assertEquals('', $medication->secondaryName());
-        $this->assertNotEquals('', $medication1->secondaryName());
+        $this->assertTrue(empty($medication->secondaryName()));
+        $this->assertFalse(empty($medication1->secondaryName()));
+    }
+
+    public function testToString()
+    {
+        $medication = factory(\App\Medication::class)->states(['no_secondary'])->create();
+        $this->assertEquals(
+            "{$medication->name} {$medication->dosage_amount} {$medication->dosage_unit}",
+            $medication->toString()
+        );
+    }
+
+    public function testToStringCombo()
+    {
+        $comboMedication = factory(\App\Medication::class)
+            ->states(['secondary_name', 'combo'])
+            ->create();
+        $this->assertEquals(
+            $comboMedication->primaryName()
+            . " {$comboMedication->dosage_amount} {$comboMedication->dosage_unit} / "
+            . $comboMedication->secondaryName()
+            . " {$comboMedication->second_amount} {$comboMedication->second_unit}",
+            $comboMedication->toString()
+        );
+    }
+
+    public function testToStringAmount()
+    {
+        $amountMedication = factory(\App\Medication::class)
+            ->states(['secondary_name', 'amount'])
+            ->create();
+        $this->assertEquals(
+            $amountMedication->primaryName()
+            . " {$amountMedication->dosage_amount} {$amountMedication->dosage_unit} with "
+            . "{$amountMedication->second_amount} {$amountMedication->second_unit}",
+            $amountMedication->toString()
+        );
+    }
+
+    public function testToStringIn()
+    {
+        $inMedication = factory(\App\Medication::class)
+            ->states(['secondary_name', 'in'])
+            ->create();
+        $this->assertEquals(
+            $inMedication->primaryName()
+            . " {$inMedication->dosage_amount} {$inMedication->dosage_unit} in "
+            . $inMedication->secondaryName()
+            . " {$inMedication->second_amount} {$inMedication->second_unit}",
+            $inMedication->toString()
+        );
     }
 }

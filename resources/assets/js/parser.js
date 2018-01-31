@@ -28,23 +28,23 @@ function parse(str) {
     } else if ((parseStr = medicationNameRegex.exec(str))) {
         parsedObj.type = 'medication';
         parsedObj.data.name = parseStr[0];
-        parsedObj.data.dosage = 0;
-        parsedObj.data.units = '';
+        parsedObj.data.dosage_amount = 0;
+        parsedObj.data.dosage_unit = '';
     } else if ((parseStr = medicationNameDosageRegex.exec(str))) {
         parsedObj.type = 'medication';
         parsedObj.data.name = parseStr[1];
-        parsedObj.data.dosage = parseStr[2];
-        parsedObj.data.units = parseStr[3];
+        parsedObj.data.dosage_amount = parseStr[2];
+        parsedObj.data.dosage_unit = parseStr[3];
     } else if ((parseStr = medicationDosageNameRegex.exec(str))) {
         parsedObj.type = 'medication';
         parsedObj.data.name = parseStr[3];
-        parsedObj.data.dosage = parseStr[1];
-        parsedObj.data.units = parseStr[2];
+        parsedObj.data.dosage_amount = parseStr[1];
+        parsedObj.data.dosage_unit = parseStr[2];
     } else if ((parseStr = medicationDosageNameDosageRegex.exec(str))) {
         parsedObj.type = 'medication';
         parsedObj.data.name = parseStr[3];
-        parsedObj.data.dosage = parseStr[1];
-        parsedObj.data.units = parseStr[2] + ' ' + parseStr[4];
+        parsedObj.data.dosage_amount = parseStr[1];
+        parsedObj.data.dosage_unit = parseStr[2] + ' ' + parseStr[4];
     } else {
         console.error('QR Code "' + str + '" does not parse.');
     }
