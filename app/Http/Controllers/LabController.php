@@ -15,7 +15,6 @@ class LabController extends Controller
      */
     public function index()
     {
-        $labs = Lab::all();
         return view('admin.labs', ['labs' => Lab::all()]);
     }
 
@@ -26,6 +25,7 @@ class LabController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Lab::class);
         return view('admin.labs.create');
     }
 
@@ -36,6 +36,7 @@ class LabController extends Controller
      * @return \Illuminate\Http\Response
      */
   public function store(Request $request) {
+    $this->authorize('create', Lab::class);
     $name = request('name');
     $pathInStorage = 'labs/' . $name . rand(1111, 9999) . '.pdf';
     // TODO: The storage location needs to be changed

@@ -26,6 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Order::class);
         return view('admin.orders.create');
     }
 
@@ -36,6 +37,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
   public function store(Request $request) {
+    $this->authorize('create', Order::class);
     $name = request('name');
     $pathInStorage = 'orders/' . $name . rand(1111, 9999) . '.pdf';
     // TODO: Storage location needs to be changed
