@@ -158,6 +158,29 @@ class MedicationControllerTest extends TestCase
         $this->assertNull($med->comments);
     }
 
+    public function testStoreNullables()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'Wellbutrin',
+            ]],
+        ]);
+        $response->assertRedirect('/admin');
+        $med = Medication::where([
+            'name' => 'Wellbutrin',
+        ])->first();
+        $this->assertNotNull($med);
+        $this->assertEquals($med->name, 'Wellbutrin');
+        $this->assertNull($med->dosage_amount);
+        $this->assertNull($med->dosage_unit);
+        $this->assertNull($med->second_amount);
+        $this->assertNull($med->second_unit);
+        $this->assertNull($med->second_type);
+        $this->assertNull($med->comments);
+
+    }
+
     public function testStoreInstructorOrAdmin()
     {
         $instructor = factory(User::class)->states('instructor')->create();

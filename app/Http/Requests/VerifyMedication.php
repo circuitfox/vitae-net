@@ -27,8 +27,8 @@ class VerifyMedication extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'dosage_amount' => 'required|numeric',
-            'dosage_unit' => 'required|string',
+            'dosage_amount' => 'numeric|nullable',
+            'dosage_unit' => 'string|nullable',
             'secondary_name' => 'string|nullable',
             'second_amount' => 'numeric|nullable',
             'second_unit' => 'string|nullable',
