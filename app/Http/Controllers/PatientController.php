@@ -83,7 +83,7 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        return view('patients.edit', ['patient' => Patient::findOrFail($id)]);
+        return view('admin.patient.edit', ['patient' => Patient::findOrFail($id)]);
     }
 
     /**

@@ -62,7 +62,7 @@ class PatientControllerTest extends TestCase
         $user = factory(User::class)->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number . '/edit');
-        $response->assertViewIs('patients.edit');
+        $response->assertViewIs('admin.patient.edit');
     }
 
     public function testUpdate()

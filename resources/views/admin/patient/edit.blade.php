@@ -59,6 +59,61 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="col-md-2 control-label" for="height">Height:</label>
+              <div class="col-md-6">
+                <input id="height" class="form-control" type="text" name="height" value="{{ $patient->height }}" required>
+                @if ($errors->has('height'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('height') }}</strong>
+                  </span>
+                @endif
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="physician">Weight:</label>
+              <div class="col-md-6">
+                <input id="weight" class="form-control" type="text" name="weight" value="{{ $patient->weight }}" required>
+                @if ($errors->has('weight'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('weight') }}</strong>
+                  </span>
+                @endif
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="diagnosis">Diagnosis:</label>
+              <div class="col-md-6">
+                <input id="diagnosis" class="form-control" type="text" name="diagnosis" value="{{ $patient->diagnosis }}" required>
+                @if ($errors->has('diagnosis'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('diagnosis') }}</strong>
+                  </span>
+                @endif
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="allergies">Allergies:</label>
+              <div class="col-md-6">
+                <input id="allergies" class="form-control" type="text" name="allergies" value="{{ $patient->allergies }}" required>
+                @if ($errors->has('allergies'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('allergies') }}</strong>
+                  </span>
+                @endif
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="code_status">Code Status:</label>
+              <div class="col-md-6">
+                <input id="code_status" class="form-control" type="text" name="code_status" value="{{ $patient->code_status }}" required>
+                @if ($errors->has('code_status'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('code_status') }}</strong>
+                  </span>
+                @endif
+              </div>
+            </div>
+            <div class="form-group">
               <label class="col-md-2 control-label" for="physician">Physician:</label>
               <div class="col-md-6">
                 <input id="physician" class="form-control" type="text" name="physician" value="{{ $patient->physician }}" required>
