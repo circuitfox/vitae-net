@@ -20,14 +20,27 @@ class PatientControllerTest extends TestCase
 
     public function testCreate()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('instructor')->create();
         $response = $this->actingAs($user)->get('/patients/create');
-        $response->assertViewIs('patients.create');
+        $response->assertViewIs('admin.patients.create');
+    }
+
+    public function testCreateInstructorOrAdmin()
+    {
+        $user = factory(User::class)->create();
+        $instructor = factory(User::class)->states('instructor')->create();
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($user)->get('/patients/create');
+        $response->assertStatus(403);
+        $response = $this->actingAs($admin)->get('/patients/create');
+        $response->assertViewIs('admin.patients.create');
+        $response = $this->actingAs($instructor)->get('/patients/create');
+        $response->assertViewIs('admin.patients.create');
     }
 
     public function testStore()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('instructor')->create();
         $response = $this->actingAs($user)->post('/patients', [
             'medical_record_number' => 1234,
             'first_name' => 'joe',
@@ -59,15 +72,29 @@ class PatientControllerTest extends TestCase
 
     public function testEdit()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('instructor')->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number . '/edit');
         $response->assertViewIs('admin.patient.edit');
     }
 
-    public function testUpdate()
+    public function testEditInstructorOrAdmin()
     {
         $user = factory(User::class)->create();
+        $instructor = factory(User::class)->states('instructor')->create();
+        $admin = factory(User::class)->states('admin')->create();
+        $patient = factory(Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number . '/edit');
+        $response->assertStatus(403);
+        $response = $this->actingAs($admin)->get('/patients/' . $patient->medical_record_number . '/edit');
+        $response->assertViewIs('admin.patient.edit');
+        $response = $this->actingAs($instructor)->get('/patients/' . $patient->medical_record_number . '/edit');
+        $response->assertViewIs('admin.patient.edit');
+    }
+
+    public function testUpdate()
+    {
+        $user = factory(User::class)->states('instructor')->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($user)->put('/patients/' . $patient->medical_record_number, [
             'first_name' => 'joe',
@@ -88,10 +115,25 @@ class PatientControllerTest extends TestCase
 
     public function testDelete()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('instructor')->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($user)->delete('/patients/' . $patient->medical_record_number);
         $this->assertNull(Patient::find($patient->medical_record_number));
+    }
+
+    public function testDeleteInstructorOrAdmin()
+    {
+        $user = factory(User::class)->create();
+        $instructor = factory(User::class)->states('instructor')->create();
+        $admin = factory(User::class)->states('admin')->create();
+        $patient = factory(Patient::class)->create();
+        $patient1 = factory(Patient::class)->create();
+        $response = $this->actingAs($user)->delete('/patients/' . $patient->medical_record_number);
+        $response->assertStatus(403);
+        $response = $this->actingAs($admin)->delete('/patients/' . $patient->medical_record_number);
+        $this->assertNull(Patient::find($patient->medical_record_number));
+        $response = $this->actingAs($instructor)->delete('/patients/' . $patient1->medical_record_number);
+        $this->assertNull(Patient::find($patient1->medical_record_number));
     }
 
     public function testVerifyWithMRN()
@@ -100,8 +142,8 @@ class PatientControllerTest extends TestCase
         $response = $this->json('POST', '/api/v1/patients/verify', [
             'first_name' => $patient->first_name,
             'last_name' => $patient->last_name,
-            'dob' => $patient->date_of_birth,
-            'mrn' => $patient->medical_record_number,
+            'date_of_birth' => $patient->date_of_birth,
+            'medical_record_number' => $patient->medical_record_number,
         ]);
         $response->assertStatus(200)->assertJson([
             'status' => 'success',
@@ -123,7 +165,7 @@ class PatientControllerTest extends TestCase
         $response = $this->json('POST', '/api/v1/patients/verify', [
             'first_name' => $patient->first_name,
             'last_name' => $patient->last_name,
-            'dob' => $patient->date_of_birth,
+            'date_of_birth' => $patient->date_of_birth,
         ]);
         $response->assertStatus(200)->assertJson([
             'status' => 'success',
@@ -145,8 +187,8 @@ class PatientControllerTest extends TestCase
         $response = $this->json('POST', '/api/v1/patients/verify', [
             'first_name' => 'joe',
             'last_name' => 'smith',
-            'dob' => '1/1/1997',
-            'mrn' => '12345',
+            'date_of_birth' => '1/1/1997',
+            'medical_record_number' => '12345',
         ]);
         $response->assertJsonStructure([
             'status',

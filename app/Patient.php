@@ -13,6 +13,8 @@ class Patient extends Model
       'date_of_birth', 'sex', 'physician', 'room',
     ];
 
+    public const CODE_STATUSES = ['FULL CODE', 'DNR', 'DNI'];
+
     public function toApiArray()
     {
         return [

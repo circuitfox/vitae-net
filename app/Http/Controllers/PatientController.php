@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lab;
 use App\Order;
 use App\Patient;
+use App\Http\Requests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patients.create');
+        $this->authorize('create', Patient::class);
+        return view('admin.patients.create');
     }
 
     /**
@@ -41,7 +43,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CreatePatient $request)
     {
         $request->validate([
             'medical_record_number' => 'required|numeric|unique:patients',
@@ -83,7 +85,9 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.patient.edit', ['patient' => Patient::findOrFail($id)]);
+        $patient = Patient::findOrFail($id);
+        $this->authorize('update', $patient);
+        return view('admin.patient.edit', ['patient' => $patient]);
     }
 
     /**
@@ -93,7 +97,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdatePatient $request, $id)
     {
         $request->validate([
             'first_name' => 'required|string',
@@ -116,7 +120,9 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        Patient::destroy($id);
+        $patient = Patient::findOrFail($id);
+        $this->authorize('delete', $patient);
+        $patient->delete();
         return redirect()->back();
     }
 
@@ -126,14 +132,8 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function verify(Request $request)
+    public function verify(Requests\VerifyPatient $request)
     {
-        $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'dob' => 'required|string',
-            'mrn' => 'numeric|nullable'
-        ]);
         try {
             // Because of how codes scan, the verification routine must do the
             // following:
@@ -142,17 +142,17 @@ class PatientController extends Controller
             // - Otherwise, search using the first and last names and the date
             //   of birth. The first and last names might not be in order,
             //   though, so we'll check both ways.
-            $patient = Patient::when($request->input('mrn'), function($query) use ($request) {
-                return $query->where('medical_record_number', $request->input('mrn'));
+            $patient = Patient::when($request->input('medical_record_number'), function($query) use ($request) {
+                return $query->where('medical_record_number', $request->input('medical_record_number'));
             }, function ($query) use ($request) {
                 return $query->where([
                     'first_name' => $request->input('first_name'),
                     'last_name' => $request->input('last_name'),
-                    'date_of_birth' => $request->input('dob')
+                    'date_of_birth' => $request->input('date_of_birth')
                 ])->orWhere([
                     'first_name' => $request->input('last_name'),
                     'last_name' => $request->input('first_name'),
-                    'date_of_birth' => $request->input('dob')
+                    'date_of_birth' => $request->input('date_of_birth')
                 ]);
             })->firstOrFail();
             return response()->json([
