@@ -69,7 +69,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        return view('admin.order', ['order' => $order]);
     }
 
     /**

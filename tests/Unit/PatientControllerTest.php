@@ -15,7 +15,7 @@ class PatientControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/patients');
-        $response->assertViewIs('patients.index');
+        $response->assertViewIs('admin.patients');
     }
 
     public function testCreate()
@@ -54,7 +54,7 @@ class PatientControllerTest extends TestCase
         $user = factory(User::class)->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
-        $response->assertViewIs('patients.show');
+        $response->assertViewIs('admin.patient');
     }
 
     public function testEdit()

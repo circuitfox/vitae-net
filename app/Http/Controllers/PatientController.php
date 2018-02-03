@@ -22,7 +22,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        return view('patients.index', ['patients' => Patient::all()]);
+        return view('admin.patients', ['patients' => Patient::all()]);
     }
 
     /**
@@ -66,14 +66,12 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::findOrFail($id);
-        $labs = Lab::where('patient_id', $patient->id)->get();
-        $orders = Order::where('patient_id', $patient->id)->where('completed', 1)->get();
-        $pendings = Order::where('patient_id', $patient->id)->where('completed', 0)->get();
-        return view('patients.show', [
+        $labs = Lab::where('patient_id', $patient->medical_record_number)->get();
+        $orders = Order::where('patient_id', $patient->medical_record_number)->get();
+        return view('admin.patient', [
             'patient' => $patient,
             'labs' => $labs,
             'orders' => $orders,
-            'pendings' => $pendings,
         ]);
     }
 
