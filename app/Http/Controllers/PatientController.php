@@ -45,17 +45,7 @@ class PatientController extends Controller
      */
     public function store(Requests\CreatePatient $request)
     {
-        $request->validate([
-            'medical_record_number' => 'required|numeric|unique:patients',
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'date_of_birth' => 'required|string',
-            'sex' => 'required|boolean',
-            'physician' => 'required|string',
-            'room' => 'required|string',
-        ]);
-        $data = $request->all();
-        Patient::create($data);
+        Patient::create($request->all());
         return redirect('/admin');
     }
 

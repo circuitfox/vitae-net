@@ -10,7 +10,9 @@ class Patient extends Model
     protected $primaryKey = 'medical_record_number';
     protected $fillable = [
       'medical_record_number', 'last_name', 'first_name',
-      'date_of_birth', 'sex', 'physician', 'room',
+      'date_of_birth', 'sex', 'height',
+      'weight', 'diagnosis', 'allergies',
+      'code_status', 'physician', 'room',
     ];
 
     public const CODE_STATUSES = ['FULL CODE', 'DNR', 'DNI'];
@@ -18,11 +20,16 @@ class Patient extends Model
     public function toApiArray()
     {
         return [
-            'mrn' => $this->medical_record_number,
+            'medical_record_number' => $this->medical_record_number,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
-            'dob' => $this->date_of_birth,
+            'date_of_birth' => $this->date_of_birth,
             'sex' => $this->sex ? 'Male' : 'Female',
+            'height' => $this->height,
+            'weight' => $this->weight,
+            'diagnosis' => $this->diagnosis,
+            'allergies' => $this->allergies,
+            'code_status' => $this->code_status,
             'physician' => $this->physician,
             'room' => $this->room,
         ];

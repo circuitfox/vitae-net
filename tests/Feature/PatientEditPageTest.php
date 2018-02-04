@@ -22,7 +22,8 @@ class PatientEditPageTest extends TestCase
         $response->assertSee('<input id="weight" class="form-control" type="text" name="weight" value="' . $patient->weight . '" required>');
         $response->assertSee('<input id="diagnosis" class="form-control" type="text" name="diagnosis" value="' . $patient->diagnosis . '" required>');
         $response->assertSee('<input id="allergies" class="form-control" type="text" name="allergies" value="' . $patient->allergies . '" required>');
-        $response->assertSee('<input id="code_status" class="form-control" type="text" name="code_status" value="' . $patient->code_status . '" required>');
+        $response->assertSee('<select id="code_status" class="form-control" name="code_status" form="patient-edit-form">');
+        $response->assertSee('<option value="' . $patient->code_status . '" selected="selected">' . $patient->code_status . '</option>');
         $response->assertSee('<input id="physician" class="form-control" type="text" name="physician" value="' . $patient->physician . '" required>');
         $response->assertSee('<input class="form-control" type="text" name="room" value="' . $patient->room . '" required>');
         $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');

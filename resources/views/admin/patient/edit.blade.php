@@ -105,7 +105,12 @@
             <div class="form-group">
               <label class="col-md-2 control-label" for="code_status">Code Status:</label>
               <div class="col-md-6">
-                <input id="code_status" class="form-control" type="text" name="code_status" value="{{ $patient->code_status }}" required>
+                <select id="code_status" class="form-control" name="code_status" form="patient-edit-form">
+                  <option value="" selected="{{ $patient->code_status === null ? 'selected' : '' }}"></option>
+                  @foreach (App\Patient::CODE_STATUSES as $status)
+                    <option value="{{ $status }}" selected="{{ $patient->code_status === $status ? 'selected' : '' }}">{{ $status }}</option>
+                  @endforeach
+                </select>
                 @if ($errors->has('code_status'))
                   <span class="help-block">
                     <strong>{{ $errors->first('code_status') }}</strong>
