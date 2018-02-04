@@ -56,7 +56,7 @@ class UserControllerTest extends TestCase
 
     public function testStoreAdminOnly()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $this->assertFalse($user->isAdmin());
         $response = $this->actingAs($user)->post('/users', [
             'name' => 'jsmith',
