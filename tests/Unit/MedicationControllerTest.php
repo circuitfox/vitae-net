@@ -421,16 +421,25 @@ class MedicationControllerTest extends TestCase
     {
         $med = factory(Medication::class)->create();
         $response = $this->json('POST', '/api/v1/medications/verify', [
-            'name' => $med->name,
+            'name' => $med->primaryName(),
             'dosage_amount' => $med->dosage_amount,
             'dosage_unit' => $med->dosage_unit,
+            'secondary_name' => $med->secondaryName(),
+            'second_amount' => $med->second_amount,
+            'second_unit' => $med->second_unit,
+            'second_type' => $med->second_type,
+            'comments' => $med->comments,
         ]);
         $response->assertStatus(200)->assertJson([
             'status' => 'success',
             'data' => [
-                'name' => $med->name,
+                'name' => $med->primaryName(),
                 'dosage_amount' => $med->dosage_amount,
                 'dosage_unit' => $med->dosage_unit,
+                'secondary_name' => $med->secondaryName(),
+                'second_amount' => $med->second_amount,
+                'second_unit' => $med->second_unit,
+                'second_type' => $med->second_type,
                 'comments' => $med->comments,
             ]
         ]);

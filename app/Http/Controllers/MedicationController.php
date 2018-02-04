@@ -115,7 +115,7 @@ class MedicationController extends Controller
     }
 
     /**
-     * Verify the given medication by its name and dosage.
+     * Verify the given medication by its attribues.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -123,10 +123,15 @@ class MedicationController extends Controller
     public function verify(Requests\VerifyMedication $request)
     {
         try {
-            $med = Medication::where($request->all())->firstOrFail();
+            $data = $request->all();
+            if (isset($data['secondary_name'])) {
+                $data['name'] = $this->joinNames($data['name'], $data['secondary_name']);
+            }
+            unset($data['secondary_name']);
+            $med = Medication::where($data)->firstOrFail();
             return response()->json([
                 'status' => 'success',
-                'data' => $med->toApiArrayV1()
+                'data' => $med->toApiArray()
             ]);
         } catch (ModelNotFoundException $ex) {
             return response()->json([

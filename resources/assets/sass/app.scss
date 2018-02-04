@@ -17,3 +17,13 @@ td {
   border-right: solid 1px lightgrey;
   border-left: solid 1px lightgrey;
 }
+
+@media (min-width: 768px) {
+  .dl-wrap dt {
+    width: 200px;
+    white-space: normal;
+  }
+  .dl-wrap dd {
+    margin-left: 220px;
+  }
+}
