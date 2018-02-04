@@ -63,7 +63,8 @@ class LabController extends Controller
      */
     public function show($id)
     {
-        //
+        $lab = Lab::findOrFail($id);
+        return view('admin.lab', ['lab' => $lab]);
     }
 
     /**

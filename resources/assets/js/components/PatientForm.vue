@@ -49,6 +49,56 @@
       </div>
     </div>
     <div class="form-group">
+      <label class="col-md-2 control-label" for="height">Height:</label>
+      <div class="col-md-6">
+        <input class="form-control" type="text" name="height" required>
+        <span class="help-block" v-if="errors['height']">
+          <strong>{{ errors.height[0] }}</strong>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="weight">Weight:</label>
+      <div class="col-md-6">
+        <input class="form-control" type="text" name="weight" required>
+        <span class="help-block" v-if="errors['weight']">
+          <strong>{{ errors.weight[0] }}</strong>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="diagnosis">Diagnosis:</label>
+      <div class="col-md-6">
+        <input class="form-control" type="text" name="diagnosis" required>
+        <span class="help-block" v-if="errors['diagnosis']">
+          <strong>{{ errors.diagnosis[0] }}</strong>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="allergies">Allergies:</label>
+      <div class="col-md-6">
+        <input class="form-control" type="text" name="allergies" required>
+        <span class="help-block" v-if="errors['allergies']">
+          <strong>{{ errors.allergies[0] }}</strong>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="code_status">Code Status:</label>
+      <div class="col-md-6">
+        <select id="code_status" class="form-control" name="code_status" form="patient-form">
+          <option value="" selected></option>
+          <option value="FULL CODE">FULL CODE</option>
+          <option value="DNR">DNR</option>
+          <option value="DNI">DNI</option>
+        </select>
+        <span class="help-block" v-if="errors['code_status']">
+          <strong>{{ errors.code_status[0] }}</strong>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-md-2 control-label" for="physician">Physician:</label>
       <div class="col-md-6">
         <input id="physician" class="form-control" type="text" name="physician" required>
