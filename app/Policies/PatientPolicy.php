@@ -20,7 +20,7 @@ class PatientPolicy
      */
     public function create(User $user)
     {
-        return collect(['instructor', 'admin'])->contains($user->role);
+        return in_array($user->role, ['instructor', 'admin']);
     }
 
     /**
@@ -34,7 +34,7 @@ class PatientPolicy
      */
     public function update(User $user, Patient $model)
     {
-        return collect(['instructor', 'admin'])->contains($user->role);
+        return in_array($user->role, ['instructor', 'admin']);
     }
 
     /**
@@ -48,6 +48,6 @@ class PatientPolicy
      */
     public function delete(User $user, Patient $model)
     {
-        return collect(['instructor', 'admin'])->contains($user->role);
+        return in_array($user->role, ['instructor', 'admin']);
     }
 }

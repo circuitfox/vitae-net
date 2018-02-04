@@ -27,7 +27,7 @@ class PatientControllerTest extends TestCase
 
     public function testCreateInstructorOrAdmin()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $instructor = factory(User::class)->states('instructor')->create();
         $admin = factory(User::class)->states('admin')->create();
         $response = $this->actingAs($user)->get('/patients/create');
@@ -80,7 +80,7 @@ class PatientControllerTest extends TestCase
 
     public function testEditInstructorOrAdmin()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $instructor = factory(User::class)->states('instructor')->create();
         $admin = factory(User::class)->states('admin')->create();
         $patient = factory(Patient::class)->create();
@@ -123,7 +123,7 @@ class PatientControllerTest extends TestCase
 
     public function testDeleteInstructorOrAdmin()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $instructor = factory(User::class)->states('instructor')->create();
         $admin = factory(User::class)->states('admin')->create();
         $patient = factory(Patient::class)->create();

@@ -28,7 +28,7 @@ class MedicationControllerTest extends TestCase
     public function testCreateInstructorOrAdmin()
     {
         $instructor = factory(User::class)->states('instructor')->create();
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $this->assertFalse($user->isAdmin());
         $this->assertEquals($instructor->role, 'instructor');
         $response = $this->actingAs($instructor)->get('/medications/create');
@@ -184,7 +184,7 @@ class MedicationControllerTest extends TestCase
     public function testStoreInstructorOrAdmin()
     {
         $instructor = factory(User::class)->states('instructor')->create();
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $response = $this->actingAs($instructor)->post('/medications', [
             'meds' => [[
                 'name' => 'Wellbutrin',
@@ -334,15 +334,29 @@ class MedicationControllerTest extends TestCase
 
     public function testEdit()
     {
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)->create();
-        $response = $this->actingAs($user)->get('/medications/' . $med->medication_id . '/edit');
+        $response = $this->actingAs($admin)->get('/medications/' . $med->medication_id . '/edit');
         $response->assertViewIs('admin.medication.edit');
+    }
+
+    public function testEditInstructorOrAdmin()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $instructor = factory(User::class)->states('instructor')->create();
+        $user = factory(User::class)->states('student')->create();
+        $med = factory(Medication::class)->create();
+        $response = $this->actingAs($admin)->get('/medications/' . $med->medication_id . '/edit');
+        $response->assertViewIs('admin.medication.edit');
+        $response = $this->actingAs($instructor)->get('/medications/' . $med->medication_id . '/edit');
+        $response->assertViewIs('admin.medication.edit');
+        $response = $this->actingAs($user)->get('/medications/' . $med->medication_id . '/edit');
+        $response->assertStatus(403);
     }
 
     public function testUpdate()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)->create();
         $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
             'name' => $med->name,
@@ -363,7 +377,7 @@ class MedicationControllerTest extends TestCase
 
     public function testUpdateSecondaryName()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)
             ->states(['secondary_name'])
             ->create();
@@ -386,7 +400,7 @@ class MedicationControllerTest extends TestCase
 
     public function testUpdateSecondaryType()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)
             ->states(['secondary_name', 'in'])
             ->create();
@@ -410,11 +424,29 @@ class MedicationControllerTest extends TestCase
 
     public function testDelete()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)->create();
         $response = $this->actingAs($user)->delete('/medications/' . $med->medication_id);
         $response->assertRedirect();
         $this->assertNull(Medication::find($med->medication_id));
+    }
+
+    public function testDeleteInstructorOrAdmin()
+    {
+        $user = factory(User::class)->states('student')->create();
+        $admin = factory(User::class)->states('admin')->create();
+        $instructor = factory(User::class)->states('instructor')->create();
+        $med = factory(Medication::class)->create();
+        $med1 = factory(Medication::class)->create();
+        $response = $this->actingAs($admin)->delete('/medications/' . $med->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($med->medication_id));
+        $response = $this->actingAs($user)->delete('/medications/' . $med1->medication_id);
+        $response->assertStatus(403);
+        $this->assertNotNull(Medication::find($med1->medication_id));
+        $response = $this->actingAs($instructor)->delete('/medications/' . $med1->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($med1->medication_id));
     }
 
     public function testVerify()

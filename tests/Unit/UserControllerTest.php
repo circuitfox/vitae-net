@@ -27,7 +27,7 @@ class UserControllerTest extends TestCase
 
     public function testCreateAdminOnly()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $this->assertFalse($user->isAdmin());
         $response = $this->actingAs($user)->get('/users/create');
         $response->assertStatus(403);
@@ -144,8 +144,8 @@ class UserControllerTest extends TestCase
     public function testDeleteAdminOrSelf()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $user = factory(User::class)->create();
-        $user1 = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
+        $user1 = factory(User::class)->states('instructor')->create();
 
         $response = $this->actingAs($user)->delete('/users/' . $user->id);
         $response->assertRedirect();

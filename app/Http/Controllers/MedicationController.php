@@ -80,7 +80,9 @@ class MedicationController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.medication.edit', ['medication' => Medication::findOrFail($id)]);
+        $med = Medication::findOrFail($id);
+        $this->authorize('update', $med);
+        return view('admin.medication.edit', ['medication' => $med]);
     }
 
     /**
@@ -110,7 +112,9 @@ class MedicationController extends Controller
      */
     public function destroy($id)
     {
-        Medication::destroy($id);
+        $med = Medication::findOrFail($id);
+        $this->authorize('delete', $med);
+        $med->delete();
         return redirect()->back();
     }
 
