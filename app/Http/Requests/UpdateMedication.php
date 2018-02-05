@@ -15,7 +15,8 @@ class UpdateMedication extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('update', Medication::class);
+        $medication = Medication::find($this->route('medication'));
+        return $this->user()->can('update', $medication);
     }
 
     /**

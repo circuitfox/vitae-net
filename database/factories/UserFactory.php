@@ -20,7 +20,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt(config('auth.default_password')),
-        'role' => $faker->jobTitle,
+        'role' => $faker->randomElement($array = App\User::ROLES),
         'remember_token' => str_random(10),
         'reset_password' => false,
     ];
@@ -32,6 +32,10 @@ $factory->state(App\User::class, 'admin', [
 
 $factory->state(App\User::class, 'instructor', [
     'role' => 'instructor',
+]);
+
+$factory->state(App\User::class, 'student', [
+    'role' => 'student',
 ]);
 
 $factory->state(App\User::class, 'reset_password', [

@@ -12,7 +12,7 @@ class MedicationEditPageTest extends TestCase
 
     public function testHasForm()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(Medication::class)->create();
         $medication->update();
         $response = $this->actingAs($user)->get('/medications/' . $medication->medication_id . '/edit');
@@ -32,7 +32,7 @@ class MedicationEditPageTest extends TestCase
 
     public function testHasFormSecondaryName()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(Medication::class)
             ->states(['secondary_name'])
             ->create();
@@ -54,7 +54,7 @@ class MedicationEditPageTest extends TestCase
 
     public function testHasFormCombo()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(Medication::class)
             ->states(['secondary_name', 'combo'])
             ->create();
@@ -76,7 +76,7 @@ class MedicationEditPageTest extends TestCase
 
     public function testHasFormAmount()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(Medication::class)
             ->states(['secondary_name', 'amount'])
             ->create();
@@ -98,7 +98,7 @@ class MedicationEditPageTest extends TestCase
 
     public function testHasFormIn()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(Medication::class)
             ->states(['secondary_name', 'in'])
             ->create();
