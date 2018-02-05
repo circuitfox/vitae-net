@@ -5,7 +5,7 @@
   <div id="patient" v-else>
     <h3>Patient</h3>
     <hr>
-    <dl class='dl-horizontal'>
+    <dl class='dl-horizontal dl-wrap'>
       <dt>Name:</dt>
       <dd>{{ patient.first_name }} {{ patient.last_name }}</dd>
       <dt>DOB:</dt>

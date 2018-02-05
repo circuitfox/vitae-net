@@ -15,10 +15,10 @@ class MedicationModelTest extends TestCase
         $this->assertNotNull($medication);
     }
 
-    public function testToApiArrayV2()
+    public function testToApiArray()
     {
         $medication = factory(\App\Medication::class)->create();
-        $arr = $medication->toApiArrayV2();
+        $arr = $medication->toApiArray();
         $this->assertEquals($arr['name'], $medication->primaryName());
         $this->assertEquals($arr['secondary_name'], '');
         $this->assertEquals($arr['dosage_amount'], $medication->dosage_amount);
@@ -29,10 +29,10 @@ class MedicationModelTest extends TestCase
         $this->assertEquals($arr['comments'], $medication->comments);
     }
 
-    public function testToApiArrayV2WithSecondaryName()
+    public function testToApiArrayWithSecondaryName()
     {
         $medication = factory(\App\Medication::class)->states(['secondary_name'])->create();
-        $arr = $medication->toApiArrayV2();
+        $arr = $medication->toApiArray();
         $this->assertEquals($arr['name'], $medication->primaryName());
         $this->assertEquals($arr['secondary_name'], $medication->secondaryName());
         $this->assertEquals($arr['dosage_amount'], $medication->dosage_amount);

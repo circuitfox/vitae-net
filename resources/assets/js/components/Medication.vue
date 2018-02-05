@@ -1,7 +1,7 @@
 <template>
   <div>
     <i class="pull-right glyphicon glyphicon-remove" @click="$emit('remove')"></i>
-    <dl class='dl-horizontal'>
+    <dl class="dl-horizontal dl-wrap">
       <dt>Name:</dt>
       <dd>{{ item.name }}</dd>
       <dt>Dosage:</dt>

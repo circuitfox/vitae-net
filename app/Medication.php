@@ -40,17 +40,13 @@ class Medication extends Model
       'comments',
     ];
 
-    public function toApiArrayV1()
-    {
-        return [
-            'name' => $this->primaryName(),
-            'dosage_amount' => $this->dosage_amount,
-            'dosage_unit' => $this->dosage_unit,
-            'comments' => $this->comments,
-        ];
-    }
-
-    public function toApiArrayV2()
+    /**
+     * Converts this medication's attributes into an array for use with the
+     * /verify api route.
+     *
+     * @return array
+     */
+    public function toApiArray()
     {
         return [
             'name' => $this->primaryName(),
