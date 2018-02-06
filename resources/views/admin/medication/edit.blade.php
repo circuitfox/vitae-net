@@ -22,7 +22,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="dosage_amount">Dosage:</label>
             <div class="col-md-3">
-              <input class="form-control" type="number" name="dosage_amount" value="{{ $medication->dosage_amount or old('dosage_amount') }}" id="med-dosage-amount" required>
+              <input class="form-control" type="number" name="dosage_amount" step="0.01" value="{{ $medication->dosage_amount or old('dosage_amount') }}" id="med-dosage-amount" required>
               @if ($errors->has('dosage_amount'))
                 <span class="help-block">
                   {{ $errors->first('dosage_amount') }}
@@ -55,6 +55,11 @@ If none of these conditions apply, leave these fields blank.">
             </label>
             <div class="col-md-6">
               <select id="med-second-type" class="form-control" name="second_type" form="medication-form">
+                @if ($medication->second_type === null)
+                  <option value="" selected>none</option>
+                @else
+                  <option value="">none</option>
+                @endif
                 @foreach (App\Medication::SECOND_TYPES as $key)
                   <option value="{{ App\Medication::type_option($key) }}" selected="{{ old('second_type', $medication->second_type) === $key ? 'selected' : '' }}">
                 @endforeach
@@ -80,7 +85,7 @@ If none of these conditions apply, leave these fields blank.">
           <div class="form-group">
             <label class="col-md-2 control-label" for="second_amount">Amount:</label>
             <div class="col-md-3">
-              <input class="form-control" type="number" name="second_amount" value="{{ $medication->second_amount or old('second_amount') }}" id="med-second-amount">
+              <input class="form-control" type="number" name="second_amount" step="0.01" value="{{ $medication->second_amount or old('second_amount') }}" id="med-second-amount">
               @if ($errors->has('second_amount'))
                 <span class="help-block">
                   {{ $errors->first('second_amount') }}
