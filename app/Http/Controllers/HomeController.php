@@ -17,7 +17,7 @@ class HomeController extends Controller
         if (Auth::user()->isAdmin()) {
             return view('admin_home');
         } else {
-            return view('student_home');
+            return redirect('/patients');
         }
     }
 }
