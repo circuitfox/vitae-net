@@ -75,6 +75,7 @@ class LabController extends Controller
      */
     public function edit(Lab $lab)
     {
+        $this->authorize('update', $lab);
         return view('admin.lab.edit', compact('lab'));
     }
 
@@ -88,8 +89,8 @@ class LabController extends Controller
     public function update(Request $request, $id)
     {
         $lab = Lab::find($id);
-        $labUpdate = $request->all();
-        $lab->update($labUpdate);
+        $this->authorize('update', $lab);
+        $lab->update($request->all());
         return redirect()->route('labs.index')->with('message','Lab has been updated successfully');
     }
 
@@ -101,6 +102,7 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
+        $this->authorize('delete', $lab);
         // TODO: This needs to be changed once the storage location is changed
         // $labFile = $lab->file_path;
         // File::delete('storage/' . $labFile);
