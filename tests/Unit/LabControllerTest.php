@@ -7,6 +7,7 @@ use App\Patient;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 
 class LabControllerTest extends TestCase
 {
@@ -46,7 +47,8 @@ class LabControllerTest extends TestCase
         $response = $this->actingAs($user)->post('/labs', [
             'name' => 'test',
             'description' => 'description',
-            'patient_id' => $patient->medical_record_number
+            'patient_id' => $patient->medical_record_number,
+            'doc' => UploadedFile::fake()->create('test'),
         ]);
         $response->assertRedirect();
         $lab = Lab::where([
@@ -71,13 +73,14 @@ class LabControllerTest extends TestCase
         $response = $this->actingAs($admin)->post('/labs', [
             'name' => 'test',
             'description' => 'description',
-            'patient_id' => $patient->medical_record_number
+            'patient_id' => $patient->medical_record_number,
+            'doc' => UploadedFile::fake()->create('test'),
         ]);
         $response->assertRedirect();
         $lab = Lab::where([
             'name' => 'test',
             'description' => 'description',
-            'patient_id' => $patient->medical_record_number
+            'patient_id' => $patient->medical_record_number,
         ])->first();
         $this->assertNotNull($lab);
         $this->assertEquals($lab->name, 'test');
@@ -88,7 +91,8 @@ class LabControllerTest extends TestCase
         $response = $this->actingAs($user)->post('/labs', [
             'name' => 'test',
             'description' => 'description',
-            'patient_id' => $patient1->medical_record_number
+            'patient_id' => $patient1->medical_record_number,
+            'doc' => UploadedFile::fake()->create('test'),
         ]);
         $response->assertStatus(403);
         $lab = Lab::where([
@@ -135,6 +139,8 @@ class LabControllerTest extends TestCase
         $lab = factory(Lab::class)->create();
         $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
             'name' => 'foo',
+            'description' => $lab->description,
+            'patient_id' => $lab->patient_id,
         ]);
         $lab1 = Lab::find($lab->id);
         $this->assertNotNull($lab1);
@@ -151,6 +157,8 @@ class LabControllerTest extends TestCase
         $lab = factory(Lab::class)->create();
         $patient = factory(Patient::class)->create();
         $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
+            'description' => $lab->description,
+            'name' => $lab->name,
             'patient_id' => $patient->medical_record_number,
         ]);
         $lab1 = Lab::find($lab->id);
@@ -173,6 +181,8 @@ class LabControllerTest extends TestCase
         $lab = factory(Lab::class)->create();
         $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
             'name' => 'foo',
+            'description' => $lab->description,
+            'patient_id' => $lab->patient_id,
         ]);
         $lab1 = Lab::find($lab->id);
         $this->assertNotNull($lab1);
@@ -183,6 +193,8 @@ class LabControllerTest extends TestCase
         $this->assertEquals($lab1->patient->medical_record_number, $lab->patient->medical_record_number);
         $response = $this->actingAs($instructor)->put('/labs/' . $lab->id, [
             'name' => 'bar',
+            'description' => $lab->description,
+            'patient_id' => $lab->patient_id,
         ]);
         $lab1 = Lab::find($lab->id);
         $this->assertNotNull($lab1);
@@ -193,6 +205,8 @@ class LabControllerTest extends TestCase
         $this->assertEquals($lab1->patient->medical_record_number, $lab->patient->medical_record_number);
         $response = $this->actingAs($student)->put('/labs/' . $lab->id, [
             'name' => 'foo',
+            'description' => $lab->description,
+            'patient_id' => $lab->patient_id,
         ]);
         $response->assertStatus(403);
         $lab1 = Lab::find($lab->id);
