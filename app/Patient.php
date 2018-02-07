@@ -17,6 +17,16 @@ class Patient extends Model
 
     public const CODE_STATUSES = ['FULL CODE', 'DNR', 'DNI'];
 
+    public function labs()
+    {
+        return $this->hasMany('\App\Lab');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('\App\Order');
+    }
+    
     public function toApiArray()
     {
         return [
