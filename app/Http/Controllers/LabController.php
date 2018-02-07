@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\Lab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -35,8 +36,7 @@ class LabController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-  public function store(Request $request) {
-    $this->authorize('create', Lab::class);
+  public function store(Requests\CreateLab $request) {
     $name = request('name');
     $pathInStorage = 'labs/' . $name . rand(1111, 9999) . '.pdf';
     // TODO: The storage location needs to be changed
@@ -86,10 +86,9 @@ class LabController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdateLab $request, $id)
     {
         $lab = Lab::find($id);
-        $this->authorize('update', $lab);
         $lab->update($request->all());
         return redirect()->route('labs.index')->with('message','Lab has been updated successfully');
     }
