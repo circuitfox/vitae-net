@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Order;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateOrder extends FormRequest
@@ -13,7 +14,7 @@ class CreateOrder extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->can('create', Order::class);
     }
 
     /**
@@ -24,7 +25,11 @@ class CreateOrder extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'doc' => 'required|file',
+            'patient_id' => 'numeric|nullable',
+            'completed' => 'required|boolean'
         ];
     }
 }
