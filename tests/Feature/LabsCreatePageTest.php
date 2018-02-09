@@ -12,7 +12,7 @@ class LabsCreatePageTest extends TestCase
   public function testHasLabFormList()
   {
     $user = factory(\App\User::class)->states('admin')->create();
-    $response = $this->actingAs($user)->('/labs/create');
+    $response = $this->actingAs($user)->get('/labs/create');
     $response->assertSee('<h3>Create new lab result</h3>');
     $response->assertSee('<form class="form-horizontal" method="POST" action="/labs">');
     $response->assertSee('<label for="name" class="col-md-2 contol-label">Name:</label>');

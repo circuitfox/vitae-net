@@ -12,7 +12,7 @@ public function OrdersCreatePageTest extends TestCase
   public function testHasOrderFormList()
   {
     $user = factory(\App\User::class)->states('admin')->create();
-    $response = $this->actingAs($user)->('/orders/create');
+    $response = $this->actingAs($user)->get('/orders/create');
     $response->assertSee('<h3>Create new order</h3>');
     $response->assertSee('<form class="form-horizontal" method="POST" action="/orders">');
     $response->assertSee('<label for="name" class="col-md-2 contol-label">Name:</label>');
