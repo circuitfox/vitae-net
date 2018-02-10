@@ -6,30 +6,30 @@
     <div class="panel-heading">Patient Data Formatter</div>
     <div class="panel-body">
       <div class="col-sm-4">
-        <label for="mrn">MRN:</label>
-        <input type="text" id="mrn" name="mrn" /><br /><br />
-        <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" /><br /><br />
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" /><br /><br />
-        <label for="dob">Date of Birth:</label>
-        <input type="text" id="dob" name="dob" /><br /><br />
-        <label for="sex">Sex:</label>
-        <input type="text" id="sex" name="sex" /><br /><br />
-        <label for="height">Height:</label>
-        <input type="text" id="height" name="height" /><br /><br />
-        <label for="weight">Weight:</label>
-        <input type="text" id="weight" name="weight" /><br /><br />
-        <label for="diagnosis">Diagnosis:</label>
-        <input type="text" id="diagnosis" name="diagnosis" /><br /><br />
-        <label for="allergies">Allergies:</label>
-        <input type="text" id="allergies" name="allergies" /><br /><br />
-        <label for="code">Code Status:</label>
-        <input type="text" id="code" name="code" /><br /><br />
-        <label for="phsyician">Physician:</label>
-        <input type="text" id="physician" name="physician" /><br /><br />
-        <label for="room">Room:</label>
-        <input type="text" id="room" name="room" />
+        <label for="mrn" class="pull-left">MRN:</label>
+        <input type="text" id="mrn" name="mrn" class="pull-right" /><br /><br />
+        <label for="lname" class="pull-left">Last Name:</label>
+        <input type="text" id="lname" name="lname" class="pull-right" /><br /><br />
+        <label for="fname" class="pull-left">First Name:</label>
+        <input type="text" id="fname" name="fname" class="pull-right" /><br /><br />
+        <label for="dob" class="pull-left">Date of Birth:</label>
+        <input type="text" id="dob" name="dob" class="pull-right" /><br /><br />
+        <label for="sex" class="pull-left">Sex:</label>
+        <input type="text" id="sex" name="sex" class="pull-right" /><br /><br />
+        <label for="height" class="pull-left">Height:</label>
+        <input type="text" id="height" name="height" class="pull-right" /><br /><br />
+        <label for="weight" class="pull-left">Weight:</label>
+        <input type="text" id="weight" name="weight" class="pull-right" /><br /><br />
+        <label for="diagnosis" class="pull-left">Diagnosis:</label>
+        <input type="text" id="diagnosis" name="diagnosis" class="pull-right" /><br /><br />
+        <label for="allergies" class="pull-left">Allergies:</label>
+        <input type="text" id="allergies" name="allergies" class="pull-right" /><br /><br />
+        <label for="code" class="pull-left">Code Status:</label>
+        <input type="text" id="code" name="code" class="pull-right" /><br /><br />
+        <label for="phsyician" class="pull-left">Physician:</label>
+        <input type="text" id="physician" name="physician" class="pull-right" /><br /><br />
+        <label for="room" class="pull-left">Room:</label>
+        <input type="text" id="room" name="room" class="pull-right" />
       </div>
       <div class="col-sm-8">
         <button type="button" id="format" class="pull-right">Format</button>

@@ -6,22 +6,22 @@
     <div class="panel-heading">Medication Data Formatter</div>
     <div class="panel-body">
       <div class="col-sm-4">
-        <label for="primary_name">Primary Name:</label>
-        <input type="text" id="primary_name" name="primary_name" /><br /><br />
-        <label for="primary_amount">Primary Dosage Amount:</label>
-        <input type="text" id="primary_amount" name="primary_amount" /><br /><br />
-        <label for="primary_unit">Primary Dosage Unit:</label>
-        <input type="text" id="primary_unit" name="primary_unit" /><br /><br />
-        <label for="secondary_name">Secondary Name:</label>
-        <input type="text" id="secondary_name" name="secondary_name" /><br /><br />
-        <label for="second_amount">Second Dosage Amount:</label>
-        <input type="text" id="second_amount" name="second_amount" /><br /><br />
-        <label for="second_unit">Second Dosage Unit:</label>
-        <input type="text" id="second_unit" name="second_unit" /><br /><br />
-        <label for="second_type">Second Type:</label>
-        <input type="text" id="second_type" name="second_type" /><br /><br />
-        <label for="comments">Comments:</label>
-        <input type="text" id="comments" name="comments" />
+        <label for="primary_name" class="pull-left">Primary Name:</label>
+        <input type="text" id="primary_name" name="primary_name" class="pull-right" /><br /><br />
+        <label for="primary_amount" class="pull-left">Primary Dosage Amount:</label>
+        <input type="text" id="primary_amount" name="primary_amount" class="pull-right" /><br /><br />
+        <label for="primary_unit" class="pull-left">Primary Dosage Unit:</label>
+        <input type="text" id="primary_unit" name="primary_unit" class="pull-right" /><br /><br />
+        <label for="secondary_name" class="pull-left">Secondary Name:</label>
+        <input type="text" id="secondary_name" name="secondary_name" class="pull-right" /><br /><br />
+        <label for="second_amount" class="pull-left">Second Dosage Amount:</label>
+        <input type="text" id="second_amount" name="second_amount" class="pull-right" /><br /><br />
+        <label for="second_unit" class="pull-left">Second Dosage Unit:</label>
+        <input type="text" id="second_unit" name="second_unit" class="pull-right" /><br /><br />
+        <label for="second_type" class="pull-left">Second Type:</label>
+        <input type="text" id="second_type" name="second_type" class="pull-right" /><br /><br />
+        <label for="comments" class="pull-left">Comments:</label>
+        <input type="text" id="comments" name="comments" class="pull-right" />
       </div>
       <div class="col-sm-8">
         <button type="button" id="format" class="pull-right">Format</button>
