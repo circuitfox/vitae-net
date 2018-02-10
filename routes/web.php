@@ -40,6 +40,13 @@ Route::post('/scan', function() {
 
 Route::middleware('auth')->post('/orders/complete', 'OrderController@complete')->name('complete');
 
+Route::get('/medformatter', function(){
+    return view('medformatter');
+});
+
+Route::get('/patientformatter', function(){
+    return view('patientformatter');
+});
 
 // TODO: Add policies to control access to patients, orders, labs routes
 Route::middleware('auth')->resource('users', 'UserController');
