@@ -8,6 +8,8 @@
 require('./bootstrap');
 require('./jquery.scannerdetection');
 let parser = require('./parser');
+require('./medformatter');
+require('./patientformatter');
 
 window.Vue = require('vue');
 
