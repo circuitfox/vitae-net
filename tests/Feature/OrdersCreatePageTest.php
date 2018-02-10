@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-public function OrdersCreatePageTest extends TestCase
+class OrdersCreatePageTest extends TestCase
 {
   use RefreshDatabase;
 
