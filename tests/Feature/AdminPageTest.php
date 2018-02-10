@@ -19,7 +19,7 @@ class AdminPageTest extends TestCase
         $medformat = url('/medformatter');
         $patients = url('/patients');
         $patientscreate = url('/patients/create');
-        $patientformat = url('/patienformatter');
+        $patientformat = url('/patientformatter');
         $response = $this->actingAs($user)->get('/admin');
         $response->assertSee(<<<HTML
 <div class="col-md-offset-2 col-md-8">
