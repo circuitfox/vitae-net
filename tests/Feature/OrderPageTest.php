@@ -22,6 +22,6 @@ class OrderPageTest extends TestCase
     $response->assertSee('<h5><b><u>Patient MRN</u></b></h5>');
     $response->assertSee('<p>' . $order->patient_id . '</p>');
     $response->assertSee('<h5><b><u>Completed:</u></b></h5>');
-    $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') '</p>');
+    $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') . '</p>');
   }
 }
