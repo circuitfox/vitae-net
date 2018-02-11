@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 systemctl stop rh-php71-php-fpm
 systemctl stop nginx
@@ -28,3 +29,5 @@ restorecon -Rv /var/www/vitae-net/boostrap/cache
 
 systemctl start nginx
 systemctl start rh-php71-php-fpm
+
+exit 0

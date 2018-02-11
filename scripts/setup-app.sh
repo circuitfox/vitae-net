@@ -3,6 +3,20 @@
 # 1: deploy directory
 # 2: migrations user password
 # 3: app user password
+set -e
+
+if [ -z "$1" ]; then
+    echo "USAGE: setup-app.sh deploy_dir app_password migration_password"
+    exit 1
+fi
+if [ -z "$2" ]; then
+    echo "USAGE: setup-app.sh deploy_dir app_password migration_password"
+    exit 1
+fi
+if [ -z "$3" ]; then
+    echo "USAGE: setup-app.sh deploy_dir app_password migration_password"
+    exit 1
+fi
 
 cd $HOME
 
@@ -26,3 +40,5 @@ sed -i -e "s/DB_PASSWORD=/&$3/" .env
 "$HOME/composer" install --no-dev --no-interaction --no-scripts --no-plugins
 php artisan key:generate
 php artisan migrate --database=migrate
+
+exit 0
