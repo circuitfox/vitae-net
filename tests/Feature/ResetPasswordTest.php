@@ -32,7 +32,7 @@ class ResetPasswordTest extends TestCase
 
     public function testRedirectsOnce()
     {
-        $user = factory(\App\User::class)->states('reset_password')->create();
+        $user = factory(\App\User::class)->states(['admin', 'reset_password'])->create();
         $response = $this->followingRedirects()->actingAs($user)->get('/home');
         $response->assertViewIs('auth.passwords.reset');
         $token = str_after(url()->current(), 'password/reset/');
