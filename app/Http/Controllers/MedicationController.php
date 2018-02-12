@@ -58,7 +58,7 @@ class MedicationController extends Controller
             $med['updated_at'] = $now;
         }
         Medication::insert($meds);
-        return redirect('/admin');
+        return redirect('/home');
     }
 
     /**
@@ -101,7 +101,7 @@ class MedicationController extends Controller
         }
         unset($data['secondary_name']);
         $med->update($data);
-        return redirect('/admin');
+        return redirect('/home');
     }
 
     /**

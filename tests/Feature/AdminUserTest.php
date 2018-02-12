@@ -24,9 +24,9 @@ class AdminUserTest extends TestCase
     public function testResetPassword()
     {
         $admin = User::find(1);
-        $response = $this->actingAs($admin)->get('/admin');
+        $response = $this->actingAs($admin)->get('/home');
         $response->assertRedirect();
-        $response = $this->followingRedirects()->actingAs($admin)->get('/admin');
+        $response = $this->followingRedirects()->actingAs($admin)->get('/home');
         $response->assertViewIs('auth.passwords.reset');
     }
 }

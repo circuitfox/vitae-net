@@ -19,6 +19,10 @@
       <p><a class="btn btn-primary" href="{{ url('/patients') }}">View Patients</a>&nbsp;View and edit existing patients.</p>
       <p><a class="btn btn-primary" href="{{ url('/patients/create') }}">Create Patient</a>&nbsp;Create new patient.</p>
       <p><a class="btn btn-primary" href="{{ url('/patientformatter') }}">Format Patient</a>&nbsp;Format patient data for QR/bar code.</p>
+      <p><a class="btn btn-primary" href="{{ url('/orders') }}">View Orders</a>&nbsp;View and edit existing orders.</p>
+      <p><a class="btn btn-primary" href="{{ url('/orders/create') }}">Create Order</a>&nbsp;Create new order.</p>
+      <p><a class="btn btn-primary" href="{{ url('/labs') }}">View Labs</a>&nbsp;View and edit existing labs.</p>
+      <p><a class="btn btn-primary" href="{{ url('/labs/create') }}">Create Lab</a>&nbsp;Create new lab.</p>
     </div>
   </div>
 </div>
