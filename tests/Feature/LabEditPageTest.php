@@ -13,7 +13,7 @@ class LabEditPageTest extends TestCase
   {
     $user = factory(\App\User::class)->create();
     $lab = factory(\App\Lab::class)->create();
-    $response = $this->actingAs($user)->get('/labs/' . $lab->lab_id . '/edit');
+    $response = $this->actingAs($user)->get('/labs/' . $lab->id . '/edit');
     $response->assertSee('<form id="lab-edit-form" class="form-horizontal" action="' . route('labs.update', ['id' => $lab->id]) . '" method="POST">');
     $response->assertSee('<input class="form-control" type="text" name="name" value="' . $lab->name . '" id="name" required>');
     $response->assertSee('<input class="form-control" type="text" name="description" value="' . $lab->description . '" id="description" required>');
