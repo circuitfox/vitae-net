@@ -13,7 +13,7 @@ class LabPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $lab = factory(\App\Lab::class)->create();
-    $response = $this->actingAs($user)->get('/labs/' . $lab->lab_id);
+    $response = $this->actingAs($user)->get('/labs/' . $lab->id);
     $response->assertSee('<h3>' . $lab->name . '</h3>');
     $response->assertSee('<h5><b><u>Name:</u></b></h5>');
     $response->assertSee('<p>' . $lab->name . '</p>');
