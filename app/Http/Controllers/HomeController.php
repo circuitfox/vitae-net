@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->isAdmin()) {
-            return view('admin_home');
+            return view('admin');
         } else {
             return redirect('/patients');
         }

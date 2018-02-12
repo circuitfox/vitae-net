@@ -46,7 +46,7 @@ class PatientController extends Controller
     public function store(Requests\CreatePatient $request)
     {
         Patient::create($request->all());
-        return redirect('/admin');
+        return redirect('/home');
     }
 
     /**
@@ -99,7 +99,7 @@ class PatientController extends Controller
         ]);
         $data = $request->all();
         Patient::findOrFail($id)->update($data);
-        return redirect('/admin');
+        return redirect('/home');
     }
 
     /**

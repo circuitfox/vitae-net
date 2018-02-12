@@ -29,7 +29,7 @@
     <div class="navbar-text">
       <span class="glyphicon glyphicon-user"></span>
       <!-- TODO: should redirect to /home -->
-      <a class="navbar-link" href="{{ url('/admin') }}">{{ Auth::user()->name }}</a>
+      <a class="navbar-link" href="{{ url('/home') }}">{{ Auth::user()->name }}</a>
     </div>
     <div class="navbar-text">
       <span class="glyphicon glyphicon-log-out"></span>
