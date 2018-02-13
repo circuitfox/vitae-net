@@ -11,7 +11,7 @@ class LabEditPageTest extends TestCase
 
   public function testHasForm()
   {
-    $user = factory(\App\User::class)->create();
+    $user = factory(\App\User::class)->states('admin')->create();
     $lab = factory(\App\Lab::class)->create();
     $response = $this->actingAs($user)->get('/labs/' . $lab->id . '/edit');
     $response->assertSee('<form id="lab-edit-form" class="form-horizontal" action="' . route('labs.update', ['id' => $lab->id]) . '" method="POST">');

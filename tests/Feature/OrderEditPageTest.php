@@ -11,7 +11,7 @@ class OrderEditPageTest extends TestCase
 
   public function testHasForm()
   {
-    $user = factory(\App\User::class)->create();
+    $user = factory(\App\User::class)->states('admin')->create();
     $order =factory(\App\Order::class)->states('incomplete')->create();
     $order->update();
     $response = $this->actingAs($user)->get('/orders/' . $order->id . '/edit/');
@@ -28,7 +28,7 @@ class OrderEditPageTest extends TestCase
 
   public function testHasFormCompleted()
   {
-    $user = factory(\App\User::class)->create();
+    $user = factory(\App\User::class)->states('admin')->create();
     $order =factory(\App\Order::class)->states('complete')->create();
     $order->update();
     $response = $this->actingAs($user)->get('/orders/' . $order->id . '/edit/');
