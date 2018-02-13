@@ -44,9 +44,10 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="completed">Completed:</label>
             <div class="col-md-6">
-              <select id="completed" class="form-control" name="completed" form="order-edit-form" value="{{ $order->completed }}">
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+              <select id="completed" class="form-control" name="completed" form="order-edit-form">
+                 @foreach([0, 1] as $key)
+                 <option value="{{ $key }}" selected="{{ $order->completed === $key ? 'selected' : '' }}">{{ $key ? 'Yes' : 'No' }}</option>
+                 @endforeach
               </select>
               @if ($errors->has('completed'))
                 <span class="help-block">

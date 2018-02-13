@@ -17,9 +17,9 @@ class OrderPageTest extends TestCase
     $response->assertSee('<h3>' . $order->name . '</h3>');
     $response->assertSee('<h5><b><u>Name:</u></b></h5>');
     $response->assertSee('<p>' . $order->name . '</p>');
-    $response->assertSee('<h5><b><u>Description</u></b></h5>');
+    $response->assertSee('<h5><b><u>Description:</u></b></h5>');
     $response->assertSee('<p>' . $order->description . '</p>');
-    $response->assertSee('<h5><b><u>Patient MRN</u></b></h5>');
+    $response->assertSee('<h5><b><u>Patient MRN:</u></b></h5>');
     $response->assertSee('<p>' . $order->patient_id . '</p>');
     $response->assertSee('<h5><b><u>Completed:</u></b></h5>');
     $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') . '</p>');

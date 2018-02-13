@@ -13,7 +13,7 @@ class LabsPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $lab = factory(\App\Lab::class)->create();
-    $response = $this->actingAs($user)->get('/labs' . $lab->id);
+    $response = $this->actingAs($user)->get('/labs');
     $response->assertSee('<h3>' . $lab->name . '</h3>');
     $response->assertSee('<h5><b><u>Name:</u></b></h5>');
     $response->assertSee('<p>' . $lab->name . '</p>');
@@ -34,8 +34,8 @@ class LabsPageTest extends TestCase
     $response->assertSee('<button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span></button>');
     $response->assertSee('<h4 class="modal-title">Delete Lab</h4>');
     $response->assertSee('<p>Are you sure you want to delete this lab?</p>');
-    $response->assertSee('<button type="button" class="btn bt-default col-md-offset-8 col-md-2" data-dismiss="modal">No</button>');
-    $response->assertSee('<form-name="delete-lab" action="" method="post" id="delete-lab">');
+    $response->assertSee('<button type="button" class="btn btn-default col-md-offset-8 col-md-2" data-dismiss="modal">No</button>');
+    $response->assertSee('<form name="delete-lab" action="" method="post" id="delete-lab">');
     $response->assertSee('<button type="submit" class="btn btn-danger col-md-2">Yes</button>');
   }
 

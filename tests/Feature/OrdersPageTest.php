@@ -13,7 +13,7 @@ class OrdersPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $order = factory(\App\Order::class)->create();
-    $response = $this->actingAs($user)->get('/orders' . $order->id);
+    $response = $this->actingAs($user)->get('/orders');
     $response->assertSee('<h3>' . $order->name . '</h3>');
     $response->assertSee('<h5><b><u>Name:</u></b></h5>');
     $response->assertSee('<p>' . $order->name . '</p>');
@@ -45,6 +45,6 @@ class OrdersPageTest extends TestCase
     $user = factory(\App\User::class)->states('admin')->create();
     $response = $this->actingAs($user)->get('/orders/');
     $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No orders in the database. Add some?</h3>');
-    $response->assertSee('<a href "' . route('orders.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add orders</a>');
+    $response->assertSee('<a href="' . route('orders.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>');
   }
 }

@@ -20,7 +20,7 @@
             <label for="doc" class="col-md-2 control-label">Orders document:</label>
             <div class="col-md-6">
               <input type="file" id="doc" name="doc" required>
-              <p class='help-block'>Upload the desired file here</p>
+              <p class="help-block">Upload the desired file here</p>
             </div>
           </div>
           <div class="form-group">
