@@ -1,13 +1,20 @@
-document.getElementById("format").addEventListener('click', function(){
-  var pname = document.getElementById("primary_name").value;
-  var pamount = document.getElementById("primary_amount").value;
-  var punit = document.getElementById("primary_unit").value;
-  var sname = document.getElementById("secondary_name").value;
-  var samount = document.getElementById("second_amount").value;
-  var sunit = document.getElementById("second_unit").value;
-  var stype = document.getElementById("second_type").value;
-  var comm = document.getElementById("comments").value;
-  document.getElementById("output").innerHTML = pname + ';' + pamount + ';' +
-      punit + ';' + sname + ';' + samount + ';' + sunit + ';' +
-      stype + ';' + comm;
+$('#med-format').on('click', () => {
+    var pname = $('#primary_name').val();
+    var pamount = $('#primary_amount').val();
+    var punit = $('#primary_unit').val();
+    var sname = $('#secondary_name').val();
+    var samount = $('#second_amount').val();
+    var sunit = $('#second_unit').val();
+    var stype = $('#second_type').val();
+    var comm = $('#comments').val();
+    console.log(
+      pname + ';' + pamount + ';' + punit + ';' +
+      sname + ';' + samount + ';' + sunit + ';' +
+      stype + ';' + comm
+    );
+    $('#output').html(
+      pname + ';' + pamount + ';' + punit + ';' +
+      sname + ';' + samount + ';' + sunit + ';' +
+      stype + ';' + comm
+    );
 });

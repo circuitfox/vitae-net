@@ -38,7 +38,7 @@ class PatientFormatPageTest extends TestCase
         $response->assertSee('<input type="text" id="physician" name="physician" class="pull-right" /><br /><br />');
         $response->assertSee('<label for="room" class="pull-left">Room:</label>');
         $response->assertSee('<input type="text" id="room" name="room" class="pull-right" />');
-        $response->assertSee('<button type="button" id="format" class="pull-right">Format</button>');
+        $response->assertSee('<button type="button" id="patient-format" class="pull-right">Format</button>');
         $response->assertSee('<p class="pull-right">Formatted code data:</p>');
         $response->assertSee('<p id="output" class="pull-right"></p>');
     }

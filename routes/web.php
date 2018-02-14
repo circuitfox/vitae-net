@@ -35,11 +35,11 @@ Route::post('/scan', function() {
 
 Route::middleware('auth')->post('/orders/complete', 'OrderController@complete')->name('complete');
 
-Route::get('/medformatter', function(){
+Route::middleware('auth')->get('/medformatter', function() {
     return view('medformatter');
 });
 
-Route::get('/patientformatter', function(){
+Route::middleware('auth')->get('/patientformatter', function() {
     return view('patientformatter');
 });
 

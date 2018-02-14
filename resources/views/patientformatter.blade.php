@@ -32,7 +32,7 @@
         <input type="text" id="room" name="room" class="pull-right" />
       </div>
       <div class="col-sm-8">
-        <button type="button" id="format" class="pull-right">Format</button>
+        <button type="button" id="patient-format" class="pull-right">Format</button>
         <br />
         <br />
         <p class="pull-right">Formatted code data:</p>
