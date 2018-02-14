@@ -30,7 +30,7 @@ class MedFormatPageTest extends TestCase
         $response->assertSee('<input type="text" id="second_type" name="second_type" class="pull-right" /><br /><br />');
         $response->assertSee('<label for="comments" class="pull-left">Comments:</label>');
         $response->assertSee('<input type="text" id="comments" name="comments" class="pull-right" />');
-        $response->assertSee('<button type="button" id="format" class="pull-right">Format</button>');
+        $response->assertSee('<button type="button" id="med-format" class="pull-right">Format</button>');
         $response->assertSee('<p class="pull-right">Formatted code data:</p>');
         $response->assertSee('<p id="output" class="pull-right"></p>');
     }
