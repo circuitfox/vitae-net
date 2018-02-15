@@ -1,6 +1,6 @@
 ## Database Diagram
 
-This documents serves as an explanation to the entity-relationship diagram `docs/vitae-net-initial.png`. This image is a visual representation of the database tables used ~~with this system~~ initially during the merge of the scanner and orders systems.
+This documents serves as an explanation to the entity-relationship diagram `docs/vitae-net-ERD.png`. This image is a visual representation of the database tables used with this system.
 
 
 #### Notes:
@@ -43,14 +43,25 @@ The orders table is used to store the doctor's orders that will be electronicall
 
 ### medications
 
-The medications table is used to store a list of all the medication facsimiles available to the nursing department.
+The medications table is used to store a list of all the facsimile medication dosages available to the nursing department.
 
 - **medication_id:** A unique identification number used to reference medications. These numbers are currently arbitrary and auto-incrementing.
-- **name:** The clinical/brand name of the medication.
+- **name:** The clinical/brand name of the medication. When a single medication contains two names, separate them with a pipe character, e.g.- "Ancef|normal insulin".
 - **dosage_amount:** The numerical measurement of a dosage, e.g. the "12" in "12 milligrams".
 - **dosage_unit:** The form of measurement used, i.e. "milligrams".
-- **instructions:** The doctor's instructions for how to administer the medication.
+- **second_amount:** Dosage amount for use when a medication dosage contains a second numerical value.
+- **second_unit:** Dosage unit for use when a medication dosage contains a second type of measurement.
+- **second_type:** This denotes the relation second_amount and second_unit have to the medication dosage. Accepted values are "combo" (as in the medication is a combination, e.g.- 'Tylenol #3 Acetaminophen/Codeine 300mg/30mg'), "amount" (as in the total amount the liquid/gel/cream container holds, e.g.- 'Regular insulin 100 units/mL 10mL vial'), and "in" (as in the first part of the medication is in the second part, e.g.- "Ancef 1g in 50mL normal saline").
 - **comments** Additional comments on the medication made by the instructor.
+
+  Formatted examples:
+
+| name | dosage_amount | dosage_unit | second_amount | second_unit | second_type | comments |
+|------|---------------|-------------|---------------|-------------|-------------|----------|
+| Lasix | 20 | mg | null | null | null | null |
+| Tylenol #3 Acetaminophen\|Codeine | 300 | mg | 30 | mg | combo | Do not confuse with Tylenol #2. |
+| Regular insulin | 100 | units/mL | 10 | mL | amount | Dispose only in hazard waste bin. |
+| Ancef\|normal saline | 1 | g | 50 | mL | in | Shake before use. |
 
 ### labs
 

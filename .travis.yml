@@ -1,16 +1,18 @@
 language: php
-
 php:
-    - 7.1
-
+- 7.1
 before_script:
-    - chmod -R 777 bootstrap/cache
-    - chmod -R 777 storage
-    - cp .env.travis .env
-    - mysql -e 'create database testing;'
-    - composer self-update
-    - composer install --no-interaction
-    - php artisan key:generate
-
+- chmod -R 777 bootstrap/cache
+- chmod -R 777 storage
+- cp .env.travis .env
+- mysql -e 'create database testing;'
+- composer self-update
+- composer install --no-interaction
+- php artisan key:generate
 script:
-    - vendor/bin/phpunit
+- vendor/bin/phpunit
+deploy:
+  provider: script
+  script: bash scripts/travis-deploy.sh
+  on:
+    tags: true

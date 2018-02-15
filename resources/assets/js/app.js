@@ -8,6 +8,8 @@
 require('./bootstrap');
 require('./jquery.scannerdetection');
 let parser = require('./parser');
+require('./medformatter');
+require('./patientformatter');
 
 window.Vue = require('vue');
 
@@ -33,7 +35,7 @@ const medicationForm = new Vue({
     }
 });
 
-function show_alert(message) {
+function showAlert(message) {
     $('#scan-error-alert').html(`
     <div class="alert alert-danger alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -41,6 +43,15 @@ function show_alert(message) {
       </button>
       <span>${message}</span>
     </div>`);
+}
+
+function deleteModal($, modelName) {
+    $(`#${modelName}-delete-modal`).on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var model = button.data('id');
+        var modal = $(this)
+        modal.find(`#delete-${modelName}`).attr('action', `/${modelName}s/` + model);
+    });
 }
 
 $(() => {
@@ -62,11 +73,11 @@ $(() => {
                         if (data.status === 'success') {
                             summaryPage.$emit('set-patient', data.data);
                         } else if (data.status === 'error') {
-                            show_alert('Could not find this patient in the database.');
+                            showAlert('Could not find this patient in the database.');
                             console.log(data.data);
                         }
                     }).catch(error => {
-                        show_alert('Could not find this patient in the database');
+                        showAlert('Could not find this patient in the database');
                         console.error(error);
                     });
                 } else {
@@ -81,11 +92,11 @@ $(() => {
                             summaryPage.$emit('add-medication', data.data);
                             $('#form-extra').show();
                         } else if (data.status === 'error') {
-                            show_alert('Could not find this medication in the database.');
+                            showAlert('Could not find this medication in the database.');
                             console.log(data.data);
                         }
                     }).catch(error => {
-                        show_alert('Could not find this medication in the database.');
+                        showAlert('Could not find this medication in the database.');
                         console.error(error);
                     });
                 } else {
@@ -93,7 +104,7 @@ $(() => {
                     medicationForm.$emit('add-medication', obj.data);
                 }
             } else {
-                show_alert('Scanning failed. Unknown code format');
+                showAlert('Scanning failed. Unknown code format');
                 console.log(barcode);
                 console.log(obj);
             }
@@ -102,36 +113,12 @@ $(() => {
 
     $('#add-medication').on('click', () => {
         medicationForm.$emit('add-medication', {name: '', dosage_amount: 0, dosage_unit: ''});
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
-    // TODO: Remove after testing scanning
-    //console.log("patient emit");
-    //summaryPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065, sex: 'Male', physician: 'Dr. Jones', room: '12'});
-    //console.log("medication emit");
-    //summaryPage.$emit('add-medication', {name: 'Wellbutrin', dosage: 100, units: 'mg', instructions: '1 pill by mouth ever 4 hours', comments: ''});
-    //$('#form-extra').show();
-
-    //addPatientPage.$emit('set-patient', {first_name: 'George', last_name: 'Smith', dob: '1/9/1993', mrn: 605065});
-    //medicationForm.$emit('add-medication', {name: 'Wellbutrin', dosage_amount: 100, dosage_unit: 'mg'});
-
-    $('#user-delete-modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var user = button.data('id');
-        var modal = $(this)
-        modal.find('#delete-user').attr('action', '/users/' + user);
-    });
-
-    $('#patient-delete-modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var patient = button.data('id');
-        var modal = $(this)
-        modal.find('#delete-patient').attr('action', '/patients/' + patient);
-    });
-
-    $('#medication-delete-modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var medication = button.data('id');
-        var modal = $(this)
-        modal.find('#delete-medication').attr('action', '/medications/' + medication);
-    });
+    deleteModal($, 'user');
+    deleteModal($, 'patient');
+    deleteModal($, 'medication');
+    deleteModal($, 'order');
+    deleteModal($, 'lab');
 });

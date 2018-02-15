@@ -12,28 +12,28 @@ class ResetPasswordTest extends TestCase
     public function testRedirectIfResetPassword()
     {
         $user = factory(\App\User::class)->states('reset_password')->create();
-        $response = $this->actingAs($user)->get('/admin');
+        $response = $this->actingAs($user)->get('/home');
         $response->assertRedirect();
     }
 
     public function testNoRedirectIfFalse()
     {
-        $user = factory(\App\User::class)->create();
-        $response = $this->followingRedirects()->actingAs($user)->get('/admin');
+        $user = factory(\App\User::class)->states('admin')->create();
+        $response = $this->followingRedirects()->actingAs($user)->get('/home');
         $response->assertViewIs('admin');
     }
 
     public function testRedirectsToResetPage()
     {
         $user = factory(\App\User::class)->states('reset_password')->create();
-        $response = $this->followingRedirects()->actingAs($user)->get('/admin');
+        $response = $this->followingRedirects()->actingAs($user)->get('/home');
         $response->assertViewIs('auth.passwords.reset');
     }
 
     public function testRedirectsOnce()
     {
-        $user = factory(\App\User::class)->states('reset_password')->create();
-        $response = $this->followingRedirects()->actingAs($user)->get('/admin');
+        $user = factory(\App\User::class)->states(['admin', 'reset_password'])->create();
+        $response = $this->followingRedirects()->actingAs($user)->get('/home');
         $response->assertViewIs('auth.passwords.reset');
         $token = str_after(url()->current(), 'password/reset/');
 
@@ -49,7 +49,7 @@ class ResetPasswordTest extends TestCase
         $response->assertRedirect();
         $this->assertTrue(!$user->reset_password);
 
-        $response = $this->followingRedirects()->actingAs($user)->get('/admin');
+        $response = $this->followingRedirects()->actingAs($user)->get('/home');
         $response->assertViewIs('admin');
     }
 }

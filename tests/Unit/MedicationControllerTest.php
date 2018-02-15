@@ -28,7 +28,7 @@ class MedicationControllerTest extends TestCase
     public function testCreateInstructorOrAdmin()
     {
         $instructor = factory(User::class)->states('instructor')->create();
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $this->assertFalse($user->isAdmin());
         $this->assertEquals($instructor->role, 'instructor');
         $response = $this->actingAs($instructor)->get('/medications/create');
@@ -45,59 +45,171 @@ class MedicationControllerTest extends TestCase
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
             ]],
         ]);
-        $response->assertRedirect('/admin');
+        $response->assertRedirect('/home');
         $med = Medication::where([
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
             'dosage_unit' => 'mg',
-            'instructions' => '1 by mouth every 4 hours',
             'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
         $this->assertEquals($med->dosage_amount, 10);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
+        $this->assertNull($med->second_amount);
+        $this->assertNull($med->second_unit);
+        $this->assertNull($med->second_type);
         $this->assertNull($med->comments);
+    }
+
+    public function testStoreWithSecondaries()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'acetominophin|hydrocodeine',
+                'dosage_amount' => 10,
+                'dosage_unit' => 'mg',
+                'second_amount' => 20,
+                'second_unit' => 'mg',
+                'second_type' => 'combo',
+                'comments' => 'not more than four a day',
+            ]],
+        ]);
+        $response->assertRedirect('/home');
+        $med = Medication::where([
+            'name' => 'acetominophin|hydrocodeine',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mg',
+            'second_amount' => 20,
+            'second_unit' => 'mg',
+            'second_type' => 'combo',
+            'comments' => 'not more than four a day',
+        ])->first();
+        $this->assertNotNull($med);
+        $this->assertEquals($med->primaryName(), 'acetominophin');
+        $this->assertEquals($med->secondaryName(), 'hydrocodeine');
+        $this->assertEquals($med->dosage_amount, 10);
+        $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertEquals($med->second_amount, 20);
+        $this->assertEquals($med->second_unit, 'mg');
+        $this->assertEquals($med->second_type, 'combo');
+        $this->assertEquals($med->comments, 'not more than four a day');
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'ancef|normal saline',
+                'dosage_amount' => 10,
+                'dosage_unit' => 'mg',
+                'second_amount' => 100,
+                'second_unit' => 'mL',
+                'second_type' => 'in',
+                'comments' => '',
+            ]],
+        ]);
+        $response->assertRedirect('/home');
+        $med = Medication::where([
+            'name' => 'ancef|normal saline',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mg',
+            'second_amount' => 100,
+            'second_unit' => 'mL',
+            'second_type' => 'in',
+            'comments' => null,
+        ])->first();
+        $this->assertEquals($med->primaryName(), 'ancef');
+        $this->assertEquals($med->secondaryName(), 'normal saline');
+        $this->assertEquals($med->dosage_amount, 10);
+        $this->assertEquals($med->dosage_unit, 'mg');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'mL');
+        $this->assertEquals($med->second_type, 'in');
+        $this->assertNull($med->comments);
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'regular insulin',
+                'dosage_amount' => 10,
+                'dosage_unit' => 'mL',
+                'second_amount' => 100,
+                'second_unit' => 'units/mL',
+                'second_type' => 'amount',
+                'comments' => '',
+            ]],
+        ]);
+        $response->assertRedirect('/home');
+        $med = Medication::where([
+            'name' => 'regular insulin',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mL',
+            'second_amount' => 100,
+            'second_unit' => 'units/mL',
+            'second_type' => 'amount',
+            'comments' => null,
+        ])->first();
+        $this->assertEquals($med->primaryName(), 'regular insulin');
+        $this->assertEquals($med->dosage_amount, 10);
+        $this->assertEquals($med->dosage_unit, 'mL');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'units/mL');
+        $this->assertEquals($med->second_type, 'amount');
+        $this->assertEquals($med->secondaryName(), '');
+        $this->assertNull($med->comments);
+    }
+
+    public function testStoreNullables()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [[
+                'name' => 'Wellbutrin',
+            ]],
+        ]);
+        $response->assertRedirect('/home');
+        $med = Medication::where([
+            'name' => 'Wellbutrin',
+        ])->first();
+        $this->assertNotNull($med);
+        $this->assertEquals($med->name, 'Wellbutrin');
+        $this->assertNull($med->dosage_amount);
+        $this->assertNull($med->dosage_unit);
+        $this->assertNull($med->second_amount);
+        $this->assertNull($med->second_unit);
+        $this->assertNull($med->second_type);
+        $this->assertNull($med->comments);
+
     }
 
     public function testStoreInstructorOrAdmin()
     {
         $instructor = factory(User::class)->states('instructor')->create();
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('student')->create();
         $response = $this->actingAs($instructor)->post('/medications', [
             'meds' => [[
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
             ]],
         ]);
-        $response->assertRedirect('/admin');
+        $response->assertRedirect('/home');
         $med = Medication::where([
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
             'dosage_unit' => 'mg',
-            'instructions' => '1 by mouth every 4 hours',
             'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
         $this->assertEquals($med->dosage_amount, 10);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
         $this->assertNull($med->comments);
         $response = $this->actingAs($user)->post('/medications', [
             'meds' => [[
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
             ]],
         ]);
@@ -113,96 +225,102 @@ class MedicationControllerTest extends TestCase
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'instructions' => '1 by mouth every 4 hours',
                 'comments' => '',
                 ],
                 [
                 'name' => 'Aspirin',
                 'dosage_amount' => 50,
                 'dosage_unit' => 'mg',
-                'instructions' => '1 by mouth every 6 hours',
                 'comments' => '',
                 ],
             ],
         ]);
-        $response->assertRedirect('/admin');
+        $response->assertRedirect('/home');
         $med = Medication::where([
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
             'dosage_unit' => 'mg',
-            'instructions' => '1 by mouth every 4 hours',
             'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
         $this->assertEquals($med->dosage_amount, 10);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
         $this->assertNull($med->comments);
         $med = Medication::where([
             'name' => 'Aspirin',
             'dosage_amount' => 50,
             'dosage_unit' => 'mg',
-            'instructions' => '1 by mouth every 6 hours',
             'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Aspirin');
         $this->assertEquals($med->dosage_amount, 50);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertEquals($med->instructions, '1 by mouth every 6 hours');
         $this->assertNull($med->comments);
     }
 
-    public function testStoreStatNullOrEmpty()
+    public function testStoreMultipleWithSecondaries()
     {
         $admin = factory(User::class)->states('admin')->create();
         $response = $this->actingAs($admin)->post('/medications', [
             'meds' => [
                 [
-                'name' => 'Wellbutrin',
+                'name' => 'ancef|normal saline',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'instructions' => '1 by mouth every 4 hours',
+                'second_amount' => 100,
+                'second_unit' => 'mL',
+                'second_type' => 'in',
                 'comments' => '',
                 ],
                 [
-                'name' => 'Aspirin',
+                'name' => 'acetominophin|aspirin',
                 'dosage_amount' => 50,
                 'dosage_unit' => 'mg',
-                'instructions' => '1 by mouth every 6 hours',
+                'second_amount' => 100,
+                'second_unit' => 'mg',
+                'second_type' => 'combo',
                 'comments' => '',
                 ],
             ],
         ]);
-        $response->assertRedirect('/admin');
-
+        $response->assertRedirect('/home');
         $med = Medication::where([
-            'name' => 'Wellbutrin',
-            'dosage_amount' => 10,
-            'dosage_unit' => 'mg',
-            'instructions' => '1 by mouth every 4 hours',
-            'comments' => null,
+          'name' => 'ancef|normal saline',
+          'dosage_amount' => 10,
+          'dosage_unit' => 'mg',
+          'second_amount' => 100,
+          'second_unit' => 'mL',
+          'second_type' => 'in',
+          'comments' => null,
         ])->first();
         $this->assertNotNull($med);
-        $this->assertEquals($med->name, 'Wellbutrin');
+        $this->assertEquals($med->primaryName(), 'ancef');
+        $this->assertEquals($med->secondaryName(), 'normal saline');
         $this->assertEquals($med->dosage_amount, 10);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertEquals($med->instructions, '1 by mouth every 4 hours');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'mL');
+        $this->assertEquals($med->second_type, 'in');
         $this->assertNull($med->comments);
-
         $med = Medication::where([
-            'name' => 'Aspirin',
-            'dosage_amount' => 50,
-            'dosage_unit' => 'mg',
-            'instructions' => '1 by mouth every 6 hours',
-            'comments' => null,
+          'name' => 'acetominophin|aspirin',
+          'dosage_amount' => 50,
+          'dosage_unit' => 'mg',
+          'second_amount' => 100,
+          'second_unit' => 'mg',
+          'second_type' => 'combo',
+          'comments' => null,
         ])->first();
         $this->assertNotNull($med);
-        $this->assertEquals($med->name, 'Aspirin');
+        $this->assertEquals($med->primaryName(), 'acetominophin');
+        $this->assertEquals($med->secondaryName(), 'aspirin');
         $this->assertEquals($med->dosage_amount, 50);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertEquals($med->instructions, '1 by mouth every 6 hours');
+        $this->assertEquals($med->second_amount, 100);
+        $this->assertEquals($med->second_unit, 'mg');
+        $this->assertEquals($med->second_type, 'combo');
         $this->assertNull($med->comments);
     }
 
@@ -216,90 +334,144 @@ class MedicationControllerTest extends TestCase
 
     public function testEdit()
     {
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)->create();
-        $response = $this->actingAs($user)->get('/medications/' . $med->medication_id . '/edit');
+        $response = $this->actingAs($admin)->get('/medications/' . $med->medication_id . '/edit');
         $response->assertViewIs('admin.medication.edit');
+    }
+
+    public function testEditInstructorOrAdmin()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $instructor = factory(User::class)->states('instructor')->create();
+        $user = factory(User::class)->states('student')->create();
+        $med = factory(Medication::class)->create();
+        $response = $this->actingAs($admin)->get('/medications/' . $med->medication_id . '/edit');
+        $response->assertViewIs('admin.medication.edit');
+        $response = $this->actingAs($instructor)->get('/medications/' . $med->medication_id . '/edit');
+        $response->assertViewIs('admin.medication.edit');
+        $response = $this->actingAs($user)->get('/medications/' . $med->medication_id . '/edit');
+        $response->assertStatus(403);
     }
 
     public function testUpdate()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)->create();
         $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
             'name' => $med->name,
             'dosage_amount' => 50,
             'dosage_unit' => $med->dosage_unit,
-            'instructions' => $med->instructions,
             'comments' => '',
         ]);
-        $response->assertRedirect('/admin');
+        $response->assertRedirect('/home');
         $med1 = Medication::find($med->medication_id);
         $this->assertEquals($med1->name, $med->name);
         $this->assertEquals($med1->dosage_amount, 50);
         $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
+        $this->assertEquals($med1->second_amount, $med->second_amount);
+        $this->assertEquals($med1->second_unit, $med->second_unit);
+        $this->assertEquals($med1->second_type, $med->second_type);
         $this->assertEquals($med1->comments, null);
     }
 
-    public function testUpdateStatNullOrEmpty()
+    public function testUpdateSecondaryName()
     {
-        $user = factory(User::class)->create();
-        $med = factory(Medication::class)->create();
+        $user = factory(User::class)->states('admin')->create();
+        $med = factory(Medication::class)
+            ->states(['secondary_name'])
+            ->create();
         $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
-            'name' => $med->name,
-            'dosage_amount' => 50,
+            'name' => $med->secondaryName(),
+            'dosage_amount' => $med->dosage_amount,
             'dosage_unit' => $med->dosage_unit,
-            'instructions' => $med->instructions,
-            'comments' => '',
+            'secondary_name' => $med->primaryName(),
         ]);
-        $response->assertRedirect('/admin');
+        $response->assertRedirect('/home');
+        $med1 = Medication::find($med->medication_id);
+        $this->assertEquals($med1->name, $med->secondaryName() . Medication::NAME_SEPARATOR . $med->primaryName());
+        $this->assertEquals($med1->dosage_amount, $med->dosage_amount);
+        $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
+        $this->assertEquals($med1->second_amount, $med->second_amount);
+        $this->assertEquals($med1->second_unit, $med->second_unit);
+        $this->assertEquals($med1->second_type, $med->second_type);
+        $this->assertEquals($med1->comments, $med->comments);
+    }
+
+    public function testUpdateSecondaryType()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $med = factory(Medication::class)
+            ->states(['secondary_name', 'in'])
+            ->create();
+        $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
+            'name' => $med->primaryName(),
+            'dosage_amount' => $med->dosage_amount,
+            'dosage_unit' => $med->dosage_unit,
+            'secondary_name' => $med->secondaryName(),
+            'second_type' => 'combo',
+        ]);
+        $response->assertRedirect('/home');
         $med1 = Medication::find($med->medication_id);
         $this->assertEquals($med1->name, $med->name);
-        $this->assertEquals($med1->dosage_amount, 50);
+        $this->assertEquals($med1->dosage_amount, $med->dosage_amount);
         $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
-        $this->assertEquals($med1->comments, null);
-
-        $med = factory(Medication::class)->create();
-        $response = $this->actingAs($user)->put('/medications/' . $med->medication_id, [
-            'name' => $med->name,
-            'dosage_amount' => 50,
-            'dosage_unit' => $med->dosage_unit,
-            'instructions' => $med->instructions,
-            'comments' => '',
-        ]);
-        $response->assertRedirect('/admin');
-        $med1 = Medication::find($med->medication_id);
-        $this->assertEquals($med1->name, $med->name);
-        $this->assertEquals($med1->dosage_amount, 50);
-        $this->assertEquals($med1->dosage_unit, $med->dosage_unit);
-        $this->assertEquals($med1->comments, null);
-
+        $this->assertEquals($med1->second_amount, $med->second_amount);
+        $this->assertEquals($med1->second_unit, $med->second_unit);
+        $this->assertEquals($med1->second_type, 'combo');
+        $this->assertEquals($med1->comments, $med->comments);
     }
 
     public function testDelete()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->states('admin')->create();
         $med = factory(Medication::class)->create();
         $response = $this->actingAs($user)->delete('/medications/' . $med->medication_id);
         $response->assertRedirect();
         $this->assertNull(Medication::find($med->medication_id));
     }
 
+    public function testDeleteInstructorOrAdmin()
+    {
+        $user = factory(User::class)->states('student')->create();
+        $admin = factory(User::class)->states('admin')->create();
+        $instructor = factory(User::class)->states('instructor')->create();
+        $med = factory(Medication::class)->create();
+        $med1 = factory(Medication::class)->create();
+        $response = $this->actingAs($admin)->delete('/medications/' . $med->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($med->medication_id));
+        $response = $this->actingAs($user)->delete('/medications/' . $med1->medication_id);
+        $response->assertStatus(403);
+        $this->assertNotNull(Medication::find($med1->medication_id));
+        $response = $this->actingAs($instructor)->delete('/medications/' . $med1->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($med1->medication_id));
+    }
+
     public function testVerify()
     {
         $med = factory(Medication::class)->create();
         $response = $this->json('POST', '/api/v1/medications/verify', [
-            'name' => $med->name,
-            'dosage' => $med->dosage_amount,
-            'units' => $med->dosage_unit,
+            'name' => $med->primaryName(),
+            'dosage_amount' => $med->dosage_amount,
+            'dosage_unit' => $med->dosage_unit,
+            'secondary_name' => $med->secondaryName(),
+            'second_amount' => $med->second_amount,
+            'second_unit' => $med->second_unit,
+            'second_type' => $med->second_type,
+            'comments' => $med->comments,
         ]);
         $response->assertStatus(200)->assertJson([
             'status' => 'success',
             'data' => [
-                'name' => $med->name,
-                'dosage' => $med->dosage_amount,
-                'units' => $med->dosage_unit,
-                'instructions' => $med->instructions,
+                'name' => $med->primaryName(),
+                'dosage_amount' => $med->dosage_amount,
+                'dosage_unit' => $med->dosage_unit,
+                'secondary_name' => $med->secondaryName(),
+                'second_amount' => $med->second_amount,
+                'second_unit' => $med->second_unit,
+                'second_type' => $med->second_type,
                 'comments' => $med->comments,
             ]
         ]);
@@ -309,8 +481,8 @@ class MedicationControllerTest extends TestCase
     {
         $response = $this->json('POST', '/api/v1/medications/verify', [
             'name' => 'Wellbutrin',
-            'dosage' => 10,
-            'units' => 'mg',
+            'dosage_amount' => 10,
+            'dosage_unit' => 'mg',
         ]);
         $response->assertStatus(200)->assertJsonStructure([
             'status',

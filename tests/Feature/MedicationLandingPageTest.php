@@ -16,7 +16,7 @@ class MedicationLandingPageTest extends TestCase
   <div class="panel panel-default" id="panel">
     <div class="panel-heading">Students:</div>
     <div class="panel-body">
-      Instructions for using the medscanner system:
+      Instructions for using the medication scanning system:
       <ol>
         <li>Scan a patient's bracelet</li>
         <li>Scan medication that needs to be administered</li>
