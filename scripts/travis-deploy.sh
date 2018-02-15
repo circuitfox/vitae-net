@@ -1,4 +1,12 @@
 #!/bin/bash
+
+# decrypt our ssh key
+openssl aes-256-cbc -K $encrypted_c1928afcd687_key -iv $encrypted_c1928afcd687_iv
+-in .travis/id_travis.enc -out /tmp/id_travis -d
+eval "$(ssh-agent -s)"
+chmod 600 /tmp/id_travis
+ssh-add /tmp/id_travis
+
 # push to the server (we add the key to before-install
 git config --global push.default matching
 git remote add deploy ssh://git@$IP:$PORT$DEPLOY_DIR
