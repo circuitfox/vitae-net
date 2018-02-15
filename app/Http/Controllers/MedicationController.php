@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Medication;
-use App\Http\Requests\CreateMedication;
+use App\Http\Requests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -43,19 +43,22 @@ class MedicationController extends Controller
      * @param  \App\Request\CreateMedication  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateMedication $request)
+    public function store(Requests\CreateMedication $request)
     {
         $now = Carbon::now('utc')->toDateTimeString();
-        $this->authorize('create', Medication::class);
-        // we can receive multiple medications, so they need to all be
-        // validated.
         $meds = $request->input('meds.*');
+        // We need to set timestamps for all of these, as insert won't do it for
+        // us.
         foreach ($meds as &$med) {
+            if (isset($med['secondary_name'])) {
+                $med['name'] = $this->joinNames($med['name'], $med['secondary_name']);
+            }
+            unset($med['secondary_name']);
             $med['created_at'] = $now;
             $med['updated_at'] = $now;
         }
         Medication::insert($meds);
-        return redirect('/admin');
+        return redirect('/home');
     }
 
     /**
@@ -77,7 +80,9 @@ class MedicationController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.medication.edit', ['medication' => Medication::findOrFail($id)]);
+        $med = Medication::findOrFail($id);
+        $this->authorize('update', $med);
+        return view('admin.medication.edit', ['medication' => $med]);
     }
 
     /**
@@ -87,19 +92,16 @@ class MedicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdateMedication $request, $id)
     {
         $med = Medication::findOrFail($id);
-        $request->validate([
-            'name' => 'required|string',
-            'dosage_amount' => 'required|numeric',
-            'dosage_unit' => 'required|string',
-            'instructions' => 'required|string',
-            'comments' => 'string|nullable',
-        ]);
         $data = $request->all();
+        if (isset($data['secondary_name'])) {
+            $data['name'] = $this->joinNames($data['name'], $data['secondary_name']);
+        }
+        unset($data['secondary_name']);
         $med->update($data);
-        return redirect('/admin');
+        return redirect('/home');
     }
 
     /**
@@ -110,29 +112,27 @@ class MedicationController extends Controller
      */
     public function destroy($id)
     {
-        Medication::destroy($id);
+        $med = Medication::findOrFail($id);
+        $this->authorize('delete', $med);
+        $med->delete();
         return redirect()->back();
     }
 
     /**
-     * Verify the given medication by its name and dosage.
+     * Verify the given medication by its attribues.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function verify(Request $request)
+    public function verify(Requests\VerifyMedication $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'dosage' => 'required|numeric',
-            'units' => 'required|string',
-        ]);
         try {
-            $med = Medication::where([
-                'name' => $request->input('name'),
-                'dosage_amount' => $request->input('dosage'),
-                'dosage_unit' => $request->input('units')
-            ])->firstOrFail();
+            $data = $request->all();
+            if (isset($data['secondary_name'])) {
+                $data['name'] = $this->joinNames($data['name'], $data['secondary_name']);
+            }
+            unset($data['secondary_name']);
+            $med = Medication::where($data)->firstOrFail();
             return response()->json([
                 'status' => 'success',
                 'data' => $med->toApiArray()
@@ -143,5 +143,16 @@ class MedicationController extends Controller
                 'data' => $ex->getMessage()
             ]);
         }
+    }
+
+    /**
+     * Join two names for storage in the Medication model.
+     *
+     * @param string $name The first name to join
+     * @param string $secondary_name The second name to join
+     */
+    private function joinNames(string $name, string $secondary_name)
+    {
+        return $name . Medication::NAME_SEPARATOR . $secondary_name;
     }
 }

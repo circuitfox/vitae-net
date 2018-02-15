@@ -19,11 +19,6 @@ Auth::routes();
 
 Route::middleware('auth')->get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-// TODO: Merge this with the other admin dashboard (/home)?
-Route::middleware('auth')->get('/admin', function() {
-    return view('admin');
-})->name('admin');
-
 Route::middleware('auth')->get('/home', 'HomeController@index');
 
 Route::get('/medication', function() {
@@ -40,6 +35,13 @@ Route::post('/scan', function() {
 
 Route::middleware('auth')->post('/orders/complete', 'OrderController@complete')->name('complete');
 
+Route::middleware('auth')->get('/medformatter', function() {
+    return view('medformatter');
+});
+
+Route::middleware('auth')->get('/patientformatter', function() {
+    return view('patientformatter');
+});
 
 // TODO: Add policies to control access to patients, orders, labs routes
 Route::middleware('auth')->resource('users', 'UserController');

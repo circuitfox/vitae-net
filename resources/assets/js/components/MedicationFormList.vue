@@ -39,8 +39,6 @@
         },
         methods: {
             addMedication(data) {
-                data.dosage_amount = data.dosage;
-                data.dosage_unit = data.units;
                 this.items.push(data);
             },
         },

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\Lab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -15,8 +16,7 @@ class LabController extends Controller
      */
     public function index()
     {
-        $labs = Lab::all();
-        return view('labs.index', compact('labs'));
+        return view('admin.labs', ['labs' => Lab::all()]);
     }
 
     /**
@@ -26,7 +26,8 @@ class LabController extends Controller
      */
     public function create()
     {
-        return view('labs.create');
+        $this->authorize('create', Lab::class);
+        return view('admin.labs.create');
     }
 
     /**
@@ -35,10 +36,11 @@ class LabController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-  public function store(Request $request) {
+  public function store(Requests\CreateLab $request) {
     $name = request('name');
     $pathInStorage = 'labs/' . $name . rand(1111, 9999) . '.pdf';
-    $path = $request->file('doc')->storeAs('/public', $pathInStorage);
+    // TODO: The storage location needs to be changed
+    //$path = $request->file('doc')->storeAs('/public', $pathInStorage);
 
     // create a new patient using the form data
     $lab = new \App\Lab;
@@ -61,7 +63,8 @@ class LabController extends Controller
      */
     public function show($id)
     {
-        //
+        $lab = Lab::findOrFail($id);
+        return view('admin.lab', ['lab' => $lab]);
     }
 
     /**
@@ -72,7 +75,8 @@ class LabController extends Controller
      */
     public function edit(Lab $lab)
     {
-        return view('labs.edit', compact('lab'));
+        $this->authorize('update', $lab);
+        return view('admin.lab.edit', compact('lab'));
     }
 
     /**
@@ -82,11 +86,10 @@ class LabController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdateLab $request, $id)
     {
         $lab = Lab::find($id);
-        $labUpdate = $request->all();
-        $lab->update($labUpdate);
+        $lab->update($request->all());
         return redirect()->route('labs.index')->with('message','Lab has been updated successfully');
     }
 
@@ -98,8 +101,10 @@ class LabController extends Controller
      */
     public function destroy(Lab $lab)
     {
-        $labFile = $lab->file_path;
-        //File::delete('storage/' . $labFile);
+        $this->authorize('delete', $lab);
+        // TODO: This needs to be changed once the storage location is changed
+        // $labFile = $lab->file_path;
+        // File::delete('storage/' . $labFile);
         $lab->delete();
         return redirect()->route('labs.index')->with('message','Lab has been deleted successfully');
     }

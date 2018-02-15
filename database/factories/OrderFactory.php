@@ -16,3 +16,15 @@ $factory->define(App\Order::class, function (Faker $faker) {
         'completed' => $faker->boolean,
     ];
 });
+
+$factory->state(App\Order::class, 'incomplete', function (Faker $faker) {
+    return [
+        'completed' => false,
+    ];
+});
+
+$factory->state(App\Order::class, 'complete', function (Faker $faker) {
+    return [
+        'completed' => true,
+    ];
+});

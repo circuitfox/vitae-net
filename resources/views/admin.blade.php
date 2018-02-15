@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Medscanner Admin Page")
+@section("title", "Vitae NET Admin Page")
 @section("content")
 <div class="col-md-offset-2 col-md-8">
   <div class="panel panel-default" id="panel">
@@ -15,8 +15,14 @@
       <p><a class="btn btn-primary" href="{{ url('/users/create') }}">Create User</a>&nbsp;Create new user.</p>
       <p><a class="btn btn-primary" href="{{ url('/medications') }}">View Medications</a>&nbsp;View and edit existing medications.</p>
       <p><a class="btn btn-primary" href="{{ url('/medications/create') }}">Create Medication</a>&nbsp;Add new medication.</p>
+      <p><a class="btn btn-primary" href="{{ url('/medformatter') }}">Format Medication</a>&nbsp;Format medication data for QR/bar code.</p>
       <p><a class="btn btn-primary" href="{{ url('/patients') }}">View Patients</a>&nbsp;View and edit existing patients.</p>
       <p><a class="btn btn-primary" href="{{ url('/patients/create') }}">Create Patient</a>&nbsp;Create new patient.</p>
+      <p><a class="btn btn-primary" href="{{ url('/patientformatter') }}">Format Patient</a>&nbsp;Format patient data for QR/bar code.</p>
+      <p><a class="btn btn-primary" href="{{ url('/orders') }}">View Orders</a>&nbsp;View and edit existing orders.</p>
+      <p><a class="btn btn-primary" href="{{ url('/orders/create') }}">Create Order</a>&nbsp;Create new order.</p>
+      <p><a class="btn btn-primary" href="{{ url('/labs') }}">View Labs</a>&nbsp;View and edit existing labs.</p>
+      <p><a class="btn btn-primary" href="{{ url('/labs/create') }}">Create Lab</a>&nbsp;Create new lab.</p>
     </div>
   </div>
 </div>
