@@ -55,7 +55,7 @@ class LayoutTest extends TestCase
             '" method="POST">'
         );
         $response->assertSee('<a class="navbar-link" href="' . url('/users/' . $user->id . '/edit') . '">Settings</a>');
-        $response->assertSee('<a class="navbar-link" href="' . url('/home') . '">' . $user->name . '</a>');
+        $response->assertSee('<a class="navbar-link" href="' . url('/home') . '">' . $this->faker_escape($user->name) . '</a>');
         $response->assertSee('<a class="navbar-link" href="' . url('/logout') . '">Logout</a>');
     }
 
