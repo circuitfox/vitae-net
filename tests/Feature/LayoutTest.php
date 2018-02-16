@@ -31,8 +31,8 @@ class LayoutTest extends TestCase
         $response_nologin = $this->get('/login');
         $response->assertSee('<nav class="navbar navbar-default">');
         $response_nologin->assertSee('<nav class="navbar navbar-default">');
-        $response->assertSee('<img src="' . asset("images/logo.png") . '" height="45" />');
-        $response_nologin->assertSee('<img src="' . asset("images/logo.png") . '" height="45" />');
+        $response->assertSee('<img src="' . asset("images/logo.png") . '" alt="Vitae NET logo" height="45" />');
+        $response_nologin->assertSee('<img src="' . asset("images/logo.png") . '" alt="Vitae NET logo" height="45" />');
     }
 
     public function testHasLogin()
