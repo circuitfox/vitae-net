@@ -3,7 +3,7 @@
 # 1: deploy directory
 # 2: migrations user password
 # 3: app user password
-set -e
+set -ev
 
 if [ -z "$1" ]; then
     echo "USAGE: setup-app.sh deploy_dir app_password migration_password"
