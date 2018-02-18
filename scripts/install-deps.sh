@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ev
 
 # install dependencies
 yum install -y centos-release-scl.noarch epel-release.noarch

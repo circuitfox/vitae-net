@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ev
 
 systemctl stop rh-php71-php-fpm
 systemctl stop nginx
