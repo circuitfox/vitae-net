@@ -14,7 +14,7 @@ cat .travis/server-ssh-fingerprints >> ~/.ssh/known_hosts
 # push to the server (we add the key to before-install
 git config --global push.default matching
 git remote add deploy ssh://git@$IP:$DEPLOY_DIR
-GIT_SSH="ssh -i /tmp/id_travis" git push deploy "$TRAVIS_BRANCH":master
+GIT_SSH_COMMAND="ssh -i /tmp/id_travis" git push deploy "$TRAVIS_BRANCH":master
 
 # on-server setup
 # Three stages:
