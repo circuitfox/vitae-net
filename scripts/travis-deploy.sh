@@ -13,7 +13,7 @@ ssh-add /tmp/id_travis
 # push to the server (we add the key to before-install
 git config --global push.default matching
 git remote add deploy ssh://git@$IP:$PORT:$DEPLOY_DIR
-git push deploy master
+git push deploy "$TRAVIS_BRANCH":master
 
 # on-server setup
 # Three stages:
