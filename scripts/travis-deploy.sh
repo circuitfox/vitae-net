@@ -9,6 +9,7 @@ openssl aes-256-cbc \
 eval "$(ssh-agent -s)"
 chmod 600 /tmp/id_travis
 ssh-add /tmp/id_travis
+cat .travis/server-ssh-fingerprints >> ~/.ssh/known_hosts
 
 # push to the server (we add the key to before-install
 git config --global push.default matching
