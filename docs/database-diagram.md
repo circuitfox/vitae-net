@@ -89,3 +89,22 @@ The patients table is used to store information relevant to the virtual patients
 - **code_status:** Instructions on what the student should do when the patient "codes" (goes into cardiac/respiratory arrest).
 - **physician:** The patient's doctor.
 - **room:** The room that the patient can be found in.
+
+### mar_entries
+
+The mar_entries table is used to store prescriptions for patients. These records are used to populate medical administration records ("MAR"). The foreign keys `medication_id` and `medical_record_number` form a composite key.
+
+- **medication_id:** This is a foreign key referencing the `medication_id` field from the `medications` table.
+- **medical_record_number:** This is a foreign key referencing the `medical_record_number` field from the `patients` table.
+- **stat:** This indicates whether the medication is stat/PRN ("pro re nata"), or "as needed." An as needed medication is any medication that is prescribed to a patient for a short period of time in response to a diagnosis. The value "0" will indicate the medication is not PRN, while "1" will indicate the medication is PRN.
+- **instructions:** This contains any additional instructions from the doctor for administering the medication.
+- **given_at:** This integer is a list of 13 boolean values. Each digit, from right to left, represents an hour of the day from 0700 to 1900. The value "1" indicates the value is to be given at this hour.
+
+### signatures
+
+The signatures table is used to show which student administered what prescription at which time. The foreign keys `medication_id` and `medical_record_number` form a composite key.
+
+- **medication_id:** This is a foreign key referencing the `medication_id` field from the `medications` table.
+- **medical_record_number:** This is a foreign key referencing the `medical_record_number` field from the `patients` table.
+- **time:** This is the time of day that the student administered the medication.
+- **student_name:** The name of the student that administered the medication. This serves as his/her signature.
