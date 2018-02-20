@@ -15,7 +15,8 @@ cat .travis/server-ssh-fingerprints >> ~/.ssh/known_hosts
 git config --global push.default matching
 git remote add deploy ssh://git@$IP:$DEPLOY_DIR
 git stash drop
-GIT_SSH_COMMAND="ssh -i /tmp/id_travis" git push deploy "$TRAVIS_BRANCH"^0:master --receive-pack="/opt/rh/rh-git29/root/usr/bin/git-receive-pack"
+GIT_SSH_COMMAND="ssh -i /tmp/id_travis" git push deploy "$TRAVIS_BRANCH"^0:refs/heads/master \
+    --receive-pack="/opt/rh/rh-git29/root/usr/bin/git-receive-pack"
 
 # on-server setup
 # Three stages:
