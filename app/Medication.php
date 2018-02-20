@@ -144,4 +144,14 @@ class Medication extends Model
             return '';
         }
     }
+
+    public function marEntries()
+    {
+        return $this->hasMany('\App\MarEntry');
+    }
+
+    public function signatures()
+    {
+        return $this->hasMany('\App\Signature');
+    }
 }
