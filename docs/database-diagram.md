@@ -98,7 +98,7 @@ The mar_entries table is used to store prescriptions for patients. These records
 - **medical_record_number:** This is a foreign key referencing the `medical_record_number` field from the `patients` table.
 - **stat:** This indicates whether the medication is stat/PRN ("pro re nata"), or "as needed." An as needed medication is any medication that is prescribed to a patient for a short period of time in response to a diagnosis. The value "0" will indicate the medication is not PRN, while "1" will indicate the medication is PRN.
 - **instructions:** This contains any additional instructions from the doctor for administering the medication.
-- **given_at:** This integer is a list of 13 boolean values. Each digit, from right to left, represents an hour of the day from 0700 to 1900. The value "1" indicates the value is to be given at this hour.
+- **given_at:** The bits of this integer represent 13 boolean values. Each bit, from right to left, represents an hour of the day from 0700 to 1900. The value "1" indicates the value is to be given at this hour.
 
 ### signatures
 
