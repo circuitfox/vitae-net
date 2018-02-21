@@ -19,7 +19,7 @@
         <div class="navbar-header">
           <img src="{{ asset('images/logo.png') }}" alt="Vitae NET logo" height="45" />
           <button type="button" class="navbar-toggle collapsed"
-                  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
