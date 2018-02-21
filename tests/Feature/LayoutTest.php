@@ -31,8 +31,8 @@ class LayoutTest extends TestCase
         $response_nologin = $this->get('/login');
         $response->assertSee('<nav class="navbar navbar-default">');
         $response_nologin->assertSee('<nav class="navbar navbar-default">');
-        $response->assertSee('<a class="navbar-brand" href="' . url('/') . '">Vitae NET</a>');
-        $response_nologin->assertSee('<a class="navbar-brand" href="' . url('/') . '">Vitae NET</a>');
+        $response->assertSee('<img src="' . asset("images/logo.png") . '" alt="Vitae NET logo" height="45" />');
+        $response_nologin->assertSee('<img src="' . asset("images/logo.png") . '" alt="Vitae NET logo" height="45" />');
     }
 
     public function testHasLogin()
@@ -55,7 +55,7 @@ class LayoutTest extends TestCase
             '" method="POST">'
         );
         $response->assertSee('<a class="navbar-link" href="' . url('/users/' . $user->id . '/edit') . '">Settings</a>');
-        $response->assertSee('<a class="navbar-link" href="' . url('/home') . '">' . $user->name . '</a>');
+        $response->assertSee('<a class="navbar-link" href="' . url('/home') . '">' . $this->faker_escape($user->name) . '</a>');
         $response->assertSee('<a class="navbar-link" href="' . url('/logout') . '">Logout</a>');
     }
 

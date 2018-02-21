@@ -16,7 +16,7 @@ class UsersPageTest extends TestCase
         $response->assertSee('<h3>' . $user->email . '</h3>');
         $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#user-delete-modal" data-id="' . $user->id . '">Delete</button>');
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
-        $response->assertSee('<p>' . $user->name . '</p>');
+        $response->assertSee('<p>' . $this->faker_escape($user->name) . '</p>');
         $response->assertSee('<h5><b><u>Email:</u></b></h5>');
         $response->assertSee('<p>' . $user->email. '</p>');
         $response->assertSee('<h5><b><u>Role:</u></b></h5>');

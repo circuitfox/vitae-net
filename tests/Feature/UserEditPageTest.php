@@ -16,8 +16,8 @@ class UserEditPageTest extends TestCase
         $response->assertSee('<h3>Edit User Account ' . $user->email . '</h3>');
         $response->assertSee('<form class="form-horizontal" method="POST" action="/users/' . $user->id . '">');
         $response->assertSee('<label for="name" class="col-md-2 control-label">Name:</label>');
-        $response->assertSee('<input type="hidden" class="form-control" id="name" name="name" required value="' . htmlspecialchars($user->name, ENT_QUOTES | ENT_HTML401) . '">');
-        $response->assertSee('<input type="text" class="form-control" id="_name" name="_name" disabled value="' . htmlspecialchars($user->name, ENT_QUOTES | ENT_HTML401) . '">');
+        $response->assertSee('<input type="hidden" class="form-control" id="name" name="name" required value="' . $this->faker_escape($user->name) . '">');
+        $response->assertSee('<input type="text" class="form-control" id="_name" name="_name" disabled value="' . $this->faker_escape($user->name) . '">');
         $response->assertSee('<label for="email" class="col-md-2 control-label">Email Address:</label>');
         $response->assertSee('<input type="text" class="form-control" id="email" name="email" required value="' . $user->email . '">');
         $response->assertSee('<label for="role" class="col-md-2 control-label">Role:</label>');
