@@ -24,8 +24,8 @@ GIT_SSH_COMMAND="ssh -i /tmp/id_travis" git push deploy "$TRAVIS_BRANCH"^0:refs/
 # 1) install-deps: Install system packages that we depend on
 # 2) setup-app: Set up the application and database
 # 3) install-app: Move the app to the webserver root
-ssh root@$IP:$PORT 'bash -s' < scripts/install-deps.sh
-ssh git@$IP:$PORT 'bash -s' < scripts/setup-app.sh - $DEPLOY_DIR $MIGRATION_PASSWORD $APP_PASSWORD
-ssh root@$IP:$PORT 'bash -s' < scripts/install-app.sh
+ssh root@$IP 'bash -s' < scripts/install-deps.sh
+ssh git@$IP 'bash -s' < scripts/setup-app.sh - $DEPLOY_DIR $MIGRATION_PASSWORD $APP_PASSWORD
+ssh root@$IP 'bash -s' < scripts/install-app.sh
 
 exit 0
