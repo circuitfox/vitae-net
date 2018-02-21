@@ -15,12 +15,12 @@ class PatientPageTest extends TestCase
         $patient = factory(\App\Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
         $response->assertSee('<h3>'
-            . htmlspecialchars($patient->first_name . ' ' . $patient->last_name, ENT_QUOTES | ENT_HTML401)
+            . $this->faker_escape($patient->first_name . ' ' . $patient->last_name)
             . '</h3>');
         $response->assertSee('<h5><b><u>First Name:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->first_name . '</p>');
+        $response->assertSee('<p>' . $this->faker_escape($patient->first_name) . '</p>');
         $response->assertSee('<h5><b><u>Last Name:</u></b></h5>');
-        $response->assertSee('<p>' . htmlspecialchars($patient->last_name, ENT_QUOTES | ENT_HTML401) . '</p>');
+        $response->assertSee('<p>' . $this->faker_escape($patient->last_name) . '</p>');
         $response->assertSee('<h5><b><u>Date Of Birth:</u></b></h5>');
         $response->assertSee('<p>' . $patient->date_of_birth . '</p>');
         $response->assertSee('<h5><b><u>Sex:</u></b></h5>');
@@ -36,7 +36,7 @@ class PatientPageTest extends TestCase
         $response->assertSee('<h5><b><u>Code Status:</u></b></h5>');
         $response->assertSee('<p>' . $patient->code_status . '</p>');
         $response->assertSee('<h5><b><u>Physician:</u></b></h5>');
-        $response->assertSee('<p>' . htmlspecialchars($patient->physician, ENT_QUOTES | ENT_HTML401) . '</p>');
+        $response->assertSee('<p>' . $this->faker_escape($patient->physician) . '</p>');
         $response->assertSee('<h5><b><u>Room:</u></b></h5>');
         $response->assertSee('<p>' . $patient->room . '</p>');
         $response->assertSee('<a href="#labs" class="collapsed" role="button" data-toggle="collapse">Lab Results</a>');
