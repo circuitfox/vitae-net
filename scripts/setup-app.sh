@@ -38,7 +38,7 @@ fi
 # set passwords for migration
 cd "$1-build"
 git pull
-cp deploy/.env .env
+cp deploy/env .env
 sed -i -e "s/MIGRATE_PASSWORD=/&$2/" .env
 sed -i -e "s/DB_PASSWORD=/&$3/" .env
 
