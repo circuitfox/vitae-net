@@ -12,7 +12,7 @@ sed -i -e 's/user = apache/user = nginx/' /etc/opt/rh/rh-php71/php-fpm.d/www.con
 sed -i -e 's/group = apache/group = nginx/' /etc/opt/rh/rh-php71/php-fpm.d/www.conf
 
 # copy nginx config and app
-/usr/bin/cp -u /home/app/vitae-net/deploy/nginx.conf /etc/nginx/nginx.conf
+/usr/bin/cp -u /home/app/vitae-net-build/deploy/nginx.conf /etc/nginx/nginx.conf
 chown root:root /etc/nginx/nginx.conf
 mkdir -p /var/www
 /usr/bincp -ruf /home/app/vitae-net-build /var/www/
