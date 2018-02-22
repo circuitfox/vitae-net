@@ -3,7 +3,7 @@
 # 1: deploy directory
 # 2: migrations user password
 # 3: app user password
-set -e
+set -ev
 
 if [ -z "$1" ]; then
     echo "USAGE: setup-app.sh deploy_dir app_password migration_password"
@@ -30,9 +30,15 @@ else
     "$HOME/composer" self-update --stable --no-interaction
 fi
 
+# clone from the repository that we pushed to
+if [ ! -d "$1-build" ]; then
+    git clone "$1" "$1-build"
+fi
+
 # set passwords for migration
-cd "$1"
-cp deploy/.env .env
+cd "$1-build"
+git pull
+cp deploy/env .env
 sed -i -e "s/MIGRATE_PASSWORD=/&$2/" .env
 sed -i -e "s/DB_PASSWORD=/&$3/" .env
 
