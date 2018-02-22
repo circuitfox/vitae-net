@@ -24,8 +24,8 @@ chmod 664 /var/www/vitae-net/storage/logs/*
 chcon -Rt httpd_sys_content_t /var/www/vitae-net
 semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/vitae-net/storage(/.*)?"
 semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/vitae-net/bootstrap/cache(/.*)?"
-restorecon -Rv /var/www/vitae-net/storage
-restorecon -Rv /var/www/vitae-net/boostrap/cache
+restorecon -Riv /var/www/vitae-net/storage
+restorecon -Riv /var/www/vitae-net/boostrap/cache
 
 systemctl start nginx
 systemctl start rh-php71-php-fpm
