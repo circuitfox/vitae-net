@@ -38,18 +38,10 @@ repository into the `~/.ssh/authorized_keys` file of both users, creating the
 file if it does not exist. This is required for deployment with Travis CI to
 work. If you are deploying manually, skip this step.
 
-As the `git` user, clone the  Vitae NET repository with
+As the `git` user, create a bare repository called `vitae-net`:
 
-TODO: This URL is going to change.
-
-```
-git clone https://github.com/circuitfox/vitae-net.git
-```
-
-and `cd` into it. Then execute
-
-```
-git config --local receive.denyCurrentBranch updateInstead
+```sh
+git init --bare vitae-net
 ```
 
 This will allow the repository to be pushed to by Travis CI.

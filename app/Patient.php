@@ -26,7 +26,17 @@ class Patient extends Model
     {
         return $this->hasMany('\App\Order');
     }
-    
+
+    public function marEntries()
+    {
+        return $this->hasMany('\App\MarEntry', 'medical_record_number');
+    }
+
+    public function signatures()
+    {
+        return $this->hasMany('\App\Signature', 'medical_record_number');
+    }
+
     public function toApiArray()
     {
         return [
