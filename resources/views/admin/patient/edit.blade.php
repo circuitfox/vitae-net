@@ -47,9 +47,10 @@
             <div class="form-group">
               <label class="col-md-2 control-label" for="sex">Sex:</label>
               <div class="col-md-6">
-                <select id="sex" class="form-control" name="sex" form="patient-edit-form" value="{{ $patient->sex }}">
-                  <option value="0">Female</option>
-                  <option value="1">Male</option>
+                <select id="sex" class="form-control" name="sex" form="patient-edit-form">
+                      @foreach([0, 1] as $key)
+                      <option value="{{ $key }}" selected="{{ $patient->sex === $key ? 'selected' : '' }}">{{ $key ? 'Male' : 'Female' }}</option>
+                      @endforeach
                 </select>
                 @if ($errors->has('sex'))
                   <span class="help-block">

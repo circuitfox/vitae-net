@@ -20,3 +20,10 @@ $factory->define(App\Patient::class, function (Faker $faker) {
         'room' => $faker->bothify('###?'),
     ];
 });
+
+$factory->state(App\Patient::class, 'male',[
+  'sex'=>true
+]);
+$factory->state(App\Patient::class, 'female',[
+  'sex'=>false
+]);
