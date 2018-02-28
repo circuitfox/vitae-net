@@ -164,13 +164,11 @@ class PatientControllerTest extends TestCase
         ]);
     }
 
-    public function testVerifyNoMRN()
+    public function testVerifyOnlyMRN()
     {
         $patient = factory(Patient::class)->create();
         $response = $this->json('POST', '/api/v1/patients/verify', [
-            'first_name' => $patient->first_name,
-            'last_name' => $patient->last_name,
-            'date_of_birth' => $patient->date_of_birth,
+            'medical_record_number' => $patient->medical_record_number,
         ]);
         $response->assertStatus(200)->assertJson([
             'status' => 'success',
@@ -189,7 +187,21 @@ class PatientControllerTest extends TestCase
                 'room' => $patient->room,
             ],
         ]);
+    }
 
+    public function testVerifyNoMRNHasError()
+    {
+        $patient = factory(Patient::class)->create();
+        $response = $this->json('POST', '/api/v1/patients/verify', [
+            'first_name' => $patient->first_name,
+            'last_name' => $patient->last_name,
+            'date_of_birth' => $patient->date_of_birth,
+        ]);
+        $response->assertJsonStructure([
+            'status',
+            'data'
+        ]);
+        $response->assertJsonFragment(['status' => 'error']);
     }
 
     public function testVerifyError()
