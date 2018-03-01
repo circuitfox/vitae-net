@@ -25,7 +25,23 @@
           </div>
           <div id="medication{{ $medication->medication_id }}" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body">
-              @include("partials.medication.body", ["medciation" => $medication])
+              <div class="col-sm-4">
+                @include("partials.medication.body", ["medciation" => $medication])
+              </div>
+              <div class="col-sm-4">
+                <h5><b><u>Bar Code</u></b></h5>
+                <?php
+                  $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+                  $medcode = "m " . $medication->medication_id;
+                  echo '<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($medcode, $generator::TYPE_CODE_128, 3, 50)) .'" />';
+                  ?>
+              </div>
+              <div class="btn-toolbar col-sm-4" style="margin-left:0px;">
+                <?php
+                  echo '<a type="button" class="btn btn-primary" id="download" href="data:image/png;base64,'. base64_encode($generator->getBarcode($medcode, $generator::TYPE_CODE_128)) .'" download="'. $medication->name .'.png">
+                  Download Bar Code</a>';
+                ?>
+              </div>
             </div>
           </div>
         </div>

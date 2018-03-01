@@ -7,7 +7,7 @@
     <div class="row">
       <h3 class="col-md-offset-2 col-md-8 text-center">No patients in the database. Add some?</h3>
     </div>
-    <a href="{{ route('patients.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>
+    <a href="{{ route('patients.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>
   @else
     <div class="panel-group" id="patients" role="tablist">
       @foreach ($patients as $patient)
@@ -37,7 +37,24 @@
         </div>
         <div id="patient{{ $patient->medical_record_number }}" class="panel-collapse collapse" role="tabpanel">
           <div class="panel-body">
-            @include("partials/patient/body", ["patient" => $patient])
+            <div class="col-sm-4">
+              @include("partials/patient/body", ["patient" => $patient])
+            </div>
+            <div class="col-sm-4">
+              <h5><b><u>Bar Code</u></b></h5>
+              <?php
+                $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+                $patcode = "p " . $patient->medical_record_number;
+                echo '<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128, 3, 50)) .'" />';
+              ?>
+            </div>
+            <div class="btn-toolbar col-sm-4" style="margin-left:0px;">
+              <?php
+                $patinfo = $patient->first_name . " " . $patient->last_name . " " . $patient->medical_record_number;
+                echo '<a type="button" class="btn btn-primary" id="download" href="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128)) .'" download="'. $patinfo .'.png">
+                Download Bar Code</a>';
+              ?>
+            </div>
           </div>
         </div>
       </div>

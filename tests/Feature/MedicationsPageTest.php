@@ -109,4 +109,26 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No medications in the database. Add some?</h3>');
         $response->assertSee('<a href="' . route('medications.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>');
     }
+
+    public function testHasBarcode()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $medcode = "m " . $medication->medication_id;
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertSee('<h5><b><u>Bar Code</u></b></h5>');
+        $response->assertSee('<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($medcode, $generator::TYPE_CODE_128, 3, 50)) .'" />');
+    }
+
+    public function testHasDownloadButton()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $medcode = "m " . $medication->medication_id;
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertSee('<a type="button" class="btn btn-primary" id="download" href="data:image/png;base64,'. base64_encode($generator->getBarcode($medcode, $generator::TYPE_CODE_128)) .'" download="'. $medication->name .'.png">
+                  Download Bar Code</a>');
+    }
 }
