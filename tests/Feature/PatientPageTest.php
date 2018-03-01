@@ -76,4 +76,15 @@ class PatientPageTest extends TestCase
         $response->assertSee($order->name);
         $response->assertSee('</a>');
     }
+
+    public function testHasBarcode()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $patcode = "p " . $patient->medical_record_number;
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertSee('<h5><b><u>Bar Code</u></b></h5>');
+        $response->assertSee('<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128, 3, 50)) .'" />');
+    }
 }
