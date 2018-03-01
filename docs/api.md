@@ -146,8 +146,7 @@ Failure:
 
 ```json
 {
-  "type": "medication",
-  "code": "$code",
+  "medication_id": "$medication_id"
 }
 ```
 
@@ -184,8 +183,7 @@ Failure:
 
 ```json
 {
-  "type": "patient",
-  "code": "$code",
+  "medical_record_number": "$medical_record_number"
 }
 ```
 
