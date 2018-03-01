@@ -218,4 +218,41 @@ class PatientControllerTest extends TestCase
         ]);
         $response->assertJsonFragment(['status' => 'error']);
     }
+
+    public function testVerifyV2()
+    {
+        $patient = factory(Patient::class)->create();
+        $response = $this->json('POST', '/api/v2/patients/verify', [
+            'medical_record_number' => $patient->medical_record_number,
+        ]);
+        $response->assertStatus(200)->assertJson([
+            'status' => 'success',
+            'data' => [
+                'medical_record_number' => $patient->medical_record_number,
+                'first_name' => $patient->first_name,
+                'last_name' => $patient->last_name,
+                'date_of_birth' => $patient->date_of_birth,
+                'sex' => $patient->sex ? 'Male' : 'Female',
+                'height' => $patient->height,
+                'weight' => $patient->weight,
+                'diagnosis' => $patient->diagnosis,
+                'allergies' => $patient->allergies,
+                'code_status' => $patient->code_status,
+                'physician' => $patient->physician,
+                'room' => $patient->room,
+            ],
+        ]);
+    }
+
+    public function testVerifyV2Error()
+    {
+        $response = $this->json('POST', '/api/v2/patients/verify', [
+            'medical_record_number' => '12345',
+        ]);
+        $response->assertJsonStructure([
+            'status',
+            'data'
+        ]);
+        $response->assertJsonFragment(['status' => 'error']);
+    }
 }

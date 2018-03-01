@@ -490,4 +490,37 @@ class MedicationControllerTest extends TestCase
         ]);
         $response->assertJsonFragment(['status' => 'error']);
     }
+
+    public function testVerifyBarcode()
+    {
+        $med = factory(Medication::class)->create();
+        $response = $this->json('POST', '/api/v2/medications/verify', [
+            'medication_id' => $med->medication_id,
+        ]);
+        $response->assertStatus(200)->assertJson([
+            'status' => 'success',
+            'data' => [
+                'name' => $med->primaryName(),
+                'dosage_amount' => $med->dosage_amount,
+                'dosage_unit' => $med->dosage_unit,
+                'secondary_name' => $med->secondaryName(),
+                'second_amount' => $med->second_amount,
+                'second_unit' => $med->second_unit,
+                'second_type' => $med->second_type,
+                'comments' => $med->comments,
+            ]
+        ]);
+    }
+
+    public function testVerifyBarcodeError()
+    {
+        $response = $this->json('POST', '/api/v2/medications/verify', [
+            'medication_id' => 1,
+        ]);
+        $response->assertStatus(200)->assertJsonStructure([
+            'status',
+            'data',
+        ]);
+        $response->assertJsonFragment(['status' => 'error']);
+    }
 }

@@ -117,7 +117,10 @@ class PatientController extends Controller
     }
 
     /**
-     * Attempts to verify a patient based on its name, date of birth, and id.
+     * Attempts to verify a patient based on its id.
+     *
+     * This is used for both QR and barcode verification, as QR and barcodes
+     * will both contain the patient's MRN.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
