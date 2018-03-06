@@ -147,11 +147,11 @@ class Medication extends Model
 
     public function marEntries()
     {
-        return $this->hasMany('\App\MarEntry');
+        return $this->hasMany('\App\MarEntry', 'medication_id');
     }
 
     public function signatures()
     {
-        return $this->hasMany('\App\Signature');
+        return $this->hasMany('\App\Signature', 'medication_id');
     }
 }

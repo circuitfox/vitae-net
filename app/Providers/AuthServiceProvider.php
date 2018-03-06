@@ -18,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         \App\Order::class => \App\Policies\OrderPolicy::class,
         \App\Lab::class => \App\Policies\LabPolicy::class,
         \App\Patient::class => \App\Policies\PatientPolicy::class,
+        \App\MarEntry::class => \App\Policies\MarEntryPolicy::class,
     ];
 
     /**

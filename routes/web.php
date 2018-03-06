@@ -49,3 +49,6 @@ Route::middleware('auth')->resource('medications', 'MedicationController');
 Route::middleware('auth')->resource('patients', 'PatientController');
 Route::middleware('auth')->resource('orders', 'OrderController');
 Route::middleware('auth')->resource('labs', 'LabController');
+Route::middleware('auth')->resource('mars', 'MarEntryController', ['only' => [
+    'create', 'store', 'update'
+]]);
