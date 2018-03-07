@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\MarEntry;
 use App\Medication;
 use App\User;
 use Tests\TestCase;
