@@ -32,6 +32,18 @@ class MarEntryModelTest extends TestCase
         $times = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
         $times_int = MarEntry::timesToInteger($times);
         $this->assertEquals(0x1fff, $times_int);
+        // empty
+        $times_int = MarEntry::timesToInteger([]);
+        $this->assertEquals(0, $times_int);
+        // some null values in the array
+        $times = [
+            0 => 1,
+            1 => 1,
+            5 => 1,
+            12 => 1,
+        ];
+        $times_int = MarEntry::timesToInteger($times);
+        $this->assertEquals(0x1023, $times_int);
     }
 
     public function testTimesToIntegerBooleanArray()
@@ -48,6 +60,18 @@ class MarEntryModelTest extends TestCase
         $times = [true, true, true, true, true, true, true, true, true, true, true, true, true];
         $times_int = MarEntry::timesToInteger($times);
         $this->assertEquals(0x1fff, $times_int);
+        // empty
+        $times_int = MarEntry::timesToInteger([]);
+        $this->assertEquals(0, $times_int);
+        // some null values in the array
+        $times = [
+            0 => true,
+            1 => true,
+            5 => true,
+            12 => true,
+        ];
+        $times_int = MarEntry::timesToInteger($times);
+        $this->assertEquals(0x1023, $times_int);
     }
 
     public function testTimesFromInteger()

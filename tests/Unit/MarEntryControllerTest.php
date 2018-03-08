@@ -14,7 +14,8 @@ class MarEntryControllerTest extends TestCase
     public function testCreate()
     {
         $admin = factory(User::class)->states('admin')->create();
-        $response = $this->actingAs($admin)->get('/mars/create');
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($admin)->get('/mars/create/' . $patient->medical_record_number);
         $response->assertViewIs('admin.mar.create');
     }
 
@@ -22,12 +23,20 @@ class MarEntryControllerTest extends TestCase
     {
         $instructor = factory(User::class)->states('instructor')->create();
         $user = factory(User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
         $this->assertFalse($user->isAdmin());
         $this->assertEquals($instructor->role, 'instructor');
-        $response = $this->actingAs($instructor)->get('/mars/create');
+        $response = $this->actingAs($instructor)->get('/mars/create/' . $patient->medical_record_number);
         $response->assertViewIs('admin.mar.create');
-        $response = $this->actingAs($user)->get('/mars/create');
+        $response = $this->actingAs($user)->get('/mars/create/' . $patient->medical_record_number);
         $response->assertStatus(403);
+    }
+
+    public function testCreateBadMRN()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->get('/mars/create/' . 123);
+        $response->assertStatus(400);
     }
 
     public function testStore()
@@ -197,6 +206,38 @@ class MarEntryControllerTest extends TestCase
         $this->assertNull($mar_entry);
     }
 
+    public function testStoreEmptyGivenAt()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($admin)->post('/mars', [
+            'mars' => [[
+                'instructions' => 'as needed',
+                'stat' => true,
+                'medical_record_number' => $patient->medical_record_number,
+                'medication_id' => $medication->medication_id,
+            ]]
+        ]);
+        $response->assertRedirect();
+        $mar_entry = MarEntry::where([
+            'instructions' => 'as needed',
+            'stat' => true,
+            'medical_record_number' => $patient->medical_record_number,
+            'medication_id' => $medication->medication_id,
+            'given_at' => 0,
+        ])->first();
+        $this->assertNotNull($mar_entry);
+        $this->assertNotNull($mar_entry->patient);
+        $this->assertNotNull($mar_entry->medication);
+        $this->assertNotNull($patient->marEntries);
+        $this->assertNotNull($medication->marEntries);
+        $this->assertEquals(1, $mar_entry->stat);
+        $this->assertEquals('as needed', $mar_entry->instructions);
+        $this->assertEquals(0, $mar_entry->given_at);
+
+    }
+
     public function testUpdate()
     {
         $admin = factory(User::class)->states('admin')->create();
@@ -237,7 +278,7 @@ class MarEntryControllerTest extends TestCase
             'stat' => $mar_entry->stat,
             'medical_record_number' => $mar_entry->patient->medical_record_number,
             'medication_id' => $medication->medication_id,
-            'given_at' => $mar_entry->given_at,
+            'given_at' => 0,
         ])->first();
         $this->assertNotNull($updated_mar_entry);
         $this->assertNotNull($updated_mar_entry->patient);
@@ -246,7 +287,7 @@ class MarEntryControllerTest extends TestCase
         $this->assertEquals($mar_entry->stat, $updated_mar_entry->stat);
         $this->assertEquals($mar_entry->patient, $updated_mar_entry->patient);
         $this->assertNotEquals($mar_entry->medication, $updated_mar_entry->medication);
-        $this->assertEquals($mar_entry->given_at, $updated_mar_entry->given_at);
+        $this->assertEquals(0, $updated_mar_entry->given_at);
     }
 
     public function testUpdateInstructorOrAdmin()

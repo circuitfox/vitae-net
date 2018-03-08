@@ -43,12 +43,16 @@ Route::middleware('auth')->get('/patientformatter', function() {
     return view('patientformatter');
 });
 
-// TODO: Add policies to control access to patients, orders, labs routes
 Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('medications', 'MedicationController');
 Route::middleware('auth')->resource('patients', 'PatientController');
 Route::middleware('auth')->resource('orders', 'OrderController');
 Route::middleware('auth')->resource('labs', 'LabController');
+
 Route::middleware('auth')->resource('mars', 'MarEntryController', ['only' => [
-    'create', 'store', 'update'
+    'store', 'update'
 ]]);
+
+Route::middleware('auth')
+    ->get('/mars/create/{medical_record_number}', 'MarEntryController@create')
+    ->name('mars.create');

@@ -72,10 +72,12 @@ class MarEntry extends Model
     public static function timesToInteger(array $times)
     {
         $given_at = 0;
-        foreach ($times as $idx => $time) {
-            // we shift left to convert a 1 to the proper value for the given
-            // bit, so that e.g. if '1200' is set we or with 32 and not 1.
-            $given_at |= self::TIMES[$idx] & ($time << $idx);
+        if (!empty($times)) {
+            foreach ($times as $idx => $time) {
+                // we shift left to convert a 1 to the proper value for the given
+                // bit, so that e.g. if '1200' is set we or with 32 and not 1.
+                $given_at |= self::TIMES[$idx] & ($time << $idx);
+            }
         }
         return $given_at;
     }

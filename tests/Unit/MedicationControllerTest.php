@@ -455,8 +455,9 @@ class MedicationControllerTest extends TestCase
         $user = factory(User::class)->states('admin')->create();
         $marEntry = factory(MarEntry::class)->create();
         $medication = $marEntry->medication;
-        $response = $this->actingAs($user)->delete('/medication/' . $medication->medication_id);
-        $this->assertNull(Patient::find($medication->medication_id));
+        $response = $this->actingAs($user)->delete('/medications/' . $medication->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($medication->medication_id));
         $this->assertNull(MarEntry::find($marEntry->id));
     }
 

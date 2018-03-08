@@ -14,10 +14,18 @@ class MarEntryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($medical_record_number)
     {
         $this->authorize('create', MarEntry::class);
-        return view('admin.mar.create');
+        $patient = \App\Patient::find($medical_record_number);
+        if ($patient === null) {
+            // it's an error to try to make a MAR with an invalid MRN
+            abort(400, 'No patient with this MRN exists');
+        }
+        return view('admin.mar.create', [
+            'medical_record_number' => $medical_record_number,
+            'meds' => \App\Medication::all()
+        ]);
     }
 
     /**
@@ -32,6 +40,8 @@ class MarEntryController extends Controller
         foreach ($mars as &$mar) {
             if (isset($mar['given_at'])) {
                 $mar['given_at'] = MarEntry::timesToInteger($mar['given_at']);
+            } else {
+                $mar['given_at'] = 0;
             }
             if (!isset($mar['stat'])) {
                 $mar['stat'] = false;
@@ -67,6 +77,8 @@ class MarEntryController extends Controller
         $data = $request->all();
         if (isset($data['given_at'])) {
             $data['given_at'] = MarEntry::timesToInteger($data['given_at']);
+        } else {
+            $data['given_at'] = 0;
         }
         if (!isset($data['stat'])) {
             $data['stat'] = false;
