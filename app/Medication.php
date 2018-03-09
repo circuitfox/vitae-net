@@ -49,6 +49,7 @@ class Medication extends Model
     public function toApiArray()
     {
         return [
+            'medication_id' => $this->medication_id,
             'name' => $this->primaryName(),
             'secondary_name' => $this->secondaryName(),
             'dosage_amount' => $this->dosage_amount,
@@ -147,11 +148,19 @@ class Medication extends Model
 
     public function marEntries()
     {
-        return $this->hasMany('\App\MarEntry');
+        return $this->hasMany('\App\MarEntry', 'medication_id');
     }
 
     public function signatures()
     {
-        return $this->hasMany('\App\Signature');
+        return $this->hasMany('\App\Signature', 'medication_id');
+    }
+
+    public function toMarArray()
+    {
+        return [
+            'name' => $this->toString(),
+            'id' => $this->medication_id,
+        ];
     }
 }

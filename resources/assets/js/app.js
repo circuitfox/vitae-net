@@ -11,6 +11,13 @@ let parser = require('./parser');
 require('./medformatter');
 require('./patientformatter');
 
+// Scanner start character. One byte. The prefix character that the scanner
+// is configured to use
+const START_CHAR = 0x02;
+// Scanner end character. One byte. The suffix character that the scanner
+// is configured to use
+const END_CHAR = 0x03;
+
 window.Vue = require('vue');
 
 const summaryPage = new Vue({
@@ -54,61 +61,68 @@ function deleteModal($, modelName) {
     });
 }
 
+function onScanComplete($, barcode, qty) {
+    let obj = parser.parse(barcode, START_CHAR, END_CHAR);
+    let code_ver = 'v1';
+    if (obj.code === 'barcode') {
+        code_ver = 'v2';
+    }
+    if (obj.type === 'patient') {
+        if ($('#summary-page').length) {
+            console.log(obj.data);
+            axios.post(`/api/${code_ver}/patients/verify`, obj.data).then(response => {
+                let data = response.data;
+                if (data.status === 'success') {
+                    summaryPage.$emit('set-patient', data.data);
+                } else if (data.status === 'error') {
+                    showAlert('Could not find this patient in the database.');
+                    console.log(data.data);
+                }
+            }).catch(error => {
+                showAlert('Could not find this patient in the database');
+                console.error(error);
+            });
+        } else {
+            console.log(obj.data);
+            addPatientPage.$emit('set-patient', obj.data);
+        }
+    } else if (obj.type === 'medication') {
+        if ($('#summary-page').length) {
+            axios.post(`/api/${code_ver}/medications/verify`, obj.data).then(response => {
+                let data = response.data;
+                if (data.status === 'success') {
+                    summaryPage.$emit('add-medication', data.data);
+                    $('#form-extra').show();
+                } else if (data.status === 'error') {
+                    showAlert('Could not find this medication in the database.');
+                    console.log(data.data);
+                }
+            }).catch(error => {
+                showAlert('Could not find this medication in the database.');
+                console.error(error);
+            });
+        } else {
+            console.log(obj.data);
+            medicationForm.$emit('add-medication', obj.data);
+        }
+    } else {
+        showAlert('Scanning failed. Unknown code format');
+        console.log(barcode);
+        console.log(obj);
+    }
+}
+
 $(() => {
     // FIXME: find a better way to test this
     $(document).scannerDetection({
         timeBeforeScan: 200,
-        startChar: [2],
-        endChar: [3],
+        startChar: [START_CHAR],
+        endChar: [END_CHAR],
         avgTimeByChar: 40,
+        minLength: 3, // barcode type + space + 1-digit id
         stopPropagation: true,
         preventDefault: false,
-        onComplete: (barcode, qty) => {
-            let obj = parser.parse(barcode);
-            if (obj.type === 'patient') {
-                if ($('#summary-page').length) {
-                    console.log(obj.data);
-                    axios.post('/api/v1/patients/verify', obj.data).then(response => {
-                        let data = response.data;
-                        if (data.status === 'success') {
-                            summaryPage.$emit('set-patient', data.data);
-                        } else if (data.status === 'error') {
-                            showAlert('Could not find this patient in the database.');
-                            console.log(data.data);
-                        }
-                    }).catch(error => {
-                        showAlert('Could not find this patient in the database');
-                        console.error(error);
-                    });
-                } else {
-                    console.log(obj.data);
-                    addPatientPage.$emit('set-patient', obj.data);
-                }
-            } else if (obj.type === 'medication') {
-                if ($('#summary-page').length) {
-                    axios.post('/api/v1/medications/verify', obj.data).then(response => {
-                        let data = response.data;
-                        if (data.status === 'success') {
-                            summaryPage.$emit('add-medication', data.data);
-                            $('#form-extra').show();
-                        } else if (data.status === 'error') {
-                            showAlert('Could not find this medication in the database.');
-                            console.log(data.data);
-                        }
-                    }).catch(error => {
-                        showAlert('Could not find this medication in the database.');
-                        console.error(error);
-                    });
-                } else {
-                    console.log(obj.data);
-                    medicationForm.$emit('add-medication', obj.data);
-                }
-            } else {
-                showAlert('Scanning failed. Unknown code format');
-                console.log(barcode);
-                console.log(obj);
-            }
-        }
+        onComplete: (barcode, qty) => onScanComplete($, barcode, qty),
     });
 
     $('#add-medication').on('click', () => {

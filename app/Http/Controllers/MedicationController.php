@@ -13,7 +13,7 @@ class MedicationController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['verify']]);
+        $this->middleware('auth', ['except' => ['verify', 'verifyBarcode']]);
     }
 
     /**
@@ -119,7 +119,7 @@ class MedicationController extends Controller
     }
 
     /**
-     * Verify the given medication by its attribues.
+     * Verify the given medication by its attributes.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -136,6 +136,36 @@ class MedicationController extends Controller
             return response()->json([
                 'status' => 'success',
                 'data' => $med->toApiArray()
+            ]);
+        } catch (ModelNotFoundException $ex) {
+            return response()->json([
+                'status' => 'error',
+                'data' => $ex->getMessage()
+            ]);
+        }
+    }
+
+    /**
+     * Verify the given medication based on its id.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function verifyBarcode(Requests\VerifyMedicationBarcode $request)
+    {
+        // check if id is null first, we'll return a special error
+        if ($request->input('medication_id') === null) {
+            return response()->json([
+                'status' => 'error',
+                'data' => 'Missing id for this medication',
+            ]);
+        }
+        try {
+            $medication = Medication::where('medication_id',
+                $request->input('medication_id'))->firstOrFail();
+            return response()->json([
+                'status' => 'success',
+                'data' => $medication->toApiArray()
             ]);
         } catch (ModelNotFoundException $ex) {
             return response()->json([

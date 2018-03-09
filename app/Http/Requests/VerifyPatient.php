@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Patient;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class VerifyPatient extends FormRequest
 {
@@ -23,11 +25,24 @@ class VerifyPatient extends FormRequest
      */
     public function rules()
     {
+        // medical_record_number is actually required, but we want to send our
+        // own error status, not Laravel's, so we'll let it slide here.
         return [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'date_of_birth' => 'required|string',
-            'medical_record_number' => 'numeric|nullable'
+            'medical_record_number' => 'numeric|nullable',
+            'last_name' => 'string|nullable',
+            'first_name' => 'string|nullable',
+            'date_of_birth' => 'string|nullable',
+            'sex' => 'boolean|nullable',
+            'height' => 'string|nullable',
+            'weight' => 'string|nullable',
+            'diagnosis' => 'string|nullable',
+            'allergies' => 'string|nullable',
+            'code_status' => [
+                'nullable',
+                Rule::in(Patient::CODE_STATUSES),
+            ],
+            'physician' => 'string|nullable',
+            'room' => 'string|nullable',
         ];
     }
 }
