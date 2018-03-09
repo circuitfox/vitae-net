@@ -18,13 +18,16 @@ class MarEntryController extends Controller
     {
         $this->authorize('create', MarEntry::class);
         $patient = \App\Patient::find($medical_record_number);
+        $meds = json_encode(\App\Medication::all()->map(function ($med) {
+            return $med->toMarArray();
+        }));
         if ($patient === null) {
             // it's an error to try to make a MAR with an invalid MRN
             abort(400, 'No patient with this MRN exists');
         }
         return view('admin.mar.create', [
             'medical_record_number' => $medical_record_number,
-            'meds' => \App\Medication::all()
+            'meds' => $meds
         ]);
     }
 
