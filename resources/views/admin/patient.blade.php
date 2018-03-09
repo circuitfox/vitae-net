@@ -13,9 +13,9 @@
       <div class="col-sm-4">
         <h5><b><u>Bar Code</u></b></h5>
         <?php
-        //  $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-          //$patcode = "p " . $patient->medical_record_number;
-          //echo '<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128, 3, 50)) .'" />';
+          $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+          $patcode = "p " . $patient->medical_record_number;
+          echo '<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128, 3, 50)) .'" />';
         ?>
       </div>
     </div>
