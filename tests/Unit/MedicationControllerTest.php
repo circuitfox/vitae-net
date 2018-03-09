@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\MarEntry;
 use App\Medication;
 use App\User;
 use Tests\TestCase;
@@ -447,6 +448,17 @@ class MedicationControllerTest extends TestCase
         $response = $this->actingAs($instructor)->delete('/medications/' . $med1->medication_id);
         $response->assertRedirect();
         $this->assertNull(Medication::find($med1->medication_id));
+    }
+
+    public function testDeleteMarEntries()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $marEntry = factory(MarEntry::class)->create();
+        $medication = $marEntry->medication;
+        $response = $this->actingAs($user)->delete('/medications/' . $medication->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($medication->medication_id));
+        $this->assertNull(MarEntry::find($marEntry->id));
     }
 
     public function testVerify()

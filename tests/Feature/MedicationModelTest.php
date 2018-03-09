@@ -108,4 +108,11 @@ class MedicationModelTest extends TestCase
             $inMedication->toString()
         );
     }
+
+    public function testToMarArray()
+    {
+        $medication = factory(\App\Medication::class)->create();
+        $marArray = ['name' => $medication->toString(), 'id' => $medication->medication_id];
+        $this->assertEquals($marArray, $medication->toMarArray());
+    }
 }

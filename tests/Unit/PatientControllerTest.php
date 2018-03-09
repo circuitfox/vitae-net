@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\MarEntry;
 use App\Patient;
 use App\User;
 use Tests\TestCase;
@@ -134,6 +135,16 @@ class PatientControllerTest extends TestCase
         $this->assertNull(Patient::find($patient->medical_record_number));
         $response = $this->actingAs($instructor)->delete('/patients/' . $patient1->medical_record_number);
         $this->assertNull(Patient::find($patient1->medical_record_number));
+    }
+
+    public function testDeleteMarEntries()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $marEntry = factory(MarEntry::class)->create();
+        $patient = $marEntry->patient;
+        $response = $this->actingAs($user)->delete('/patients/' . $patient->medical_record_number);
+        $this->assertNull(Patient::find($patient->medical_record_number));
+        $this->assertNull(MarEntry::find($marEntry->id));
     }
 
     public function testVerifyWithMRN()

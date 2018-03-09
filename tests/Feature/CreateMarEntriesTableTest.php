@@ -15,6 +15,11 @@ class CreateMarEntriesTableTest extends TestCase
         $this->assertTrue(Schema::hasTable('mar_entries'));
     }
 
+    public function testHasId()
+    {
+        $this->assertTrue(Schema::hasColumn('mar_entries', 'id'));
+    }
+
     public function testHasMedicationIdColumn()
     {
         $this->assertTrue(Schema::hasColumn('mar_entries', 'medication_id'));
