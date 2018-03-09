@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Lab;
 use App\Order;
 use App\Patient;
+use App\MarEntry;
+use App\Medication;
 use App\Http\Requests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -60,10 +62,24 @@ class PatientController extends Controller
         $patient = Patient::findOrFail($id);
         $labs = Lab::where('patient_id', $patient->medical_record_number)->get();
         $orders = Order::where('patient_id', $patient->medical_record_number)->get();
+        $marEntries = MarEntry::where('medical_record_number', $patient->medical_record_number)->where('stat', 0)->get();
+        $medNames = array();
+        foreach ($marEntries as $marEntry) {
+          $medNames[$marEntry->medication_id] = Medication::find($marEntry->medication_id)->toString();
+          $marEntry->given_at = $marEntry->timesFromInteger();
+        }
+        $statMeds = MarEntry::where('medical_record_number', $patient->medical_record_number)->where('stat', 1)->get();
+        foreach ($statMeds as $statMed) {
+          $medNames[$statMed->medication_id] = Medication::find($statMed->medication_id)->toString();
+          $statMed->given_at = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        }
         return view('admin.patient', [
             'patient' => $patient,
             'labs' => $labs,
             'orders' => $orders,
+            'prescriptions' => $marEntries,
+            'medNames' => $medNames,
+            'statMeds' => $statMeds,
         ]);
     }
 
