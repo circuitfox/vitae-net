@@ -42,18 +42,10 @@
             </div>
             <div class="col-sm-4">
               <h5><b><u>Bar Code</u></b></h5>
-              <?php
-                $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-                $patcode = "p " . $patient->medical_record_number;
-                echo '<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128, 3, 50)) .'" />';
-              ?>
+              <?php echo $patient->generateBarcode() ?> 
             </div>
             <div class="btn-toolbar col-sm-4" style="margin-left:0px;">
-              <?php
-                $patinfo = $patient->first_name . " " . $patient->last_name . " " . $patient->medical_record_number;
-                echo '<a type="button" class="btn btn-primary" id="download" href="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128)) .'" download="'. $patinfo .'.png">
-                Download Bar Code</a>';
-              ?>
+              <?php echo $patient->generateDownloadButton() ?>
             </div>
           </div>
         </div>

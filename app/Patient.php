@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\GeneratesBarcodes;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
+    use GeneratesBarcodes;
+
     public $incrementing = false;
     protected $primaryKey = 'medical_record_number';
     protected $fillable = [
@@ -53,5 +56,19 @@ class Patient extends Model
             'physician' => $this->physician,
             'room' => $this->room,
         ];
+    }
+
+    public function generateBarcode()
+    {
+        return $this->generateBarcodeWithFormat('p', $this->medical_record_number);
+    }
+
+    public function generateDownloadButton()
+    {
+        return $this->generateDownloadButtonWithFormat(
+            'p',
+            $this->medical_record_number,
+            $this->first_name . '-' . $this->last_name . '-' . $this->medical_record_number . '.png'
+        );
     }
 }
