@@ -77,6 +77,7 @@ Success:
 {
   "status": "success",
   "data": {
+    "medication_id" => "$medication_id",
     "name": "$name",
     "dosage_amount": "$dosage_amount",
     "dosage_unit": "$dosage_unit",
@@ -158,6 +159,7 @@ Success:
 {
   "status": "success",
   "data": {
+    "medication_id" => "$medication_id",
     "name": "$name",
     "dosage_amount": "$dosage_amount",
     "dosage_unit": "$dosage_unit",
