@@ -29,9 +29,13 @@ Route::get('/scan', function() {
     return view('summary');
 });
 
-Route::post('/scan', function() {
-    return redirect('/');
-});
+Route::post('/scan', 'SignatureController@store');
+
+Route::get('/signatures', 'SignatureController@index')->name('signatures.index');
+
+Route::middleware('auth')
+    ->post('/signatures/delete', 'SignatureController@delete')
+    ->name('signatures.delete');
 
 Route::middleware('auth')->post('/orders/complete', 'OrderController@complete')->name('complete');
 

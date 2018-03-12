@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\MarEntry;
 use App\Medication;
+use App\Signature;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -459,6 +460,17 @@ class MedicationControllerTest extends TestCase
         $response->assertRedirect();
         $this->assertNull(Medication::find($medication->medication_id));
         $this->assertNull(MarEntry::find($marEntry->id));
+    }
+
+    public function testDeleteSignatures()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $signature = factory(Signature::class)->create();
+        $medication = $signature->medication;
+        $response = $this->actingAs($user)->delete('/medications/' . $medication->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($medication->medication_id));
+        $this->assertNull(Signature::find($signature->id));
     }
 
     public function testVerify()

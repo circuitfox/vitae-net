@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
         \App\Lab::class => \App\Policies\LabPolicy::class,
         \App\Patient::class => \App\Policies\PatientPolicy::class,
         \App\MarEntry::class => \App\Policies\MarEntryPolicy::class,
+        \App\Signature::class => \App\Policies\SignaturePolicy::class,
     ];
 
     /**
