@@ -14,9 +14,11 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab">
             <div class="row">
-              <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#medications" data-target="#medication{{ $medication->medication_id }}">
-                @include("partials.medication.header", ["medication" => $medication])
-              </a>
+              <div class="panel-title">
+                <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#medications" data-target="#medication{{ $medication->medication_id }}">
+                  @include("partials.medication.header", ["medication" => $medication])
+                </a>
+              </div>
               <div class="btn-toolbar col-md-4">
                 <a href="/medications/{{ $medication->medication_id }}/edit" class="btn btn-primary h3">Edit</a>
                 <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="{{ $medication->medication_id }}">Delete</button>
@@ -30,17 +32,10 @@
               </div>
               <div class="col-sm-4">
                 <h5><b><u>Bar Code</u></b></h5>
-                <?php
-                  $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-                  $medcode = "m " . $medication->medication_id;
-                  echo '<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($medcode, $generator::TYPE_CODE_128, 3, 50)) .'" />';
-                  ?>
+                <?php echo $medication->generateBarcode() ?>
               </div>
               <div class="btn-toolbar col-sm-4" style="margin-left:0px;">
-                <?php
-                  echo '<a type="button" class="btn btn-primary" id="download" href="data:image/png;base64,'. base64_encode($generator->getBarcode($medcode, $generator::TYPE_CODE_128)) .'" download="'. $medication->name .'.png">
-                  Download Bar Code</a>';
-                ?>
+                <?php echo $medication->generateDownloadButton() ?>
               </div>
             </div>
           </div>
