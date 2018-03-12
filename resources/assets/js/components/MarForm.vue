@@ -6,7 +6,7 @@
 
       <select class="form-control" :name="`mars[${id}][medication_id]`" :id="`mars-med`">
         <option value=0> Choose medication </option>
-        <option v-for="(med in meds" :value="med.id"> {{ med.name }} </option>
+        <option v-for="med in meds" :value="med.id"> {{ med.name }} </option>
       </select>
       <span class="help-block" v-if="errors[`mars.${id}.medication_id`]">
         <strong>{{errors[`mars.${id}.medication_id`][0] }}</strong>
@@ -86,7 +86,7 @@
               type: Number,
             },
             meds: {
-              type: Object,
+              type: Array,
             },
             item: {
                 type: Object,
@@ -97,8 +97,8 @@
                 required: true,
             },
             errors: {
-                type: Object,
-                default: {},
+                type: Array,
+                default: [],
             },
         },
     }

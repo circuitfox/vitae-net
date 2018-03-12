@@ -27,3 +27,16 @@ td {
     margin-left: 220px;
   }
 }
+
+td.non-stat {
+    background-color: #5e5e5e;
+}
+
+td.stat {
+    background-color: #e2e2e2;
+}
+
+td.stat-header {
+    background-color: #ff6600;
+    color: black;
+}

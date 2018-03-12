@@ -63,7 +63,7 @@ class PatientController extends Controller
         $labs = Lab::where('patient_id', $patient->medical_record_number)->get();
         $orders = Order::where('patient_id', $patient->medical_record_number)->get();
         $marEntries = MarEntry::where('medical_record_number', $patient->medical_record_number)->where('stat', 0)->get();
-        $medNames = array();
+        $medNames = [];
         foreach ($marEntries as $marEntry) {
           $medNames[$marEntry->medication_id] = Medication::find($marEntry->medication_id)->toString();
           $marEntry->given_at = $marEntry->timesFromInteger();

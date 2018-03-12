@@ -26,11 +26,11 @@
                 type: Number,
             },
             meds: {
-                type: Object,
+                type: Array,
             },
             errors: {
-                type: Object,
-                default: {},
+                type: Array,
+                default: [],
             },
             old: {
                 type: Array,
