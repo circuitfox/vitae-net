@@ -21,3 +21,6 @@
 <p>{{ $patient->physician }}</p>
 <h5><b><u>Room:</u></b></h5>
 <p>{{ $patient->room }}</p>
+@if (Auth::user()->isAdmin())
+  <a class="btn btn-success" href="/mars/create/{{ $patient->medical_record_number }}">Add prescription</a>
+@endif

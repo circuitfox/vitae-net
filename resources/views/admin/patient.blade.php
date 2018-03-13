@@ -60,4 +60,52 @@ Gk
     </div>
   </div>
 </div>
+<div class="col-md-12 panel panel-default">
+  <div class="panel-heading">
+    <h3>Medication Administration Record</h3>
+  </div>
+  <table  class="table">
+    <tr>
+      <th>Medication</th>
+      <th>Instructions</th>
+      <th>0700</th>
+      <th>0800</th>
+      <th>0900</th>
+      <th>1000</th>
+      <th>1100</th>
+      <th>1200</th>
+      <th>1300</th>
+      <th>1400</th>
+      <th>1500</th>
+      <th>1600</th>
+      <th>1700</th>
+      <th>1800</th>
+      <th>1900</th>
+    </tr>
+    @foreach($prescriptions as $prescription)
+      <tr>
+        <td> {{ $medNames[$prescription->medication_id]}} </td>
+        <td> {{ $prescription->instructions}} </td>
+        @for ($i = 0; $i < 13; $i++)
+          @if ($prescription->given_at[$i] == 0)
+            <td class="non-stat"></td>
+          @else
+            <td class="stat"></td>
+          @endif
+        @endfor
+      </tr>
+    @endforeach
+    <tr> <td colspan="15" class="stat-header"><b> STAT/PRN </b></td></tr>
+    @foreach($statMeds as $statMed)
+      <tr>
+        <td> {{ $medNames[$statMed->medication_id]}} </td>
+        <td> {{ $statMed->instructions}} </td>
+        @for ($i = 0; $i < 13; $i++)
+          <td style="background-color: ##e2e2e2;"></td>
+        @endfor
+      </tr>
+    @endforeach
+  </table>
+</div>
+
 @endsection

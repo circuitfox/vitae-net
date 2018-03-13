@@ -42,6 +42,13 @@ const medicationForm = new Vue({
     }
 });
 
+const marForm = new Vue({
+    el: '#mar-form',
+    components: {
+        'mar-form-list': require('./components/MarFormList.vue')
+    }
+});
+
 function showAlert(message) {
     $('#scan-error-alert').html(`
     <div class="alert alert-danger alert-dismissable">
@@ -128,6 +135,10 @@ $(() => {
     $('#add-medication').on('click', () => {
         medicationForm.$emit('add-medication', {name: '', dosage_amount: 0, dosage_unit: ''});
         $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    $('#add-mar').on('click', () => {
+        marForm.$emit('add-mar', {instructions: '', stat: 0});
     });
 
     deleteModal($, 'user');
