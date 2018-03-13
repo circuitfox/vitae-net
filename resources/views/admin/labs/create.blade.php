@@ -8,7 +8,7 @@
     </div>
     <div class="panel-body">
       <div class="container">
-        <form class="form-horizontal" method="POST" action="/labs">
+        <form class="form-horizontal" method="POST" action="/labs" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group">
             <label for="name" class="col-md-2 control-label">Name:</label>

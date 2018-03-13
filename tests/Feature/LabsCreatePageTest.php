@@ -14,7 +14,7 @@ class LabsCreatePageTest extends TestCase
     $user = factory(\App\User::class)->states('admin')->create();
     $response = $this->actingAs($user)->get('/labs/create');
     $response->assertSee('<h3>Create new lab result</h3>');
-    $response->assertSee('<form class="form-horizontal" method="POST" action="/labs">');
+    $response->assertSee('<form class="form-horizontal" method="POST" action="/labs" enctype="multipart/form-data">');
     $response->assertSee('<label for="name" class="col-md-2 control-label">Name:</label>');
     $response->assertSee('<input type="text" class="form-control" id="name" name="name" required>');
     $response->assertSee('<label for="doc" class="col-md-2 control-label">Lab result document:</label>');

@@ -18,6 +18,7 @@
                 @include("partials.order.header", ["order" => $order])
               </a>
               <div class="btn-toolbar col-md-4">
+                <a href="/orders/{{ $order->id }}" class="btn btn-primary h3">Details</a>
                 <a href="/orders/{{ $order->id }}/edit" class="btn btn-primary h3">Edit</a>
                 <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#order-delete-modal" data-id="{{ $order->id }}">Delete</button>
               </div>

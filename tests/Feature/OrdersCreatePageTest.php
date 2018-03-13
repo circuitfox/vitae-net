@@ -14,7 +14,7 @@ class OrdersCreatePageTest extends TestCase
     $user = factory(\App\User::class)->states('admin')->create();
     $response = $this->actingAs($user)->get('/orders/create');
     $response->assertSee('<h3>Create new order</h3>');
-    $response->assertSee('<form class="form-horizontal" method="POST" action="/orders">');
+    $response->assertSee('<form class="form-horizontal" method="POST" action="/orders" enctype="multipart/form-data">');
     $response->assertSee('<label for="name" class="col-md-2 control-label">Name:</label>');
     $response->assertSee('<input type="text" class="form-control" id="name" name="name" required>');
     $response->assertSee('<label for="doc" class="col-md-2 control-label">Orders document:</label>');

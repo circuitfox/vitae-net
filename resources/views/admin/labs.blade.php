@@ -18,6 +18,7 @@
                 @include("partials.lab.header", ["lab" => $lab])
               </a>
               <div class="btn-toolbar col-md-4">
+                <a href="/labs/{{ $lab->id }}" class="btn btn-primary h3">Details</a>
                 <a href="/labs/{{ $lab->id }}/edit" class="btn btn-primary h3">Edit</a>
                 <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#lab-delete-modal" data-id="{{ $lab->id }}">Delete</button>
               </div>
