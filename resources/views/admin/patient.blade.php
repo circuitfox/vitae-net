@@ -13,7 +13,7 @@ Gk
       </div>
       <div class="col-sm-4">
         <h5><b><u>Bar Code</u></b></h5>
-        <?php echo $patient->generateBarcode() ?> 
+        <?php echo $patient->generateBarcode() ?>
       </div>
     </div>
   </div>
@@ -60,7 +60,7 @@ Gk
     </div>
   </div>
 </div>
-<div class="col-md-12 panel panel-default">
+<div id="mar" class="col-md-12 panel panel-default">
   <div class="panel-heading">
     <h3>Medication Administration Record</h3>
   </div>
