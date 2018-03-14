@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Medication;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -43,6 +44,9 @@ class PatientPageTest extends TestCase
         $response->assertSee('<div id="labs" class="panel-collapse collapse in" role="tabpanel"');
         $response->assertSee('<a href="#orders" class="collapsed" role="button" data-toggle="collapse">Provider\'s Orders</a>');
         $response->assertSee('<div id="orders" class="panel-collapse collapse in" role="tabpanel"');
+        $response->assertSee('<div id="mar" class="col-md-12 panel panel-default">');
+        $response->assertSee('<table class="table">');
+        $response->assertSee('<td colspan="15" class="stat-header"><b> STAT/PRN </b></td>');
     }
 
     public function testHasLabs()
@@ -86,5 +90,15 @@ class PatientPageTest extends TestCase
         $response = $this->actingAs($user)->get('/patients');
         $response->assertSee('<h5><b><u>Bar Code</u></b></h5>');
         $response->assertSee('<img src="data:image/png;base64,'. base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128, 3, 50)) .'" />');
+    }
+
+    public function testHasMarEntry()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $marEntry = factory(\App\MarEntry::class)->create();
+        $medName = Medication::find($marEntry->medication_id)->toString();
+        $response = $this->actingAs($user)->get('/patients/' . $marEntry->medical_record_number);
+        $response->assertSee('<td> ' . $medName . ' </td>');
+        $response->assertSee('<td> ' . $marEntry->instructions . ' </td>');
     }
 }
