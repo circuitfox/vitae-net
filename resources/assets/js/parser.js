@@ -29,8 +29,19 @@ const BARCODE_MEDICATION_TYPE = 'm';
 // startChar and endChar are the prefix and suffix that the barcode scanner
 // adds to codes. They should be hexadecimal values.
 function parse(str, startChar, endChar) {
+    if (startChar < 0x10) {
+        startChar = `0${startChar.toString(16)}`;
+    } else {
+        startChar = startChar.toString(16);
+    }
+    if (endChar < 0x10) {
+        endChar = `0${endChar.toString(16)}`;
+    } else {
+        endChar = endChar.toString(16);
+    }
     let parsedObj = {type: '', data: {}};
     let regex = new RegExp(`^\\x${startChar}?(.*)\\x${endChar}?$`);
+    console.log(regex);
     let parseStr = str.replace(regex, '$1')
                       .split(PATIENT_FIELD_SEPARATOR);
     console.log(parseStr);
