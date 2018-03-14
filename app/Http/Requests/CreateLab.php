@@ -27,7 +27,7 @@ class CreateLab extends FormRequest
         return [
             'name' => 'required|string',
             'description' => 'required|string',
-            'doc' => 'required|file',
+            'doc' => 'required|mimetypes:application/pdf',
             'patient_id' => 'numeric|nullable',
         ];
     }

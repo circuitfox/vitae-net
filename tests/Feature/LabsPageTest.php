@@ -21,6 +21,7 @@ class LabsPageTest extends TestCase
     $response->assertSee('<p>' . $lab->description . '</p>');
     $response->assertSee('<h5><b><u>Patient MRN:</u></b></h5>');
     $response->assertSee('<p>' . $lab->patient_id . '</p>');
+    $response->assertSee('<a href="/labs/' . $lab->id . '" class="btn btn-primary h3">Details</a>');
     $response->assertSee('<a href="/labs/' . $lab->id . '/edit" class="btn btn-primary h3">Edit</a>');
     $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#lab-delete-modal" data-id="' . $lab->id . '">Delete</button>');
 
