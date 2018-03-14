@@ -48,7 +48,7 @@ class OrderControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
             'completed' => false,
         ]);
         $response->assertRedirect();
@@ -76,7 +76,7 @@ class OrderControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
             'completed' => false,
         ]);
         $response->assertRedirect();
@@ -96,7 +96,7 @@ class OrderControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient1->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
             'completed' => false,
         ]);
         $response->assertStatus(403);

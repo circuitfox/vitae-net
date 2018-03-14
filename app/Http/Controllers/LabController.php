@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Lab;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class LabController extends Controller
 {
-            /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -36,24 +36,27 @@ class LabController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-  public function store(Requests\CreateLab $request) {
-    $name = request('name');
-    $pathInStorage = 'labs/' . $name . rand(1111, 9999) . '.pdf';
-    // TODO: The storage location needs to be changed
-    //$path = $request->file('doc')->storeAs('/public', $pathInStorage);
+    public function store(Requests\CreateLab $request) {
+        $name = request('name');
+        $file = request('doc');
 
-    // create a new patient using the form data
-    $lab = new \App\Lab;
-    $lab->name = $name;
-    $lab->description = request('description');
-    $lab->file_path = $pathInStorage;
-    $lab->patient_id = request('patient_id');
-    // save it to the database
-    $lab->save();
+        $lab = new \App\Lab;
+        $path = 'orders/';
+        $fileName = str_replace(' ', '-', $name) . rand(1111, 9999) . '.pdf';
+        $pathInStorage = $path . $fileName;
+        $lab->name = $name;
+        $lab->description = request('description');
+        $lab->file_path = $pathInStorage;
+        $lab->patient_id = request('patient_id');
+        // save it to the database
+        $lab->save();
 
-    // redirect to home page
-    return redirect()->route('labs.index')->with('message','Lab has been added successfully');
-  }
+        // write pdf to storage
+        Storage::disk('public')->putFileAs($path, $file, $fileName);
+
+        // redirect to home page
+        return redirect()->route('labs.index')->with('message','Lab has been added successfully');
+    }
 
     /**
      * Display the specified resource.
@@ -64,7 +67,8 @@ class LabController extends Controller
     public function show($id)
     {
         $lab = Lab::findOrFail($id);
-        return view('admin.lab', ['lab' => $lab]);
+        $pdf = asset('storage/' . $lab->file_path);
+        return view('admin.lab', ['lab' => $lab, 'pdf' => $pdf]);
     }
 
     /**
@@ -102,9 +106,7 @@ class LabController extends Controller
     public function destroy(Lab $lab)
     {
         $this->authorize('delete', $lab);
-        // TODO: This needs to be changed once the storage location is changed
-        // $labFile = $lab->file_path;
-        // File::delete('storage/' . $labFile);
+        Storage::disk('public')->delete($lab->file_path);
         $lab->delete();
         return redirect()->route('labs.index')->with('message','Lab has been deleted successfully');
     }

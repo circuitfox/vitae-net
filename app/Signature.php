@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Signature extends Model
 {
-    public $incrementing = false;
-    protected $primaryKey = ['medical_record_number', 'medication_id'];
     public $timestamps = false;
     protected $fillable = [
       'medical_record_number', 'medication_id', 'time',

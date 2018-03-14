@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -39,23 +39,27 @@ class OrderController extends Controller
     */
     public function store(Requests\CreateOrder $request) {
         $name = request('name');
-        $pathInStorage = 'orders/' . $name . rand(1111, 9999) . '.pdf';
-        // TODO: Storage location needs to be changed
-        // $request->file('doc')->storeAs('/public', $pathInStorage);
+        $file = $request->doc;
 
         // create a new patient using the form data
         $order = new \App\Order;
+        $path = 'orders/';
+        $fileName = str_replace(' ', '-', $name) . rand(1111, 9999) . '.pdf';
+        $pathInStorage = $path . $fileName;
         $order->name = $name;
         $order->description = request('description');
         $order->file_path = $pathInStorage;
         $pat_id = request('patient_id');
-        if($pat_id != null) {
+        if ($pat_id !== null) {
             $order->patient_id = request('patient_id');
         }
         $order->completed = request('completed') || 0;
 
         // save it to the database
         $order->save();
+
+        // store the pdf
+        Storage::disk('public')->putFileAs($path, $file, $fileName);
 
         // redirect to home page
         return redirect()->route('orders.index')->with('message','Order has been added successfully');
@@ -70,7 +74,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-        return view('admin.order', ['order' => $order]);
+        $pdf = asset('storage/' . $order->file_path);
+        return view('admin.order', ['order' => $order, 'pdf' => $pdf]);
     }
 
     /**
@@ -119,6 +124,7 @@ class OrderController extends Controller
         // TODO: To be changed with correct storage location
         // $orderFile = $order->file_path;
         // File::delete('storage/' . $orderFile);
+        Storage::disk('public')->delete($order->file_path);
         $order->delete();
         return redirect()->route('orders.index')->with('message','Order has been deleted successfully');
     }

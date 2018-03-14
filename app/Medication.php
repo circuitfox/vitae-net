@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\GeneratesBarcodes;
 use Illuminate\Database\Eloquent\Model;
 
 class Medication extends Model
 {
+    use GeneratesBarcodes;
+
     public const SECOND_TYPES = ['combo', 'amount', 'in'];
 
     /**
@@ -162,5 +165,24 @@ class Medication extends Model
             'name' => $this->toString(),
             'id' => $this->medication_id,
         ];
+    }
+
+    public function generateBarcode()
+    {
+        return $this->generateBarcodeWithFormat('m', $this->medication_id);
+    }
+
+    public function generateDownloadButton()
+    {
+        if ($this->secondaryName() !== '') {
+            $name = $this->primaryName() . '-' . $this->secondaryName() . '.png';
+        } else {
+            $name = $this->primaryName() . '.png';
+        }
+        return $this->generateDownloadButtonWithFormat(
+            'm',
+            $this->medication_id,
+            $name
+        );
     }
 }

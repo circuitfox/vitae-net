@@ -15,14 +15,20 @@ class CreateSignaturesTable extends Migration
     {
         Schema::create('signatures', function (Blueprint $table) {
             // attributes
+            $table->bigIncrements('id');
             $table->bigInteger('medication_id')->unsigned();
             $table->integer('medical_record_number');
             $table->string('time');
             $table->string('student_name');
             //keys
-            $table->primary(['medical_record_number','medication_id']);
-            $table->foreign('medical_record_number')->references('medical_record_number')->on('patients');
-            $table->foreign('medication_id')->references('medication_id')->on('medications');
+            $table->foreign('medical_record_number')
+                ->references('medical_record_number')
+                ->on('patients')
+                ->onDelete('cascade');
+            $table->foreign('medication_id')
+                ->references('medication_id')
+                ->on('medications')
+                ->onDelete('cascade');
         });
     }
 

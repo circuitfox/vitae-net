@@ -15,6 +15,11 @@ class CreateSignaturesTableTest extends TestCase
         $this->assertTrue(Schema::hasTable('signatures'));
     }
 
+    public function testHasIdColumn()
+    {
+        $this->assertTrue(Schema::hasColumn('signatures', 'id'));
+    }
+
     public function testHasMedicationIdColumn()
     {
         $this->assertTrue(Schema::hasColumn('signatures', 'medication_id'));

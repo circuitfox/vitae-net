@@ -1,13 +1,21 @@
 @extends("layouts.app")
 @section("title", "Vitae NET - Lab")
 @section("content")
-<div class="col-md-offset-2 col-md-8">
+<div class="col-md-offset-1 col-md-10">
   <div id="lab" class="panel panel-default">
     <div class="panel-heading">
       @include("partials.lab.header", ["lab" => $lab])
     </div>
     <div class="panel-body">
       @include("partials.lab.body", ["lab" => $lab])
+      <div class="col-md-7" style="height:500px;">
+        <object data="{{ $pdf }}" type="application/pdf" width="100%" height="100%">
+          <iframe src="{{ $pdf }}" width="100%" height="100%" style="border:none;">
+            This browser does not support embedding PDF documents. Please download
+            the PDF to view it. <a href="{{ $pdf }}">Download PDF</a>
+          </iframe>
+        </object>
+      </div>
     </div>
   </div>
 </div>
