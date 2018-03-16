@@ -31,9 +31,18 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-2 control-label" for="patient_id">Patient ID:</label>
+            <label for="patient_id" class="col-md-2 control-label">Patient:</label>
             <div class="col-md-6">
-              <input class="form-control" type="text" name="patient_id" id="patient_id" value="{{ $lab->patient_id or old('patient_id') }}">
+              <select id="patient_id" class="form-control" name="patient_id">
+                <option value="" selected="selected">No patient</option>
+                @foreach ($patients as $patient)
+                  @if ($lab->patient_id == $patient->medical_record_number)
+                    <option value='{{ $patient->medical_record_number }}' selected="selected">{{ $patient->first_name }} {{ $patient->last_name}}</option>
+                  @else
+                    <option value='{{ $patient->medical_record_number }}'>{{ $patient->first_name }} {{ $patient->last_name}}</option>
+                  @endif
+                @endforeach
+              </select>
               @if ($errors->has('patient_id'))
                 <span class="help-block">
                   {{ $errors->first('patient_id') }}
