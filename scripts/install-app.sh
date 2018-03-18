@@ -16,6 +16,8 @@ sed -i -e 's/group = apache/group = nginx/' /etc/opt/rh/rh-php71/php-fpm.d/www.c
 chown root:root /etc/nginx/nginx.conf
 mkdir -p /var/www
 /usr/bin/cp -ruf /home/git/vitae-net-build/. /var/www/vitae-net
+cd /var/www/vitae-net
+php artisan storage:link
 chown -R nginx:nginx /var/www/vitae-net
 chmod 755 /var/www/vitae-net/storage/logs
 chmod 664 /var/www/vitae-net/storage/logs/*
