@@ -9,8 +9,10 @@
     <p>{{ $order->patient_id }}</p>
     <h5><b><u>Completed:</u></b></h5>
     <p>{{ $order->completed ? 'Yes' : 'No' }}</p>
-    <form method="POST" action="/orders/complete">
-      <button type="submit" class="btn btn-primary">Complete Order</button>
+    <form method="POST" action={{ route('complete') }}>
+       {{ csrf_field() }}
+       <input type="hidden" name="order_id" value="{{ $order->id} }">
+       <button type="submit" class="btn btn-primary">Complete Order</button>
     </form>
   </div>
 </div>

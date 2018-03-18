@@ -9,7 +9,7 @@ class OrderPageTest extends TestCase
 {
     use RefreshDatabase;
 
-<<<<<<< HEAD
+
     public function testHasOrder()
     {
         $user = factory(\App\User::class)->states('admin')->create();
@@ -38,7 +38,7 @@ class OrderPageTest extends TestCase
         $response->assertSee('This browser does not support embedding PDF documents. Please download');
         $response->assertSee('the PDF to view it. <a href="' . $pdf . '">Download PDF</a>');
     }
-=======
+
   public function testHasOrder()
   {
     $user = factory(\App\User::class)->states('admin')->create();
@@ -55,5 +55,5 @@ class OrderPageTest extends TestCase
     $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') . '</p>');
     $response->assertSee('<button type="submit" class="btn btn-primary">Complete Order</button>');
   }
->>>>>>> Order Complete Button
+
 }
