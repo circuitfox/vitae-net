@@ -49,6 +49,13 @@ const marForm = new Vue({
     }
 });
 
+const marEntry = new Vue({
+    el: '#mar',
+    components: {
+        'mar-entry': require('./components/MarEntry.vue')
+    }
+});
+
 function showAlert(message) {
     $('#scan-error-alert').html(`
     <div class="alert alert-danger alert-dismissable">

@@ -9,7 +9,7 @@ class Medication extends Model
 {
     use GeneratesBarcodes;
 
-    public const SECOND_TYPES = ['combo', 'amount', 'in'];
+    const SECOND_TYPES = ['combo', 'amount', 'in'];
 
     /**
      * Helper function for converting second_type values
@@ -33,7 +33,7 @@ class Medication extends Model
         }
     }
 
-    public const NAME_SEPARATOR = '|';
+    const NAME_SEPARATOR = '|';
 
     protected $primaryKey = 'medication_id';
 
