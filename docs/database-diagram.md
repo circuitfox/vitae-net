@@ -108,3 +108,71 @@ The signatures table is used to show which student administered what prescriptio
 - **medical_record_number:** This is a foreign key referencing the `medical_record_number` field from the `patients` table.
 - **time:** This is the time of day that the student administered the medication.
 - **student_name:** The name of the student that administered the medication. This serves as his/her signature.
+
+### assessments
+
+Patient assessments are forms that nurses fill out indicating the patient's current status in several areas of interest. Student nurses may be asked to only fill out portions of the assessment.
+
+##### Initial info
+- **id:** A unique identification number used to reference assessments.
+- **student_name:** This is used to let the student(s) sign the assessment.
+- **date:** The date that the simulation exercise took place.
+- **start_time:** The time at which the student(s) began the exercise in military format.
+- **end_time:** The time at which the student(s) finished the exercise in military format.
+- **medical_record_number:** This is a foreign key referencing the `medical_record_number` field from the `patients` table.
+- **reason:** Reason for admission.
+##### Vital Signs
+- **temperature:** Temperature.
+- **bp_over:** The first half of a blood pressure reading, i.e.- "120" from "120 over 80".
+- **bp_under:** The second half of a blood pressure reading, i.e.- "80" from "120 over 80".
+- **apical_pulse:** Apical pulse.
+- **respiration:** Respiration in breaths per minute.
+- **oximetry:** Pulse oximetry (oxygen saturation).
+- **automatic:** Indicates whether blood pressure was taken manually or automatically. The value "0" will indicate it was done manually, while "1" will indicate it was done automatically.
+##### Other
+- **allergies:** This is to be filled out by student nurses, not pulled in from the patient's database record.
+##### Mental Status
+- **loc:** Level of consciousness.
+- **orientation:** Ability to discern surroundings.
+- **speech:** Ability to speak.
+- **behavior:** How the patient acts.
+- **pupillary:** Pupillary response.
+- **pain:** Level of pain and characteristics.
+##### Integumentary
+- **skincolor:** Skin coloration.
+- **skintemp:** Skin temperature and moisture.
+- **hydration:** Hydration and turgor.
+- **integrity:** Skin integrity.
+- **dressings:** Dressings and wounds.
+- **ivsite:** IV site(s) dressing. Saline lock or continuous.
+- **centrallines:** Central lines dressing.
+##### Cardiovascular
+- **hearthrhythm:** Heart rhythm.
+- **radial:** Radial Pulses: Rt. & Lt.
+- **capillary:** Capillary refill.
+- **upper:** Temperature and color of upper extremities.
+##### Respiratory
+- **breathrhythm:** Breath rhythm and sounds.
+- **cough:** Cough.
+- **secretions:** Secretions or sputum.
+- **roomair:** Room air, oxygen mask, or nasal cannula.
+##### Gastrointestinal
+- **nausea:** Nausea, vomiting, and diet toleration.
+- **abdomen:** Appearance of abdomen.
+- **bowel:** Bowel sounds.
+- **stool:** Stool characteristics and date of last bowel movement.
+- **tubefeeding:** Tube feedings and ostomy.
+##### Genitourinary
+- **genitourinary:** Continent, incontinent, or foley. Urine characteristics.
+##### Musculoskeletal
+- **motion:** Range of motion and mobility.
+- **muscle:** Muscle mass and muscle strength.
+##### Peripheral Vascular
+- **pedal:** Pedal pulses: Rt. & Lt. D.P. and/or P.T. Femoral if applicable.
+- **lower:** Temperature and color of lower extremities.
+- **peripheral:** Peripheral edema and calf. Tenderness, pain, and erythema.
+##### General Observations
+- **ted:** TED hose and SCD's.
+- **restraints:** Restraints and casts.
+- **drainage:** Drainage.
+- **activity:** Bedrest, BRP, up with assistance, or up without assistance.

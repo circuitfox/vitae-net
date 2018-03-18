@@ -40,6 +40,11 @@ class Patient extends Model
         return $this->hasMany('\App\Signature', 'medical_record_number');
     }
 
+    public function assessments()
+    {
+        return $this->hasMany('\App\Assessment', 'medical_record_number');
+    }
+
     public function toApiArray()
     {
         return [
