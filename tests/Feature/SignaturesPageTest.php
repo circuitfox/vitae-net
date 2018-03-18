@@ -20,13 +20,13 @@ class SignaturesPageTest extends TestCase
         $response->assertSee('<th>Medication</th>');
         $response->assertSee('<th>Time</th>');
         $response->assertSee('<th>Delete</th>');
-        $response->assertSee('<td>' . $signatures[0]->student_name . '</td>');
-        $response->assertSee('<td>' . $signatures[0]->patient->first_name . ' ' . $signatures[0]->patient->last_name . '</td>');
+        $response->assertSee('<td>' . $this->faker_escape($signatures[0]->student_name) . '</td>');
+        $response->assertSee('<td>' . $this->faker_escape($signatures[0]->patient->first_name . ' ' . $signatures[0]->patient->last_name) . '</td>');
         $response->assertSee('<td>' . $signatures[0]->medication->toString() . '</td>');
         $response->assertSee('<td>' . $signatures[0]->time . '</td>');
         $response->assertSee('<td><input type="checkbox" name="ids[' . $signatures[0]->id . ']" value="' . $signatures[0]->id . '"></td>');
-        $response->assertSee('<td>' . $signatures[1]->student_name . '</td>');
-        $response->assertSee('<td>' . $signatures[1]->patient->first_name . ' ' . $signatures[1]->patient->last_name . '</td>');
+        $response->assertSee('<td>' . $this->faker_escape($signatures[1]->student_name) . '</td>');
+        $response->assertSee('<td>' . $this->faker_escape($signatures[1]->patient->first_name . ' ' . $signatures[1]->patient->last_name) . '</td>');
         $response->assertSee('<td>' . $signatures[1]->medication->toString() . '</td>');
         $response->assertSee('<td>' . $signatures[1]->time . '</td>');
         $response->assertSee('<td><input type="checkbox" name="ids[' . $signatures[1]->id . ']" value="' . $signatures[1]->id . '"></td>');
