@@ -8,10 +8,6 @@
                      :key="index"
                      :errors="errors"
                      @remove="items.splice(index, 1)"></medication-form>
-    <div class="form-group">
-      <div class="col-md-offset-2 col-md-2">
-      </div>
-    </div>
   </div>
 </template>
 

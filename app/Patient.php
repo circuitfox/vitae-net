@@ -18,7 +18,7 @@ class Patient extends Model
       'code_status', 'physician', 'room',
     ];
 
-    public const CODE_STATUSES = ['FULL CODE', 'DNR', 'DNI'];
+    const CODE_STATUSES = ['FULL CODE', 'DNR', 'DNI'];
 
     public function labs()
     {

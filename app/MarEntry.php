@@ -20,7 +20,7 @@ class MarEntry extends Model
     // +------+------+------+------+------+------+------+------+------+------+------+------+------+
     // 0      1      2      3      4      5      6      7      8      9     10     11     12     13
     //
-    public const TIMES = [
+    const TIMES = [
         0x1, // 0700
         0x2, // 0800
         0x4, // 0900
@@ -80,5 +80,16 @@ class MarEntry extends Model
             }
         }
         return $given_at;
+    }
+
+    public function toJsonArray() {
+        return json_encode([
+            'id' => $this->id,
+            'name' => $this->medication->toString(),
+            'instructions' => $this->instructions,
+            'stat' => $this->stat == 1,
+            'times' => $this->timesFromInteger(),
+            'medId' => $this->medication->medication_id,
+        ]);
     }
 }

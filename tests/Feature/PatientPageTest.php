@@ -44,9 +44,22 @@ class PatientPageTest extends TestCase
         $response->assertSee('<div id="labs" class="panel-collapse collapse in" role="tabpanel"');
         $response->assertSee('<a href="#orders" class="collapsed" role="button" data-toggle="collapse">Provider\'s Orders</a>');
         $response->assertSee('<div id="orders" class="panel-collapse collapse in" role="tabpanel"');
-        $response->assertSee('<div id="mar" class="col-md-12 panel panel-default">');
+        $response->assertSee('<div id="mar" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
         $response->assertSee('<table class="table">');
-        $response->assertSee('<td colspan="15" class="stat-header"><b> STAT/PRN </b></td>');
+        $response->assertSee('<th>Edit</th>');
+        $response->assertSee('<td colspan="16" class="stat-header"><b> STAT/PRN </b></td>');
+    }
+
+    public function testStudentCantEditMAR() {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
+        $response->assertSee('<div id="mar" class="col-md-offset-1 col-md-10">');
+        $response->assertDontSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
+        $response->assertSee('<table class="table">');
+        $response->assertDontSee('<th>Edit</th>');
+        $response->assertSee('<td colspan="16" class="stat-header"><b> STAT/PRN </b></td>');
     }
 
     public function testHasLabs()
@@ -94,9 +107,12 @@ class PatientPageTest extends TestCase
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $marEntry = factory(\App\MarEntry::class)->create();
-        $medName = Medication::find($marEntry->medication_id)->toString();
+        $meds = [$marEntry->Medication->toMarArray()];
         $response = $this->actingAs($user)->get('/patients/' . $marEntry->medical_record_number);
-        $response->assertSee('<td> ' . $medName . ' </td>');
-        $response->assertSee('<td> ' . $marEntry->instructions . ' </td>');
+        $response->assertSee('<tr is="mar-entry"');
+        $response->assertSee(':meds="' . $this->faker_escape(json_encode($meds)) . '"');
+        $response->assertSee(':mar-entry="' . $this->faker_escape($marEntry->toJsonArray()) . '"');
+        $response->assertSee(':is-admin="' . $this->faker_escape(json_encode($user->isAdmin())) . '"');
+        $response->assertSee('route="' . route('mars.update', ['id' => $marEntry->id]) . '">');
     }
 }
