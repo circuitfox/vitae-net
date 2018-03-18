@@ -259,4 +259,14 @@ class OrderControllerTest extends TestCase
         $response->assertRedirect();
         $this->assertNull(Order::find($order1->id));
     }
+
+    public function testCompleteOrder()
+    {
+        $user = factory(User::class)->states('student')->create();
+        $order = factory(Order::class)->states('incomplete')->create();
+        $response = $this->actingAs($user)->post('/orders/complete', ['order_id'=>$order->id] );
+        $order = Order::find($order->id);
+        $this->assertNotNull($order);
+        $this->assertEquals(1, $order->completed);
+    }
 }
