@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Patient;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +29,7 @@ class OrderController extends Controller
     public function create()
     {
         $this->authorize('create', Order::class);
-        return view('admin.orders.create');
+        return view('admin.orders.create', ['patients' => Patient::all()]);
     }
 
     /**
@@ -50,7 +51,7 @@ class OrderController extends Controller
         $order->description = request('description');
         $order->file_path = $pathInStorage;
         $pat_id = request('patient_id');
-        if ($pat_id !== null) {
+        if ($pat_id !== "") {
             $order->patient_id = request('patient_id');
         }
         $order->completed = request('completed') || 0;
@@ -87,7 +88,7 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $this->authorize('update', $order);
-        return view('admin.order.edit', ['order' => $order]);
+        return view('admin.order.edit', ['order' => $order, 'patients' => Patient::all()]);
     }
 
     /**

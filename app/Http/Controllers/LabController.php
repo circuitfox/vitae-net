@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Patient;
 use App\Lab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,7 @@ class LabController extends Controller
     public function create()
     {
         $this->authorize('create', Lab::class);
-        return view('admin.labs.create');
+        return view('admin.labs.create', ['patients' => Patient::all()]);
     }
 
     /**
@@ -80,7 +81,7 @@ class LabController extends Controller
     public function edit(Lab $lab)
     {
         $this->authorize('update', $lab);
-        return view('admin.lab.edit', compact('lab'));
+        return view('admin.lab.edit', ['lab' => $lab, 'patients' => Patient::all()]);
     }
 
     /**
