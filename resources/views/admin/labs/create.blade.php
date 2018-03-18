@@ -35,7 +35,7 @@
               <select id="patient_id" class="form-control" name="patient_id">
                 <option value="">No patient</option>
                 @foreach ($patients as $patient)
-                  <option value='{{ $patient->medical_record_number }}'>{{ $patient->first_name }} {{ $patient->last_name}}</option>
+                  <option value='{{ $patient->medical_record_number }}'>{{ $patient->last_name}}, {{ $patient->first_name }} ({{$patient->medical_record_number}})</option>
                 @endforeach
               </select>
               @if ($errors->has('patient_id'))

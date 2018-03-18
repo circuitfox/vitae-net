@@ -39,7 +39,7 @@
                   @if ($order->patient_id == $patient->medical_record_number)
                     <option value="{{$patient->medical_record_number}}" selected="selected">{{ $patient->first_name }} {{ $patient->last_name}}</option>
                   @else
-                    <option value="{{$patient->medical_record_number}}">{{ $patient->first_name }} {{ $patient->last_name}}</option>
+                    <option value="{{$patient->medical_record_number}}">{{ $patient->last_name}}, {{ $patient->first_name }} ({{$patient->medical_record_number}})</option>
                   @endif
                 @endforeach
               </select>
