@@ -29,9 +29,13 @@ Route::get('/scan', function() {
     return view('summary');
 });
 
-Route::post('/scan', function() {
-    return redirect('/');
-});
+Route::post('/scan', 'SignatureController@store');
+
+Route::get('/signatures', 'SignatureController@index')->name('signatures.index');
+
+Route::middleware('auth')
+    ->post('/signatures/delete', 'SignatureController@delete')
+    ->name('signatures.delete');
 
 Route::middleware('auth')->post('/orders/complete', 'OrderController@complete')->name('complete');
 
@@ -43,9 +47,16 @@ Route::middleware('auth')->get('/patientformatter', function() {
     return view('patientformatter');
 });
 
-// TODO: Add policies to control access to patients, orders, labs routes
 Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('medications', 'MedicationController');
 Route::middleware('auth')->resource('patients', 'PatientController');
 Route::middleware('auth')->resource('orders', 'OrderController');
 Route::middleware('auth')->resource('labs', 'LabController');
+
+Route::middleware('auth')->resource('mars', 'MarEntryController', ['only' => [
+    'store', 'update'
+]]);
+
+Route::middleware('auth')
+    ->get('/mars/create/{medical_record_number}', 'MarEntryController@create')
+    ->name('mars.create');

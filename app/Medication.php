@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\GeneratesBarcodes;
 use Illuminate\Database\Eloquent\Model;
 
 class Medication extends Model
 {
-    public const SECOND_TYPES = ['combo', 'amount', 'in'];
+    use GeneratesBarcodes;
+
+    const SECOND_TYPES = ['combo', 'amount', 'in'];
 
     /**
      * Helper function for converting second_type values
@@ -30,7 +33,7 @@ class Medication extends Model
         }
     }
 
-    public const NAME_SEPARATOR = '|';
+    const NAME_SEPARATOR = '|';
 
     protected $primaryKey = 'medication_id';
 
@@ -49,6 +52,7 @@ class Medication extends Model
     public function toApiArray()
     {
         return [
+            'medication_id' => $this->medication_id,
             'name' => $this->primaryName(),
             'secondary_name' => $this->secondaryName(),
             'dosage_amount' => $this->dosage_amount,
@@ -147,11 +151,38 @@ class Medication extends Model
 
     public function marEntries()
     {
-        return $this->hasMany('\App\MarEntry');
+        return $this->hasMany('\App\MarEntry', 'medication_id');
     }
 
     public function signatures()
     {
-        return $this->hasMany('\App\Signature');
+        return $this->hasMany('\App\Signature', 'medication_id');
+    }
+
+    public function toMarArray()
+    {
+        return [
+            'name' => $this->toString(),
+            'id' => $this->medication_id,
+        ];
+    }
+
+    public function generateBarcode()
+    {
+        return $this->generateBarcodeWithFormat('m', $this->medication_id);
+    }
+
+    public function generateDownloadButton()
+    {
+        if ($this->secondaryName() !== '') {
+            $name = $this->primaryName() . '-' . $this->secondaryName() . '.png';
+        } else {
+            $name = $this->primaryName() . '.png';
+        }
+        return $this->generateDownloadButtonWithFormat(
+            'm',
+            $this->medication_id,
+            $name
+        );
     }
 }

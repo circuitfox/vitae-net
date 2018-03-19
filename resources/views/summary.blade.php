@@ -13,9 +13,9 @@
           <medication-list :form="true"></medication-list>
           <div id="form-extra" style="display: none">
             <div class="form-group">
-              <label class="col-md-2 control-label" for="initials">Initials:</label>
-              <div class="col-md-3">
-                <input id="initials" class="form-control" type="text" name="initials" required>
+              <label class="col-md-2 control-label" for="student_name">Name:</label>
+              <div class="col-md-4">
+                <input id="student-name" class="form-control" type="text" name="student_name" required>
               </div>
             </div>
             <div class="form-group">

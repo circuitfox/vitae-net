@@ -16,12 +16,15 @@ sed -i -e 's/group = apache/group = nginx/' /etc/opt/rh/rh-php71/php-fpm.d/www.c
 chown root:root /etc/nginx/nginx.conf
 mkdir -p /var/www
 /usr/bin/cp -ruf /home/git/vitae-net-build/. /var/www/vitae-net
+cd /var/www/vitae-net
+php artisan storage:link
 chown -R nginx:nginx /var/www/vitae-net
 chmod 755 /var/www/vitae-net/storage/logs
 chmod 664 /var/www/vitae-net/storage/logs/*
 
 # selinux permissions
 chcon -Rt httpd_sys_content_t /var/www/vitae-net
+setsebool httpd_can_network_connect_db 1
 semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/vitae-net/storage(/.*)?"
 semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/vitae-net/bootstrap/cache(/.*)?"
 restorecon -Riv /var/www/vitae-net/storage

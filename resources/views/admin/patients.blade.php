@@ -7,14 +7,13 @@
     <div class="row">
       <h3 class="col-md-offset-2 col-md-8 text-center">No patients in the database. Add some?</h3>
     </div>
-    <a href="{{ route('patients.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>
+    <a href="{{ route('patients.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>
   @else
     <div class="panel-group" id="patients" role="tablist">
       @foreach ($patients as $patient)
         <div class="panel panel-default">
           <div class="panel-heading" role="tab">
             @if(Auth::check())
-              @if (Auth::user()->isAdmin())
                 <div class="row">
                   <div class="panel-title">
                     <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#patients" data-target="#patient{{ $patient->medical_record_number }}">
@@ -23,21 +22,26 @@
                   </div>
                   <div class="btn-toolbar col-md-4">
                     <a class="btn btn-default h3" href="{{ route('patients.show', ['id' => $patient->medical_record_number]) }}">Details</a>
-                    <a class="btn btn-primary h3" href="{{ route('patients.edit', ['id' => $patient->medical_record_number]) }}">Edit</a>
-                    <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#patient-delete-modal" data-id="{{ $patient->medical_record_number }}">Delete</button>
+                    @if (Auth::user()->isAdmin())
+                      <a class="btn btn-primary h3" href="{{ route('patients.edit', ['id' => $patient->medical_record_number]) }}">Edit</a>
+                      <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#patient-delete-modal" data-id="{{ $patient->medical_record_number }}">Delete</button>
+                    @endif
                   </div>
                 </div>
-              @else
-                <a class="accordion collapsed" role="button" data-toggle="collapse"
-                data-parent="#patients">
-                @include("partials/patient/header", ["patient" => $patient])
-              </a>
-            @endif
           @endif
         </div>
         <div id="patient{{ $patient->medical_record_number }}" class="panel-collapse collapse" role="tabpanel">
           <div class="panel-body">
-            @include("partials/patient/body", ["patient" => $patient])
+            <div class="col-sm-4">
+              @include("partials/patient/body", ["patient" => $patient])
+            </div>
+            <div class="col-sm-4">
+              <h5><b><u>Bar Code</u></b></h5>
+              <?php echo $patient->generateBarcode() ?> 
+            </div>
+            <div class="btn-toolbar col-sm-4" style="margin-left:0px;">
+              <?php echo $patient->generateDownloadButton() ?>
+            </div>
           </div>
         </div>
       </div>

@@ -22,5 +22,9 @@ $factory->define(App\Patient::class, function (Faker $faker) {
 });
 
 $factory->state(App\Patient::class, 'male', [
-    'sex' => false
+    'sex'=>true
+]);
+
+$factory->state(App\Patient::class, 'female', [
+    'sex'=>false
 ]);

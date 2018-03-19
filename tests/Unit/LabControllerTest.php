@@ -48,7 +48,7 @@ class LabControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
         ]);
         $response->assertRedirect();
         $lab = Lab::where([
@@ -74,7 +74,7 @@ class LabControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
         ]);
         $response->assertRedirect();
         $lab = Lab::where([
@@ -92,7 +92,7 @@ class LabControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient1->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
         ]);
         $response->assertStatus(403);
         $lab = Lab::where([

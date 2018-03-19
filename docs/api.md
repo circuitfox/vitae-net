@@ -77,6 +77,7 @@ Success:
 {
   "status": "success",
   "data": {
+    "medication_id" => "$medication_id",
     "name": "$name",
     "dosage_amount": "$dosage_amount",
     "dosage_unit": "$dosage_unit",
@@ -146,8 +147,7 @@ Failure:
 
 ```json
 {
-  "type": "medication",
-  "code": "$code",
+  "medication_id": "$medication_id"
 }
 ```
 
@@ -159,6 +159,7 @@ Success:
 {
   "status": "success",
   "data": {
+    "medication_id" => "$medication_id",
     "name": "$name",
     "dosage_amount": "$dosage_amount",
     "dosage_unit": "$dosage_unit",
@@ -184,8 +185,7 @@ Failure:
 
 ```json
 {
-  "type": "patient",
-  "code": "$code",
+  "medical_record_number": "$medical_record_number"
 }
 ```
 

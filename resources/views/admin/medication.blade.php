@@ -7,7 +7,9 @@
       @include("partials.medication.header", ["medication" => $medication])
     </div>
     <div class="panel-body">
-      @include("partials.medication.body", ["medication" => $medication])
+      <div class="col-sm-8">
+        @include("partials.medication.body", ["medication" => $medication])
+      </div>
     </div>
   </div>
 </div>

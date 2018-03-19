@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\GeneratesBarcodes;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
+    use GeneratesBarcodes;
+
     public $incrementing = false;
     protected $primaryKey = 'medical_record_number';
     protected $fillable = [
@@ -15,7 +18,7 @@ class Patient extends Model
       'code_status', 'physician', 'room',
     ];
 
-    public const CODE_STATUSES = ['FULL CODE', 'DNR', 'DNI'];
+    const CODE_STATUSES = ['FULL CODE', 'DNR', 'DNI'];
 
     public function labs()
     {
@@ -37,6 +40,11 @@ class Patient extends Model
         return $this->hasMany('\App\Signature', 'medical_record_number');
     }
 
+    public function assessments()
+    {
+        return $this->hasMany('\App\Assessment', 'medical_record_number');
+    }
+
     public function toApiArray()
     {
         return [
@@ -53,5 +61,19 @@ class Patient extends Model
             'physician' => $this->physician,
             'room' => $this->room,
         ];
+    }
+
+    public function generateBarcode()
+    {
+        return $this->generateBarcodeWithFormat('p', $this->medical_record_number);
+    }
+
+    public function generateDownloadButton()
+    {
+        return $this->generateDownloadButtonWithFormat(
+            'p',
+            $this->medical_record_number,
+            $this->first_name . '-' . $this->last_name . '-' . $this->medical_record_number . '.png'
+        );
     }
 }

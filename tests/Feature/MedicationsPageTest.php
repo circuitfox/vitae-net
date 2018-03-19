@@ -109,4 +109,21 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No medications in the database. Add some?</h3>');
         $response->assertSee('<a href="' . route('medications.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>');
     }
+
+    public function testHasBarcode()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertSee('<h5><b><u>Bar Code</u></b></h5>');
+        $response->assertSee($medication->generateBarcode());
+    }
+
+    public function testHasDownloadButton()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertSee($medication->generateDownloadButton());
+    }
 }

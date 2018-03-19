@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\MarEntry;
 use App\Medication;
+use App\Signature;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -449,6 +451,28 @@ class MedicationControllerTest extends TestCase
         $this->assertNull(Medication::find($med1->medication_id));
     }
 
+    public function testDeleteMarEntries()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $marEntry = factory(MarEntry::class)->create();
+        $medication = $marEntry->medication;
+        $response = $this->actingAs($user)->delete('/medications/' . $medication->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($medication->medication_id));
+        $this->assertNull(MarEntry::find($marEntry->id));
+    }
+
+    public function testDeleteSignatures()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $signature = factory(Signature::class)->create();
+        $medication = $signature->medication;
+        $response = $this->actingAs($user)->delete('/medications/' . $medication->medication_id);
+        $response->assertRedirect();
+        $this->assertNull(Medication::find($medication->medication_id));
+        $this->assertNull(Signature::find($signature->id));
+    }
+
     public function testVerify()
     {
         $med = factory(Medication::class)->create();
@@ -483,6 +507,39 @@ class MedicationControllerTest extends TestCase
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
             'dosage_unit' => 'mg',
+        ]);
+        $response->assertStatus(200)->assertJsonStructure([
+            'status',
+            'data',
+        ]);
+        $response->assertJsonFragment(['status' => 'error']);
+    }
+
+    public function testVerifyBarcode()
+    {
+        $med = factory(Medication::class)->create();
+        $response = $this->json('POST', '/api/v2/medications/verify', [
+            'medication_id' => $med->medication_id,
+        ]);
+        $response->assertStatus(200)->assertJson([
+            'status' => 'success',
+            'data' => [
+                'name' => $med->primaryName(),
+                'dosage_amount' => $med->dosage_amount,
+                'dosage_unit' => $med->dosage_unit,
+                'secondary_name' => $med->secondaryName(),
+                'second_amount' => $med->second_amount,
+                'second_unit' => $med->second_unit,
+                'second_type' => $med->second_type,
+                'comments' => $med->comments,
+            ]
+        ]);
+    }
+
+    public function testVerifyBarcodeError()
+    {
+        $response = $this->json('POST', '/api/v2/medications/verify', [
+            'medication_id' => 1,
         ]);
         $response->assertStatus(200)->assertJsonStructure([
             'status',

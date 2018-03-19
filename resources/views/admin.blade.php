@@ -13,6 +13,7 @@
       <p>Administrator options:</p>
       <p><a class="btn btn-primary" href="{{ url('/users') }}">View Users</a>&nbsp;View and edit existing users.</p>
       <p><a class="btn btn-primary" href="{{ url('/users/create') }}">Create User</a>&nbsp;Create new user.</p>
+      <p><a class="btn btn-primary" href="{{ url('/signatures') }}">View Signatures</a>&nbsp;View student medication administration signatures</p>
       <p><a class="btn btn-primary" href="{{ url('/medications') }}">View Medications</a>&nbsp;View and edit existing medications.</p>
       <p><a class="btn btn-primary" href="{{ url('/medications/create') }}">Create Medication</a>&nbsp;Add new medication.</p>
       <p><a class="btn btn-primary" href="{{ url('/medformatter') }}">Format Medication</a>&nbsp;Format medication data for QR/bar code.</p>

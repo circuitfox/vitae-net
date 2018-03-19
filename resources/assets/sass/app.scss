@@ -8,16 +8,6 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-//CSS from resources/views
-table {
-  border: solid 1px lightgrey;
-}
-
-td {
-  border-right: solid 1px lightgrey;
-  border-left: solid 1px lightgrey;
-}
-
 @media (min-width: 768px) {
   .dl-wrap dt {
     width: 200px;
@@ -26,4 +16,17 @@ td {
   .dl-wrap dd {
     margin-left: 220px;
   }
+}
+
+td.non-stat {
+    background-color: $mar-non-stat-bg;
+}
+
+td.stat {
+    background-color: $mar-stat-bg;
+}
+
+td.stat-header {
+    background-color: $mar-stat-header-bg;
+    color: $mar-stat-header-text;
 }

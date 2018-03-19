@@ -23,6 +23,7 @@ class OrdersPageTest extends TestCase
     $response->assertSee('<p>' . $order->patient_id . '</p>');
     $response->assertSee('<h5><b><u>Completed:</u></b></h5>');
     $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') . '</p>');
+    $response->assertSee('<a href="/orders/' . $order->id . '" class="btn btn-default h3">Details</a>');
     $response->assertSee('<a href="/orders/' . $order->id . '/edit" class="btn btn-primary h3">Edit</a>');
     $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#order-delete-modal" data-id="' . $order->id . '">Delete</button');
   }

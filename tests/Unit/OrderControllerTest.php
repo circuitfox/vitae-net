@@ -48,7 +48,7 @@ class OrderControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
             'completed' => false,
         ]);
         $response->assertRedirect();
@@ -76,7 +76,7 @@ class OrderControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
             'completed' => false,
         ]);
         $response->assertRedirect();
@@ -96,7 +96,7 @@ class OrderControllerTest extends TestCase
             'name' => 'test',
             'description' => 'description',
             'patient_id' => $patient1->medical_record_number,
-            'doc' => UploadedFile::fake()->create('test'),
+            'doc' => UploadedFile::fake()->create('test.pdf'),
             'completed' => false,
         ]);
         $response->assertStatus(403);
@@ -258,5 +258,15 @@ class OrderControllerTest extends TestCase
         $response = $this->actingAs($instructor)->delete('/orders/' . $order1->id);
         $response->assertRedirect();
         $this->assertNull(Order::find($order1->id));
+    }
+
+    public function testCompleteOrder()
+    {
+        $user = factory(User::class)->states('student')->create();
+        $order = factory(Order::class)->states('incomplete')->create();
+        $response = $this->actingAs($user)->post('/orders/complete', ['order_id'=>$order->id] );
+        $order = Order::find($order->id);
+        $this->assertNotNull($order);
+        $this->assertEquals(1, $order->completed);
     }
 }

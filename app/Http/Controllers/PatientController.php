@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Lab;
 use App\Order;
 use App\Patient;
+use App\MarEntry;
+use App\Medication;
 use App\Http\Requests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -60,10 +62,20 @@ class PatientController extends Controller
         $patient = Patient::findOrFail($id);
         $labs = Lab::where('patient_id', $patient->medical_record_number)->get();
         $orders = Order::where('patient_id', $patient->medical_record_number)->get();
+        $marEntries = MarEntry::where('medical_record_number', $patient->medical_record_number)->get();
+        list($statMeds, $prescriptions) = $marEntries->partition(function($entry) {
+            return $entry->stat;
+        });
+        $entryMeds = $marEntries->map(function($entry) {
+            return $entry->medication->toMarArray();
+        })->unique();
         return view('admin.patient', [
             'patient' => $patient,
             'labs' => $labs,
             'orders' => $orders,
+            'prescriptions' => $prescriptions,
+            'statMeds' => $statMeds,
+            'meds' => $entryMeds,
         ]);
     }
 
@@ -117,34 +129,28 @@ class PatientController extends Controller
     }
 
     /**
-     * Attempts to verify a patient based on its name, date of birth, and id.
+     * Attempts to verify a patient based on its id.
+     *
+     * This is used for both QR and barcode verification, as QR and barcodes
+     * will both contain the patient's MRN.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function verify(Requests\VerifyPatient $request)
     {
+        // check if MRN is null first, we'll return a special error
+        if ($request->input('medical_record_number') === null) {
+            return response()->json([
+                'status' => 'error',
+                'data' => 'Missing MRN for this patient',
+            ]);
+        }
         try {
-            // Because of how codes scan, the verification routine must do the
-            // following:
-            // - If we have an MRN, search using that only; if it's in the
-            //   database, we'll get a match
-            // - Otherwise, search using the first and last names and the date
-            //   of birth. The first and last names might not be in order,
-            //   though, so we'll check both ways.
-            $patient = Patient::when($request->input('medical_record_number'), function($query) use ($request) {
-                return $query->where('medical_record_number', $request->input('medical_record_number'));
-            }, function ($query) use ($request) {
-                return $query->where([
-                    'first_name' => $request->input('first_name'),
-                    'last_name' => $request->input('last_name'),
-                    'date_of_birth' => $request->input('date_of_birth')
-                ])->orWhere([
-                    'first_name' => $request->input('last_name'),
-                    'last_name' => $request->input('first_name'),
-                    'date_of_birth' => $request->input('date_of_birth')
-                ]);
-            })->firstOrFail();
+            // Just look with the MRN; if it's there we get a match, if it
+            // isn't then the code was bad or the patient isn't there.
+            $patient = Patient::where('medical_record_number',
+                $request->input('medical_record_number'))->firstOrFail();
             return response()->json([
                 'status' => 'success',
                 'data' => $patient->toApiArray()
