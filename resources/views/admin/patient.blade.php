@@ -65,4 +65,8 @@
   "statMeds" => $statMeds,
   "meds" => $meds,
 ])
+@include("partials.assessment", [
+  "medical_record_number" => $patient->medical_record_number,
+  "assessment" => $assessment,
+])
 @endsection
