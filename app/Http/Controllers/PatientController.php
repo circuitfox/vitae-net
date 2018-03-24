@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Assessment;
 use App\Lab;
 use App\Order;
 use App\Patient;
@@ -69,6 +70,10 @@ class PatientController extends Controller
         $entryMeds = $marEntries->map(function($entry) {
             return $entry->medication->toMarArray();
         })->unique();
+        $assessment = ['id' => 0];
+        if (session('assessment') !== null) {
+            $assessment = Assessment::find(session('assessment'));
+        }
         return view('admin.patient', [
             'patient' => $patient,
             'labs' => $labs,
@@ -76,6 +81,7 @@ class PatientController extends Controller
             'prescriptions' => $prescriptions,
             'statMeds' => $statMeds,
             'meds' => $entryMeds,
+            'assessment' => $assessment,
         ]);
     }
 

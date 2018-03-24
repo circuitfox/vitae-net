@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\MarEntry;
 use App\Patient;
 use App\Signature;
+use App\Assessment;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -156,6 +157,16 @@ class PatientControllerTest extends TestCase
         $response = $this->actingAs($user)->delete('/patients/' . $patient->medical_record_number);
         $this->assertNull(Patient::find($patient->medical_record_number));
         $this->assertNull(Signature::find($signature->id));
+    }
+
+    public function testDeleteAssessments()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $assessment = factory(Assessment::class)->create();
+        $patient = $assessment->patient;
+        $response = $this->actingAs($user)->delete('/patients/' . $patient->medical_record_number);
+        $this->assertNull(Patient::find($patient->medical_record_number));
+        $this->assertNull(Assessment::find($assessment->id));
     }
 
     public function testVerifyWithMRN()
