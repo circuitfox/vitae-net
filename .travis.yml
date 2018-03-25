@@ -1,6 +1,8 @@
 language: php
 php:
 - 7.1
+before_install:
+- nvm install node
 before_script:
 - chmod -R 777 bootstrap/cache
 - chmod -R 777 storage
@@ -8,9 +10,11 @@ before_script:
 - mysql -e 'create database testing;'
 - composer self-update
 - composer install --no-interaction
+- npm install
 - php artisan key:generate
 script:
 - vendor/bin/phpunit
+- npm run test
 deploy:
   provider: script
   script: bash scripts/travis-deploy.sh
