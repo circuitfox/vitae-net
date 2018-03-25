@@ -121,6 +121,7 @@ function onScanComplete($, barcode, qty) {
         }
     } else {
         showAlert('Scanning failed. Unknown code format');
+        console.error(obj.error);
         console.log(barcode);
         console.log(obj);
     }
