@@ -35,7 +35,7 @@ class CreateAssessmentsTable extends Migration
             $table->string('orientation')->nullable();
             $table->string('speech')->nullable();
             $table->string('behavior')->nullable();
-            $table->string('memory')->nullabe();
+            $table->string('memory')->nullable();
             $table->string('pupillary')->nullable();
             $table->string('pain')->nullable();
             $table->string('skincolor')->nullable();
@@ -71,7 +71,8 @@ class CreateAssessmentsTable extends Migration
             //keys
             $table->foreign('medical_record_number')
                 ->references('medical_record_number')
-                ->on('patients');
+                ->on('patients')
+                ->onDelete('cascade');
         });
     }
 
