@@ -17,3 +17,9 @@ $factory->define(App\MarEntry::class, function (Faker $faker) {
       'given_at' => $faker->numberBetween($min = 1, $max = 8191),
     ];
 });
+
+$factory->state(App\MarEntry::class, 'stat', function (Faker $faker) {
+    return [
+      'stat' => true,
+    ];
+});

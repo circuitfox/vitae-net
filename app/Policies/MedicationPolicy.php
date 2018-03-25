@@ -24,7 +24,7 @@ class MedicationPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can update models.
      *
      * An instructor or admin can update medications.
      *
@@ -38,7 +38,7 @@ class MedicationPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can delete models.
      *
      * An instructor or admin can delete medications.
      *
