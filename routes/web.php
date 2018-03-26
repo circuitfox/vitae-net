@@ -60,3 +60,11 @@ Route::middleware('auth')->resource('mars', 'MarEntryController', ['only' => [
 Route::middleware('auth')
     ->get('/mars/create/{medical_record_number}', 'MarEntryController@create')
     ->name('mars.create');
+
+Route::middleware('auth')
+    ->get('/assessments/{medical_record_number}', 'AssessmentController@index')
+    ->name('assessments');
+
+Route::middleware('auth')
+    ->post('/assessments/update/', 'AssessmentController@update')
+    ->name('assessments.update');

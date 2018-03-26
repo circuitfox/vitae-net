@@ -10,9 +10,9 @@
     @else
       <div class="panel-body">
         <assessment-form id="assessment-form"
-            :assessment="{{ is_null($assessment) ? json_encode(['id' => 0,]) : json_encode($assessment) }}"
+            :assessment="{{ json_encode($assessment) }}"
             mrn = "{{ $medical_record_number }}"
-            route = "{{ route('assessments.update', ['id' => is_null($assessment) ? 0 : $assessment->id]) }}">
+            route = "{{ route('assessments.update') }}">
         </assessment-form>
       </div>
     @endif

@@ -21,28 +21,26 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<a class="btn btn-primary h3" href="' . route('patients.edit', ['id' => $patient->medical_record_number]) . '">Edit</a>');
         $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#patient-delete-modal" data-id="' . $patient->medical_record_number . '">Delete</button>');
         $response->assertSee('<h3>' . $this->faker_escape($patient->first_name . ' ' . $patient->last_name) . '</h3>');
-        $response->assertSee('<h5><b><u>First Name:</u></b></h5>');
-        $response->assertSee('<p>' . $this->faker_escape($patient->first_name) . '</p>');
-        $response->assertSee('<h5><b><u>Last Name:</u></b></h5>');
-        $response->assertSee('<p>' . $this->faker_escape($patient->last_name) . '</p>');
+        $response->assertSee('<h5><b><u>Name:</u></b></h5>');
+        $response->assertSee($this->faker_escape($patient->first_name . ' ' . $patient->last_name));
         $response->assertSee('<h5><b><u>Date Of Birth:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->date_of_birth . '</p>');
+        $response->assertSee($patient->date_of_birth);
         $response->assertSee('<h5><b><u>Sex:</u></b></h5>');
-        $response->assertSee('<p>' . ($patient->sex ? 'Male' : 'Female') . '</p>');
+        $response->assertSee(($patient->sex ? 'Male' : 'Female'));
         $response->assertSee('<h5><b><u>Height:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->height . '</p>');
+        $response->assertSee($patient->height);
         $response->assertSee('<h5><b><u>Weight:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->weight . '</p>');
+        $response->assertSee($patient->weight);
         $response->assertSee('<h5><b><u>Diagnosis:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->diagnosis . '</p>');
+        $response->assertSee($patient->diagnosis);
         $response->assertSee('<h5><b><u>Allergies:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->allergies . '</p>');
+        $response->assertSee($patient->allergies);
         $response->assertSee('<h5><b><u>Code Status:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->code_status . '</p>');
+        $response->assertSee($patient->code_status);
         $response->assertSee('<h5><b><u>Physician:</u></b></h5>');
-        $response->assertSee('<p>' . $this->faker_escape($patient->physician) . '</p>');
+        $response->assertSee($this->faker_escape($patient->physician));
         $response->assertSee('<h5><b><u>Room:</u></b></h5>');
-        $response->assertSee('<p>' . $patient->room . '</p>');
+        $response->assertSee($patient->room);
     }
 
     public function testHasModal()
