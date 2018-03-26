@@ -81,12 +81,6 @@
     </div>
   </div>
 </div>
-@include("partials.mar", [
-  "medical_record_number" => $patient->medical_record_number,
-  "prescriptions" => $prescriptions,
-  "statMeds" => $statMeds,
-  "meds" => $meds,
-])
 @include("partials.assessment", [
   "medical_record_number" => $patient->medical_record_number,
   "assessment" => $assessment,
