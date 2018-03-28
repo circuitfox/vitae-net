@@ -13,10 +13,10 @@ require('./patientformatter');
 
 // Scanner start character. One byte. The prefix character that the scanner
 // is configured to use
-const START_CHAR = 0x02;
+const START_CHAR = 0x1c;
 // Scanner end character. One byte. The suffix character that the scanner
 // is configured to use
-const END_CHAR = 0x03;
+const END_CHAR = 0x1d;
 
 window.Vue = require('vue');
 
