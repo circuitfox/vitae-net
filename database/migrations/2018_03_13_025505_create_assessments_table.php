@@ -23,7 +23,7 @@ class CreateAssessmentsTable extends Migration
             $table->string('end_time');
             $table->integer('medical_record_number');
             $table->string('reason');
-            $table->integer('temperature');
+            $table->decimal('temperature', 3, 2);
             $table->integer('bp_over');
             $table->integer('bp_under');
             $table->integer('apical_pulse');
