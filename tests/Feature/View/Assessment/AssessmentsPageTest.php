@@ -117,3 +117,5 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<p>'. $assessment->activity .'</p>');
 
   }
+
+}
