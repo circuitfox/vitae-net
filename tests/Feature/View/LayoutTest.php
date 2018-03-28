@@ -35,40 +35,6 @@ class LayoutTest extends TestCase
         $response_nologin->assertSee('<img src="' . asset("images/logo.png") . '" alt="Vitae NET logo" height="45" />');
     }
 
-    public function testHasLogin()
-    {
-        $response = $this->get('/');
-        $response->assertSee(
-            '<form class="navbar-form navbar-right" id="login-form" action="' .
-            route('login') .
-            '" method="POST">'
-        );
-    }
-
-    public function testHasLoginAuthed()
-    {
-        $user = factory(\App\User::class)->create();
-        $response = $this->actingAs($user)->get('/');
-        $response->assertDontSee(
-            '<form class="navbar-form navbar-right" id="login-form" action="' .
-            route('login') .
-            '" method="POST">'
-        );
-        $response->assertSee('<a class="navbar-link" href="' . url('/users/' . $user->id . '/edit') . '">Settings</a>');
-        $response->assertSee('<a class="navbar-link" href="' . url('/home') . '">' . $this->faker_escape($user->name) . '</a>');
-        $response->assertSee('<a class="navbar-link" href="' . url('/logout') . '">Logout</a>');
-    }
-
-    public function testHasNoLogin()
-    {
-        $response = $this->get('/login');
-        $response->assertDontSee(
-            '<form class="navbar-form navbar-right" id="login-form" action="' .
-            route('login') .
-            '" method="POST">'
-        );
-    }
-
     public function testHasLinksAuthed()
     {
         $user = factory(\App\User::class)->create();
