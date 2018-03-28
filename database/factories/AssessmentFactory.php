@@ -14,7 +14,7 @@ $factory->define(App\Assessment::class, function (Faker $faker) {
           return factory(App\Patient::class)->create()->medical_record_number;
       },
       'reason' => $faker->sentence,
-      'temperature' => $faker->randomNumber,
+      'temperature' => $faker->randomFloat(2, 0, 999),
       'bp_over' => $faker->randomNumber,
       'bp_under' => $faker->randomNumber,
       'apical_pulse' => $faker->randomNumber,
