@@ -5,7 +5,7 @@
   <? $patients = App\Patient::all(); ?>
   @if ($patients->isEmpty())
     <div class="row">
-      <h3 class="col-md-offset-2 col-md-8 text-center">No patients in the database. Add some?</h3>
+      <h3 class="col-md-offset-1 col-md-10 text-center">No patients in the database. Add some?</h3>
     </div>
     <a href="{{ route('patients.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>
   @else
@@ -32,15 +32,21 @@
         </div>
         <div id="patient{{ $patient->medical_record_number }}" class="panel-collapse collapse" role="tabpanel">
           <div class="panel-body">
-            <div class="col-sm-4">
-              @include("partials/patient/body", ["patient" => $patient])
+            <div class="row">
+              <div class="col-md-12">
+                @include("partials/patient/body", ["patient" => $patient])
+              </div>
             </div>
-            <div class="col-sm-4">
-              <h5><b><u>Bar Code</u></b></h5>
-              <?php echo $patient->generateBarcode() ?> 
+            <div class="row">
+              <div class="col-sm-8">
+                <h5><b><u>Bar Code</u></b></h5>
+                <?php echo $patient->generateBarcode(); ?>
+              </div>
             </div>
-            <div class="btn-toolbar col-sm-4" style="margin-left:0px;">
-              <?php echo $patient->generateDownloadButton() ?>
+            <div class="row">
+              <div class="col-sm-4" style="margin-top:10px;">
+                  <?php echo $patient->generateDownloadButton(); ?>
+              </div>
             </div>
           </div>
         </div>
