@@ -32,7 +32,7 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<h5><b><u>Blood pressure:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->bp_over . ' / ' . $assessment->bp_under .'</p>');
     $response->assertSee('<h5><b><u>Automatic:</u></b></h5>');
-    $response->assertSee('<p>'. $assessment->automatic ? 'Yes' : 'No' .'</p>'); ///// change this
+    $response->assertSee('<p>'. ($assessment->automatic ? 'Yes': 'No') .'</p>');
     $response->assertSee('<h5><b><u>Apical pulse:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->apical_pulse .'</p>');
     $response->assertSee('<h5><b><u>Respiration:</u></b></h5>');

@@ -144,6 +144,6 @@ class PatientPageTest extends TestCase
         $response->assertSee('<assessment-form id="assessment-form"');
         $response->assertSee(':assessment="' . $this->faker_escape(json_encode($assessment)) . '"');
         $response->assertSee('mrn = "' . $patient->medical_record_number . '"');
-        $response->assertSee('route="' . route('assessments.update') . '">');
+        $response->assertSee('route = "' . route('assessments.update') . '">');
     }
 }
