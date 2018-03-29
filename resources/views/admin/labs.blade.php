@@ -4,10 +4,16 @@
 <div class="container col-md-8 col-md-offset-2">
   <? $labs = App\Lab::all(); ?>
   @if ($labs->isEmpty())
-    <div class="row">
-      <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database. Add some?</h3>
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <div class="row">
+          <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database. Add some?</h3>
+        </div>
+      </div>
+      <div class="panel-body">
+        <a href="{{ route('labs.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>
+      </div>
     </div>
-    <a href="{{ route('labs.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>
   @else
     <div class="panel-group" id="labs" role="tablist">
       @foreach ($labs as $lab)
