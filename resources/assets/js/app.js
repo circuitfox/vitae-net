@@ -56,6 +56,13 @@ const marEntry = new Vue({
     }
 });
 
+const assessmentForm = new Vue({
+    el: '#assessment-form',
+    components: {
+        'assessment-form': require('./components/AssessmentForm.vue')
+    }
+});
+
 function showAlert(message) {
     $('#scan-error-alert').html(`
     <div class="alert alert-danger alert-dismissable">

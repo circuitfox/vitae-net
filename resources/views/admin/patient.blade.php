@@ -81,4 +81,8 @@
     </div>
   </div>
 </div>
+@include("partials.assessment", [
+  "medical_record_number" => $patient->medical_record_number,
+  "assessment" => $assessment,
+])
 @endsection
