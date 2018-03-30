@@ -11,7 +11,7 @@
 <h5><b><u>Reason for admission:</u></b></h5>
 <p>{{ $assessment['reason'] }}</p>
 <h5><b><u>Temperature:</u></b></h5>
-<p>{{ $assessment['temperature'] }}</p>
+<p>{{ number_format($assessment['temperature'], 2) }}</p>
 <h5><b><u>Blood pressure:</u></b></h5>
 <p>{{ $assessment['bp_over'] }} / {{ $assessment['bp_under'] }}</p>
 <h5><b><u>Automatic:</u></b></h5>
