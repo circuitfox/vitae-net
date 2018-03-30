@@ -4,10 +4,16 @@
 <div class="container col-md-8 col-md-offset-2">
   <? $medications = App\Medication::all(); ?>
   @if ($medications->isEmpty())
-    <div class="row">
-      <h3 class="col-md-offset-2 col-md-8 text-center">No medications in the database. Add some?</h3>
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <div class="row">
+          <h3 class="col-md-offset-2 col-md-8 text-center">No medications in the database. Add some?</h3>
+        </div>
+      </div>
+      <div class="panel-body">
+        <a href="{{ route('medications.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>
+      </div>
     </div>
-    <a href="{{ route('medications.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>
   @else
     <div class="panel-group" id="medications" role="tablist">
       @foreach ($medications as $medication)
@@ -27,15 +33,21 @@
           </div>
           <div id="medication{{ $medication->medication_id }}" class="panel-collapse collapse" role="tabpanel">
             <div class="panel-body">
-              <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-12">
                 @include("partials.medication.body", ["medciation" => $medication])
               </div>
-              <div class="col-sm-4">
-                <h5><b><u>Bar Code</u></b></h5>
-                <?php echo $medication->generateBarcode() ?>
               </div>
-              <div class="btn-toolbar col-sm-4" style="margin-left:0px;">
-                <?php echo $medication->generateDownloadButton() ?>
+              <div class="row">
+                <div class="col-sm-8">
+                  <h5><b><u>Bar Code</u></b></h5>
+                  <?php echo $medication->generateBarcode(); ?>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4" style="margin-top:10px;">
+                    <?php echo $medication->generateDownloadButton(); ?>
+                </div>
               </div>
             </div>
           </div>

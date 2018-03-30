@@ -24,7 +24,7 @@ class MarEntryPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can update models.
      *
      * An instructor or admin can update MAR entries.
      *

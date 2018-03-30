@@ -13,10 +13,10 @@ require('./patientformatter');
 
 // Scanner start character. One byte. The prefix character that the scanner
 // is configured to use
-const START_CHAR = 0x02;
+const START_CHAR = 0x1c;
 // Scanner end character. One byte. The suffix character that the scanner
 // is configured to use
-const END_CHAR = 0x03;
+const END_CHAR = 0x1d;
 
 window.Vue = require('vue');
 
@@ -53,6 +53,13 @@ const marEntry = new Vue({
     el: '#mar',
     components: {
         'mar-entry': require('./components/MarEntry.vue')
+    }
+});
+
+const assessmentForm = new Vue({
+    el: '#assessment-form',
+    components: {
+        'assessment-form': require('./components/AssessmentForm.vue')
     }
 });
 
@@ -121,6 +128,7 @@ function onScanComplete($, barcode, qty) {
         }
     } else {
         showAlert('Scanning failed. Unknown code format');
+        console.error(obj.error);
         console.log(barcode);
         console.log(obj);
     }

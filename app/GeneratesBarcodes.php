@@ -36,7 +36,7 @@ trait GeneratesBarcodes
         $generator = new BarcodeGeneratorPNG();
         $patcode = $type . ' ' . $id;
         $barcode = base64_encode($generator->getBarcode($patcode, $generator::TYPE_CODE_128));
-        return  '<a type="button" class="btn btn-primary" id="download" href="data:image/png;base64,' 
-            . $barcode . '" download="' . $fileName . '.png">Download Bar Code</a>';
+        return  '<a type="button" class="btn btn-primary" id="download"'
+            . 'href="data:image/png;base64,' . $barcode . '" download="' . $fileName . '.png">Download Bar Code</a>';
     }
 }
