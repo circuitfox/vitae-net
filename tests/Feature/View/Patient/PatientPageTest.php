@@ -45,6 +45,8 @@ class PatientPageTest extends TestCase
         $response->assertSee('<div id="mar" class="col-md-offset-1 col-md-10">');
         $response->assertSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
         $response->assertSee('<h5 class="text-center text-muted">No entries in the MAR</h5>');
+        $response->assertSee('<div id="assessment" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<a class="btn btn-success h3" href="/assessments/' . $patient->medical_record_number . '">View Assessments</a>');
     }
 
     public function testCanEditMAR() {
@@ -130,5 +132,19 @@ class PatientPageTest extends TestCase
         $response->assertSee(':mar-entry="' . $this->faker_escape($marEntry->toJsonArray()) . '"');
         $response->assertSee(':is-admin="' . $this->faker_escape(json_encode($user->isAdmin())) . '"');
         $response->assertSee('route="' . route('mars.update', ['id' => $marEntry->id]) . '">');
+    }
+
+    public function testHasAssessmentForm()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $assessment = ['id' => 0];
+        $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
+        $response->assertSee('<div id="assessment" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<assessment-form id="assessment-form"');
+        $response->assertSee(':assessment="' . $this->faker_escape(json_encode($assessment)) . '"');
+        $response->assertSee(':errors="' . $this->faker_escape(json_encode([])) . '"');
+        $response->assertSee('mrn="' . $patient->medical_record_number . '"');
+        $response->assertSee('route="' . route('assessments.update') . '">');
     }
 }
