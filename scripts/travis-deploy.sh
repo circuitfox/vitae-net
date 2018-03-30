@@ -2,6 +2,9 @@
 # exit on error and log everything
 set -ev
 
+# regenerate js files after testing
+npm run prod
+
 # decrypt our ssh key
 openssl aes-256-cbc \
     -K $encrypted_c1928afcd687_key -iv $encrypted_c1928afcd687_iv \
