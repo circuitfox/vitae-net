@@ -25,8 +25,8 @@ class CreateMarEntry extends FormRequest
     public function rules()
     {
         return [
-            'mars.*.medication_id' => 'required|integer|exists:medication,medication_id',
-            'mars.*.medical_record_number' => 'required|integer|exists:patient,medical_record_number',
+            'mars.*.medication_id' => 'required|integer|exists:medications,medication_id',
+            'mars.*.medical_record_number' => 'required|integer|exists:patients,medical_record_number',
             'mars.*.stat' => 'boolean|nullable',           
             'mars.*.instructions' => 'required|string',
             'mars.*.given_at.*' => 'boolean|nullable',

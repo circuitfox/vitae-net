@@ -115,6 +115,17 @@ class SignatureControllerTest extends TestCase
         $this->assertNull($signature);
     }
 
+    public function testDeleteEmpty()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $signature = factory(Signature::class)->create();
+        $response = $this->actingAs($admin)->post('/signatures/delete', [
+        ]);
+        $response->assertRedirect();
+        $signature = Signature::find($signature->id);
+        $this->assertNotNull($signature);
+    }
+
     public function testDeleteInstructorOrAdmin()
     {
         $instructor = factory(User::class)->states('instructor')->create();
