@@ -8,303 +8,456 @@
         <label class="col-md-4 control-label" for="student_name">Name:</label>
         <div class="col-md-6">
           <input class="form-control" type="text" name="student_name" :value="assessment.student_name" required>
+          <span class="help-block" v-if="errors['student_name']">
+            {{ errors['student_name'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="date">Date:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="date" name="date" :value="assessment.date" required>
+          <span class="help-block" v-if="errors['date']">
+            {{ errors['date'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="start_time">Start time:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="start_time" :value="assessment.start_time" required>
+          <span class="help-block" v-if="errors['start_time']">
+            {{ errors['start_time'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="end_time">End time:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="end_time" :value="assessment.end_time" required>
+          <span class="help-block" v-if="errors['end_time']">
+            {{ errors['end_time'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="medical_record_number">Patient MRN:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="medical_record_number" :value="mrn" required>
+          <span class="help-block" v-if="errors['medical_record_number']">
+            {{ errors['medical_record_number'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="reason">Reason for admission:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="reason" :value="assessment.reason" required>
+          <span class="help-block" v-if="errors['reason']">
+            {{ errors['reason'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="temperature">Temperature:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="temperature" :value="assessment.temperature" required>
+          <span class="help-block" v-if="errors['temperature']">
+            {{ errors['temperature'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="bp_over">Blood pressure:</label>
         <div class="col-md-1">
           <input class="form-control" :form="assessment" type="text" name="bp_over" :value="assessment.bp_over" required>
+          <span class="help-block" v-if="errors['bp_over']">
+            {{ errors['bp_over'][0] }}
+          </span>
         </div>
         <label class="col-md-1 control-label" for="bp_under" style="text-align:center;">/</label>
         <div class="col-md-1">
           <input class="form-control" :form="assessment" type="text" name="bp_under" :value="assessment.bp_under" required>
+          <span class="help-block" v-if="errors['bp_under']">
+            {{ errors['bp_under'][0] }}
+          </span>
         </div>
         <div class="col-md-1">
           <label class="form-check-label" for="automatic">
             <input class="form-check-input" type="checkbox" name="automatic" value=1>Automatic?
           </label>
+          <span class="help-block" v-if="errors['automatic']">
+            {{ errors['automatic'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="apical_pulse">Apical pulse:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="apical_pulse" :value="assessment.apical_pulse" required>
+          <span class="help-block" v-if="errors['apical_pulse']">
+            {{ errors['apical_pulse'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="respiration">Respiration:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="respiration" :value="assessment.respiration" required>
+          <span class="help-block" v-if="errors['registration']">
+            {{ errors['registration'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="oximetry">Pulse oximetry:</label>
         <div class="col-md-3">
           <input class="form-control" :form="assessment" type="text" name="oximetry" :value="assessment.oximetry" required>
+          <span class="help-block" v-if="errors['oximetry']">
+            {{ errors['oximetry'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="allergies">Allergies:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="allergies" :value="assessment.allergies">
+          <span class="help-block" v-if="errors['allergies']">
+            {{ errors['allergies'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="loc">LOC:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="loc" :value="assessment.loc">
+          <span class="help-block" v-if="errors['loc']">
+            {{ errors['loc'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="orientation">Orientation:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="orientation" :value="assessment.orientation">
+          <span class="help-block" v-if="errors['orientation']">
+            {{ errors['orientation'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="speech">Speech:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="speech" :value="assessment.speech">
+          <span class="help-block" v-if="errors['speech']">
+            {{ errors['speech'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="behavior">Behavior/Mood/Affect:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="behavior" :value="assessment.behavior">
+          <span class="help-block" v-if="errors['behavior']">
+            {{ errors['behavior'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="memory">Memory:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="memory" :value="assessment.memory">
+          <span class="help-block" v-if="errors['memory']">
+            {{ errors['memory'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="pupillary">Pupillary response:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="pupillary" :value="assessment.pupillary">
+          <span class="help-block" v-if="errors['pupillary']">
+            {{ errors['pupillary'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="pain">Pain assessment/characteristics:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="pain" :value="assessment.pain">
+          <span class="help-block" v-if="errors['pain']">
+            {{ errors['pain'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="skincolor">Skin color:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="skincolor" :value="assessment.skincolor">
+          <span class="help-block" v-if="errors['skincolor']">
+            {{ errors['skincolor'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="skintemp">Skin temp/moisture:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="skintemp" :value="assessment.skintemp">
+          <span class="help-block" v-if="errors['skintemp']">
+            {{ errors['skintemp'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="hydration">Hydration/Turgor:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="hydration" :value="assessment.hydration">
+          <span class="help-block" v-if="errors['hydration']">
+            {{ errors['hydration'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="integrity">Skin integrity:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="integrity" :value="assessment.integrity">
+          <span class="help-block" v-if="errors['integrity']">
+            {{ errors['integrity'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="dressings">Dressings/Wounds:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="dressings" :value="assessment.dressings">
+          <span class="help-block" v-if="errors['dressings']">
+            {{ errors['dressings'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="ivsite">IV site(s)/Dressing, Saline lock or Continuous:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="ivsite" :value="assessment.ivsite">
+          <span class="help-block" v-if="errors['ivsite']">
+            {{ errors['ivsite'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="centrallines">Central lines/dressing:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="centrallines" :value="assessment.centrallines">
+          <span class="help-block" v-if="errors['centrallines']">
+            {{ errors['centrallines'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="heartrhythm">Heart Rhythm:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="heartrhythm" :value="assessment.heartrhythm">
+          <span class="help-block" v-if="errors['heartrhythm']">
+            {{ errors['heartrhythm'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="radial">Radial pulses (Rt. and Lt.):</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="radial" :value="assessment.radial">
+          <span class="help-block" v-if="errors['radial']">
+            {{ errors['radial'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="capillary">Capillary refill:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="capillary" :value="assessment.capillary">
+          <span class="help-block" v-if="errors['capillary']">
+            {{ errors['capillary'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="upper">Temperature/color of upper extremities:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="upper" :value="assessment.upper">
+          <span class="help-block" v-if="errors['upper']">
+            {{ errors['upper'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="breathrhythm">Breath sounds/rhythm:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="breathrhythm" :value="assessment.breathrhythm">
+          <span class="help-block" v-if="errors['breathrhythm']">
+            {{ errors['breathrhythm'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="cough">Breath sounds/cough:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="cough" :value="assessment.cough">
+          <span class="help-block" v-if="errors['cough']">
+            {{ errors['cough'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="secretions">Secretions/Sputum/Color:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="secretions" :value="assessment.secretions">
+          <span class="help-block" v-if="errors['secretions']">
+            {{ errors['secretions'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="roomair">Room air (or describe supplemental oxygen):</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="roomair" :value="assessment.roomair">
+          <span class="help-block" v-if="errors['roomair']">
+            {{ errors['roomair'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="nausea">Nausea/Vomiting/Tolerate Diet:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="nausea" :value="assessment.nausea">
+          <span class="help-block" v-if="errors['nausea']">
+            {{ errors['nausea'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="abdomen">Appearance of abdomen:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="abdomen" :value="assessment.abdomen">
+          <span class="help-block" v-if="errors['abdomen']">
+            {{ errors['abdomen'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="bowel">Bowel sounds:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="bowel" :value="assessment.bowel">
+          <span class="help-block" v-if="errors['bowel']">
+            {{ errors['bowel'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="stool">Stool characteristics/date of last BM:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="stool" :value="assessment.stool">
+          <span class="help-block" v-if="errors['stool']">
+            {{ errors['stool'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="tubefeeding">Tube feedings/Ostomy:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="tubefeeding" :value="assessment.tubefeeding">
+          <span class="help-block" v-if="errors['tubefeeding']">
+            {{ errors['tubefeeding'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="genitourinary">Continent/Incontinent/Foley, describe urine characteristics:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="genitourinary" :value="assessment.genitourinary">
+          <span class="help-block" v-if="errors['genitourinary']">
+            {{ errors['genitourinary'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="motion">Range of motion/mobility:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="motion" :value="assessment.motion">
+          <span class="help-block" v-if="errors['motion']">
+            {{ errors['motion'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="muscle">Muscle mass/strength:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="muscle" :value="assessment.muscle">
+          <span class="help-block" v-if="errors['muscle']">
+            {{ errors['muscle'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="pedal">Pedal pulses (Rt. and Lt.), D.P. and/or P.T., Femoral if applicable:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="pedal" :value="assessment.pedal">
+          <span class="help-block" v-if="errors['pedal']">
+            {{ errors['pedal'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="lower">Temp/color of lower extremities:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="lower" :value="assessment.lower">
+          <span class="help-block" v-if="errors['lower']">
+            {{ errors['lower'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="peripheral">Peripheral edema/Calf tenderness/pain/erythema:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="peripheral" :value="assessment.peripheral">
+          <span class="help-block" v-if="errors['peripheral']">
+            {{ errors['peripheral'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="ted">TED hose/SCD's:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="ted" :value="assessment.ted">
+          <span class="help-block" v-if="errors['ted']">
+            {{ errors['ted'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="restraints">Restraints/Casts:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="restraints" :value="assessment.restraints">
+          <span class="help-block" v-if="errors['restraints']">
+            {{ errors['restraints'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="drainage">Drainage/Drains:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="drainage" :value="assessment.drainage">
+          <span class="help-block" v-if="errors['drainage']">
+            {{ errors['drainage'][0] }}
+          </span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4 control-label" for="activity">Activity-Bedrest/BRP/up with/without assistance:</label>
         <div class="col-md-6">
           <input class="form-control" :form="assessment" type="text" name="activity" :value="assessment.activity">
+          <span class="help-block" v-if="errors['activity']">
+            {{ errors['activity'][0] }}
+          </span>
         </div>
       </div>
       <button :form="assessment" class="col-md-offset-6 col-md-3 btn btn-primary" type="submit">Submit</button>
@@ -524,6 +677,10 @@
             assessment: {
                 type: Object,
                 required: true,
+            },
+            errors: {
+                type: Object,
+                default: {},
             },
             mrn: {
                 type: String,

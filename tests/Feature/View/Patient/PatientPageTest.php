@@ -143,7 +143,8 @@ class PatientPageTest extends TestCase
         $response->assertSee('<div id="assessment" class="col-md-offset-1 col-md-10">');
         $response->assertSee('<assessment-form id="assessment-form"');
         $response->assertSee(':assessment="' . $this->faker_escape(json_encode($assessment)) . '"');
-        $response->assertSee('mrn = "' . $patient->medical_record_number . '"');
-        $response->assertSee('route = "' . route('assessments.update') . '">');
+        $response->assertSee(':errors="' . $this->faker_escape(json_encode([])) . '"');
+        $response->assertSee('mrn="' . $patient->medical_record_number . '"');
+        $response->assertSee('route="' . route('assessments.update') . '">');
     }
 }

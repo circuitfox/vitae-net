@@ -115,7 +115,5 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<p>'. $assessment->drainage .'</p>');
     $response->assertSee('<h5><b><u>Activity-Bedrest/BRP/up with/without assistance:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->activity .'</p>');
-
   }
-
 }
