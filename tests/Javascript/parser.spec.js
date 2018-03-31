@@ -29,38 +29,38 @@ describe('parser.parse', () => {
         expect(obj.code).toEqual('');
     });
 
-    describe('should not parse codes', () => {
-        it('with bad start characters', () => {
-            let badStart = parse('\x03p 123', 0x02, 0x03);
-            let badStartGoodEnd = parse('\x04p 123\x03', 0x02, 0x03);
-            let badStartBadEnd = parse('\x03p 123\x04', 0x02, 0x03);
-            expect(badStart.type).toEqual('');
-            expect(badStart.data).toEqual({});
-            expect(badStart.code).toEqual('');
-            expect(badStart.error).toMatch('failed to match code. bad start or end characters?');
-            expect(badStartGoodEnd.type).toEqual('');
-            expect(badStartGoodEnd.data).toEqual({});
-            expect(badStartGoodEnd.code).toEqual('');
-            expect(badStartGoodEnd.error).toMatch('failed to match code. bad start or end characters?');
-            expect(badStartBadEnd.type).toEqual('');
-            expect(badStartBadEnd.data).toEqual({});
-            expect(badStartBadEnd.code).toEqual('');
-            expect(badStartBadEnd.error).toMatch('failed to match code. bad start or end characters?');
-        });
+    it('should return an empty object with a string containing start and end characters > 0x10', () => {
+        let obj = parse('\x1c', 0x1c, 0x1d);
+        expect(obj.type).toEqual('');
+        expect(obj.data).toEqual({});
+        expect(obj.code).toEqual('');
+        
+        obj = parse('\x1d', 0x1c, 0x1d);
+        expect(obj.type).toEqual('');
+        expect(obj.data).toEqual({});
+        expect(obj.code).toEqual('');
 
-        it('with bad end characters', () => {
-            let badEnd = parse('p 123\x04', 0x02, 0x03);
-            let goodStartBadEnd = parse('\x02p 123\x04', 0x02, 0x03);
-            expect(badEnd.type).toEqual('');
-            expect(badEnd.data).toEqual({});
-            expect(badEnd.code).toEqual('');
-            expect(badEnd.error).toMatch('failed to match code. bad start or end characters?');
-            expect(goodStartBadEnd.error).toMatch('failed to match code. bad start or end characters?');
-            expect(goodStartBadEnd.type).toEqual('');
-            expect(goodStartBadEnd.data).toEqual({});
-            expect(goodStartBadEnd.code).toEqual('');
-            expect(goodStartBadEnd.error).toMatch('failed to match code. bad start or end characters?');
-        });
+        obj = parse('\x1c\x1d', 0x1c, 0x1d);
+        expect(obj.type).toEqual('');
+        expect(obj.data).toEqual({});
+        expect(obj.code).toEqual('');
+    });
+
+    it('should return an empty object with a string containing start and end characters in the printable ascii range', () => {
+        let obj = parse('`', 0x60, 0x7e);
+        expect(obj.type).toEqual('');
+        expect(obj.data).toEqual({});
+        expect(obj.code).toEqual('');
+        
+        obj = parse('~', 0x60, 0x7e);
+        expect(obj.type).toEqual('');
+        expect(obj.data).toEqual({});
+        expect(obj.code).toEqual('');
+
+        obj = parse('`~', 0x60, 0x7e);
+        expect(obj.type).toEqual('');
+        expect(obj.data).toEqual({});
+        expect(obj.code).toEqual('');
     });
 
     describe('should parse patient barcodes', () => {
@@ -100,6 +100,54 @@ describe('parser.parse', () => {
 
         it('with both', () => {
             let obj = parse('\x02p 123456\x03', 0x02, 0x03);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({medical_record_number: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+        });
+
+        it('with start and end characters > 0x10', () => {
+            let obj = parse('\x1cp 123456', 0x1c, 0x1d);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({medical_record_number: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x1cp 123456\x1d', 0x1c, 0x1d);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({medical_record_number: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x1cp 123456\x1d', 0x1c, 0x1d);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({medical_record_number: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+        });
+
+        it('with start and end characters in the printable ascii range', () => {
+            let obj = parse('\x60p 123456', 0x60, 0x7e);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({medical_record_number: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x60p 123456\x7e', 0x60, 0x7e);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({medical_record_number: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x60p 123456\x7e', 0x60, 0x7e);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({medical_record_number: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+        });
+
+        it('with bad characters at the start and end', () => {
+            let obj = parse('\\p 123456]', 0x1c, 0x1d);
             expect(obj.type).toEqual('patient');
             expect(obj.data).toEqual({medical_record_number: 123456});
             expect(obj.code).toEqual('barcode');
@@ -149,6 +197,54 @@ describe('parser.parse', () => {
             expect(obj.code).toEqual('barcode');
             expect(obj.error).toBeUndefined();
         });
+
+        it('with start and end characters > 0x10', () => {
+            let obj = parse('\x1cm 123456', 0x1c, 0x1d);
+            expect(obj.type).toEqual('medication');
+            expect(obj.data).toEqual({medication_id: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x1cm 123456\x1d', 0x1c, 0x1d);
+            expect(obj.type).toEqual('medication');
+            expect(obj.data).toEqual({medication_id: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x1cm 123456\x1d', 0x1c, 0x1d);
+            expect(obj.type).toEqual('medication');
+            expect(obj.data).toEqual({medication_id: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+        });
+
+        it('with start and end characters in the printable ascii range', () => {
+            let obj = parse('\x60m 123456', 0x60, 0x7e);
+            expect(obj.type).toEqual('medication');
+            expect(obj.data).toEqual({medication_id: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x60m 123456\x7e', 0x60, 0x7e);
+            expect(obj.type).toEqual('medication');
+            expect(obj.data).toEqual({medication_id: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+
+            obj = parse('\x60m 123456\x7e', 0x60, 0x7e);
+            expect(obj.type).toEqual('medication');
+            expect(obj.data).toEqual({medication_id: 123456});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+        });
+
+        it('with bad characters at the start and end', () => {
+            let obj = parse('\\m 123]', 0x1c, 0x1d);
+            expect(obj.type).toEqual('medication');
+            expect(obj.data).toEqual({medication_id: 123});
+            expect(obj.code).toEqual('barcode');
+            expect(obj.error).toBeUndefined();
+        });
     });
 
     describe('should not parse barcodes', () => {
@@ -193,6 +289,27 @@ describe('parser.parse', () => {
         });
 
         it('with some fields', () => {
+            let obj = parse('605065;Garcia;Maria;;;;;;;;;', 0x02, 0x03);
+            expect(obj.type).toEqual('patient');
+            expect(obj.data).toEqual({
+                medical_record_number: '605065',
+                last_name: 'Garcia',
+                first_name: 'Maria',
+                date_of_birth: '',
+                sex: '',
+                height: '',
+                weight: '',
+                diagnosis: '',
+                allergies: '',
+                code_status: '',
+                physician: '',
+                room: ''
+            });
+            expect(obj.code).toEqual('qr');
+            expect(obj.error).toBeUndefined();
+        });
+
+        it('with only MRN', () => {
             let obj = parse('605065;;;;;;;;;;;', 0x02, 0x03);
             expect(obj.type).toEqual('patient');
             expect(obj.data).toEqual({
@@ -211,9 +328,6 @@ describe('parser.parse', () => {
             });
             expect(obj.code).toEqual('qr');
             expect(obj.error).toBeUndefined();
-        });
-
-        it('with only MRN', () => {
         });
 
         it('with a start character', () => {
