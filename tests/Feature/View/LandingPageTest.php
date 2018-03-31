@@ -11,7 +11,7 @@ class LandingPageTest extends TestCase
     function testRedirectToLogin()
     {
         $response = $this->get('/');
-        $response = $this->assertRedirect('/login');
+        $response->assertRedirect('/login');
     }
 
     function testHasLogin()
