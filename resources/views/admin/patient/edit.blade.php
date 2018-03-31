@@ -49,7 +49,7 @@
               <div class="col-md-6">
                 <select id="sex" class="form-control" name="sex" form="patient-edit-form">
                       @foreach([0, 1] as $key)
-                      <option value="{{ $key }}" selected="{{ $patient->sex === $key ? 'selected' : '' }}">{{ $key ? 'Male' : 'Female' }}</option>
+                      <option value="{{ $key }}" selected="{{ $patient->sex == $key ? 'selected' : '' }}">{{ $key ? 'Male' : 'Female' }}</option>
                       @endforeach
                 </select>
                 @if ($errors->has('sex'))
