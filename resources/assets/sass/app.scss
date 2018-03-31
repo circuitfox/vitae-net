@@ -30,3 +30,8 @@ td.stat-header {
     background-color: $mar-stat-header-bg;
     color: $mar-stat-header-text;
 }
+
+.col-panel {
+    @extend .col-md-offset-1;
+    @extend .col-md-10;
+}

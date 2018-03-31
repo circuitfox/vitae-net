@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Patient")
 @section("content")
-<div class="col-md-offset-1 col-md-10">
+<div class="col-panel">
   <div id="patient" class="panel panel-default">
     <div class="panel-heading">
       @include("partials.patient.header", ["patient" => $patient])
@@ -23,7 +23,7 @@
   "statMeds" => $statMeds,
   "meds" => $meds,
 ])
-<div class="col-md-offset-1 col-md-10">
+<div class="col-panel">
   <div class="panel-group" role="tablist">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab">

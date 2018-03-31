@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET - Edit Order")
 @section("content")
-  <div class="col-md-offset-2 col-md-8">
+  <div class="col-panel">
     <div class="panel panel-default">
       <div class="panel-heading">Edit Order</div>
       <div class="panel-body">

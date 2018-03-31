@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Users")
 @section("content")
-  <div class="container col-md-8 col-md-offset-2">
+  <div class="container col-panel">
     <? $users = App\User::all(); ?>
     <div class="panel-group" id="users" role="tablist">
       @foreach ($users as $user)

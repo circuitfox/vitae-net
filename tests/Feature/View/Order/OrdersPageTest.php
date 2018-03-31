@@ -45,7 +45,7 @@ class OrdersPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $response = $this->actingAs($user)->get('/orders/');
-    $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No orders in the database. Add some?</h3>');
+    $response->assertSee('<h3 class="text-center">No orders in the database. Add some?</h3>');
     $response->assertSee('<a href="' . route('orders.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>');
   }
 }

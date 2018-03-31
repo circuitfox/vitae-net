@@ -1,4 +1,4 @@
-<div id="mar" class="col-md-offset-1 col-md-10">
+<div id="mar" class="col-panel">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="col-md-6">Medication Administration Record</h3>

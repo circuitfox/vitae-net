@@ -1,4 +1,4 @@
-<div id="assessment" class="col-md-offset-1 col-md-10">
+<div id="assessment" class="col-panel">
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="row">

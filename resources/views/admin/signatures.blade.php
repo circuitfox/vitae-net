@@ -2,11 +2,16 @@
 @section("title", "Vitae NET - Signatures")
 @section("content")
 <form method="post" action="{{ route('signatures.delete') }}">
-  <div class="col-md-offset-1 col-md-10">
+  <div class="col-panel">
     @if ($signatures->isEmpty())
-      <div class="row">
-        <h3 class="col-md-offset-2 col-md-8 text-center">No signatures in the database.</h3>
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <div class="row">
+          <h3 class="text-center">No signatures in the database.</h3>
+        </div>
       </div>
+      <div class="panel-body"></div>
+    </div>
     @else
       {{ csrf_field() }}
       <div class="panel panel-default" id="panel">

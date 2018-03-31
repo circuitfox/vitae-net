@@ -37,7 +37,7 @@ class SignaturesPageTest extends TestCase
     {
         $admin = factory(\App\User::class)->states('admin')->create();
         $response = $this->actingAs($admin)->get('/signatures');
-        $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No signatures in the database.</h3>');
+        $response->assertSee('<h3 class="text-center">No signatures in the database.</h3>');
     }
 
     public function testHasModal()

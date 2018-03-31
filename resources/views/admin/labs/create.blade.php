@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET - Add Labs")
 @section("content")
-<div class="container col-md-8 col-md-offset-2">
+<div class="container col-panel">
   <div class="panel">
     <div class="panel-default panel-heading">
       <h3>Create new lab result</h3>

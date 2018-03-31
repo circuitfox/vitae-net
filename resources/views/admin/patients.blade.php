@@ -1,13 +1,13 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Patients")
 @section("content")
-<div class="container col-md-8 col-md-offset-2">
+<div class="container col-panel">
   <? $patients = App\Patient::all(); ?>
   @if ($patients->isEmpty())
     <div class="panel panel-default">
       <div class="panel-header">
         <div class="row">
-          <h3 class="col-md-offset-2 col-md-8 text-center">No patients in the database. Add some?</h3>
+          <h3 class="text-center">No patients in the database. Add some?</h3>
         </div>
       </div>
       <div class="panel-body">

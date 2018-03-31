@@ -44,7 +44,7 @@ class LabsPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $response = $this->actingAs($user)->get('/labs/');
-    $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database. Add some?</h3>');
+    $response->assertSee('<h3 class="text-center">No labs in the database. Add some?</h3>');
     $response->assertSee('<a href="' . route('labs.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>');
   }
 

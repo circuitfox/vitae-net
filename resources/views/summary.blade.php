@@ -2,7 +2,7 @@
 @section("title", "Vitae NET - Summary Page")
 @section("content")
 <div id="summary-page">
-  <div class="col-md-offset-2 col-md-8">
+  <div class="col-panel">
     <div id="panel" class="panel panel-default">
       <div class="panel-heading">Scan</div>
       <div class="panel-body">

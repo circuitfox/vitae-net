@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Patients")
 @section("content")
-<div class="container col-md-10 col-md-offset-1">
+<div class="container col-panel">
 <h2>Patient Assessments:</h2>
   <div class="panel-group" id="assessments" role="tablist">
     @foreach ($assessments as $date=>$assessmentDay)
