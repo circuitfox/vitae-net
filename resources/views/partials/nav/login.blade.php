@@ -3,7 +3,7 @@
   <form class="navbar-form navbar-right" id="login-form" action="{{ route('login') }}" method="POST">
     {{ csrf_field() }}
     <div class="form-group">
-      <input type="text" class="form-control" id="name" name="name" placeholder="Administrator Username">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Username">
       @if ($errors->has('name'))
         <span class="help-block">
           <strong>{{ $errors->first('name') }}</strong>
