@@ -82,7 +82,7 @@ class LayoutTest extends TestCase
 
     public function testHasLinks()
     {
-        $response = $this->get('/patients');
+        $response = $this->get('/login');
         $response->assertDontSee('<li><a href="' . url('/patients') . '">Patients</a></li>');
         $response->assertDontSee('<li><a href="' . url('/orders') . '">Orders</a></li>');
         $response->assertDontSee('<li><a href="' . url('/labs') . '">Labs</a></li>');
