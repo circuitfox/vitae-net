@@ -31,7 +31,7 @@ class UpdateAssessment extends FormRequest
             'end_time' => 'required|string',
             'medical_record_number' => 'required|integer:exists:patients,medical_record_number',
             'reason' => 'required|string',
-            'temperature' => 'required|decimal'
+            'temperature' => 'required|numeric|digits:5',
             'bp_over' => 'required|integer',
             'bp_under' => 'required|integer',
             'apical_pulse' => 'required|integer',
