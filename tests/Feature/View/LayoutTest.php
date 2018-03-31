@@ -48,7 +48,7 @@ class LayoutTest extends TestCase
     public function testHasLoginAuthed()
     {
         $user = factory(\App\User::class)->create();
-        $response = $this->actingAs($user)->get('/home');
+        $response = $this->actingAs($user)->get('/');
         $response->assertDontSee(
             '<form class="navbar-form navbar-right" id="login-form" action="' .
             route('login') .
@@ -72,7 +72,7 @@ class LayoutTest extends TestCase
     public function testHasLinksAuthed()
     {
         $user = factory(\App\User::class)->create();
-        $response = $this->actingAs($user)->get('/home');
+        $response = $this->actingAs($user)->get('/');
         $response->assertSee('<li><a href="' . url('/patients') . '">Patients</a></li>');
         $response->assertSee('<li><a href="' . url('/orders') . '">Orders</a></li>');
         $response->assertSee('<li><a href="' . url('/labs') . '">Labs</a></li>');
