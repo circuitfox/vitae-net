@@ -21,9 +21,9 @@ class LabsPageTest extends TestCase
     $response->assertSee('<p>' . $lab->description . '</p>');
     $response->assertSee('<h5><b><u>Patient MRN:</u></b></h5>');
     $response->assertSee('<p>' . $lab->patient_id . '</p>');
-    $response->assertSee('<a href="/labs/' . $lab->id . '" class="btn btn-primary h3">Details</a>');
-    $response->assertSee('<a href="/labs/' . $lab->id . '/edit" class="btn btn-primary h3">Edit</a>');
-    $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#lab-delete-modal" data-id="' . $lab->id . '">Delete</button>');
+    $response->assertSee('<a href="/labs/' . $lab->id . '" class="btn btn-default">Details</a>');
+    $response->assertSee('<a href="/labs/' . $lab->id . '/edit" class="btn btn-primary">Edit</a>');
+    $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#lab-delete-modal" data-id="' . $lab->id . '">Delete</button>');
 
   }
 
@@ -44,8 +44,42 @@ class LabsPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $response = $this->actingAs($user)->get('/labs/');
-    $response->assertSee('<h3 class="text-center">No labs in the database. Add some?</h3>');
+    $response->assertSee('<h3 class="text-center">No labs in the database.</h3>');
     $response->assertSee('<a href="' . route('labs.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>');
   }
 
+  public function testHasNoAddbuttonIfEmptyAsStudent()
+  {
+    $user = factory(\App\User::class)->states('student')->create();
+    $response = $this->actingAs($user)->get('/labs/');
+    $response->assertSee('<h3 class="text-center">No labs in the database.</h3>');
+    $response->assertDontSee('<a href="' . route('labs.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>');
+  }
+
+  public function testHasHeader()
+  {
+    $user = factory(\App\User::class)->states('admin')->create();
+    $lab = factory(\App\Lab::class)->create();
+    $response = $this->actingAs($user)->get('/labs');
+    $response->assertSee('<a class="btn btn-success" href="' . route('labs.create') . '">Add Lab</a>');
+    $response->assertSee('<h2>Labs</h2>');
+  }
+
+  public function testNoAddIfStudent()
+  {
+    $user = factory(\App\User::class)->states('student')->create();
+    $lab = factory(\App\Lab::class)->create();
+    $response = $this->actingAs($user)->get('/labs');
+    $response->assertDontSee('<a class="btn btn-success" href="' . route('labs.create') . '">Add Lab</a>');
+    $response->assertSee('<h2>Labs</h2>');
+  }
+
+  public function testNoEditDeleteIfStudent()
+  {
+    $user = factory(\App\User::class)->states('student')->create();
+    $lab = factory(\App\Lab::class)->create();
+    $response = $this->actingAs($user)->get('/labs');
+    $response->assertDontSee('<a href="/labs/' . $lab->id . '/edit" class="btn btn-primary">Edit</a>');
+    $response->assertDontSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#lab-delete-modal" data-id="' . $lab->id . '">Delete</button>');
+  }
 }

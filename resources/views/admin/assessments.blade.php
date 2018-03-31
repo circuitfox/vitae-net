@@ -2,34 +2,45 @@
 @section("title", "Vitae NET Administration - Patients")
 @section("content")
 <div class="container col-panel">
-<h2>Patient Assessments:</h2>
-  <div class="panel-group" id="assessments" role="tablist">
-    @foreach ($assessments as $date=>$assessmentDay)
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab">
-          <div class="row">
-            <div class="panel-title">
-              <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#assessments" data-target="#{{ $assessmentDay[0]['id'] }}">
+  @if ($assessments->isEmpty())
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <h3>No assessments for {{ $patient->first_name }} {{ $patient->last_name }}</h3>
+        </div>
+      </div>
+    </div>
+  @else
+    <div class="list-group" id="assessments" role="tablist">
+      <div class="list-group-item">
+        <div class="list-group-item-heading">
+          <h2>Assessments for {{ $patient->first_name }} {{ $patient->last_name }}</h2>
+        </div>
+      </div>
+      @foreach ($assessments as $date=>$assessmentDay)
+        <div class="list-group-item">
+          <div class="list-group-item-heading" role="tab">
+            <a class="accordion collapsed item-title" role="button" data-toggle="collapse" data-parent="#assessments" data-target="#{{ $assessmentDay[0]['id'] }}">
                 <h3>{{ $date }}</h3>
-              </a>
+            </a>
             </div>
           </div>
-        </div>
-        <div id="{{ $assessmentDay[0]['id'] }}" class="panel-collapse collapse" role="tabpanel">
-          <div class="panel-body">
-            <div class="container">
-              <div class="row">
-                @foreach ($assessmentDay as $assessment)
-                  <div class="col-md-5">
-                    @include("partials/assessments/body", ["assessment" => $assessment])
-                  </div>
-                @endforeach
+          <div id="{{ $assessmentDay[0]['id'] }}" class="collapse" role="tabpanel">
+            <div class="list-group-item-text">
+              <div class="container">
+                <div class="row">
+                  @foreach ($assessmentDay as $assessment)
+                    <div class="col-md-5">
+                      @include("partials/assessments/body", ["assessment" => $assessment])
+                    </div>
+                  @endforeach
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    @endforeach
-  </div>
+      @endforeach
+    </div>
+  @endif
 </div>
 @endsection
