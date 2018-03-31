@@ -7,9 +7,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LandingPageTest extends TestCase
 {
-    function testHasLogin()
+
+    function testRedirectToLogin()
     {
         $response = $this->get('/');
+        $response = $this->assertRedirect('/login');
+    }
+
+    function testHasLogin()
+    {
+        $response = $this->get('/login');
         $response->assertSee('<div class="panel panel-default">');
         $response->assertSee('<div class="panel-heading">Login</div>');
         $response->assertSee('<form class="form-horizontal" method="POST" action="' . route('login') . '">');
@@ -19,7 +26,5 @@ class LandingPageTest extends TestCase
         $response->assertSee('<input type="checkbox" name="remember" > Remember Me');
         $response->assertSee('<button type="submit" class="btn btn-primary">');
         $response->assertSee('<a class="btn btn-link" href="' . route('password.request') . '">');
-
-
     }
 }
