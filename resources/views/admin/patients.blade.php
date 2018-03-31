@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="panel-body">
-        <a href="{{ route('labs.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>
+        <a href="{{ route('patients.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>
       </div>
     </div>
   @else
