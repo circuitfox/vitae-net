@@ -42,8 +42,10 @@ function parse(str, startChar, endChar) {
     startChar = startChar.toRegexHex();
     endChar = endChar.toRegexHex();
     let parsedObj = {type: '', data: {}, code: ''};
-    // we want to match the printable ascii range: (space (0x20) to ~ (0x7e))
-    let regex = new RegExp(`^\\x${startChar}?([\\x20-\\x7e]*)\\x${endChar}?$`);
+    // we want to match the printable ascii range: (space (0x20) to ~ (0x7e)),
+    // but not the start or end characters if they're in that range
+    let regex =
+        new RegExp(`^\\x${startChar}?([^\\x${startChar}][\\x20-\\x7e]*[^\\x${endChar}])\\x${endChar}?$`);
     let matchStr = str.match(regex);
     if (matchStr === null) {
         parsedObj.error = 'failed to match code. bad start or end characters?';
@@ -62,6 +64,10 @@ function parse(str, startChar, endChar) {
 }
 
 function parseBarcode(matchStr) {
+    // allow a non-alphanumeric character in front of the type, incase the
+    // start character got included.
+    let patientRegex = new RegExp(`[^0-9a-zA-Z]?${BARCODE_PATIENT_TYPE}`);
+    let medicationRegex = new RegExp(`[^0-9a-zA-Z]?${BARCODE_MEDICATION_TYPE}`);
     let parsedObj = {type: '', data: {}, code: ''};
     matchStr = matchStr[0].split(' ');
     let objId = Number.parseInt(matchStr[1]);
@@ -70,10 +76,10 @@ function parseBarcode(matchStr) {
         parsedObj.error = `barcode id must be a number. barcode = ${matchStr}`;
         return parsedObj;
     }
-    if (matchStr[0] === BARCODE_PATIENT_TYPE) {
+    if (patientRegex.test(matchStr[0])) {
         parsedObj.type = 'patient';
         parsedObj.data.medical_record_number = objId;
-    } else if (matchStr[0] === BARCODE_MEDICATION_TYPE) {
+    } else if (medicationRegex.test(matchStr[0])) {
         parsedObj.type = 'medication';
         parsedObj.data.medication_id = objId;
     } else {

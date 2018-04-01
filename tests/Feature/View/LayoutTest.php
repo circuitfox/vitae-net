@@ -11,7 +11,7 @@ class LayoutTest extends TestCase
 
     public function testHasMetaTags()
     {
-        $response = $this->get('/');
+        $response = $this->get('/login');
         $response->assertSee('<meta charset="UTF-8">');
         $response->assertSee('<meta http-equiv="X-UA-Compatible" content="IE=edge">');
         $response->assertSee('<meta name="viewport" content="width=device-width, initial-scale=1">');
@@ -20,14 +20,14 @@ class LayoutTest extends TestCase
 
     public function testHasAssets()
     {
-        $response = $this->get('/');
+        $response = $this->get('/login');
         $response->assertSee('<link rel="stylesheet" href="' . asset("css/app.css") . '">');
         $response->assertSee('<script src="' . asset("js/app.js") . '">');
     }
 
     public function testCommonNavbar()
     {
-        $response = $this->get('/');
+        $response = $this->get('/medication');
         $response_nologin = $this->get('/login');
         $response->assertSee('<nav class="navbar navbar-default">');
         $response_nologin->assertSee('<nav class="navbar navbar-default">');
@@ -37,7 +37,7 @@ class LayoutTest extends TestCase
 
     public function testHasLogin()
     {
-        $response = $this->get('/');
+        $response = $this->get('/medication');
         $response->assertSee(
             '<form class="navbar-form navbar-right" id="login-form" action="' .
             route('login') .
@@ -48,7 +48,7 @@ class LayoutTest extends TestCase
     public function testHasLoginAuthed()
     {
         $user = factory(\App\User::class)->create();
-        $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($user)->get('/patients');
         $response->assertDontSee(
             '<form class="navbar-form navbar-right" id="login-form" action="' .
             route('login') .
@@ -72,7 +72,7 @@ class LayoutTest extends TestCase
     public function testHasLinksAuthed()
     {
         $user = factory(\App\User::class)->create();
-        $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($user)->get('/patients');
         $response->assertSee('<li><a href="' . url('/patients') . '">Patients</a></li>');
         $response->assertSee('<li><a href="' . url('/orders') . '">Orders</a></li>');
         $response->assertSee('<li><a href="' . url('/labs') . '">Labs</a></li>');
@@ -82,7 +82,7 @@ class LayoutTest extends TestCase
 
     public function testHasLinks()
     {
-        $response = $this->get('/');
+        $response = $this->get('/login');
         $response->assertDontSee('<li><a href="' . url('/patients') . '">Patients</a></li>');
         $response->assertDontSee('<li><a href="' . url('/orders') . '">Orders</a></li>');
         $response->assertDontSee('<li><a href="' . url('/labs') . '">Labs</a></li>');
