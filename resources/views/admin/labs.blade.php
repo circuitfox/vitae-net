@@ -5,14 +5,22 @@
   <? $labs = App\Lab::all(); ?>
   @if ($labs->isEmpty())
     <div class="panel panel-default">
-      <div class="panel-header">
-        <div class="row">
-          <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database. Add some?</h3>
+      @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+        <div class="panel-header">
+          <div class="row">
+            <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database. Add some?</h3>
+          </div>
         </div>
-      </div>
-      <div class="panel-body">
-        <a href="{{ route('labs.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>
-      </div>
+        <div class="panel-body">
+          <a href="{{ route('labs.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>
+        </div>
+      @else
+        <div class="panel-header">
+          <div class="row">
+            <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database.</h3>
+          </div>
+        </div>
+      @endif
     </div>
   @else
     <div class="panel-group" id="labs" role="tablist">
@@ -25,8 +33,10 @@
               </a>
               <div class="btn-toolbar col-md-4">
                 <a href="/labs/{{ $lab->id }}" class="btn btn-primary h3">Details</a>
-                <a href="/labs/{{ $lab->id }}/edit" class="btn btn-primary h3">Edit</a>
-                <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#lab-delete-modal" data-id="{{ $lab->id }}">Delete</button>
+                @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+                  <a href="/labs/{{ $lab->id }}/edit" class="btn btn-primary h3">Edit</a>
+                  <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#lab-delete-modal" data-id="{{ $lab->id }}">Delete</button>
+                @endif
               </div>
             </div>
           </div>

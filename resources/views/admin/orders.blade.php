@@ -5,14 +5,22 @@
   <? $orders = App\Order::all(); ?>
   @if ($orders->isEmpty())
     <div class="panel panel-default">
-      <div class="panel-header">
-        <div class="row">
-          <h3 class="col-md-offset-2 col-md-8 text-center">No orders in the database. Add some?</h3>
+      @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+        <div class="panel-header">
+          <div class="row">
+            <h3 class="col-md-offset-2 col-md-8 text-center">No orders in the database. Add some?</h3>
+          </div>
         </div>
-      </div>
-      <div class="panel-body">
-        <a href="{{ route('orders.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>
-      </div>
+        <div class="panel-body">
+          <a href="{{ route('orders.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>
+        </div>
+      @else
+        <div class="panel-header">
+          <div class="row">
+            <h3 class="col-md-offset-2 col-md-8 text-center">No orders in the database.</h3>
+          </div>
+        </div>
+      @endif
     </div>
   @else
     <div class="panel-group" id="orders" role="tablist">
@@ -27,7 +35,7 @@
               </div>
               <div class="btn-toolbar col-md-4">
                 <a href="/orders/{{ $order->id }}" class="btn btn-default h3">Details</a>
-                @if (Auth::user()->isAdmin())
+                @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
                   <a href="/orders/{{ $order->id }}/edit" class="btn btn-primary h3">Edit</a>
                   <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#order-delete-modal" data-id="{{ $order->id }}">Delete</button>
                 @endif
