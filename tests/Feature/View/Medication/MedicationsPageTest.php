@@ -27,7 +27,7 @@ class MedicationsPageTest extends TestCase
 
     public function testHasComboMedication()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(\App\Medication::class)
             ->states(['secondary_name', 'combo'])
             ->create();
@@ -49,7 +49,7 @@ class MedicationsPageTest extends TestCase
 
     public function testHasAmountMedication()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(\App\Medication::class)
             ->states(['secondary_name', 'amount'])
             ->create();
@@ -69,7 +69,7 @@ class MedicationsPageTest extends TestCase
 
     public function testHasInMedication()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(\App\Medication::class)
             ->states(['secondary_name', 'in'])
             ->create();

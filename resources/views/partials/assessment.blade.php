@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <div class="row">
         <h3 class="col-md-6">Assessment</h3>
-        @if (Auth::user()->isAdmin())
+        @if (Auth::user()->isPrivileged())
           <div class="col-md-6 text-right">
             <a class="btn btn-success h3" href="/assessments/{{ $medical_record_number }}">View Assessments</a>
           </div>
