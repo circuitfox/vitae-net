@@ -36,4 +36,12 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function isInstructor() {
+        if ($this->role === 'instructor') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
