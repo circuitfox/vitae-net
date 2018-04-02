@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Vitae NET Administration - Patients")
+@section("title", "Vitae NET - Patients")
 @section("content")
 <div class="container col-panel">
   @if ($patients->isEmpty())
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="panel-body">
-        @if (Auth::user()->isAdmin())
+        @if (Auth::user()->isPrivileged())
           <a href="{{ route('patients.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>
         @endif
       </div>
@@ -19,7 +19,7 @@
     <div class="list-group" id="patients" role="tablist">
       <div class="list-group-item">
         <div class="list-group-item-heading">
-          @if (Auth::user()->isAdmin())
+          @if (Auth::user()->isPrivileged())
             <div class="pull-right">
               <a class="btn btn-success" href="{{ route('patients.create') }}">Add Patient</a>
             </div>
@@ -32,7 +32,7 @@
           <div class="list-group-item-heading" role="tab">
             <div class="btn-toolbar pull-right">
               <a class="btn btn-default" href="{{ route('patients.show', ['id' => $patient->medical_record_number]) }}">Details</a>
-              @if (Auth::user()->isAdmin())
+              @if (Auth::user()->isPrivileged())
                 <a class="btn btn-primary" href="{{ route('patients.edit', ['id' => $patient->medical_record_number]) }}">Edit</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#patient-delete-modal" data-id="{{ $patient->medical_record_number }}">Delete</button>
               @endif
@@ -65,7 +65,7 @@
       @endforeach
     </div>
   @endif
-  @if (Auth::user()->isAdmin())
+  @if (Auth::user()->isPrivileged())
     @include("partials/patient/delete-modal")
   @endif
 </div>

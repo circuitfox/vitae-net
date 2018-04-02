@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="panel-body">
-        @if (Auth::user()->isAdmin())
+        @if (Auth::user()->isPrivileged())
           <a href="{{ route('labs.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>
         @endif
       </div>
@@ -19,7 +19,7 @@
     <div class="list-group" id="labs" role="tablist">
       <div class="list-group-item">
         <div class="list-group-item-heading">
-          @if (Auth::user()->isAdmin())
+          @if (Auth::user()->isPrivileged())
             <div class="pull-right">
               <a class="btn btn-success" href="{{ route('labs.create') }}">Add Lab</a>
             </div>
@@ -32,7 +32,7 @@
           <div class="list-group-item-heading" role="tab">
             <div class="btn-toolbar pull-right">
               <a href="/labs/{{ $lab->id }}" class="btn btn-default">Details</a>
-              @if (Auth::user()->isAdmin())
+              @if (Auth::user()->isPrivileged())
                 <a href="/labs/{{ $lab->id }}/edit" class="btn btn-primary">Edit</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#lab-delete-modal" data-id="{{ $lab->id }}">Delete</button>
               @endif
@@ -50,7 +50,7 @@
       @endforeach
     </div>
   @endif
-  @if (Auth::user()->isAdmin())
+  @if (Auth::user()->isPrivileged())
     @include("partials.lab.delete-modal")
   @endif
 </div>

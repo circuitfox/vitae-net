@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Vitae NET Administration - Medication")
+@section("title", "Vitae NET - Medication")
 @section("content")
 <div class="container col-panel">
   @if ($medications->isEmpty())
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="panel-body">
-        @if (Auth::user()->isAdmin())
+        @if (Auth::user()->isPrivileged())
           <a href="{{ route('medications.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>
         @endif
       </div>
@@ -19,7 +19,7 @@
     <div class="list-group" id="medications" role="tablist">
       <div class="list-group-item">
         <div class="list-group-item-heading">
-          @if (Auth::user()->isAdmin())
+          @if (Auth::user()->isPrivileged())
             <div class="pull-right">
               <a class="btn btn-success" href="{{ route('medications.create') }}">Add Medication</a>
             </div>
@@ -30,7 +30,7 @@
       @foreach ($medications as $medication)
         <div class="list-group-item clearfix">
           <div class="list-group-item-heading" role="tab">
-            @if (Auth::user()->isAdmin())
+            @if (Auth::user()->isPrivileged())
               <div class="btn-toolbar pull-right">
                 <a href="/medications/{{ $medication->medication_id }}/edit" class="btn btn-primary">Edit</a>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="{{ $medication->medication_id }}">Delete</button>
@@ -64,7 +64,7 @@
       @endforeach
     </div>
   @endif
-  @if (Auth::user()->isAdmin())
+  @if (Auth::user()->isPrivileged())
     @include("partials.medication.delete-modal")
   @endif
 </div>

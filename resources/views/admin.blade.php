@@ -10,20 +10,23 @@
           <span class="text-center"><strong>Admin:</strong> Remember to change your email address!</span>
         </div>
       @endif
-      <h2>Users:</h2>
-      <hr>
-      <div class="row">
-        <div class="col-md-6">
-          <a class="btn btn-primary" href="{{ url('/users') }}">View Users</a>
-          <h4>View and edit existing users.</h4>
+      @if (Auth::user()->isAdmin())
+        <h2>Users:</h2>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <a class="btn btn-primary" href="{{ url('/users') }}">View Users</a>
+            <h4>View and edit existing users.</h4>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <a class="btn btn-primary" href="{{ url('/users/create') }}">Create User</a>
-          <h4>Create new user.</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <a class="btn btn-primary" href="{{ url('/users/create') }}">Create User</a>
+            <h4>Create new user.</h4>
+          </div>
         </div>
-      </div>
+      @endif
+
       <h2>Medications:</h2>
       <hr>
       <div class="row">
@@ -50,6 +53,7 @@
           <h4>Format medication data for QR codes.</h4>
         </div>
       </div>
+
       <h2>Patients:</h2>
       <hr>
       <div class="row">
@@ -70,6 +74,7 @@
           <h4>Format patient data for QR codes.</h4>
         </div>
       </div>
+
       <h2>Orders:</h2>
       <hr>
       <div class="row">
@@ -84,6 +89,7 @@
           <h4>Create new order.</h4>
         </div>
       </div>
+
       <h2>Labs:</h2>
       <hr>
       <div class="row">

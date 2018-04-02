@@ -1,5 +1,5 @@
 @extends('layouts/app')
-@section('title', 'Vitae NET')
+@section('title', 'Vitae NET - Scanner')
 @section('content')
 <div class="col-panel">
   <div class="panel panel-default" id="panel">
