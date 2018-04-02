@@ -23,14 +23,13 @@
             <a class="accordion collapsed item-title" role="button" data-toggle="collapse" data-parent="#assessments" data-target="#{{ $assessmentDay[0]['id'] }}">
                 <h3>{{ $date }}</h3>
             </a>
-            </div>
           </div>
           <div id="{{ $assessmentDay[0]['id'] }}" class="collapse" role="tabpanel">
             <div class="list-group-item-text">
               <div class="container">
                 <div class="row">
                   @foreach ($assessmentDay as $assessment)
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                       @include("partials/assessments/body", ["assessment" => $assessment])
                     </div>
                   @endforeach
