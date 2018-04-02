@@ -30,7 +30,7 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<h5><b><u>Reason for admission:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->reason .'</p>');
     $response->assertSee('<h5><b><u>Temperature:</u></b></h5>');
-    $response->assertSee('<p>'. $assessment->temperature .'</p>');
+    $response->assertSee('<p>'. number_format($assessment->temperature, 2) .'</p>');
     $response->assertSee('<h5><b><u>Blood pressure:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->bp_over . ' / ' . $assessment->bp_under .'</p>');
     $response->assertSee('<h5><b><u>Automatic:</u></b></h5>');
