@@ -5,7 +5,7 @@
   <? $labs = App\Lab::all(); ?>
   @if ($labs->isEmpty())
     <div class="panel panel-default">
-      @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+      @if (Auth::user()->isPrivileged())
         <div class="panel-header">
           <div class="row">
             <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database. Add some?</h3>
@@ -33,7 +33,7 @@
               </a>
               <div class="btn-toolbar col-md-4">
                 <a href="/labs/{{ $lab->id }}" class="btn btn-primary h3">Details</a>
-                @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+                @if (Auth::user()->isPrivileged())
                   <a href="/labs/{{ $lab->id }}/edit" class="btn btn-primary h3">Edit</a>
                   <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#lab-delete-modal" data-id="{{ $lab->id }}">Delete</button>
                 @endif

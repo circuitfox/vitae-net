@@ -5,7 +5,7 @@
   <? $patients = App\Patient::all(); ?>
   @if ($patients->isEmpty())
     <div class="panel panel-default">
-      @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+      @if (Auth::user()->isPrivileged())
         <div class="panel-header">
           <div class="row">
             <h3 class="col-md-offset-2 col-md-8 text-center">No patients in the database. Add some?</h3>
@@ -35,7 +35,7 @@
                   </div>
                   <div class="btn-toolbar col-md-4">
                     <a class="btn btn-default h3" href="{{ route('patients.show', ['id' => $patient->medical_record_number]) }}">Details</a>
-                    @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+                    @if (Auth::user()->isPrivileged())
                       <a class="btn btn-primary h3" href="{{ route('patients.edit', ['id' => $patient->medical_record_number]) }}">Edit</a>
                       <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#patient-delete-modal" data-id="{{ $patient->medical_record_number }}">Delete</button>
                     @endif

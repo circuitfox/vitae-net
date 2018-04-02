@@ -2,7 +2,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="col-md-6">Medication Administration Record</h3>
-      @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+      @if (Auth::user()->isPrivileged())
         <div class="col-md-offset-4 text-right">
           <a class="btn btn-success h3" href="/mars/create/{{ $medical_record_number }}">Add Prescription</a>
         </div>
@@ -30,7 +30,7 @@
           <th>1700</th>
           <th>1800</th>
           <th>1900</th>
-          @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+          @if (Auth::user()->isPrivileged())
             <th>Edit</th>
           @endif
         </tr>

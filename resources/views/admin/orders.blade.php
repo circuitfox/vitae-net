@@ -5,7 +5,7 @@
   <? $orders = App\Order::all(); ?>
   @if ($orders->isEmpty())
     <div class="panel panel-default">
-      @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+      @if (Auth::user()->isPrivileged())
         <div class="panel-header">
           <div class="row">
             <h3 class="col-md-offset-2 col-md-8 text-center">No orders in the database. Add some?</h3>
@@ -35,7 +35,7 @@
               </div>
               <div class="btn-toolbar col-md-4">
                 <a href="/orders/{{ $order->id }}" class="btn btn-default h3">Details</a>
-                @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+                @if (Auth::user()->isPrivileged())
                   <a href="/orders/{{ $order->id }}/edit" class="btn btn-primary h3">Edit</a>
                   <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#order-delete-modal" data-id="{{ $order->id }}">Delete</button>
                 @endif

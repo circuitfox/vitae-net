@@ -5,7 +5,7 @@
   <? $medications = App\Medication::all(); ?>
   @if ($medications->isEmpty())
     <div class="panel panel-default">
-      @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+      @if (Auth::user()->isPrivileged())
         <div class="panel-header">
           <div class="row">
             <h3 class="col-md-offset-2 col-md-8 text-center">No medications in the database. Add some?</h3>
@@ -34,7 +34,7 @@
                 </a>
               </div>
               <div class="btn-toolbar col-md-4">
-                @if (Auth::user()->isAdmin() || Auth::user()->isInstructor())
+                @if (Auth::user()->isPrivileged())
                   <a href="/medications/{{ $medication->medication_id }}/edit" class="btn btn-primary h3">Edit</a>
                   <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="{{ $medication->medication_id }}">Delete</button>
                 @endif
