@@ -38,9 +38,9 @@ class PatientPageTest extends TestCase
         $response->assertSee($this->faker_escape($patient->physician));
         $response->assertSee('<h5><b><u>Room:</u></b></h5>');
         $response->assertSee($patient->room);
-        $response->assertSee('<a href="#labs" class="collapsed" role="button" data-toggle="collapse">Lab Results</a>');
+        $response->assertSee('<a href="#labs" class="collapsed" role="button" data-toggle="collapse"><h3>Lab Results</h3></a>');
         $response->assertSee('<div id="labs" class="panel-collapse collapse in" role="tabpanel"');
-        $response->assertSee('<a href="#orders" class="collapsed" role="button" data-toggle="collapse">Provider\'s Orders</a>');
+        $response->assertSee('<a href="#orders" class="collapsed" role="button" data-toggle="collapse"><h3>Provider\'s Orders</h3></a>');
         $response->assertSee('<div id="orders" class="panel-collapse collapse in" role="tabpanel"');
         $response->assertSee('<div id="mar" class="col-panel">');
         $response->assertSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');

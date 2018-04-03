@@ -3,7 +3,7 @@
 @section("content")
 <div class="col-panel">
   <div class="panel panel-default">
-    <div class="panel-heading">Add MAR Entries</div>
+    <div class="panel-heading"><h3>Add MAR Entries</h3></div>
     <div class="panel-body">
       <div id="scan-error-alert"></div>
       <form id="mar-form" class="form-inline" action="{{ route('mars.store') }}" method="POST">

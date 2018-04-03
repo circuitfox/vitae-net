@@ -3,7 +3,7 @@
 @section("content")
 <div class="container col-panel">
   <div class="panel panel-default" id="panel">
-    <div class="panel-heading">Administrator Dashboard</div>
+    <div class="panel-heading"><h3>Administrator Dashboard</h3></div>
     <div class="panel-body">
       @if (Auth::user()->isAdmin() && Auth::user()->email === 'admin@example.com')
         <div class="alert alert-warning" role="alert">

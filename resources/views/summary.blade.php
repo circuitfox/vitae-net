@@ -4,7 +4,7 @@
 <div id="summary-page">
   <div class="col-panel">
     <div id="panel" class="panel panel-default">
-      <div class="panel-heading">Scan</div>
+      <div class="panel-heading"><h3>Scan</h3></div>
       <div class="panel-body">
         <div id="scan-error-alert"></div>
         <form id="scan-form" class="form-horizontal" action="{{ url('/scan') }}" method="POST">

@@ -15,7 +15,7 @@
     @else
       {{ csrf_field() }}
       <div class="panel panel-default" id="panel">
-        <div class="panel-heading">Signatures</div>
+        <div class="panel-heading"><h3>Signatures</h3></div>
         <table class="table">
           <thead>
             <tr>

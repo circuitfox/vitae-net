@@ -1,11 +1,10 @@
 @extends('layouts.nologin')
-
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-panel">
       <div class="panel panel-default">
-        <div class="panel-heading">Login</div>
+        <div class="panel-heading"><h3>Login</h3></div>
         <div class="panel-body">
           <form class="form-horizontal" method="POST" action="{{ route('login') }}">
               {{ csrf_field() }}

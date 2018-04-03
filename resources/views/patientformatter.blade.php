@@ -3,7 +3,7 @@
 @section("content")
 <div class="col-panel">
   <div class="panel panel-default" id="panel">
-    <div class="panel-heading">Patient Data Formatter</div>
+    <div class="panel-heading"><h3>Patient Data Formatter</h3></div>
     <div class="panel-body">
       <form class="form-horizontal">
         <div class="col-sm-6">

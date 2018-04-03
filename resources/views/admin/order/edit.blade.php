@@ -3,7 +3,7 @@
 @section("content")
   <div class="col-panel">
     <div class="panel panel-default">
-      <div class="panel-heading">Edit Order</div>
+      <div class="panel-heading"><h3>Edit Order</h3></div>
       <div class="panel-body">
         <form id="order-edit-form" class="form-horizontal" action="{{ route('orders.update', ['id' => $order->id]) }}" method="POST" enctype="multipart/form-data">
           {{ method_field('put') }}

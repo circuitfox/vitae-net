@@ -18,7 +18,7 @@ class LandingPageTest extends TestCase
     {
         $response = $this->get('/login');
         $response->assertSee('<div class="panel panel-default">');
-        $response->assertSee('<div class="panel-heading">Login</div>');
+        $response->assertSee('<div class="panel-heading"><h3>Login</h3></div>');
         $response->assertSee('<form class="form-horizontal" method="POST" action="' . route('login') . '">');
         $response->assertSee('<label for="password" class="col-md-4 control-label">Password</label>');
         $response->assertSee('<input id="password" type="password" class="form-control" name="password" required>');
