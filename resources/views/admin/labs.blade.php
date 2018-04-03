@@ -1,47 +1,48 @@
 @extends("layouts.app")
 @section("title", "Vitae NET - Labs")
 @section("content")
-<div class="container col-md-8 col-md-offset-2">
-  <? $labs = App\Lab::all(); ?>
+<div class="container col-panel">
   @if ($labs->isEmpty())
     <div class="panel panel-default">
-      @if (Auth::user()->isPrivileged())
-        <div class="panel-header">
-          <div class="row">
-            <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database. Add some?</h3>
-          </div>
+      <div class="panel-header">
+        <div class="row">
+          <h3 class="text-center">No labs in the database.</h3>
         </div>
-        <div class="panel-body">
+      </div>
+      <div class="panel-body">
+        @if (Auth::user()->isPrivileged())
           <a href="{{ route('labs.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Labs</a>
-        </div>
-      @else
-        <div class="panel-header">
-          <div class="row">
-            <h3 class="col-md-offset-2 col-md-8 text-center">No labs in the database.</h3>
-          </div>
-        </div>
-      @endif
+        @endif
+      </div>
     </div>
   @else
-    <div class="panel-group" id="labs" role="tablist">
-      @foreach ($labs as $lab)
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab">
-            <div class="row">
-              <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#labs" data-target="#lab{{ $lab->id }}">
-                @include("partials.lab.header", ["lab" => $lab])
-              </a>
-              <div class="btn-toolbar col-md-4">
-                <a href="/labs/{{ $lab->id }}" class="btn btn-primary h3">Details</a>
-                @if (Auth::user()->isPrivileged())
-                  <a href="/labs/{{ $lab->id }}/edit" class="btn btn-primary h3">Edit</a>
-                  <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#lab-delete-modal" data-id="{{ $lab->id }}">Delete</button>
-                @endif
-              </div>
+    <div class="list-group" id="labs" role="tablist">
+      <div class="list-group-item">
+        <div class="list-group-item-heading">
+          @if (Auth::user()->isPrivileged())
+            <div class="pull-right">
+              <a class="btn btn-success" href="{{ route('labs.create') }}">Add Lab</a>
             </div>
+          @endif
+          <h2>Labs</h2>
+        </div>
+      </div>
+      @foreach ($labs as $lab)
+        <div class="list-group-item clearfix">
+          <div class="list-group-item-heading" role="tab">
+            <div class="btn-toolbar pull-right">
+              <a href="/labs/{{ $lab->id }}" class="btn btn-default">Details</a>
+              @if (Auth::user()->isPrivileged())
+                <a href="/labs/{{ $lab->id }}/edit" class="btn btn-primary">Edit</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#lab-delete-modal" data-id="{{ $lab->id }}">Delete</button>
+              @endif
+            </div>
+            <a class="accordion collapsed item-title" role="button" data-toggle="collapse" data-parent="#labs" data-target="#lab{{ $lab->id }}">
+              @include("partials.lab.header", ["lab" => $lab])
+            </a>
           </div>
-          <div id="lab{{ $lab->id }}" class="panel-collapse collapse" role="tabpanel">
-            <div class="panel-body">
+          <div id="lab{{ $lab->id }}" class="collapse" role="tabpanel">
+            <div class="list-group-item-text">
               @include("partials.lab.body", ["lab" => $lab])
             </div>
           </div>
@@ -49,6 +50,8 @@
       @endforeach
     </div>
   @endif
-  @include("partials.lab.delete-modal")
+  @if (Auth::user()->isPrivileged())
+    @include("partials.lab.delete-modal")
+  @endif
 </div>
 @endsection

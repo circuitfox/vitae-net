@@ -1,13 +1,13 @@
-<div id="assessment" class="col-md-offset-1 col-md-10">
+<div id="assessment" class="col-panel">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <div class="row">
+      @if (Auth::user()->isPrivileged())
+        <div class="pull-right">
+          <a class="btn btn-success h3" href="/assessments/{{ $medical_record_number }}">View Assessments</a>
+        </div>
+      @endif
+      <div class="row clearfix">
         <h3 class="col-md-6">Assessment</h3>
-        @if (Auth::user()->isPrivileged())
-          <div class="col-md-6 text-right">
-            <a class="btn btn-success h3" href="/assessments/{{ $medical_record_number }}">View Assessments</a>
-          </div>
-        @endif
       </div>
     </div>
     <div class="panel-body">

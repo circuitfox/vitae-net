@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Account Settings")
 @section("content")
-<div class="container col-md-8 col-md-offset-2">
+<div class="container col-panel">
   <div class="panel">
     <div class="panel-heading panel-default">
       <h3>Edit User Account {{ $user->email }}</h3>

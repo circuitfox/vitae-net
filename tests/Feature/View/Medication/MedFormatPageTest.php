@@ -13,7 +13,6 @@ class MedFormatPageTest extends TestCase
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $response = $this->actingAs($user)->get('/medformatter');
-        $response->assertSee('<div class="panel-heading">Medication Data Formatter</div>');
         $response->assertSee('<form class="form-horizontal">');
         $response->assertSee('<label for="primary_name">Primary Name:</label>');
         $response->assertSee('<input type="text" id="primary_name" name="primary_name">');

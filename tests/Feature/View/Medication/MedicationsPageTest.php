@@ -21,8 +21,8 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
-        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary h3">Edit</a>');
-        $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
+        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
+        $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
 
     public function testHasComboMedication()
@@ -43,8 +43,8 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
-        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary h3">Edit</a>');
-        $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
+        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
+        $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
 
     public function testHasAmountMedication()
@@ -63,8 +63,8 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
-        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary h3">Edit</a>');
-        $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
+        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
+        $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
 
     public function testHasInMedication()
@@ -85,8 +85,8 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
-        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary h3">Edit</a>');
-        $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
+        $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
+        $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
 
     public function testHasModal()
@@ -106,8 +106,16 @@ class MedicationsPageTest extends TestCase
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $response = $this->actingAs($user)->get('/medications');
-        $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No medications in the database. Add some?</h3>');
+        $response->assertSee('<h3 class="text-center">No medications in the database.</h3>');
         $response->assertSee('<a href="' . route('medications.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>');
+    }
+
+    public function testHasNoAddButtonIfEmptyAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertSee('<h3 class="text-center">No medications in the database.</h3>');
+        $response->assertDontSee('<a href="' . route('medications.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>');
     }
 
     public function testHasBarcode()
@@ -125,5 +133,38 @@ class MedicationsPageTest extends TestCase
         $medication = factory(\App\Medication::class)->create();
         $response = $this->actingAs($user)->get('/medications');
         $response->assertSee($medication->generateDownloadButton());
+    }
+
+    public function testHasHeader()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertSee('<a class="btn btn-success" href="' . route('medications.create') . '">Add Medication</a>');
+        $response->assertSee('<h2>Medications</h2>');
+    }
+
+    public function testNoAddIfStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertDontSee('<a class="btn btn-success" href="' . route('medications.create') . '">Add Medication</a>');
+        $response->assertSee('<h2>Medications</h2>');
+    }
+
+    public function testNoEditDeleteIfStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertDontSee(
+            '<a href="/medications/'
+            . $medication->medication_id
+            . '/edit" class="btn btn-primary">Edit</a>');
+        $response->assertDontSee(
+            '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="'
+            . $medication->medication_id
+            . '">Delete</button>');
     }
 }

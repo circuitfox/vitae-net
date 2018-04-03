@@ -5,30 +5,41 @@
   <div id="patient" v-else>
     <h3>Patient</h3>
     <hr>
-    <dl class='dl-horizontal dl-wrap'>
-      <dt>Name:</dt>
-      <dd>{{ patient.first_name }} {{ patient.last_name }}</dd>
-      <dt>DOB:</dt>
-      <dd>{{ patient.date_of_birth }}</dd>
-      <dt>MRN:</dt>
-      <dd>{{ patient.medical_record_number }}</dd>
-      <dt>Sex:</dt>
-      <dd>{{ patient.sex }}</dd>
-      <dt>Height:</dt>
-      <dd>{{ patient.height }}</dd>
-      <dt>Weight:</dt>
-      <dd>{{ patient.weight }}</dd>
-      <dt>Diagnosis:</dt>
-      <dd>{{ patient.diagnosis }}</dd>
-      <dt>Allergies:</dt>
-      <dd>{{ patient.allergies }}</dd>
-      <dt>Code Status:</dt>
-      <dd>{{ patient.code_status }}</dd>
-      <dt>Physician:</dt>
-      <dd>{{ patient.physician }}</dd>
-      <dt>Room:</dt>
-      <dd>{{ patient.room }}</dd>
-    </dl>
+    <div class="row">
+      <div class="col-md-2">
+        <h5><b><u>Name:</u></b></h5>
+        {{ patient.first_name }} {{ patient.last_name }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Date Of Birth:</u></b></h5> {{ patient.date_of_birth }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Sex:</u></b></h5> {{ patient.sex }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Height:</u></b></h5> {{ patient.height }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Weight:</u></b></h5> {{ patient.weight }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <h5><b><u>Diagnosis:</u></b></h5> {{ patient.diagnosis }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Allergies:</u></b></h5> {{ patient.allergies }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Code Status:</u></b></h5> {{ patient.code_status }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Physician:</u></b></h5> {{ patient.physician }}
+      </div>
+      <div class="col-md-2">
+        <h5><b><u>Room:</u></b></h5> {{ patient.room }}
+      </div>
+    </div>
     <hr>
     <div v-if="form">
       <input type="hidden" name="first_name" :value="patient.first_name" id="patient-first-name">

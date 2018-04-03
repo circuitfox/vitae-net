@@ -1,9 +1,9 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Medication")
 @section("content")
-<div class="col-md-offset-2 col-md-8">
+<div class="col-panel">
   <div class="panel panel-default">
-    <div class="panel-heading">Add Medication</div>
+    <div class="panel-heading"><h3>Add Medication</h3></div>
     <div class="panel-body">
       <div id="scan-error-alert"></div>
       <form id="medication-form" class="form-horizontal" action="{{ route('medications.store') }}" method="POST">

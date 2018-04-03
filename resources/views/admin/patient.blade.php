@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Patient")
 @section("content")
-<div class="col-md-offset-1 col-md-10">
+<div class="col-panel">
   <div id="patient" class="panel panel-default">
     <div class="panel-heading">
       @include("partials.patient.header", ["patient" => $patient])
@@ -23,13 +23,13 @@
   "statMeds" => $statMeds,
   "meds" => $meds,
 ])
-<div class="col-md-offset-1 col-md-10">
+<div class="col-panel">
   <div class="panel-group" role="tablist">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab">
-        <h3 class="panel-title">
-          <a href="#labs" class="collapsed" role="button" data-toggle="collapse">Lab Results</a>
-        </h3>
+        <div class="panel-title">
+          <a href="#labs" class="collapsed" role="button" data-toggle="collapse"><h3>Lab Results</h3></a>
+        </div>
       </div>
       <div id="labs" class="panel-collapse collapse in" role="tabpanel">
         @if ($labs->isEmpty())
@@ -51,9 +51,9 @@
   <div class="panel-group" role="tablist">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab">
-        <h3 class="panel-title">
-          <a href="#orders" class="collapsed" role="button" data-toggle="collapse">Provider's Orders</a>
-        </h3>
+        <div class="panel-title">
+          <a href="#orders" class="collapsed" role="button" data-toggle="collapse"><h3>Provider's Orders</h3></a>
+        </div>
       </div>
       <div id="orders" class="panel-collapse collapse in" role="tabpanel">
         @if ($orders->isEmpty())

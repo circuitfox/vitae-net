@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET - Lab")
 @section("content")
-<div class="col-md-offset-1 col-md-10">
+<div class="col-panel">
   <div id="lab" class="panel panel-default">
     <div class="panel-heading">
       @include("partials.lab.header", ["lab" => $lab])

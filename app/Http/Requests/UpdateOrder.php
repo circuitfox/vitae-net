@@ -28,6 +28,7 @@ class UpdateOrder extends FormRequest
         return [
             'name' => 'required|string',
             'description' => 'required|string',
+            'doc' => 'nullable|mimetypes:application/pdf',
             'patient_id' => 'numeric|nullable',
             'completed' => 'required|boolean',
         ];

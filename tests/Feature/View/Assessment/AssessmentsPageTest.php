@@ -13,8 +13,10 @@ class AssessmentsPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $assessment = factory(\App\Assessment::class)->create();
+    $name =
+      $this->faker_escape($assessment->patient->first_name . ' ' . $assessment->patient->last_name);
     $response = $this->actingAs($user)->get('/assessments/' . $assessment->medical_record_number);
-    $response->assertSee('<div class="panel-group" id="assessments" role="tablist">');
+    $response->assertSee('Assessments for ' . $name);
     $response->assertSee('<h5><b><u>Name:</u></b></h5>');
     $response->assertSee('<p>'. $this->faker_escape($assessment->student_name) .'</p>');
     $response->assertSee('<h5><b><u>Date:</u></b></h5>');
@@ -28,7 +30,7 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<h5><b><u>Reason for admission:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->reason .'</p>');
     $response->assertSee('<h5><b><u>Temperature:</u></b></h5>');
-    $response->assertSee('<p>'. $assessment->temperature .'</p>');
+    $response->assertSee('<p>'. number_format($assessment->temperature, 2) .'</p>');
     $response->assertSee('<h5><b><u>Blood pressure:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->bp_over . ' / ' . $assessment->bp_under .'</p>');
     $response->assertSee('<h5><b><u>Automatic:</u></b></h5>');
@@ -115,5 +117,14 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<p>'. $assessment->drainage .'</p>');
     $response->assertSee('<h5><b><u>Activity-Bedrest/BRP/up with/without assistance:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->activity .'</p>');
+  }
+
+  public function testHasMessageIfEmpty()
+  {
+    $user = factory(\App\User::class)->states('admin')->create();
+    $patient = factory(\App\Patient::class)->create();
+    $name = $this->faker_escape($patient->first_name . ' ' . $patient->last_name);
+    $response = $this->actingAs($user)->get('/assessments/' . $patient->medical_record_number);
+    $response->assertSee('No assessments for ' . $name);
   }
 }

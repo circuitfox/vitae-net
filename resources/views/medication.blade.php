@@ -1,9 +1,9 @@
 @extends('layouts/app')
 @section('title', 'Vitae NET - Scanner')
 @section('content')
-<div class="col-md-offset-2 col-md-8">
+<div class="col-panel">
   <div class="panel panel-default" id="panel">
-    <div class="panel-heading">Students:</div>
+    <div class="panel-heading"><h3>Students:</h3></div>
     <div class="panel-body">
       Instructions for using the medication scanning system:
       <ol>

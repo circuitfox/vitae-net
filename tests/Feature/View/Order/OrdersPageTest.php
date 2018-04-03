@@ -23,9 +23,9 @@ class OrdersPageTest extends TestCase
     $response->assertSee('<p>' . $order->patient_id . '</p>');
     $response->assertSee('<h5><b><u>Completed:</u></b></h5>');
     $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') . '</p>');
-    $response->assertSee('<a href="/orders/' . $order->id . '" class="btn btn-default h3">Details</a>');
-    $response->assertSee('<a href="/orders/' . $order->id . '/edit" class="btn btn-primary h3">Edit</a>');
-    $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#order-delete-modal" data-id="' . $order->id . '">Delete</button');
+    $response->assertSee('<a href="/orders/' . $order->id . '" class="btn btn-default">Details</a>');
+    $response->assertSee('<a href="/orders/' . $order->id . '/edit" class="btn btn-primary">Edit</a>');
+    $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#order-delete-modal" data-id="' . $order->id . '">Delete</button');
   }
 
   public function testHasModal()
@@ -45,7 +45,42 @@ class OrdersPageTest extends TestCase
   {
     $user = factory(\App\User::class)->states('admin')->create();
     $response = $this->actingAs($user)->get('/orders/');
-    $response->assertSee('<h3 class="col-md-offset-2 col-md-8 text-center">No orders in the database. Add some?</h3>');
+    $response->assertSee('<h3 class="text-center">No orders in the database.</h3>');
     $response->assertSee('<a href="' . route('orders.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>');
+  }
+
+  public function testHasNoAddbuttonIfEmptyAsStudent()
+  {
+    $user = factory(\App\User::class)->states('student')->create();
+    $response = $this->actingAs($user)->get('/orders/');
+    $response->assertSee('<h3 class="text-center">No orders in the database.</h3>');
+    $response->assertDontSee('<a href="' . route('orders.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Orders</a>');
+  }
+
+  public function testHasHeader()
+  {
+    $user = factory(\App\User::class)->states('admin')->create();
+    $order = factory(\App\Order::class)->create();
+    $response = $this->actingAs($user)->get('/orders');
+    $response->assertSee('<a class="btn btn-success" href="' . route('orders.create') . '">Add Order</a>');
+    $response->assertSee('<h2>Orders</h2>');
+  }
+
+  public function testNoAddIfStudent()
+  {
+    $user = factory(\App\User::class)->states('student')->create();
+    $order = factory(\App\Order::class)->create();
+    $response = $this->actingAs($user)->get('/orders');
+    $response->assertDontSee('<a class="btn btn-success" href="' . route('orders.create') . '">Add Order</a>');
+    $response->assertSee('<h2>Orders</h2>');
+  }
+
+  public function testNoEditDeleteIfStudent()
+  {
+    $user = factory(\App\User::class)->states('student')->create();
+    $order = factory(\App\Order::class)->create();
+    $response = $this->actingAs($user)->get('/orders');
+    $response->assertDontSee('<a href="/orders/' . $order->id . '/edit" class="btn btn-primary">Edit</a>');
+    $response->assertDontSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#order-delete-modal" data-id="' . $order->id . '">Delete</button');
   }
 }

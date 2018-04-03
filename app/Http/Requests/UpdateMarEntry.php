@@ -26,7 +26,7 @@ class UpdateMarEntry extends FormRequest
     public function rules()
     {
         return [
-            'medication_id' => 'required|integer:exists:medication,medication_id',
+            'medication_id' => 'required|integer|exists:medications,medication_id',
             'stat' => 'boolean|nullable',           
             'instructions' => 'required|string',
             'given_at.*' => 'boolean|nullable',
