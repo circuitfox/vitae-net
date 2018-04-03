@@ -5,7 +5,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Edit Lab Result</div>
       <div class="panel-body">
-        <form id="lab-edit-form" class="form-horizontal" action="{{ route('labs.update', ['id' => $lab->id]) }}" method="POST">
+        <form id="lab-edit-form" class="form-horizontal" action="{{ route('labs.update', ['id' => $lab->id]) }}" method="POST" enctype="multipart/form-data">
           {{ method_field('put') }}
           {{ csrf_field() }}
           <div class="form-group">
@@ -28,6 +28,13 @@
                   {{ $errors->first('description') }}
                 </span>
               @endif
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="doc" class="col-md-2 control-label">Lab result document:</label>
+            <div class="col-md-6">
+              <input type="file" id="doc" name="doc">
+              <p class="help-block">Upload a different file here, if needed.</p>
             </div>
           </div>
           <div class="form-group">

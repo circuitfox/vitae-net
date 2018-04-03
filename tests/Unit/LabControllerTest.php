@@ -173,6 +173,26 @@ class LabControllerTest extends TestCase
         $this->assertEquals($lab1->patient->medical_record_number, $patient->medical_record_number);
     }
 
+    public function testUpdateFile()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $lab = factory(Lab::class)->create();
+        $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
+            'name' => 'foo',
+            'description' => $lab->description,
+            'doc' => UploadedFile::fake()->create('test.pdf'),
+            'patient_id' => $lab->patient_id,
+        ]);
+        $lab1 = Lab::find($lab->id);
+        $this->assertNotNull($lab1);
+        $this->assertEquals($lab1->name, 'foo');
+        $this->assertEquals($lab1->description, $lab->description);
+        $this->assertEquals($lab1->file_path, $lab->file_path);
+        $this->assertEquals($lab1->patient_id, $lab->patient_id);
+        $this->assertNotNull($lab1->patient());
+        $this->assertEquals($lab1->patient->medical_record_number, $lab->patient->medical_record_number);
+    }
+
     public function testUpdateInstructorOrAdmin()
     {
         $admin = factory(User::class)->states('admin')->create();
