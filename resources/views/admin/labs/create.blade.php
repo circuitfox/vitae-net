@@ -46,10 +46,8 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="col-md-2">
+            <div class="col-md-offset-2 col-md-4">
               <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
-            </div>
-            <div class="col-md-1">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
