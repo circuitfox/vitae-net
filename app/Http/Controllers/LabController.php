@@ -94,7 +94,16 @@ class LabController extends Controller
     public function update(Requests\UpdateLab $request, $id)
     {
         $lab = Lab::find($id);
-        $lab->update($request->all());
+        $file = $request->doc;
+        $data = $request->all();
+        if (isset($data['doc'])) {
+            $path = dirname($lab->file_path);
+            $fileName = basename($lab->file_path);
+            Storage::disk('public')->delete($lab->file_path);
+            Storage::disk('public')->putFileAs($path, $file, $fileName);
+            unset($data['doc']);
+        }
+        $lab->update($data);
         return redirect()->route('labs.index')->with('message','Lab has been updated successfully');
     }
 

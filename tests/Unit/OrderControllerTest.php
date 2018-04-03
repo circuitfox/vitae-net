@@ -182,6 +182,28 @@ class OrderControllerTest extends TestCase
         $this->assertEquals($order1->patient->medical_record_number, $patient->medical_record_number);
     }
 
+    public function testUpdateFile()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $order = factory(Order::class)->create();
+        $response = $this->actingAs($admin)->put('/orders/' . $order->id, [
+            'name' => 'foo',
+            'description' => $order->description,
+            'doc' => UploadedFile::fake()->create('test.pdf'),
+            'patient_id' => $order->patient_id,
+            'completed' => !$order->completed,
+        ]);
+        $order1 = Order::find($order->id);
+        $this->assertNotNull($order1);
+        $this->assertEquals($order1->name, 'foo');
+        $this->assertEquals($order1->description, $order->description);
+        $this->assertNotEquals($order1->completed, $order->completed);
+        $this->assertEquals($order1->file_path, $order->file_path);
+        $this->assertEquals($order1->patient_id, $order->patient_id);
+        $this->assertNotNull($order1->patient());
+        $this->assertEquals($order1->patient->medical_record_number, $order->patient->medical_record_number);
+    }
+
     public function testUpdateInstructorOrAdmin()
     {
         $admin = factory(User::class)->states('admin')->create();

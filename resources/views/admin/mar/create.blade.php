@@ -1,9 +1,9 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - MAR Creation")
 @section("content")
-<div class="col-md-offset-1 col-md-10">
+<div class="col-panel">
   <div class="panel panel-default">
-    <div class="panel-heading">Add MAR Entries</div>
+    <div class="panel-heading"><h3>Add MAR Entries</h3></div>
     <div class="panel-body">
       <div id="scan-error-alert"></div>
       <form id="mar-form" class="form-inline" action="{{ route('mars.store') }}" method="POST">

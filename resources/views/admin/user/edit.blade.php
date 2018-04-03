@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Vitae NET Administration - Account Settings")
 @section("content")
-<div class="container col-md-8 col-md-offset-2">
+<div class="container col-panel">
   <div class="panel">
     <div class="panel-heading panel-default">
       <h3>Edit User Account {{ $user->email }}</h3>
@@ -55,9 +55,11 @@
               <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
             </div>
           </div>
-          <div class="form-group col-md-offset-2 col-md-4">
-            <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
-            <button type="submit" class="btn btn-primary">Update</button>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
+              <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
           </div>
         </form>
       </div>

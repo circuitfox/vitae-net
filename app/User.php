@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     const ROLES = ['admin', 'instructor', 'student'];
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +31,22 @@ class User extends Authenticatable
 
     public function isAdmin() {
         if ($this->role === 'admin') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isInstructor() {
+        if ($this->role === 'instructor') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isPrivileged() {
+        if (($this->role === 'admin') || ($this->role === 'instructor')) {
             return true;
         } else {
             return false;

@@ -1,12 +1,14 @@
-<div id="mar" class="col-md-offset-1 col-md-10">
+<div id="mar" class="col-panel">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="col-md-6">Medication Administration Record</h3>
-      @if (Auth::user()->isAdmin())
-        <div class="col-md-offset-4 text-right">
+      @if (Auth::user()->isPrivileged())
+        <div class="pull-right">
           <a class="btn btn-success h3" href="/mars/create/{{ $medical_record_number }}">Add Prescription</a>
         </div>
       @endif
+      <div class="row clearfix">
+        <h3 class="col-md-6">Medication Administration Record</h3>
+      </div>
     </div>
     @if ($prescriptions->isEmpty() && $statMeds->isEmpty())
       <div class="panel-body">
@@ -30,7 +32,7 @@
           <th>1700</th>
           <th>1800</th>
           <th>1900</th>
-          @if (Auth::user()->isAdmin())
+          @if (Auth::user()->isPrivileged())
             <th>Edit</th>
           @endif
         </tr>

@@ -38,14 +38,14 @@ class PatientPageTest extends TestCase
         $response->assertSee($this->faker_escape($patient->physician));
         $response->assertSee('<h5><b><u>Room:</u></b></h5>');
         $response->assertSee($patient->room);
-        $response->assertSee('<a href="#labs" class="collapsed" role="button" data-toggle="collapse">Lab Results</a>');
+        $response->assertSee('<a href="#labs" class="collapsed" role="button" data-toggle="collapse"><h3>Lab Results</h3></a>');
         $response->assertSee('<div id="labs" class="panel-collapse collapse in" role="tabpanel"');
-        $response->assertSee('<a href="#orders" class="collapsed" role="button" data-toggle="collapse">Provider\'s Orders</a>');
+        $response->assertSee('<a href="#orders" class="collapsed" role="button" data-toggle="collapse"><h3>Provider\'s Orders</h3></a>');
         $response->assertSee('<div id="orders" class="panel-collapse collapse in" role="tabpanel"');
-        $response->assertSee('<div id="mar" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<div id="mar" class="col-panel">');
         $response->assertSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
         $response->assertSee('<h5 class="text-center text-muted">No entries in the MAR</h5>');
-        $response->assertSee('<div id="assessment" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<div id="assessment" class="col-panel">');
         $response->assertSee('<a class="btn btn-success h3" href="/assessments/' . $patient->medical_record_number . '">View Assessments</a>');
     }
 
@@ -54,7 +54,7 @@ class PatientPageTest extends TestCase
         $marEntry = factory(\App\MarEntry::class)->create();
         $patient = $marEntry->patient;
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
-        $response->assertSee('<div id="mar" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<div id="mar" class="col-panel">');
         $response->assertSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
         $response->assertSee('<table class="table-hover">');
         $response->assertSee('<th>Edit</th>');
@@ -65,7 +65,7 @@ class PatientPageTest extends TestCase
         $marEntry = factory(\App\MarEntry::class)->create();
         $patient = $marEntry->patient;
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
-        $response->assertSee('<div id="mar" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<div id="mar" class="col-panel">');
         $response->assertDontSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
         $response->assertSee('<table class="table-hover">');
         $response->assertDontSee('<th>Edit</th>');
@@ -140,7 +140,7 @@ class PatientPageTest extends TestCase
         $patient = factory(\App\Patient::class)->create();
         $assessment = ['id' => 0];
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
-        $response->assertSee('<div id="assessment" class="col-md-offset-1 col-md-10">');
+        $response->assertSee('<div id="assessment" class="col-panel">');
         $response->assertSee('<assessment-form id="assessment-form"');
         $response->assertSee(':assessment="' . $this->faker_escape(json_encode($assessment)) . '"');
         $response->assertSee(':errors="' . $this->faker_escape(json_encode([])) . '"');

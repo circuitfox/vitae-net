@@ -1,42 +1,51 @@
 @extends("layouts.app")
-@section("title", "Vitae NET Administration - Medication")
+@section("title", "Vitae NET - Medication")
 @section("content")
-<div class="container col-md-8 col-md-offset-2">
-  <? $medications = App\Medication::all(); ?>
+<div class="container col-panel">
   @if ($medications->isEmpty())
     <div class="panel panel-default">
       <div class="panel-header">
         <div class="row">
-          <h3 class="col-md-offset-2 col-md-8 text-center">No medications in the database. Add some?</h3>
+          <h3 class="text-center">No medications in the database.</h3>
         </div>
       </div>
       <div class="panel-body">
-        <a href="{{ route('medications.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>
+        @if (Auth::user()->isPrivileged())
+          <a href="{{ route('medications.create') }}" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>
+        @endif
       </div>
     </div>
   @else
-    <div class="panel-group" id="medications" role="tablist">
-      @foreach ($medications as $medication)
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab">
-            <div class="row">
-              <div class="panel-title">
-                <a class="accordion collapsed col-md-8" role="button" data-toggle="collapse" data-parent="#medications" data-target="#medication{{ $medication->medication_id }}">
-                  @include("partials.medication.header", ["medication" => $medication])
-                </a>
-              </div>
-              <div class="btn-toolbar col-md-4">
-                <a href="/medications/{{ $medication->medication_id }}/edit" class="btn btn-primary h3">Edit</a>
-                <button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#medication-delete-modal" data-id="{{ $medication->medication_id }}">Delete</button>
-              </div>
+    <div class="list-group" id="medications" role="tablist">
+      <div class="list-group-item">
+        <div class="list-group-item-heading">
+          @if (Auth::user()->isPrivileged())
+            <div class="pull-right">
+              <a class="btn btn-success" href="{{ route('medications.create') }}">Add Medication</a>
             </div>
-          </div>
-          <div id="medication{{ $medication->medication_id }}" class="panel-collapse collapse" role="tabpanel">
-            <div class="panel-body">
-            <div class="row">
-              <div class="col-sm-12">
-                @include("partials.medication.body", ["medciation" => $medication])
+          @endif
+          <h2>Medications</h2>
+        </div>
+      </div>
+      @foreach ($medications as $medication)
+        <div class="list-group-item clearfix">
+          <div class="list-group-item-heading" role="tab">
+            @if (Auth::user()->isPrivileged())
+              <div class="btn-toolbar pull-right">
+                <a href="/medications/{{ $medication->medication_id }}/edit" class="btn btn-primary">Edit</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="{{ $medication->medication_id }}">Delete</button>
               </div>
+            @endif
+            <a class="accordion collapsed item-title" role="button" data-toggle="collapse" data-parent="#medications" data-target="#medication{{ $medication->medication_id }}">
+                @include("partials.medication.header", ["medication" => $medication])
+            </a>
+          </div>
+          <div id="medication{{ $medication->medication_id }}" class="collapse" role="tabpanel">
+            <div class="list-group-item-text">
+              <div class="row">
+                <div class="col-sm-12">
+                  @include("partials.medication.body", ["medciation" => $medication])
+                </div>
               </div>
               <div class="row">
                 <div class="col-sm-8">
@@ -55,6 +64,8 @@
       @endforeach
     </div>
   @endif
-  @include("partials.medication.delete-modal")
+  @if (Auth::user()->isPrivileged())
+    @include("partials.medication.delete-modal")
+  @endif
 </div>
 @endsection

@@ -25,7 +25,7 @@ class DestroySignature extends FormRequest
     public function rules()
     {
         return [
-            'ids.*' => 'integer:nullable:exists:signatures,id'
+            'ids.*' => 'integer|nullable|exists:signatures,id'
         ];
     }
 }

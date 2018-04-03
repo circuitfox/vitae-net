@@ -30,3 +30,22 @@ td.stat-header {
     background-color: $mar-stat-header-bg;
     color: $mar-stat-header-text;
 }
+
+.col-panel {
+    @extend .col-md-offset-1;
+    @extend .col-md-10;
+}
+
+.list-group-item-heading {
+    .btn-toolbar {
+        margin-top: -3px;
+    }
+    a.item-title {
+        color: $list-group-link-color;
+
+        &:hover,
+        &:focus {
+            color: $list-group-link-hover-color;
+        }
+    }
+}

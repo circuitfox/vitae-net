@@ -17,9 +17,9 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<h3>'
             . $this->faker_escape($patient->first_name . ' ' . $patient->last_name)
             . '</h3>');
-        $response->assertSee('<a class="btn btn-default h3" href="' . route('patients.show', ['id' => $patient->medical_record_number]) . '">Details</a>');
-        $response->assertSee('<a class="btn btn-primary h3" href="' . route('patients.edit', ['id' => $patient->medical_record_number]) . '">Edit</a>');
-        $response->assertSee('<button type="button" class="btn btn-danger h3" data-toggle="modal" data-target="#patient-delete-modal" data-id="' . $patient->medical_record_number . '">Delete</button>');
+        $response->assertSee('<a class="btn btn-default" href="' . route('patients.show', ['id' => $patient->medical_record_number]) . '">Details</a>');
+        $response->assertSee('<a class="btn btn-primary" href="' . route('patients.edit', ['id' => $patient->medical_record_number]) . '">Edit</a>');
+        $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#patient-delete-modal" data-id="' . $patient->medical_record_number . '">Delete</button>');
         $response->assertSee('<h3>' . $this->faker_escape($patient->first_name . ' ' . $patient->last_name) . '</h3>');
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
         $response->assertSee($this->faker_escape($patient->first_name . ' ' . $patient->last_name));
@@ -70,5 +70,54 @@ class PatientsPageTest extends TestCase
         $patient = factory(\App\Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients');
         $response->assertSee($patient->generateDownloadButton());
+    }
+
+    public function testHasAddButtonIfEmpty()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertSee('<h3 class="text-center">No patients in the database.</h3>');
+        $response->assertSee('<a href="' . route('patients.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>');
+    }
+
+    public function testHasNoAddButtonIfEmptyAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertSee('<h3 class="text-center">No patients in the database.</h3>');
+        $response->assertDontSee('<a href="' . route('patients.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>');
+    }
+
+    public function testHasHeader()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertSee('<a class="btn btn-success" href="' . route('patients.create') . '">Add Patient</a>');
+        $response->assertSee('<h2>Patients</h2>');
+    }
+
+    public function testNoAddIfStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertDontSee('<a class="btn btn-success" href="' . route('patients.create') . '">Add Patient</a>');
+        $response->assertSee('<h2>Patients</h2>');
+    }
+
+    public function testNoEditDeleteIfStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertDontSee(
+            '<a class="btn btn-primary" href="'
+            . route('patients.edit', ['id' => $patient->medical_record_number])
+            . '">Edit</a>');
+        $response->assertDontSee(
+            '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#patient-delete-modal" data-id="'
+            . $patient->medical_record_number
+            . '">Delete</button>');
     }
 }

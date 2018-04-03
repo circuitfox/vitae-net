@@ -10,7 +10,7 @@ class MedicationLandingPageTest extends TestCase
     function testHasPanel()
     {
         $response = $this->get('/medication');
-        $response->assertSee('<div class="panel-heading">Students:</div>');
+        $response->assertSee('<div class="panel-heading"><h3>Students:</h3></div>');
         $response->assertSee('<div class="panel-body">');
         $response->assertSee('Instructions for using the medication scanning system:');
         $response->assertSee('<li>Scan a patient\'s bracelet</li>');

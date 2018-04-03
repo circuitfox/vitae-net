@@ -42,7 +42,7 @@ class OrderController extends Controller
         $name = request('name');
         $file = $request->doc;
 
-        // create a new patient using the form data
+        // create a new order using the form data
         $order = new \App\Order;
         $path = 'orders/';
         $fileName = str_replace(' ', '-', $name) . rand(1111, 9999) . '.pdf';
@@ -101,7 +101,15 @@ class OrderController extends Controller
     public function update(Requests\UpdateOrder $request, $id)
     {
         $order = Order::find($id);
+        $file = $request->doc;
         $orderUpdate = $request->all();
+        if (isset($orderUpdate['doc'])) {
+            $path = dirname($order->file_path);
+            $fileName = basename($order->file_path);
+            Storage::disk('public')->delete($order->file_path);
+            Storage::disk('public')->putFileAs($path, $file, $fileName);
+            unset($orderUpdate['doc']);
+        }
         $order->update($orderUpdate);
         return redirect()->route('orders.index')->with('message','Order has been updated successfully');
     }
@@ -122,9 +130,6 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $this->authorize('delete', $order);
-        // TODO: To be changed with correct storage location
-        // $orderFile = $order->file_path;
-        // File::delete('storage/' . $orderFile);
         Storage::disk('public')->delete($order->file_path);
         $order->delete();
         return redirect()->route('orders.index')->with('message','Order has been deleted successfully');

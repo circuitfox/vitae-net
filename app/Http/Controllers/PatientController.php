@@ -73,6 +73,12 @@ class PatientController extends Controller
         $assessment = ['id' => 0];
         if (session('assessment') !== null) {
             $assessment = Assessment::find(session('assessment'));
+            // rare case, session should usually never be set without an
+            // assessment; this indicates probable database corruption or
+            // that database migrations have been run.
+            if ($assessment === null) {
+                $assessment = ['id' => 0];
+            }
         }
         return view('admin.patient', [
             'patient' => $patient,

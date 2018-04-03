@@ -149,4 +149,33 @@ class AssessmentControllerTest extends TestCase
         $this->assertEquals($assessment->oximetry, $assessment1->oximetry);
         $this->assertEquals($assessment->automatic, $assessment1->automatic);
     }
+
+    public function testNoNegativeIntegers()
+    {
+        $user = factory(User::class)->states('admin')->create();
+        $patient = factory(Patient::class)->create();
+        $this->assertNull(session('assessment'));
+        $response = $this->actingAs($user)->post('/assessments/update', [
+            'student_name' => 'Joe Smith',
+            'date' => '2018-01-01',
+            'start_time' => '11:00',
+            'end_time' => '12:00',
+            'medical_record_number' => $patient->medical_record_number,
+            'reason' => 'test',
+            'temperature' => 98,
+            'bp_over' => -100,
+            'bp_under' => -100,
+            'apical_pulse' => -60,
+            'respiration' => -60,
+            'oximetry' => -120,
+            'automatic' => true,
+        ]);
+        $response->assertSessionHasErrors([
+          'bp_over',
+          'bp_under',
+          'apical_pulse',
+          'respiration',
+          'oximetry',
+        ]);
+    }
 }
