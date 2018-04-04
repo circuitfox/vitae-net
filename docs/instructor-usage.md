@@ -1,15 +1,13 @@
 ﻿
 # Instructor Usage
- 
+
  This document details how School of Nursing faculty can use the Vitae Nursing Education Tool system.
-&nbsp;
 
 ## Logging In
 
 In a modern web browser, navigate to https://vitaenet.aurora.edu
 You will be taken to the account login page. Sign-in with the Username and Password given to you by your system administrator. If this is your first time signing in to your account, you will be asked to select a new password.
 After logging in, you will be taken to [the administrator dashboard.](#the-administrator-dashboard)
-&nbsp;
 
 ## Site Navigation
 
@@ -35,21 +33,21 @@ The patient details page displays the patient's medical information, bar code, m
 The 'Orders' page displays a list of all the provider's orders stored in the database. If none exist, there will be a prompt to add an order. If there are orders in the database, they will appear in a vertical list. The 'Add Order' button at the top of the list allows you to add another order to the database. Clicking on the orders' names will cause a drop-down section to appear, displaying its full information. Each order has four buttons as explained below.
 
 - Details: Redirects to the order's details page.
-- Edit: Edits the order's detailed information. 
+- Edit: Edits the order's detailed information.
 - Delete: Deletes the order from the database.
 - Complete Order: Marks incomplete orders as completed.
 
-The order details  page displays the order's detailed information and the PDF document associated with the order.
+The order details page displays the order's detailed information and the PDF document associated with the order.
 
 ### Labs
 
 The 'Labs' page displays a list of all the lab results stored in the database. If none exist, there will be a prompt to add a lab result. If there are lab results in the database, they appear in a vertical list. The 'Add Lab' button at the top of the list allows you to add another lab result to the database. Clicking on the lab results' names will cause a drop-down section to appear, displaying its full information. Each lab has three buttons as explained below.
 
 - Details: Redirects to the lab's details page.
-- Edit: Edits the lab's detailed information. 
+- Edit: Edits the lab's detailed information.
 - Delete: Deletes the lab from the database.
 
-The order details  page displays the order's detailed information and the PDF document associated with the order.
+The lab details page displays the lab's detailed information and the PDF document associated with the lab.
 
 ### Medications
 
@@ -74,7 +72,6 @@ Clicking on your username will take you to the homepage. For instructors, the ho
 ### Logout
 
 At the top right corner of the page, this is the final element of the top bar. Clicking this will sign you out of the Vitae NET system and return you to the login page.
-&nbsp;
 
 ## The Administrator Dashboard
 
@@ -82,34 +79,34 @@ This is the instructor's homepage. From here an instructor can perform several c
 
 ### Medications Category
 
-- View Signatures: 
+- View Signatures:
 	This displays a list of student signatures in the database organized by time. Signatures are added when students use [the scanner utility](#scan-medication) and complete a summary attestation. These signatures allow you to determine which of your students have administered medication. Signatures show the name of the student, the time they administered medication, what medication(s) they administered, and which patient they administered it to.
-- View Medications: 
+- View Medications:
 	This redirects to the medications page as explained in [Medications.](#medications)
-- Create Medication: 
-	This allows you to add a new medication to the database.
-- Format Medication: 
+- Create Medication:
+	This allows you to add a new medication to the database. You will be asked to enter the medication's primary dosage's name, amount, and unit, as well as the secondary dosage's type, name, amount, and unit. You may also record any comments about the medication. Hover your mouse pointer over 'Second Type' to view an explanation of the type options. The only required field is the 'Name' field. All other fields may be left blank. Clicking the 'Add' button will make fields for another medication to appear. You can create as many medications at once as you need. Click the 'Submit' button to store the medication(s) in the database. You may click the 'Cancel' button at any time to stop and go back to the previous page without creating any medications.
+- Format Medication:
 	QR codes serve as an important back-up in case the system's bar code generator fails. In order to ensure consistent results, the system demands that medication QR codes are formatted in a very particular manner. The medication data formatter is a tool that will allow you to properly format medication information if you ever need to print new QR codes. First enter all the necessary information into the text boxes, leaving some boxes blank when they are not needed. Then click on the 'Format' button and copy the output below 'Formatted code data:'. You can paste the output into any QR code generator as plain text.
 
 ### Patients Category
 
-- View Patients: 
+- View Patients:
 	This redirects to the patients page as explained in [Patients.](#patients)
-- Create Patient: 
-	This allows you to add a new patient to the database.
-- Format Patient: 
+- Create Patient:
+	This allows you to add a new patient to the database. You will be asked to enter the patient's first name, last name, date of birth, medical record number, sex, height, weight, diagnosis, allergies, code status, physician, and room number. The fields height, weight, diagnosis, allergies, and code status, can be left blank. All other fields are required to submit the form to the database. Click the 'Add' button to store the patient in the database. You may click the 'Cancel' button at any time to stop and go back to the previous page without creating the patient.
+- Format Patient:
 	QR codes serve as an important back-up in case the system's bar code generator fails. In order to ensure consistent results, the system demands that patient QR codes are formatted in a very particular manner. The patient data formatter is a tool that will allow you to properly format patient information if you ever need to print new QR codes. First enter all the necessary information into the text boxes, leaving some boxes blank when they are not needed. Then click on the 'Format' button and copy the output below 'Formatted code data:'. You can paste the output into any QR code generator as plain text.
 
 ### Orders Category
 
-- View Orders: 
+- View Orders:
 	This redirects to the orders page as explained in [Orders.](#orders)
-- Create Order: 
-	This allows you to add a new order to the database.
+- Create Order:
+	This allows you to add a new order to the database. You will be asked to enter the order's name, PDF document, description, associated patient, and whether it has been completed. It is important to make the order's name specific and easily identifiable. This will help you find the exact order you are looking for during a simulation. It is recommended to include the patient's name. The document uploaded must be a PDF file. This will allow students to see the provider's order in the web browser. You may leave the patient field blank. This will allow you to later edit the order and assign it to a patient during simulation, triggering electronic delivery to the student nurses. Click the 'Submit' button to store the order in the database. You may click the 'Cancel' button at any time to stop and go back to the previous page without creating the order.
 
 ### Labs Category
 
-- View Labs: 
+- View Labs:
 	This redirects to the labs page as explained in [Labs.](#labs)
-- Create Lab: 
-	This allows you to add a new lab to the database.
+- Create Lab:
+	This allows you to add a new lab to the database. You will be asked to enter the lab's name, PDF document, description and associate patient. It is important to make the lab's name specific and easily identifiable. This will help you find the exact lab you are looking for during simulation. It is recommended to include the patient's name. The document uploaded must be a PDF file. This will allow the students to see the lab results in the web browser. You may leave the patient field blank. This will allow you to late edit the lab and assign it to a patient during simulation, triggering electronic delivery to the student nurses. Click the 'Submit' button to store the lab in the database. You may click the 'Cancel' button at any time to stop and go back to the previous page without creating the order.
