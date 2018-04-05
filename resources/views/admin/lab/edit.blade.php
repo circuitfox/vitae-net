@@ -41,12 +41,20 @@
             <label for="patient_id" class="col-md-2 control-label">Patient:</label>
             <div class="col-md-6">
               <select id="patient_id" class="form-control" name="patient_id">
-                <option value="" selected="selected">No patient</option>
+                @if ($lab->patient_id === null)
+                  <option value="" selected>No patient</option>
+                @else
+                  <option value="">No patient</option>
+                @endif
                 @foreach ($patients as $patient)
                   @if ($lab->patient_id == $patient->medical_record_number)
-                    <option value="{{ $patient->medical_record_number }}" selected="selected">{{ $patient->first_name }} {{ $patient->last_name}}</option>
+                    <option value="{{ $patient->medical_record_number }}" selected>
+                      {{ $patient->first_name }} {{ $patient->last_name}} ({{$patient->medical_record_number}})
+                    </option>
                   @else
-                    <option value="{{ $patient->medical_record_number }}">{{ $patient->last_name}}, {{ $patient->first_name }} ({{$patient->medical_record_number}})</option>
+                    <option value="{{ $patient->medical_record_number }}">
+                      {{ $patient->last_name}}, {{ $patient->first_name }} ({{$patient->medical_record_number}})
+                    </option>
                   @endif
                 @endforeach
               </select>

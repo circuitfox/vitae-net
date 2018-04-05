@@ -22,8 +22,9 @@ class OrderEditPageTest extends TestCase
     $response->assertSee('<input class="form-control" type="text" name="description" value="' . $order->description . '" id="description" required>');
     $response->assertSee('<input type="file" id="doc" name="doc">');
     $response->assertSee('<select id="patient_id" class="form-control" name="patient_id">');
+    $response->assertSee('<option value="' . $order->patient_id . '" selected>');
     $response->assertSee('<select id="completed" class="form-control" name="completed" form="order-edit-form">');
-    $response->assertSee('<option value="0" selected="selected">No</option');
+    $response->assertSee('<option value="0" selected>No</option');
     $response->assertSee('<option value="1">Yes</option');
     $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
     $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
@@ -42,10 +43,10 @@ class OrderEditPageTest extends TestCase
     $response->assertSee('<input class="form-control" type="text" name="description" value="' . $order->description . '" id="description" required>');
     $response->assertSee('<input type="file" id="doc" name="doc">');
     $response->assertSee('<select id="patient_id" class="form-control" name="patient_id">');
-    $response->assertSee('<option value="' . $order->patient_id . '" selected="selected">');
+    $response->assertSee('<option value="' . $order->patient_id . '" selected>');
     $response->assertSee('<select id="completed" class="form-control" name="completed" form="order-edit-form">');
     $response->assertSee('<option value="0">No</option');
-    $response->assertSee('<option value="1" selected="selected">Yes</option');
+    $response->assertSee('<option value="1" selected>Yes</option');
     $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
     $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
   }
