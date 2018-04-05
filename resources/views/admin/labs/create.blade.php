@@ -14,6 +14,11 @@
             <label for="name" class="col-md-2 control-label">Name:</label>
             <div class="col-md-6">
               <input type="text" class="form-control" id="name" name="name" required>
+              @if ($errors->has('name'))
+                <span class="help-block">
+                  {{ $errors->first('name') }}
+                </span>
+              @endif
             </div>
           </div>
           <div class="form-group">
@@ -21,12 +26,22 @@
             <div class="col-md-6">
               <input type="file" id="doc" name="doc" required>
               <p class="help-block">Upload the desired file here</p>
+              @if ($errors->has('doc'))
+                <span class="help-block">
+                  {{ $errors->first('doc') }}
+                </span>
+              @endif
             </div>
           </div>
           <div class="form-group">
             <label for="description" class="col-md-2 control-label">Description:</label>
             <div class="col-md-6">
               <input type="text" class="form-control" id="description" name="description" required>
+              @if ($errors->has('description'))
+                <span class="help-block">
+                  {{ $errors->first('description') }}
+                </span>
+              @endif
             </div>
           </div>
           <div class="form-group">
