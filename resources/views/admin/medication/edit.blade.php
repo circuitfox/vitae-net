@@ -22,7 +22,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label" for="dosage_amount">Dosage:</label>
             <div class="col-md-3">
-              <input class="form-control" type="number" name="dosage_amount" step="0.01" value="{{ $medication->dosage_amount or old('dosage_amount') }}" id="med-dosage-amount" required>
+              <input class="form-control" type="number" name="dosage_amount" step="0.01" value="{{ number_format(old('dosage_amount', $medication->dosage_amount), 2) }}" id="med-dosage-amount" required>
               @if ($errors->has('dosage_amount'))
                 <span class="help-block">
                   {{ $errors->first('dosage_amount') }}
@@ -85,7 +85,11 @@ If none of these conditions apply, leave these fields blank.">
           <div class="form-group">
             <label class="col-md-2 control-label" for="second_amount">Amount:</label>
             <div class="col-md-3">
-              <input class="form-control" type="number" name="second_amount" step="0.01" value="{{ $medication->second_amount or old('second_amount') }}" id="med-second-amount">
+              @if (old('second_amount', $medication->second_amount) == null)
+                <input class="form-control" type="number" name="second_amount" step="0.01" value="" id="med-second-amount">
+              @else
+                <input class="form-control" type="number" name="second_amount" step="0.01" value="{{ number_format(old('second_amount', $medication->second_amount), 2) }}" id="med-second-amount">
+              @endif
               @if ($errors->has('second_amount'))
                 <span class="help-block">
                   {{ $errors->first('second_amount') }}
