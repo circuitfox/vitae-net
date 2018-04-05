@@ -16,7 +16,7 @@
     @foreach ($users as $user)
       <div class="list-group-item clearfix">
         <div class="list-group-item-heading" role="tab">
-          @if (Auth::user()->isAdmin())
+          @if (Auth::user()->isAdmin() && $user->id !== 1)
             <div class="btn-toolbar pull-right">
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#user-delete-modal" data-id="{{ $user->id }}">Delete</button>
             </div>
