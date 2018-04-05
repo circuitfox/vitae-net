@@ -17,9 +17,9 @@ class CreateMedicationsTable extends Migration
             //attributes
             $table->bigIncrements('medication_id');
             $table->string('name');
-            $table->integer('dosage_amount')->nullable();
+            $table->decimal('dosage_amount', 5, 2)->nullable();
             $table->string('dosage_unit')->nullable();
-            $table->integer('second_amount')->nullable();
+            $table->decimal('second_amount', 5, 2)->nullable();
             $table->string('second_unit')->nullable();
             $table->string('second_type')->nullable();
             $table->string('comments')->nullable();
