@@ -16,11 +16,10 @@ class PatientsPageTest extends TestCase
         $response = $this->actingAs($user)->get('/patients');
         $response->assertSee('<h3>'
             . $this->faker_escape($patient->first_name . ' ' . $patient->last_name)
-            . '</h3>');
+            . ' (MRN: ' . $patient->medical_record_number . ')</h3>');
         $response->assertSee('<a class="btn btn-default" href="' . route('patients.show', ['id' => $patient->medical_record_number]) . '">Details</a>');
         $response->assertSee('<a class="btn btn-primary" href="' . route('patients.edit', ['id' => $patient->medical_record_number]) . '">Edit</a>');
         $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#patient-delete-modal" data-id="' . $patient->medical_record_number . '">Delete</button>');
-        $response->assertSee('<h3>' . $this->faker_escape($patient->first_name . ' ' . $patient->last_name) . '</h3>');
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
         $response->assertSee($this->faker_escape($patient->first_name . ' ' . $patient->last_name));
         $response->assertSee('<h5><b><u>Date Of Birth:</u></b></h5>');

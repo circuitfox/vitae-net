@@ -7,9 +7,9 @@ use Faker\Generator as Faker;
 $factory->define(App\Medication::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
-        'dosage_amount' => $faker->randomNumber,
+        'dosage_amount' => $faker->randomFloat(2, 0, 999),
         'dosage_unit' => $faker->word,
-        'second_amount' => $faker->randomNumber,
+        'second_amount' => $faker->randomFloat(2, 0, 999),
         'second_unit' => $faker->word,
         'second_type' => $faker->randomElement($array = ['combo', 'amount', 'in']),
         'comments' => $faker->sentence,

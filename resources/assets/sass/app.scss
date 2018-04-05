@@ -20,10 +20,20 @@
 
 td.non-stat {
     background-color: $mar-non-stat-bg;
+
+    &:hover,
+    &:focus {
+        background-color: darken($mar-non-stat-bg, 5);
+    }
 }
 
 td.stat {
     background-color: $mar-stat-bg;
+
+    &:hover,
+    &:focus {
+        background-color: darken($mar-stat-bg, 5);
+    }
 }
 
 td.stat-header {

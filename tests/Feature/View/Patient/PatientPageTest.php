@@ -17,7 +17,7 @@ class PatientPageTest extends TestCase
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
         $response->assertSee('<h3>'
             . $this->faker_escape($patient->first_name . ' ' . $patient->last_name)
-            . '</h3>');
+            . ' (MRN: ' . $patient->medical_record_number . ')</h3>');
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
         $response->assertSee($this->faker_escape($patient->first_name . ' ' . $patient->last_name));
         $response->assertSee('<h5><b><u>Date Of Birth:</u></b></h5>');
@@ -56,7 +56,7 @@ class PatientPageTest extends TestCase
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
         $response->assertSee('<div id="mar" class="col-panel">');
         $response->assertSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
-        $response->assertSee('<table class="table-hover">');
+        $response->assertSee('<table class="table table-hover">');
         $response->assertSee('<th>Edit</th>');
     }
 
@@ -67,7 +67,7 @@ class PatientPageTest extends TestCase
         $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
         $response->assertSee('<div id="mar" class="col-panel">');
         $response->assertDontSee('<a class="btn btn-success h3" href="/mars/create/' . $patient->medical_record_number . '">Add Prescription</a>');
-        $response->assertSee('<table class="table-hover">');
+        $response->assertSee('<table class="table table-hover">');
         $response->assertDontSee('<th>Edit</th>');
     }
 

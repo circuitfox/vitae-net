@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use DateTimeZone;
 use App\Signature;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -27,6 +29,7 @@ class SignatureController extends Controller
      */
     public function store(Requests\CreateSignature $request)
     {
+        $date = new DateTime('now', new DateTimeZone('America/Chicago'));
         $data = $request->all();
         $sigs = [];
         if (isset($data['medications'])) {
@@ -34,7 +37,7 @@ class SignatureController extends Controller
                 $sigs[$idx]['medical_record_number'] = $data['medical_record_number'];
                 $sigs[$idx]['medication_id'] = $med['medication_id'];
                 $sigs[$idx]['student_name'] = $data['student_name'];
-                $sigs[$idx]['time'] = $data['time'];
+                $sigs[$idx]['time'] = $data['time'] . ' ' . $date->format('m/d/Y');
             }
         }
         Signature::insert($sigs);

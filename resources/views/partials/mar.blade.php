@@ -15,7 +15,7 @@
         <h5 class="text-center text-muted">No entries in the MAR</h5>
       </div>
     @else
-      <table class="table-hover">
+      <table class="table table-hover">
         <tr>
           <th>Medication</th>
           <th>Instructions</th>
@@ -40,7 +40,7 @@
           <tr is="mar-entry"
               :meds="{{ json_encode($meds) }}"
               :mar-entry="{{ $prescription->toJsonArray() }}"
-              :is-admin="{{ json_encode(Auth::user()->isAdmin()) }}"
+              :is-admin="{{ json_encode(Auth::user()->isPrivileged()) }}"
               route="{{ route('mars.update', ['id' => $prescription->id]) }}">
           </tr>
         @endforeach

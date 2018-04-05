@@ -21,7 +21,7 @@ class LabEditPageTest extends TestCase
     $response->assertSee('<input class="form-control" type="text" name="description" value="' . $lab->description . '" id="description" required>');
     $response->assertSee('<input type="file" id="doc" name="doc">');
     $response->assertSee('<select id="patient_id" class="form-control" name="patient_id">');
-    $response->assertSee('<option value="' . $lab->patient_id . '" selected="selected">');
+    $response->assertSee('<option value="' . $lab->patient_id . '" selected>');
     $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
     $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
   }
