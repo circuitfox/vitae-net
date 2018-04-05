@@ -62,8 +62,9 @@ class MedicationModelTest extends TestCase
     public function testToString()
     {
         $medication = factory(\App\Medication::class)->states(['no_secondary'])->create();
+        $primary_amount = number_format($medication->dosage_amount, 2);
         $this->assertEquals(
-            "{$medication->name} {$medication->dosage_amount} {$medication->dosage_unit}",
+            "{$medication->name} {$primary_amount} {$medication->dosage_unit}",
             $medication->toString()
         );
     }
@@ -73,11 +74,13 @@ class MedicationModelTest extends TestCase
         $comboMedication = factory(\App\Medication::class)
             ->states(['secondary_name', 'combo'])
             ->create();
+        $primary_amount = number_format($comboMedication->dosage_amount, 2);
+        $secondary_amount = number_format($comboMedication->second_amount, 2);
         $this->assertEquals(
             $comboMedication->primaryName()
-            . " {$comboMedication->dosage_amount} {$comboMedication->dosage_unit} / "
+            . " {$primary_amount} {$comboMedication->dosage_unit} / "
             . $comboMedication->secondaryName()
-            . " {$comboMedication->second_amount} {$comboMedication->second_unit}",
+            . " {$secondary_amount} {$comboMedication->second_unit}",
             $comboMedication->toString()
         );
     }
@@ -87,10 +90,12 @@ class MedicationModelTest extends TestCase
         $amountMedication = factory(\App\Medication::class)
             ->states(['secondary_name', 'amount'])
             ->create();
+        $primary_amount = number_format($amountMedication->dosage_amount, 2);
+        $secondary_amount = number_format($amountMedication->second_amount, 2);
         $this->assertEquals(
             $amountMedication->primaryName()
-            . " {$amountMedication->dosage_amount} {$amountMedication->dosage_unit} with "
-            . "{$amountMedication->second_amount} {$amountMedication->second_unit}",
+            . " {$primary_amount} {$amountMedication->dosage_unit} with "
+            . "{$secondary_amount} {$amountMedication->second_unit}",
             $amountMedication->toString()
         );
     }
@@ -100,11 +105,13 @@ class MedicationModelTest extends TestCase
         $inMedication = factory(\App\Medication::class)
             ->states(['secondary_name', 'in'])
             ->create();
+        $primary_amount = number_format($inMedication->dosage_amount, 2);
+        $secondary_amount = number_format($inMedication->second_amount, 2);
         $this->assertEquals(
             $inMedication->primaryName()
-            . " {$inMedication->dosage_amount} {$inMedication->dosage_unit} in "
+            . " {$primary_amount} {$inMedication->dosage_unit} in "
             . $inMedication->secondaryName()
-            . " {$inMedication->second_amount} {$inMedication->second_unit}",
+            . " {$secondary_amount} {$inMedication->second_unit}",
             $inMedication->toString()
         );
     }
