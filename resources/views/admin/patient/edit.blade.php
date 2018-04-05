@@ -48,9 +48,13 @@
               <label class="col-md-2 control-label" for="sex">Sex:</label>
               <div class="col-md-6">
                 <select id="sex" class="form-control" name="sex" form="patient-edit-form">
-                      @foreach([0, 1] as $key)
-                      <option value="{{ $key }}" selected="{{ $patient->sex == $key ? 'selected' : '' }}">{{ $key ? 'Male' : 'Female' }}</option>
-                      @endforeach
+                    @foreach ([0, 1] as $key)
+                      @if ($patient->sex == $key)
+                        <option value="{{ $key }}" selected>{{ $key ? 'Male' : 'Female' }}</option>
+                      @else
+                        <option value="{{ $key }}">{{ $key ? 'Male' : 'Female' }}</option>
+                      @endif
+                    @endforeach
                 </select>
                 @if ($errors->has('sex'))
                   <span class="help-block">
@@ -107,9 +111,17 @@
               <label class="col-md-2 control-label" for="code_status">Code Status:</label>
               <div class="col-md-6">
                 <select id="code_status" class="form-control" name="code_status" form="patient-edit-form">
-                  <option value="" selected="{{ $patient->code_status === null ? 'selected' : '' }}"></option>
+                  @if ($patient->code_status === null)
+                    <option value="" selected></option>
+                  @else
+                    <option value=""></option>
+                  @endif
                   @foreach (App\Patient::CODE_STATUSES as $status)
-                    <option value="{{ $status }}" selected="{{ $patient->code_status === $status ? 'selected' : '' }}">{{ $status }}</option>
+                    @if ($patient->code_status === $status)
+                      <option value="{{ $status }}" selected>{{ $status }}</option>
+                    @else
+                      <option value="{{ $status }}">{{ $status }}</option>
+                    @endif
                   @endforeach
                 </select>
                 @if ($errors->has('code_status'))
