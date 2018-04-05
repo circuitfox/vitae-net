@@ -34,7 +34,7 @@ class SignatureController extends Controller
                 $sigs[$idx]['medical_record_number'] = $data['medical_record_number'];
                 $sigs[$idx]['medication_id'] = $med['medication_id'];
                 $sigs[$idx]['student_name'] = $data['student_name'];
-                $sigs[$idx]['time'] = $data['time'];
+                $sigs[$idx]['time'] = $data['time'] . ' ' . date('m/d/Y');
             }
         }
         Signature::insert($sigs);
