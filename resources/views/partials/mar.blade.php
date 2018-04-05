@@ -15,7 +15,7 @@
         <h5 class="text-center text-muted">No entries in the MAR</h5>
       </div>
     @else
-      <table class="table-hover">
+      <table class="table table-hover">
         <tr>
           <th>Medication</th>
           <th>Instructions</th>
