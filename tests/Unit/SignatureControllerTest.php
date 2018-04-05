@@ -42,7 +42,7 @@ class SignatureControllerTest extends TestCase
         $response->assertRedirect();
         $signature = Signature::where([
             'student_name' => $admin->name,
-            'time' => '8:00 AM',
+            'time' => '8:00 AM' . ' ' . date('m/d/Y'),
             'medical_record_number' => $patient->medical_record_number,
             'medication_id' => $medication->medication_id,
         ])->first();
@@ -50,7 +50,7 @@ class SignatureControllerTest extends TestCase
         $this->assertNotNull($signature->patient);
         $this->assertNotNull($signature->medication);
         $this->assertEquals($admin->name, $signature->student_name);
-        $this->assertEquals('8:00 AM', $signature->time);
+        $this->assertEquals('8:00 AM' . ' ' . date('m/d/Y'), $signature->time);
         $this->assertEquals($patient->medical_record_number, $signature->patient->medical_record_number);
         $this->assertEquals($medication->medication_id, $signature->medication->medication_id);
     }
@@ -74,7 +74,7 @@ class SignatureControllerTest extends TestCase
         $response->assertRedirect();
         $signature = Signature::where([
             'student_name' => $admin->name,
-            'time' => '8:00 AM',
+            'time' => '8:00 AM' . ' ' . date('m/d/Y'),
             'medical_record_number' => $patient->medical_record_number,
             'medication_id' => $medications[0]->medication_id,
         ])->first();
@@ -82,13 +82,13 @@ class SignatureControllerTest extends TestCase
         $this->assertNotNull($signature->patient);
         $this->assertNotNull($signature->medication);
         $this->assertEquals($admin->name, $signature->student_name);
-        $this->assertEquals('8:00 AM', $signature->time);
+        $this->assertEquals('8:00 AM' . ' ' . date('m/d/Y'), $signature->time);
         $this->assertEquals($patient->medical_record_number, $signature->patient->medical_record_number);
         $this->assertEquals($medications[0]->medication_id, $signature->medication->medication_id);
 
         $signature = Signature::where([
             'student_name' => $admin->name,
-            'time' => '8:00 AM',
+            'time' => '8:00 AM' . ' ' . date('m/d/Y'),
             'medical_record_number' => $patient->medical_record_number,
             'medication_id' => $medications[1]->medication_id,
         ])->first();
@@ -96,7 +96,7 @@ class SignatureControllerTest extends TestCase
         $this->assertNotNull($signature->patient);
         $this->assertNotNull($signature->medication);
         $this->assertEquals($admin->name, $signature->student_name);
-        $this->assertEquals('8:00 AM', $signature->time);
+        $this->assertEquals('8:00 AM' . ' ' . date('m/d/Y'), $signature->time);
         $this->assertEquals($patient->medical_record_number, $signature->patient->medical_record_number);
         $this->assertEquals($medications[1]->medication_id, $signature->medication->medication_id);
     }
