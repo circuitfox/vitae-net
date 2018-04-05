@@ -61,7 +61,13 @@ If none of these conditions apply, leave these fields blank.">
                   <option value="">none</option>
                 @endif
                 @foreach (App\Medication::SECOND_TYPES as $key)
-                  <option value="{{ App\Medication::type_option($key) }}" selected="{{ old('second_type', $medication->second_type) === $key ? 'selected' : '' }}">
+                  @if (old('second_type', $medication->second_type) === $key)
+                    <option value="{{ $key }}" selected>
+                  @else
+                    <option value="{{ $key }}">
+                  @endif
+                    {{ App\Medication::type_option($key) }}
+                  </option>
                 @endforeach
               </select>
               @if ($errors->has('second_type'))
