@@ -13,15 +13,25 @@
           <medication-list :form="true"></medication-list>
           <div id="form-extra" style="display: none">
             <div class="form-group">
-              <label class="col-md-2 control-label" for="student_name">Name:</label>
+              <label class="col-md-2 control-label" for="student_name">Nurse:</label>
               <div class="col-md-4">
                 <input id="student-name" class="form-control" type="text" name="student_name" required>
+                @if ($errors->has('student_name'))
+                  <span class="help-block">
+                    {{ $errors->first('student_name') }}
+                  </span>
+                @endif
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-2 control-label" for="time">Time:</label>
-              <div class="col-md-3">
-                <input id="time" class="form-control" type="time" name="time" required>
+              <div class="col-md-2">
+                <input id="time" class="form-control" type="text" pattern="\(0?[0-9]|1\d|2[0-3])(\.|:)[0-5]\d" placeholder="hh:mm" title="24-hour Time" name="time" maxlength="5" required>
+                @if ($errors->has('time'))
+                  <span class="help-block">
+                    {{ $errors->first('time') }}
+                  </span>
+                @endif
               </div>
             </div>
             <div class="form-group">
