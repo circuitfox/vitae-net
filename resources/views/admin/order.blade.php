@@ -2,6 +2,11 @@
 @section("title", "Vitae NET - Order")
 @section("content")
 <div class="col-panel">
+  <div id="reminder" class="alert alert-warning">
+    <h4 class="text-center">Click "Scan Medication" above before administering medication.</h4>
+  </div>
+</div>
+<div class="col-panel">
   <div id="order" class="panel panel-default">
     <div class="panel-heading">
       @include("partials.order.header", ["order" => $order])

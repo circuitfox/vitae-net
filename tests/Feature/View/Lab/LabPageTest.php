@@ -35,4 +35,13 @@ class LabPageTest extends TestCase
         $response->assertSee('This browser does not support embedding PDF documents. Please download');
         $response->assertSee('the PDF to view it. <a href="' . $pdf . '">Download PDF</a>');
     }
+
+    public function testHasWarning()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $lab = factory(\App\Lab::class)->create();
+        $response = $this->actingAs($user)->get('/labs/' . $lab->id);
+        $response->assertSee('<div id="reminder" class="alert alert-warning">');
+        $response->assertSee('<h4 class="text-center">Click "Scan Medication" above before administering medication.</h4>');
+    }
 }

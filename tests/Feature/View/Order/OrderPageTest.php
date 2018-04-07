@@ -54,4 +54,13 @@ class OrderPageTest extends TestCase
         $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') . '</p>');
         $response->assertSee('<button type="submit" class="btn btn-primary">Complete Order</button>');
     }
+
+    public function testHasWarning()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $order = factory(\App\Order::class)->create();
+        $response = $this->actingAs($user)->get('/orders/' . $order->id);
+        $response->assertSee('<div id="reminder" class="alert alert-warning">');
+        $response->assertSee('<h4 class="text-center">Click "Scan Medication" above before administering medication.</h4>');
+    }
 }
