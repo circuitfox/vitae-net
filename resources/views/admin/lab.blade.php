@@ -2,6 +2,11 @@
 @section("title", "Vitae NET - Lab")
 @section("content")
 <div class="col-panel">
+  <div id="reminder" class="alert alert-warning">
+    <h4 class="text-center">Click "Scan Medication" above before administering medication.</h4>
+  </div>
+</div>
+<div class="col-panel">
   <div id="lab" class="panel panel-default">
     <div class="panel-heading">
       @include("partials.lab.header", ["lab" => $lab])
