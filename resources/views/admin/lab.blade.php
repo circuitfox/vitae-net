@@ -21,6 +21,9 @@
           </iframe>
         </object>
       </div>
+      @if($lab->patient_id != null)
+        <a class="btn btn-primary" href="/patients/{{ $lab->patient_id }}">Back to Patient</a>
+      @endif
     </div>
   </div>
 </div>
