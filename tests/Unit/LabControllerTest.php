@@ -109,6 +109,7 @@ class LabControllerTest extends TestCase
         $lab = factory(Lab::class)->create();
         $response = $this->actingAs($admin)->get('/labs/' . $lab->id);
         $response->assertViewIs('admin.lab');
+        $response->assertSessionHas('lab'. $lab->id);
     }
 
     public function testEdit()

@@ -41,7 +41,11 @@
         @else
           <ul class="list-group">
             @foreach ($labs as $lab)
-              <a class="list-group-item" href="{{ route('labs.show', ['id' => $lab->id]) }}">{{ $lab->name }}</a>
+              @if (session('lab' . $lab->id) !== null)
+                <a class="list-group-item list-group-item-success" href="{{ route('labs.show', ['id' => $lab->id]) }}">{{ $lab->name }}</a>
+              @else
+                <a class="list-group-item list-group-item-danger" href="{{ route('labs.show', ['id' => $lab->id]) }}">{{ $lab->name }}</a>
+              @endif
             @endforeach
           </ul>
         @endif
