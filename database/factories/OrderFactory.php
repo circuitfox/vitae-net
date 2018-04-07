@@ -28,3 +28,13 @@ $factory->state(App\Order::class, 'complete', function (Faker $faker) {
         'completed' => true,
     ];
 });
+
+$factory->state(App\Order::class, 'assigned', [
+    'patient_id' => function() {
+        return factory(App\Patient::class)->create()->medical_record_number;
+    },
+]);
+
+$factory->state(App\Order::class, 'unassigned', [
+    'patient_id' => null,
+]);
