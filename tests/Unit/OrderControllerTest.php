@@ -144,14 +144,14 @@ class OrderControllerTest extends TestCase
         $order = factory(Order::class)->create();
         $response = $this->actingAs($admin)->put('/orders/' . $order->id, [
             'name' => 'foo',
-            'description' => $order->description,
+            'description' => 'bar',
             'patient_id' => $order->patient_id,
             'completed' => !$order->completed,
         ]);
         $order1 = Order::find($order->id);
         $this->assertNotNull($order1);
         $this->assertEquals($order1->name, 'foo');
-        $this->assertEquals($order1->description, $order->description);
+        $this->assertEquals($order1->description, 'bar');
         $this->assertNotEquals($order1->completed, $order->completed);
         $this->assertEquals($order1->patient_id, $order->patient_id);
         $this->assertNotNull($order1->patient());

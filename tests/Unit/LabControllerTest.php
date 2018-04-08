@@ -139,13 +139,13 @@ class LabControllerTest extends TestCase
         $lab = factory(Lab::class)->create();
         $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
             'name' => 'foo',
-            'description' => $lab->description,
+            'description' => 'bar',
             'patient_id' => $lab->patient_id,
         ]);
         $lab1 = Lab::find($lab->id);
         $this->assertNotNull($lab1);
         $this->assertEquals($lab1->name, 'foo');
-        $this->assertEquals($lab1->description, $lab->description);
+        $this->assertEquals($lab1->description, 'bar');
         $this->assertEquals($lab1->patient_id, $lab->patient_id);
         $this->assertNotNull($lab1->patient());
         $this->assertEquals($lab1->patient->medical_record_number, $lab->patient->medical_record_number);
