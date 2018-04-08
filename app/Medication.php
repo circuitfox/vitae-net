@@ -114,8 +114,8 @@ class Medication extends Model
      */
     public function toString()
     {
-        $primary_amount = $this->dosage_amount;
-        $secondary_amount = $this->second_amount;
+        $primary_amount = d($this->dosage_amount);
+        $secondary_amount = d($this->second_amount);
 
         if ($this->second_type === 'combo') {
             return $this->primaryName()

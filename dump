@@ -1,0 +1,3217 @@
+PHPUnit 6.4.3 by Sebastian Bergmann and contributors.
+
+...FF..........F.......Illuminate\Foundation\Testing\TestResponse {#1124
+  +baseResponse: Illuminate\Http\Response {#1651
+    +headers: Symfony\Component\HttpFoundation\ResponseHeaderBag {#1650
+      #computedCacheControl: array:2 [
+        "no-cache" => true
+        "private" => true
+      ]
+      #cookies: array:1 [
+        "" => array:1 [
+          "/" => array:1 [
+            "XSRF-TOKEN" => Symfony\Component\HttpFoundation\Cookie {#1024
+              #name: "XSRF-TOKEN"
+              #value: "eyJpdiI6IlhuRENxZFhvVzlqQzk4RStNbEZ6akE9PSIsInZhbHVlIjoiUkpFWmpReHRcLzhZUTc4d2NHREs5Z1lFXC9wVk02eDJuNHpHb3d0S3AwT1pjNWl3NFIzWEdcL2FIVnh5eVpXd1VVTmhjMENwQVAzUG95U3g4cVBDS3dlK0E9PSIsIm1hYyI6IjU5OGFhODgxODhlYmI5MmIwYjVlZDYyZDEzNjJmMmIwYWM1NWM2NzYzMmQ2OWUwMmQ2NWQzYzZiNTYzNDQ1ODkifQ=="
+              #domain: null
+              #expire: 1523212129
+              #path: "/"
+              #secure: false
+              #httpOnly: false
+              -raw: false
+              -sameSite: null
+            }
+          ]
+        ]
+      ]
+      #headerNames: array:4 [
+        "cache-control" => "Cache-Control"
+        "date" => "Date"
+        "content-type" => "Content-Type"
+        "set-cookie" => "Set-Cookie"
+      ]
+      #headers: array:3 [
+        "cache-control" => array:1 [
+          0 => "no-cache, private"
+        ]
+        "date" => array:1 [
+          0 => "Sun, 08 Apr 2018 16:28:49 GMT"
+        ]
+        "content-type" => array:1 [
+          0 => "text/html; charset=UTF-8"
+        ]
+      ]
+      #cacheControl: []
+    }
+    #content: """
+      <!DOCTYPE html>\n
+      <html lang="en">\n
+      <head>\n
+        <meta charset="UTF-8">\n
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">\n
+        <meta name="viewport" content="width=device-width, initial-scale=1">\n
+        <meta name="csrf-token" content="xCUo8zFKzVocpPMivQwZIuqJpXkaH3fNIGNz0TfJ">\n
+        <link rel="stylesheet" href="http://localhost/css/app.css">\n
+        <title>Vitae NET - Medication</title>\n
+        <script>\n
+          window.Laravel = {"csrfToken":"xCUo8zFKzVocpPMivQwZIuqJpXkaH3fNIGNz0TfJ"};\n
+        </script>\n
+        </head>\n
+        <body>\n
+          <nav class="navbar navbar-default">\n
+            <div class="container-fluid">\n
+              <div class="navbar-header">\n
+                <a href="/"><img src="http://localhost/images/logo.png" alt="Vitae NET logo" height="45" /></a>\n
+                <button type="button" class="navbar-toggle collapsed"\n
+                        data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">\n
+                  <span class="sr-only">Toggle navigation</span>\n
+                  <span class="icon-bar"></span>\n
+                  <span class="icon-bar"></span>\n
+                  <span class="icon-bar"></span>\n
+                </button>\n
+              </div>\n
+              <div class="collapse navbar-collapse" id="navbar-collapse">\n
+                <div>\n
+        <ul class="nav navbar-nav">\n
+            <li><a href="http://localhost/patients">Patients</a></li>\n
+                <li><a href="http://localhost/medication">Scan Medication</a></li>\n
+        </ul>\n
+      </div>\n
+                  <div>\n
+        <div class="navbar-right">\n
+          <div class="navbar-text">\n
+            <span class="glyphicon glyphicon-cog"></span>\n
+            <a class="navbar-link" href="http://localhost/users/2/edit">Settings</a>\n
+          </div>\n
+          <div class="navbar-text">\n
+            <span class="glyphicon glyphicon-user"></span>\n
+            <!-- TODO: should redirect to /home -->\n
+            <a class="navbar-link" href="http://localhost/home">Isaias Parisian</a>\n
+          </div>\n
+          <div class="navbar-text">\n
+            <span class="glyphicon glyphicon-log-out"></span>\n
+            <a class="navbar-link" href="http://localhost/logout">Logout</a>\n
+          </div>\n
+        </div>\n
+      </div>\n
+              </div>\n
+            </div>\n
+          </nav>\n
+          <div class="container col-panel">\n
+            <div class="list-group" id="medications" role="tablist">\n
+            <div class="list-group-item">\n
+              <div class="list-group-item-heading">\n
+                          <h2>Medications</h2>\n
+              </div>\n
+            </div>\n
+                    <div class="list-group-item clearfix">\n
+                <div class="list-group-item-heading" role="tab">\n
+                              <a class="accordion collapsed item-title" role="button" data-toggle="collapse" data-parent="#medications" data-target="#medication1">\n
+                      <h3>error 857.22 enim with 618.72 labore</h3>\n
+                  </a>\n
+                </div>\n
+                <div id="medication1" class="collapse" role="tabpanel">\n
+                  <div class="list-group-item-text">\n
+                    <div class="row">\n
+                      <div class="col-sm-12">\n
+                        <!-- medication info -->\n
+      <h5><b><u>Name:</u></b></h5>\n
+      <p>error</p>\n
+      <h5><b><u>Dosage:</u></b></h5>\n
+      <p>857.22 enim</p>\n
+        <h5><b><u>With:</u></b></h5>\n
+        <p>618.72 labore</p>\n
+      <h5><b><u>Comments:</u></b></h5>\n
+      <p>Maxime debitis eum neque voluptatum tempora in sapiente occaecati.</p>\n
+                      </div>\n
+                    </div>\n
+                    <div class="row">\n
+                      <div class="col-sm-8">\n
+                        <h5><b><u>Bar Code</u></b></h5>\n
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAAAyAQMAAAAqdKbYAAAABlBMVEX///8AAABVwtN+AAAAAXRSTlMAQObYZgAAADBJREFUOI1j+FNgwVD/43+fvXzjDxn+H/L9QPL4A/4fjz8wjEqNSo1KjUqNShGSAgAANLnHny3ikwAAAABJRU5ErkJggg==" />                </div>\n
+                    </div>\n
+                    <div class="row">\n
+                      <div class="col-sm-4" style="margin-top:10px;">\n
+                          <a type="button" class="btn btn-primary" id="download"href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAAAeAQMAAADNS8RPAAAABlBMVEX///8AAABVwtN+AAAAAXRSTlMAQObYZgAAACJJREFUKJFj+MzD/OfPeRsbgz82fww+H/hznmFUZFQELAIA1eM1yqsrhpUAAAAASUVORK5CYII=" download="error.png">Download Bar Code</a>                </div>\n
+                    </div>\n
+                  </div>\n
+                </div>\n
+              </div>\n
+                </div>\n
+          </div>\n
+          <script src="http://localhost/js/app.js"></script>\n
+        </body>\n
+      </html>\n
+      """
+    #version: "1.1"
+    #statusCode: 200
+    #statusText: "OK"
+    #charset: null
+    +original: Illuminate\View\View {#1648
+      #factory: Illuminate\View\Factory {#1267
+        #engines: Illuminate\View\Engines\EngineResolver {#1299
+          #resolvers: array:3 [
+            "file" => Closure {#1297
+              class: "Illuminate\View\ViewServiceProvider"
+              this: Illuminate\View\ViewServiceProvider {#1292
+                #app: Illuminate\Foundation\Application {#1079
+                  #basePath: "/home/chris/school/CSC-4990/vitae-net"
+                  #hasBeenBootstrapped: true
+                  #booted: true
+                  #bootingCallbacks: array:2 [
+                    0 => Closure {#983
+                      class: "Illuminate\Foundation\Application"
+                      this: Illuminate\Foundation\Application {#1079}
+                      use: {
+                        $instance: Illuminate\Validation\ValidationServiceProvider {#902
+                          #defer: true
+                          #app: Illuminate\Foundation\Application {#1079}
+                        }
+                      }
+                      file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Application.php"
+                      line: "698 to 700"
+                    }
+                    1 => Closure {#1042
+                      class: "Illuminate\Foundation\Application"
+                      this: Illuminate\Foundation\Application {#1079}
+                      use: {
+                        $instance: Illuminate\Translation\TranslationServiceProvider {#851
+                          #defer: true
+                          #app: Illuminate\Foundation\Application {#1079}
+                        }
+                      }
+                      file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Application.php"
+                      line: "698 to 700"
+                    }
+                  ]
+                  #bootedCallbacks: array:2 [
+                    0 => Closure {#904
+                      class: "Illuminate\Foundation\Console\Kernel"
+                      this: App\Console\Kernel {#900
+                        #commands: []
+                        #app: Illuminate\Foundation\Application {#1079}
+                        #events: Illuminate\Events\Dispatcher {#741
+                          #container: Illuminate\Foundation\Application {#1079}
+                          #listeners: array:1 [
+                            "App\Events\Event" => array:1 [
+                              0 => Closure {#841
+                                class: "Illuminate\Events\Dispatcher"
+                                this: Illuminate\Events\Dispatcher {#741}
+                                parameters: {
+                                  $event: {}
+                                  $payload: {}
+                                }
+                                use: {
+                                  $listener: "App\Listeners\EventListener"
+                                  $wildcard: false
+                                }
+                                file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Events/Dispatcher.php"
+                                line: "363 to 371"
+                              }
+                            ]
+                          ]
+                          #wildcards: []
+                          #queueResolver: Closure {#58
+                            class: "Illuminate\Events\EventServiceProvider"
+                            this: Illuminate\Events\EventServiceProvider {#311 …}
+                            use: {
+                              $app: Illuminate\Foundation\Application {#1079}
+                            }
+                            file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Events/EventServiceProvider.php"
+                            line: "18 to 20"
+                          }
+                        }
+                        #artisan: null
+                        #commandsLoaded: true
+                        #bootstrappers: array:7 [
+                          0 => "Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables"
+                          1 => "Illuminate\Foundation\Bootstrap\LoadConfiguration"
+                          2 => "Illuminate\Foundation\Bootstrap\HandleExceptions"
+                          3 => "Illuminate\Foundation\Bootstrap\RegisterFacades"
+                          4 => "Illuminate\Foundation\Bootstrap\SetRequestForConsole"
+                          5 => "Illuminate\Foundation\Bootstrap\RegisterProviders"
+                          6 => "Illuminate\Foundation\Bootstrap\BootProviders"
+                        ]
+                      }
+                      file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php"
+                      line: "88 to 90"
+                    }
+                    1 => Closure {#951
+                      class: "Illuminate\Foundation\Support\Providers\RouteServiceProvider"
+                      this: App\Providers\RouteServiceProvider {#1301
+                        #namespace: "App\Http\Controllers"
+                        #app: Illuminate\Foundation\Application {#1079}
+                        #defer: false
+                      }
+                      file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php"
+                      line: "35 to 38"
+                    }
+                  ]
+                  #terminatingCallbacks: []
+                  #serviceProviders: array:35 [
+                    0 => Illuminate\Events\EventServiceProvider {#311 …}
+                    1 => Illuminate\Log\LogServiceProvider {#1310
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    2 => Illuminate\Routing\RoutingServiceProvider {#1017
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    3 => Illuminate\Auth\AuthServiceProvider {#794
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    4 => Illuminate\Cookie\CookieServiceProvider {#685
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    5 => Illuminate\Database\DatabaseServiceProvider {#1393
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    6 => Illuminate\Encryption\EncryptionServiceProvider {#731
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    7 => Illuminate\Filesystem\FilesystemServiceProvider {#886
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    8 => Illuminate\Foundation\Providers\FormRequestServiceProvider {#332
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    9 => Illuminate\Foundation\Providers\FoundationServiceProvider {#274
+                      #providers: array:1 [
+                        0 => "Illuminate\Foundation\Providers\FormRequestServiceProvider"
+                      ]
+                      #instances: array:1 [
+                        0 => Illuminate\Foundation\Providers\FormRequestServiceProvider {#332}
+                      ]
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    10 => Illuminate\Notifications\NotificationServiceProvider {#77
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    11 => Illuminate\Pagination\PaginationServiceProvider {#757
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    12 => Illuminate\Session\SessionServiceProvider {#3482
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    13 => Illuminate\View\ViewServiceProvider {#1292}
+                    14 => Fideloper\Proxy\TrustedProxyServiceProvider {#1304
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    15 => App\Providers\AppServiceProvider {#1305
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    16 => App\Providers\AuthServiceProvider {#1302
+                      #policies: array:8 [
+                        "App\User" => "App\Policies\UserPolicy"
+                        "App\Medication" => "App\Policies\MedicationPolicy"
+                        "App\Order" => "App\Policies\OrderPolicy"
+                        "App\Lab" => "App\Policies\LabPolicy"
+                        "App\Patient" => "App\Policies\PatientPolicy"
+                        "App\MarEntry" => "App\Policies\MarEntryPolicy"
+                        "App\Signature" => "App\Policies\SignaturePolicy"
+                        "App\Assessment" => "App\Policies\AssessmentPolicy"
+                      ]
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    17 => App\Providers\EventServiceProvider {#1303
+                      #listen: array:1 [
+                        "App\Events\Event" => array:1 [
+                          0 => "App\Listeners\EventListener"
+                        ]
+                      ]
+                      #subscribe: []
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #defer: false
+                    }
+                    18 => App\Providers\RouteServiceProvider {#1301}
+                    19 => Illuminate\Validation\ValidationServiceProvider {#902}
+                    20 => Illuminate\Translation\TranslationServiceProvider {#851}
+                    21 => Illuminate\Cache\CacheServiceProvider {#1099
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    22 => Illuminate\Broadcasting\BroadcastServiceProvider {#324
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    23 => Illuminate\Bus\BusServiceProvider {#954
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    24 => Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128
+                      #defer: true
+                      #commands: array:35 [
+                        "CacheClear" => "command.cache.clear"
+                        "CacheForget" => "command.cache.forget"
+                        "ClearCompiled" => "command.clear-compiled"
+                        "ClearResets" => "command.auth.resets.clear"
+                        "ConfigCache" => "command.config.cache"
+                        "ConfigClear" => "command.config.clear"
+                        "Down" => "command.down"
+                        "Environment" => "command.environment"
+                        "KeyGenerate" => "command.key.generate"
+                        "Migrate" => "command.migrate"
+                        "MigrateFresh" => "command.migrate.fresh"
+                        "MigrateInstall" => "command.migrate.install"
+                        "MigrateRefresh" => "command.migrate.refresh"
+                        "MigrateReset" => "command.migrate.reset"
+                        "MigrateRollback" => "command.migrate.rollback"
+                        "MigrateStatus" => "command.migrate.status"
+                        "Optimize" => "command.optimize"
+                        "PackageDiscover" => "command.package.discover"
+                        "Preset" => "command.preset"
+                        "QueueFailed" => "command.queue.failed"
+                        "QueueFlush" => "command.queue.flush"
+                        "QueueForget" => "command.queue.forget"
+                        "QueueListen" => "command.queue.listen"
+                        "QueueRestart" => "command.queue.restart"
+                        "QueueRetry" => "command.queue.retry"
+                        "QueueWork" => "command.queue.work"
+                        "RouteCache" => "command.route.cache"
+                        "RouteClear" => "command.route.clear"
+                        "RouteList" => "command.route.list"
+                        "Seed" => "command.seed"
+                        "ScheduleFinish" => "Illuminate\Console\Scheduling\ScheduleFinishCommand"
+                        "ScheduleRun" => "Illuminate\Console\Scheduling\ScheduleRunCommand"
+                        "StorageLink" => "command.storage.link"
+                        "Up" => "command.up"
+                        "ViewClear" => "command.view.clear"
+                      ]
+                      #devCommands: array:29 [
+                        "AppName" => "command.app.name"
+                        "AuthMake" => "command.auth.make"
+                        "CacheTable" => "command.cache.table"
+                        "ConsoleMake" => "command.console.make"
+                        "ControllerMake" => "command.controller.make"
+                        "EventGenerate" => "command.event.generate"
+                        "EventMake" => "command.event.make"
+                        "ExceptionMake" => "command.exception.make"
+                        "FactoryMake" => "command.factory.make"
+                        "JobMake" => "command.job.make"
+                        "ListenerMake" => "command.listener.make"
+                        "MailMake" => "command.mail.make"
+                        "MiddlewareMake" => "command.middleware.make"
+                        "MigrateMake" => "command.migrate.make"
+                        "ModelMake" => "command.model.make"
+                        "NotificationMake" => "command.notification.make"
+                        "NotificationTable" => "command.notification.table"
+                        "PolicyMake" => "command.policy.make"
+                        "ProviderMake" => "command.provider.make"
+                        "QueueFailedTable" => "command.queue.failed-table"
+                        "QueueTable" => "command.queue.table"
+                        "RequestMake" => "command.request.make"
+                        "ResourceMake" => "command.resource.make"
+                        "RuleMake" => "command.rule.make"
+                        "SeederMake" => "command.seeder.make"
+                        "SessionTable" => "command.session.table"
+                        "Serve" => "command.serve"
+                        "TestMake" => "command.test.make"
+                        "VendorPublish" => "command.vendor.publish"
+                      ]
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    25 => Illuminate\Database\MigrationServiceProvider {#1452
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    26 => Illuminate\Foundation\Providers\ComposerServiceProvider {#1458
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    27 => Illuminate\Foundation\Providers\ConsoleSupportServiceProvider {#1101
+                      #defer: true
+                      #providers: array:3 [
+                        0 => "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        1 => "Illuminate\Database\MigrationServiceProvider"
+                        2 => "Illuminate\Foundation\Providers\ComposerServiceProvider"
+                      ]
+                      #instances: array:3 [
+                        0 => Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        1 => Illuminate\Database\MigrationServiceProvider {#1452}
+                        2 => Illuminate\Foundation\Providers\ComposerServiceProvider {#1458}
+                      ]
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    28 => Illuminate\Hashing\HashServiceProvider {#1457
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    29 => Illuminate\Mail\MailServiceProvider {#1482
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    30 => Illuminate\Pipeline\PipelineServiceProvider {#1485
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    31 => Illuminate\Queue\QueueServiceProvider {#1481
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    32 => Illuminate\Redis\RedisServiceProvider {#1490
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    33 => Illuminate\Auth\Passwords\PasswordResetServiceProvider {#1495
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                    34 => Laravel\Tinker\TinkerServiceProvider {#1478
+                      #defer: true
+                      #app: Illuminate\Foundation\Application {#1079}
+                    }
+                  ]
+                  #loadedProviders: array:35 [
+                    "Illuminate\Events\EventServiceProvider" => true
+                    "Illuminate\Log\LogServiceProvider" => true
+                    "Illuminate\Routing\RoutingServiceProvider" => true
+                    "Illuminate\Auth\AuthServiceProvider" => true
+                    "Illuminate\Cookie\CookieServiceProvider" => true
+                    "Illuminate\Database\DatabaseServiceProvider" => true
+                    "Illuminate\Encryption\EncryptionServiceProvider" => true
+                    "Illuminate\Filesystem\FilesystemServiceProvider" => true
+                    "Illuminate\Foundation\Providers\FormRequestServiceProvider" => true
+                    "Illuminate\Foundation\Providers\FoundationServiceProvider" => true
+                    "Illuminate\Notifications\NotificationServiceProvider" => true
+                    "Illuminate\Pagination\PaginationServiceProvider" => true
+                    "Illuminate\Session\SessionServiceProvider" => true
+                    "Illuminate\View\ViewServiceProvider" => true
+                    "Fideloper\Proxy\TrustedProxyServiceProvider" => true
+                    "App\Providers\AppServiceProvider" => true
+                    "App\Providers\AuthServiceProvider" => true
+                    "App\Providers\EventServiceProvider" => true
+                    "App\Providers\RouteServiceProvider" => true
+                    "Illuminate\Validation\ValidationServiceProvider" => true
+                    "Illuminate\Translation\TranslationServiceProvider" => true
+                    "Illuminate\Cache\CacheServiceProvider" => true
+                    "Illuminate\Broadcasting\BroadcastServiceProvider" => true
+                    "Illuminate\Bus\BusServiceProvider" => true
+                    "Illuminate\Foundation\Providers\ArtisanServiceProvider" => true
+                    "Illuminate\Database\MigrationServiceProvider" => true
+                    "Illuminate\Foundation\Providers\ComposerServiceProvider" => true
+                    "Illuminate\Foundation\Providers\ConsoleSupportServiceProvider" => true
+                    "Illuminate\Hashing\HashServiceProvider" => true
+                    "Illuminate\Mail\MailServiceProvider" => true
+                    "Illuminate\Pipeline\PipelineServiceProvider" => true
+                    "Illuminate\Queue\QueueServiceProvider" => true
+                    "Illuminate\Redis\RedisServiceProvider" => true
+                    "Illuminate\Auth\Passwords\PasswordResetServiceProvider" => true
+                    "Laravel\Tinker\TinkerServiceProvider" => true
+                  ]
+                  #deferredServices: []
+                  #monologConfigurator: null
+                  #databasePath: null
+                  #storagePath: null
+                  #environmentPath: null
+                  #environmentFile: ".env"
+                  #namespace: null
+                  #resolved: array:54 [
+                    "events" => true
+                    "App\Console\Kernel" => true
+                    "Illuminate\Contracts\Console\Kernel" => true
+                    "Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables" => true
+                    "Illuminate\Foundation\Bootstrap\LoadConfiguration" => true
+                    "Illuminate\Foundation\Bootstrap\HandleExceptions" => true
+                    "env" => true
+                    "Illuminate\Foundation\Bootstrap\RegisterFacades" => true
+                    "Illuminate\Foundation\Bootstrap\SetRequestForConsole" => true
+                    "Illuminate\Foundation\Bootstrap\RegisterProviders" => true
+                    "Illuminate\Foundation\Bootstrap\BootProviders" => true
+                    "db.factory" => true
+                    "db" => true
+                    "view.engine.resolver" => true
+                    "files" => true
+                    "view.finder" => true
+                    "view" => true
+                    "translation.loader" => true
+                    "translator" => true
+                    "validation.presence" => true
+                    "validator" => true
+                    "Illuminate\Contracts\Auth\Access\Gate" => true
+                    "router" => true
+                    "url" => true
+                    "cache" => true
+                    "cache.store" => true
+                    "Illuminate\Console\Scheduling\CacheMutex" => true
+                    "Illuminate\Console\Scheduling\Schedule" => true
+                    "Faker\Generator" => true
+                    "Illuminate\Database\Eloquent\Factory" => true
+                    "hash" => true
+                    "auth" => true
+                    "session" => true
+                    "session.store" => true
+                    "cookie" => true
+                    "App\Http\Kernel" => true
+                    "Illuminate\Contracts\Http\Kernel" => true
+                    "Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode" => true
+                    "Illuminate\Foundation\Http\Middleware\ValidatePostSize" => true
+                    "App\Http\Middleware\TrimStrings" => true
+                    "Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull" => true
+                    "App\Http\Middleware\TrustProxies" => true
+                    "Illuminate\Routing\Contracts\ControllerDispatcher" => true
+                    "App\Http\Controllers\MedicationController" => true
+                    "encrypter" => true
+                    "App\Http\Middleware\EncryptCookies" => true
+                    "Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse" => true
+                    "Illuminate\Session\Middleware\StartSession" => true
+                    "Illuminate\View\Middleware\ShareErrorsFromSession" => true
+                    "App\Http\Middleware\VerifyCsrfToken" => true
+                    "Illuminate\Auth\Middleware\Authenticate" => true
+                    "Illuminate\Routing\Middleware\SubstituteBindings" => true
+                    "App\Http\Middleware\ResetPassword" => true
+                    "blade.compiler" => true
+                  ]
+                  #bindings: array:133 [
+                    "events" => array:2 [
+                      "concrete" => Closure {#1283
+                        class: "Illuminate\Events\EventServiceProvider"
+                        this: Illuminate\Events\EventServiceProvider {#311 …}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Events/EventServiceProvider.php"
+                        line: "17 to 21"
+                      }
+                      "shared" => true
+                    ]
+                    "log" => array:2 [
+                      "concrete" => Closure {#1285
+                        class: "Illuminate\Log\LogServiceProvider"
+                        this: Illuminate\Log\LogServiceProvider {#1310}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Log/LogServiceProvider.php"
+                        line: "17 to 19"
+                      }
+                      "shared" => true
+                    ]
+                    "router" => array:2 [
+                      "concrete" => Closure {#1288
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "45 to 47"
+                      }
+                      "shared" => true
+                    ]
+                    "url" => array:2 [
+                      "concrete" => Closure {#1266
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "57 to 83"
+                      }
+                      "shared" => true
+                    ]
+                    "redirect" => array:2 [
+                      "concrete" => Closure {#858
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "105 to 116"
+                      }
+                      "shared" => true
+                    ]
+                    "Psr\Http\Message\ServerRequestInterface" => array:2 [
+                      "concrete" => Closure {#1118
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "126 to 128"
+                      }
+                      "shared" => false
+                    ]
+                    "Psr\Http\Message\ResponseInterface" => array:2 [
+                      "concrete" => Closure {#1308
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "138 to 140"
+                      }
+                      "shared" => false
+                    ]
+                    "Illuminate\Contracts\Routing\ResponseFactory" => array:2 [
+                      "concrete" => Closure {#1306
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "150 to 152"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Routing\Contracts\ControllerDispatcher" => array:2 [
+                      "concrete" => Closure {#1300
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "162 to 164"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Contracts\Http\Kernel" => array:2 [
+                      "concrete" => Closure {#1298
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: {
+                          $container: {}
+                          $parameters: { …1}
+                        }
+                        use: {
+                          $abstract: "Illuminate\Contracts\Http\Kernel"
+                          $concrete: "App\Http\Kernel"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "251 to 257"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Contracts\Console\Kernel" => array:2 [
+                      "concrete" => Closure {#1282
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: {
+                          $container: {}
+                          $parameters: { …1}
+                        }
+                        use: {
+                          $abstract: "Illuminate\Contracts\Console\Kernel"
+                          $concrete: "App\Console\Kernel"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "251 to 257"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Contracts\Debug\ExceptionHandler" => array:2 [
+                      "concrete" => Closure {#1268
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: {
+                          $container: {}
+                          $parameters: { …1}
+                        }
+                        use: {
+                          $abstract: "Illuminate\Contracts\Debug\ExceptionHandler"
+                          $concrete: "App\Exceptions\Handler"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "251 to 257"
+                      }
+                      "shared" => true
+                    ]
+                    "env" => array:2 [
+                      "concrete" => Closure {#658
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        use: {
+                          $value: "testing"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "1207 to 1209"
+                      }
+                      "shared" => false
+                    ]
+                    "auth" => array:2 [
+                      "concrete" => Closure {#1212
+                        class: "Illuminate\Auth\AuthServiceProvider"
+                        this: Illuminate\Auth\AuthServiceProvider {#794}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php"
+                        line: "35 to 42"
+                      }
+                      "shared" => true
+                    ]
+                    "auth.driver" => array:2 [
+                      "concrete" => Closure {#822
+                        class: "Illuminate\Auth\AuthServiceProvider"
+                        this: Illuminate\Auth\AuthServiceProvider {#794}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php"
+                        line: "44 to 46"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Contracts\Auth\Authenticatable" => array:2 [
+                      "concrete" => Closure {#331
+                        class: "Illuminate\Auth\AuthServiceProvider"
+                        this: Illuminate\Auth\AuthServiceProvider {#794}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php"
+                        line: "57 to 59"
+                      }
+                      "shared" => false
+                    ]
+                    "Illuminate\Contracts\Auth\Access\Gate" => array:2 [
+                      "concrete" => Closure {#896
+                        class: "Illuminate\Auth\AuthServiceProvider"
+                        this: Illuminate\Auth\AuthServiceProvider {#794}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php"
+                        line: "70 to 74"
+                      }
+                      "shared" => true
+                    ]
+                    "cookie" => array:2 [
+                      "concrete" => Closure {#1444
+                        class: "Illuminate\Cookie\CookieServiceProvider"
+                        this: Illuminate\Cookie\CookieServiceProvider {#685}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Cookie/CookieServiceProvider.php"
+                        line: "16 to 22"
+                      }
+                      "shared" => true
+                    ]
+                    "db.factory" => array:2 [
+                      "concrete" => Closure {#133
+                        class: "Illuminate\Database\DatabaseServiceProvider"
+                        this: Illuminate\Database\DatabaseServiceProvider {#1393}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php"
+                        line: "54 to 56"
+                      }
+                      "shared" => true
+                    ]
+                    "db" => array:2 [
+                      "concrete" => Closure {#1229
+                        class: "Illuminate\Database\DatabaseServiceProvider"
+                        this: Illuminate\Database\DatabaseServiceProvider {#1393}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php"
+                        line: "61 to 63"
+                      }
+                      "shared" => true
+                    ]
+                    "db.connection" => array:2 [
+                      "concrete" => Closure {#1164
+                        class: "Illuminate\Database\DatabaseServiceProvider"
+                        this: Illuminate\Database\DatabaseServiceProvider {#1393}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php"
+                        line: "65 to 67"
+                      }
+                      "shared" => false
+                    ]
+                    "Faker\Generator" => array:2 [
+                      "concrete" => Closure {#708
+                        class: "Illuminate\Database\DatabaseServiceProvider"
+                        this: Illuminate\Database\DatabaseServiceProvider {#1393}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php"
+                        line: "77 to 79"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Database\Eloquent\Factory" => array:2 [
+                      "concrete" => Closure {#83
+                        class: "Illuminate\Database\DatabaseServiceProvider"
+                        this: Illuminate\Database\DatabaseServiceProvider {#1393}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php"
+                        line: "81 to 85"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Contracts\Queue\EntityResolver" => array:2 [
+                      "concrete" => Closure {#523
+                        class: "Illuminate\Database\DatabaseServiceProvider"
+                        this: Illuminate\Database\DatabaseServiceProvider {#1393}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php"
+                        line: "95 to 97"
+                      }
+                      "shared" => true
+                    ]
+                    "encrypter" => array:2 [
+                      "concrete" => Closure {#684
+                        class: "Illuminate\Encryption\EncryptionServiceProvider"
+                        this: Illuminate\Encryption\EncryptionServiceProvider {#731}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Encryption/EncryptionServiceProvider.php"
+                        line: "18 to 29"
+                      }
+                      "shared" => true
+                    ]
+                    "files" => array:2 [
+                      "concrete" => Closure {#887
+                        class: "Illuminate\Filesystem\FilesystemServiceProvider"
+                        this: Illuminate\Filesystem\FilesystemServiceProvider {#886}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php"
+                        line: "28 to 30"
+                      }
+                      "shared" => true
+                    ]
+                    "filesystem" => array:2 [
+                      "concrete" => Closure {#1081
+                        class: "Illuminate\Filesystem\FilesystemServiceProvider"
+                        this: Illuminate\Filesystem\FilesystemServiceProvider {#886}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php"
+                        line: "58 to 60"
+                      }
+                      "shared" => true
+                    ]
+                    "filesystem.disk" => array:2 [
+                      "concrete" => Closure {#907
+                        class: "Illuminate\Filesystem\FilesystemServiceProvider"
+                        this: Illuminate\Filesystem\FilesystemServiceProvider {#886}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php"
+                        line: "42 to 44"
+                      }
+                      "shared" => true
+                    ]
+                    "filesystem.cloud" => array:2 [
+                      "concrete" => Closure {#279
+                        class: "Illuminate\Filesystem\FilesystemServiceProvider"
+                        this: Illuminate\Filesystem\FilesystemServiceProvider {#886}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php"
+                        line: "46 to 48"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Notifications\ChannelManager" => array:2 [
+                      "concrete" => Closure {#740
+                        class: "Illuminate\Notifications\NotificationServiceProvider"
+                        this: Illuminate\Notifications\NotificationServiceProvider {#77}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Notifications/NotificationServiceProvider.php"
+                        line: "34 to 36"
+                      }
+                      "shared" => true
+                    ]
+                    "session" => array:2 [
+                      "concrete" => Closure {#650
+                        class: "Illuminate\Session\SessionServiceProvider"
+                        this: Illuminate\Session\SessionServiceProvider {#3482}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Session/SessionServiceProvider.php"
+                        line: "31 to 33"
+                      }
+                      "shared" => true
+                    ]
+                    "session.store" => array:2 [
+                      "concrete" => Closure {#1103
+                        class: "Illuminate\Session\SessionServiceProvider"
+                        this: Illuminate\Session\SessionServiceProvider {#3482}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Session/SessionServiceProvider.php"
+                        line: "43 to 48"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Session\Middleware\StartSession" => array:2 [
+                      "concrete" => Closure {#1217
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: {
+                          $container: {}
+                          $parameters: { …1}
+                        }
+                        use: {
+                          $abstract: "Illuminate\Session\Middleware\StartSession"
+                          $concrete: "Illuminate\Session\Middleware\StartSession"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "251 to 257"
+                      }
+                      "shared" => true
+                    ]
+                    "view" => array:2 [
+                      "concrete" => Closure {#1290
+                        class: "Illuminate\View\ViewServiceProvider"
+                        this: Illuminate\View\ViewServiceProvider {#1292}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php"
+                        line: "35 to 53"
+                      }
+                      "shared" => true
+                    ]
+                    "view.finder" => array:2 [
+                      "concrete" => Closure {#1309
+                        class: "Illuminate\View\ViewServiceProvider"
+                        this: Illuminate\View\ViewServiceProvider {#1292}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php"
+                        line: "76 to 78"
+                      }
+                      "shared" => false
+                    ]
+                    "view.engine.resolver" => array:2 [
+                      "concrete" => Closure {#1307
+                        class: "Illuminate\View\ViewServiceProvider"
+                        this: Illuminate\View\ViewServiceProvider {#1292}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php"
+                        line: "88 to 99"
+                      }
+                      "shared" => true
+                    ]
+                    "blade.compiler" => array:2 [
+                      "concrete" => Closure {#1278
+                        class: "Illuminate\View\ViewServiceProvider"
+                        this: Illuminate\View\ViewServiceProvider {#1292}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php"
+                        line: "139 to 143"
+                      }
+                      "shared" => true
+                    ]
+                    "validation.presence" => array:2 [
+                      "concrete" => Closure {#846
+                        class: "Illuminate\Validation\ValidationServiceProvider"
+                        this: Illuminate\Validation\ValidationServiceProvider {#902}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Validation/ValidationServiceProvider.php"
+                        line: "56 to 58"
+                      }
+                      "shared" => true
+                    ]
+                    "validator" => array:2 [
+                      "concrete" => Closure {#342
+                        class: "Illuminate\Validation\ValidationServiceProvider"
+                        this: Illuminate\Validation\ValidationServiceProvider {#902}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Validation/ValidationServiceProvider.php"
+                        line: "35 to 46"
+                      }
+                      "shared" => true
+                    ]
+                    "translation.loader" => array:2 [
+                      "concrete" => Closure {#278
+                        class: "Illuminate\Translation\TranslationServiceProvider"
+                        this: Illuminate\Translation\TranslationServiceProvider {#851}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Translation/TranslationServiceProvider.php"
+                        line: "48 to 50"
+                      }
+                      "shared" => true
+                    ]
+                    "translator" => array:2 [
+                      "concrete" => Closure {#928
+                        class: "Illuminate\Translation\TranslationServiceProvider"
+                        this: Illuminate\Translation\TranslationServiceProvider {#851}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Translation/TranslationServiceProvider.php"
+                        line: "25 to 38"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Console\Scheduling\Schedule" => array:2 [
+                      "concrete" => Closure {#3276
+                        class: "Illuminate\Foundation\Console\Kernel"
+                        this: App\Console\Kernel {#900}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php"
+                        line: "100 to 102"
+                      }
+                      "shared" => true
+                    ]
+                    "cache" => array:2 [
+                      "concrete" => Closure {#1115
+                        class: "Illuminate\Cache\CacheServiceProvider"
+                        this: Illuminate\Cache\CacheServiceProvider {#1099}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Cache/CacheServiceProvider.php"
+                        line: "23 to 25"
+                      }
+                      "shared" => true
+                    ]
+                    "cache.store" => array:2 [
+                      "concrete" => Closure {#1117
+                        class: "Illuminate\Cache\CacheServiceProvider"
+                        this: Illuminate\Cache\CacheServiceProvider {#1099}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Cache/CacheServiceProvider.php"
+                        line: "27 to 29"
+                      }
+                      "shared" => true
+                    ]
+                    "memcached.connector" => array:2 [
+                      "concrete" => Closure {#1123
+                        class: "Illuminate\Cache\CacheServiceProvider"
+                        this: Illuminate\Cache\CacheServiceProvider {#1099}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Cache/CacheServiceProvider.php"
+                        line: "31 to 33"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Broadcasting\BroadcastManager" => array:2 [
+                      "concrete" => Closure {#1088
+                        class: "Illuminate\Broadcasting\BroadcastServiceProvider"
+                        this: Illuminate\Broadcasting\BroadcastServiceProvider {#324}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastServiceProvider.php"
+                        line: "25 to 27"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Contracts\Broadcasting\Broadcaster" => array:2 [
+                      "concrete" => Closure {#1013
+                        class: "Illuminate\Broadcasting\BroadcastServiceProvider"
+                        this: Illuminate\Broadcasting\BroadcastServiceProvider {#324}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastServiceProvider.php"
+                        line: "29 to 31"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Bus\Dispatcher" => array:2 [
+                      "concrete" => Closure {#1108
+                        class: "Illuminate\Bus\BusServiceProvider"
+                        this: Illuminate\Bus\BusServiceProvider {#954}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Bus/BusServiceProvider.php"
+                        line: "26 to 30"
+                      }
+                      "shared" => true
+                    ]
+                    "command.cache.clear" => array:2 [
+                      "concrete" => Closure {#1329
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "218 to 220"
+                      }
+                      "shared" => true
+                    ]
+                    "command.cache.forget" => array:2 [
+                      "concrete" => Closure {#1287
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "230 to 232"
+                      }
+                      "shared" => true
+                    ]
+                    "command.clear-compiled" => array:2 [
+                      "concrete" => Closure {#791
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "254 to 256"
+                      }
+                      "shared" => true
+                    ]
+                    "command.auth.resets.clear" => array:2 [
+                      "concrete" => Closure {#1464
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "266 to 268"
+                      }
+                      "shared" => true
+                    ]
+                    "command.config.cache" => array:2 [
+                      "concrete" => Closure {#1461
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "278 to 280"
+                      }
+                      "shared" => true
+                    ]
+                    "command.config.clear" => array:2 [
+                      "concrete" => Closure {#1466
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "290 to 292"
+                      }
+                      "shared" => true
+                    ]
+                    "command.down" => array:2 [
+                      "concrete" => Closure {#1467
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "374 to 376"
+                      }
+                      "shared" => true
+                    ]
+                    "command.environment" => array:2 [
+                      "concrete" => Closure {#1463
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "386 to 388"
+                      }
+                      "shared" => true
+                    ]
+                    "command.key.generate" => array:2 [
+                      "concrete" => Closure {#128
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "410 to 412"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate" => array:2 [
+                      "concrete" => Closure {#1370
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "458 to 460"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate.fresh" => array:2 [
+                      "concrete" => Closure {#1197
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "470 to 472"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate.install" => array:2 [
+                      "concrete" => Closure {#1143
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "482 to 484"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate.refresh" => array:2 [
+                      "concrete" => Closure {#1158
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "513 to 515"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate.reset" => array:2 [
+                      "concrete" => Closure {#1156
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "525 to 527"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate.rollback" => array:2 [
+                      "concrete" => Closure {#1157
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "537 to 539"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate.status" => array:2 [
+                      "concrete" => Closure {#1368
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "549 to 551"
+                      }
+                      "shared" => true
+                    ]
+                    "command.optimize" => array:2 [
+                      "concrete" => Closure {#1195
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "585 to 587"
+                      }
+                      "shared" => true
+                    ]
+                    "command.package.discover" => array:2 [
+                      "concrete" => Closure {#1196
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "597 to 599"
+                      }
+                      "shared" => true
+                    ]
+                    "command.preset" => array:2 [
+                      "concrete" => Closure {#232
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "609 to 611"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.failed" => array:2 [
+                      "concrete" => Closure {#229
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "633 to 635"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.flush" => array:2 [
+                      "concrete" => Closure {#488
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "657 to 659"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.forget" => array:2 [
+                      "concrete" => Closure {#1142
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "645 to 647"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.listen" => array:2 [
+                      "concrete" => Closure {#160
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "669 to 671"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.restart" => array:2 [
+                      "concrete" => Closure {#1086
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "681 to 683"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.retry" => array:2 [
+                      "concrete" => Closure {#224
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "693 to 695"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.work" => array:2 [
+                      "concrete" => Closure {#874
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "705 to 707"
+                      }
+                      "shared" => true
+                    ]
+                    "command.route.cache" => array:2 [
+                      "concrete" => Closure {#228
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "813 to 815"
+                      }
+                      "shared" => true
+                    ]
+                    "command.route.clear" => array:2 [
+                      "concrete" => Closure {#1145
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "825 to 827"
+                      }
+                      "shared" => true
+                    ]
+                    "command.route.list" => array:2 [
+                      "concrete" => Closure {#871
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "837 to 839"
+                      }
+                      "shared" => true
+                    ]
+                    "command.seed" => array:2 [
+                      "concrete" => Closure {#1146
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "849 to 851"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Console\Scheduling\ScheduleFinishCommand" => array:2 [
+                      "concrete" => Closure {#1140
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: {
+                          $container: {}
+                          $parameters: { …1}
+                        }
+                        use: {
+                          $abstract: "Illuminate\Console\Scheduling\ScheduleFinishCommand"
+                          $concrete: "Illuminate\Console\Scheduling\ScheduleFinishCommand"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "251 to 257"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Console\Scheduling\ScheduleRunCommand" => array:2 [
+                      "concrete" => Closure {#1144
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: {
+                          $container: {}
+                          $parameters: { …1}
+                        }
+                        use: {
+                          $abstract: "Illuminate\Console\Scheduling\ScheduleRunCommand"
+                          $concrete: "Illuminate\Console\Scheduling\ScheduleRunCommand"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "251 to 257"
+                      }
+                      "shared" => true
+                    ]
+                    "command.storage.link" => array:2 [
+                      "concrete" => Closure {#1141
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "801 to 803"
+                      }
+                      "shared" => true
+                    ]
+                    "command.up" => array:2 [
+                      "concrete" => Closure {#1137
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "905 to 907"
+                      }
+                      "shared" => true
+                    ]
+                    "command.view.clear" => array:2 [
+                      "concrete" => Closure {#1135
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "929 to 931"
+                      }
+                      "shared" => true
+                    ]
+                    "command.app.name" => array:2 [
+                      "concrete" => Closure {#1136
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "194 to 196"
+                      }
+                      "shared" => true
+                    ]
+                    "command.auth.make" => array:2 [
+                      "concrete" => Closure {#1138
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "206 to 208"
+                      }
+                      "shared" => true
+                    ]
+                    "command.cache.table" => array:2 [
+                      "concrete" => Closure {#1201
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "242 to 244"
+                      }
+                      "shared" => true
+                    ]
+                    "command.console.make" => array:2 [
+                      "concrete" => Closure {#1104
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "302 to 304"
+                      }
+                      "shared" => true
+                    ]
+                    "command.controller.make" => array:2 [
+                      "concrete" => Closure {#1224
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "314 to 316"
+                      }
+                      "shared" => true
+                    ]
+                    "command.event.generate" => array:2 [
+                      "concrete" => Closure {#892
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "326 to 328"
+                      }
+                      "shared" => true
+                    ]
+                    "command.event.make" => array:2 [
+                      "concrete" => Closure {#1134
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "338 to 340"
+                      }
+                      "shared" => true
+                    ]
+                    "command.exception.make" => array:2 [
+                      "concrete" => Closure {#315
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "350 to 352"
+                      }
+                      "shared" => true
+                    ]
+                    "command.factory.make" => array:2 [
+                      "concrete" => Closure {#937
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "362 to 364"
+                      }
+                      "shared" => true
+                    ]
+                    "command.job.make" => array:2 [
+                      "concrete" => Closure {#936
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "398 to 400"
+                      }
+                      "shared" => true
+                    ]
+                    "command.listener.make" => array:2 [
+                      "concrete" => Closure {#934
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "422 to 424"
+                      }
+                      "shared" => true
+                    ]
+                    "command.mail.make" => array:2 [
+                      "concrete" => Closure {#142
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "434 to 436"
+                      }
+                      "shared" => true
+                    ]
+                    "command.middleware.make" => array:2 [
+                      "concrete" => Closure {#129
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "446 to 448"
+                      }
+                      "shared" => true
+                    ]
+                    "command.migrate.make" => array:2 [
+                      "concrete" => Closure {#124
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "494 to 503"
+                      }
+                      "shared" => true
+                    ]
+                    "command.model.make" => array:2 [
+                      "concrete" => Closure {#91
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "561 to 563"
+                      }
+                      "shared" => true
+                    ]
+                    "command.notification.make" => array:2 [
+                      "concrete" => Closure {#1077
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "573 to 575"
+                      }
+                      "shared" => true
+                    ]
+                    "command.notification.table" => array:2 [
+                      "concrete" => Closure {#1165
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "953 to 955"
+                      }
+                      "shared" => true
+                    ]
+                    "command.policy.make" => array:2 [
+                      "concrete" => Closure {#193
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "941 to 943"
+                      }
+                      "shared" => true
+                    ]
+                    "command.provider.make" => array:2 [
+                      "concrete" => Closure {#833
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "621 to 623"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.failed-table" => array:2 [
+                      "concrete" => Closure {#1451
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "717 to 719"
+                      }
+                      "shared" => true
+                    ]
+                    "command.queue.table" => array:2 [
+                      "concrete" => Closure {#1209
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "729 to 731"
+                      }
+                      "shared" => true
+                    ]
+                    "command.request.make" => array:2 [
+                      "concrete" => Closure {#875
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "741 to 743"
+                      }
+                      "shared" => true
+                    ]
+                    "command.resource.make" => array:2 [
+                      "concrete" => Closure {#1129
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "753 to 755"
+                      }
+                      "shared" => true
+                    ]
+                    "command.rule.make" => array:2 [
+                      "concrete" => Closure {#921
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "765 to 767"
+                      }
+                      "shared" => true
+                    ]
+                    "command.seeder.make" => array:2 [
+                      "concrete" => Closure {#1075
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "777 to 779"
+                      }
+                      "shared" => true
+                    ]
+                    "command.session.table" => array:2 [
+                      "concrete" => Closure {#1041
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "789 to 791"
+                      }
+                      "shared" => true
+                    ]
+                    "command.serve" => array:2 [
+                      "concrete" => Closure {#1448
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "881 to 883"
+                      }
+                      "shared" => true
+                    ]
+                    "command.test.make" => array:2 [
+                      "concrete" => Closure {#1446
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "893 to 895"
+                      }
+                      "shared" => true
+                    ]
+                    "command.vendor.publish" => array:2 [
+                      "concrete" => Closure {#1202
+                        class: "Illuminate\Foundation\Providers\ArtisanServiceProvider"
+                        this: Illuminate\Foundation\Providers\ArtisanServiceProvider {#1128}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ArtisanServiceProvider.php"
+                        line: "917 to 919"
+                      }
+                      "shared" => true
+                    ]
+                    "migration.repository" => array:2 [
+                      "concrete" => Closure {#1456
+                        class: "Illuminate\Database\MigrationServiceProvider"
+                        this: Illuminate\Database\MigrationServiceProvider {#1452}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/MigrationServiceProvider.php"
+                        line: "40 to 44"
+                      }
+                      "shared" => true
+                    ]
+                    "migrator" => array:2 [
+                      "concrete" => Closure {#1449
+                        class: "Illuminate\Database\MigrationServiceProvider"
+                        this: Illuminate\Database\MigrationServiceProvider {#1452}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/MigrationServiceProvider.php"
+                        line: "57 to 61"
+                      }
+                      "shared" => true
+                    ]
+                    "migration.creator" => array:2 [
+                      "concrete" => Closure {#1455
+                        class: "Illuminate\Database\MigrationServiceProvider"
+                        this: Illuminate\Database\MigrationServiceProvider {#1452}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Database/MigrationServiceProvider.php"
+                        line: "71 to 73"
+                      }
+                      "shared" => true
+                    ]
+                    "composer" => array:2 [
+                      "concrete" => Closure {#1454
+                        class: "Illuminate\Foundation\Providers\ComposerServiceProvider"
+                        this: Illuminate\Foundation\Providers\ComposerServiceProvider {#1458}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/ComposerServiceProvider.php"
+                        line: "24 to 26"
+                      }
+                      "shared" => true
+                    ]
+                    "hash" => array:2 [
+                      "concrete" => Closure {#1459
+                        class: "Illuminate\Hashing\HashServiceProvider"
+                        this: Illuminate\Hashing\HashServiceProvider {#1457}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Hashing/HashServiceProvider.php"
+                        line: "23 to 25"
+                      }
+                      "shared" => true
+                    ]
+                    "swift.transport" => array:2 [
+                      "concrete" => Closure {#1468
+                        class: "Illuminate\Mail\MailServiceProvider"
+                        this: Illuminate\Mail\MailServiceProvider {#1482}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Mail/MailServiceProvider.php"
+                        line: "106 to 108"
+                      }
+                      "shared" => true
+                    ]
+                    "swift.mailer" => array:2 [
+                      "concrete" => Closure {#1465
+                        class: "Illuminate\Mail\MailServiceProvider"
+                        this: Illuminate\Mail\MailServiceProvider {#1482}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Mail/MailServiceProvider.php"
+                        line: "94 to 96"
+                      }
+                      "shared" => true
+                    ]
+                    "mailer" => array:2 [
+                      "concrete" => Closure {#1483
+                        class: "Illuminate\Mail\MailServiceProvider"
+                        this: Illuminate\Mail\MailServiceProvider {#1482}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Mail/MailServiceProvider.php"
+                        line: "40 to 62"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Mail\Markdown" => array:2 [
+                      "concrete" => Closure {#1484
+                        class: "Illuminate\Mail\MailServiceProvider"
+                        this: Illuminate\Mail\MailServiceProvider {#1482}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Mail/MailServiceProvider.php"
+                        line: "124 to 131"
+                      }
+                      "shared" => true
+                    ]
+                    "Illuminate\Contracts\Pipeline\Hub" => array:2 [
+                      "concrete" => Closure {#1486
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: {
+                          $container: {}
+                          $parameters: { …1}
+                        }
+                        use: {
+                          $abstract: "Illuminate\Contracts\Pipeline\Hub"
+                          $concrete: "Illuminate\Pipeline\Hub"
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "251 to 257"
+                      }
+                      "shared" => true
+                    ]
+                    "queue" => array:2 [
+                      "concrete" => Closure {#1487
+                        class: "Illuminate\Queue\QueueServiceProvider"
+                        this: Illuminate\Queue\QueueServiceProvider {#1481}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Queue/QueueServiceProvider.php"
+                        line: "50 to 57"
+                      }
+                      "shared" => true
+                    ]
+                    "queue.connection" => array:2 [
+                      "concrete" => Closure {#1489
+                        class: "Illuminate\Queue\QueueServiceProvider"
+                        this: Illuminate\Queue\QueueServiceProvider {#1481}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Queue/QueueServiceProvider.php"
+                        line: "67 to 69"
+                      }
+                      "shared" => true
+                    ]
+                    "queue.worker" => array:2 [
+                      "concrete" => Closure {#1488
+                        class: "Illuminate\Queue\QueueServiceProvider"
+                        this: Illuminate\Queue\QueueServiceProvider {#1481}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Queue/QueueServiceProvider.php"
+                        line: "170 to 174"
+                      }
+                      "shared" => true
+                    ]
+                    "queue.listener" => array:2 [
+                      "concrete" => Closure {#1491
+                        class: "Illuminate\Queue\QueueServiceProvider"
+                        this: Illuminate\Queue\QueueServiceProvider {#1481}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Queue/QueueServiceProvider.php"
+                        line: "184 to 186"
+                      }
+                      "shared" => true
+                    ]
+                    "queue.failer" => array:2 [
+                      "concrete" => Closure {#1492
+                        class: "Illuminate\Queue\QueueServiceProvider"
+                        this: Illuminate\Queue\QueueServiceProvider {#1481}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Queue/QueueServiceProvider.php"
+                        line: "196 to 202"
+                      }
+                      "shared" => true
+                    ]
+                    "redis" => array:2 [
+                      "concrete" => Closure {#1493
+                        class: "Illuminate\Redis\RedisServiceProvider"
+                        this: Illuminate\Redis\RedisServiceProvider {#1490}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Redis/RedisServiceProvider.php"
+                        line: "24 to 28"
+                      }
+                      "shared" => true
+                    ]
+                    "redis.connection" => array:2 [
+                      "concrete" => Closure {#1494
+                        class: "Illuminate\Redis\RedisServiceProvider"
+                        this: Illuminate\Redis\RedisServiceProvider {#1490}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Redis/RedisServiceProvider.php"
+                        line: "30 to 32"
+                      }
+                      "shared" => false
+                    ]
+                    "auth.password" => array:2 [
+                      "concrete" => Closure {#1476
+                        class: "Illuminate\Auth\Passwords\PasswordResetServiceProvider"
+                        this: Illuminate\Auth\Passwords\PasswordResetServiceProvider {#1495}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/Passwords/PasswordResetServiceProvider.php"
+                        line: "33 to 35"
+                      }
+                      "shared" => true
+                    ]
+                    "auth.password.broker" => array:2 [
+                      "concrete" => Closure {#1474
+                        class: "Illuminate\Auth\Passwords\PasswordResetServiceProvider"
+                        this: Illuminate\Auth\Passwords\PasswordResetServiceProvider {#1495}
+                        parameters: {
+                          $app: {}
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/Passwords/PasswordResetServiceProvider.php"
+                        line: "37 to 39"
+                      }
+                      "shared" => false
+                    ]
+                    "command.tinker" => array:2 [
+                      "concrete" => Closure {#1210
+                        class: "Laravel\Tinker\TinkerServiceProvider"
+                        this: Laravel\Tinker\TinkerServiceProvider {#1478}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/tinker/src/TinkerServiceProvider.php"
+                        line: "24 to 26"
+                      }
+                      "shared" => true
+                    ]
+                    "auth.loaded" => array:2 [
+                      "concrete" => Closure {#1398
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        use: {
+                          $value: true
+                        }
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "1207 to 1209"
+                      }
+                      "shared" => false
+                    ]
+                  ]
+                  #methodBindings: []
+                  #instances: array:45 [
+                    "path" => "/home/chris/school/CSC-4990/vitae-net/app"
+                    "path.base" => "/home/chris/school/CSC-4990/vitae-net"
+                    "path.lang" => "/home/chris/school/CSC-4990/vitae-net/resources/lang"
+                    "path.config" => "/home/chris/school/CSC-4990/vitae-net/config"
+                    "path.public" => "/home/chris/school/CSC-4990/vitae-net/public"
+                    "path.storage" => "/home/chris/school/CSC-4990/vitae-net/storage"
+                    "path.database" => "/home/chris/school/CSC-4990/vitae-net/database"
+                    "path.resources" => "/home/chris/school/CSC-4990/vitae-net/resources"
+                    "path.bootstrap" => "/home/chris/school/CSC-4990/vitae-net/bootstrap"
+                    "app" => Illuminate\Foundation\Application {#1079}
+                    "Illuminate\Container\Container" => Illuminate\Foundation\Application {#1079}
+                    "Illuminate\Foundation\PackageManifest" => Illuminate\Foundation\PackageManifest {#683
+                      +files: Illuminate\Filesystem\Filesystem {#1291}
+                      +basePath: "/home/chris/school/CSC-4990/vitae-net"
+                      +vendorPath: "/home/chris/school/CSC-4990/vitae-net/vendor"
+                      +manifestPath: "/home/chris/school/CSC-4990/vitae-net/bootstrap/cache/packages.php"
+                      +manifest: array:2 [
+                        "fideloper/proxy" => array:1 [
+                          "providers" => array:1 [ …1]
+                        ]
+                        "laravel/tinker" => array:1 [
+                          "providers" => array:1 [ …1]
+                        ]
+                      ]
+                    }
+                    "events" => Illuminate\Events\Dispatcher {#741}
+                    "Illuminate\Contracts\Console\Kernel" => App\Console\Kernel {#900}
+                    "config" => Illuminate\Config\Repository {#1265
+                      #items: array:12 [
+                        "app" => array:13 [
+                          "name" => "Laravel"
+                          "env" => "testing"
+                          "debug" => true
+                          "url" => "http://localhost"
+                          "timezone" => "UTC"
+                          "locale" => "en"
+                          "fallback_locale" => "en"
+                          "key" => "base64:vQknEpW0xz15j/oaLM6cprRTRNzFs+6VTr48OFr5sdI="
+                          "cipher" => "AES-256-CBC"
+                          "log" => "single"
+                          "log_level" => "debug"
+                          "providers" => array:26 [ …26]
+                          "aliases" => array:33 [ …33]
+                        ]
+                        "auth" => array:5 [ …5]
+                        "broadcasting" => array:2 [ …2]
+                        "cache" => array:3 [ …3]
+                        "database" => array:4 [ …4]
+                        "filesystems" => array:3 [ …3]
+                        "mail" => array:9 [ …9]
+                        "queue" => array:3 [ …3]
+                        "services" => array:4 [ …4]
+                        "session" => array:15 [ …15]
+                        "view" => array:2 [ …2]
+                        "trustedproxy" => array:2 [ …2]
+                      ]
+                    }
+                    "request" => Illuminate\Http\Request {#101
+                      #json: null
+                      #convertedFiles: null
+                      #userResolver: Closure {#1412
+                        class: "Illuminate\Auth\AuthServiceProvider"
+                        this: Illuminate\Auth\AuthServiceProvider {#794}
+                        parameters: { …1}
+                        use: { …1}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php"
+                        line: "85 to 87"
+                      }
+                      #routeResolver: Closure {#99
+                        class: "Illuminate\Routing\Router"
+                        this: Illuminate\Routing\Router {#694
+                          #events: Illuminate\Events\Dispatcher {#741}
+                          #container: Illuminate\Foundation\Application {#1079}
+                          #routes: Illuminate\Routing\RouteCollection {#816
+                            #routes: array:6 [
+                              "GET" => array:35 [ …35]
+                              "HEAD" => array:35 [ …35]
+                              "POST" => array:19 [ …19]
+                              "PUT" => array:6 [ …6]
+                              "PATCH" => array:6 [ …6]
+                              "DELETE" => array:5 [ …5]
+                            ]
+                            #allRoutes: array:65 [
+                              "HEADapi/user" => Illuminate\Routing\Route {#949 …13}
+                              "POSTapi/v1/medications/verify" => Illuminate\Routing\Route {#50 …13}
+                              "POSTapi/v1/patients/verify" => Illuminate\Routing\Route {#963 …13}
+                              "POSTapi/v2/medications/verify" => Illuminate\Routing\Route {#958 …13}
+                              "POSTapi/v2/patients/verify" => Illuminate\Routing\Route {#961 …13}
+                              "HEAD/" => Illuminate\Routing\Route {#962 …13}
+                              "HEADlogin" => Illuminate\Routing\Route {#960 …13}
+                              "POSTlogin" => Illuminate\Routing\Route {#730 …13}
+                              "POSTlogout" => Illuminate\Routing\Route {#920 …13}
+                              "HEADregister" => Illuminate\Routing\Route {#727 …13}
+                              "POSTregister" => Illuminate\Routing\Route {#71 …13}
+                              "HEADpassword/reset" => Illuminate\Routing\Route {#3531 …13}
+                              "POSTpassword/email" => Illuminate\Routing\Route {#974 …13}
+                              "HEADpassword/reset/{token}" => Illuminate\Routing\Route {#176 …13}
+                              "POSTpassword/reset" => Illuminate\Routing\Route {#728 …13}
+                              "HEADlogout" => Illuminate\Routing\Route {#1012 …13}
+                              "HEADhome" => Illuminate\Routing\Route {#1030 …13}
+                              "HEADmedication" => Illuminate\Routing\Route {#1185 …13}
+                              "HEADscan" => Illuminate\Routing\Route {#975 …13}
+                              "POSTscan" => Illuminate\Routing\Route {#966 …13}
+                              "HEADsignatures" => Illuminate\Routing\Route {#977 …13}
+                              "POSTsignatures/delete" => Illuminate\Routing\Route {#1187 …13}
+                              "POSTorders/complete" => Illuminate\Routing\Route {#1020 …13}
+                              "HEADmedformatter" => Illuminate\Routing\Route {#1280 …13}
+                              "HEADpatientformatter" => Illuminate\Routing\Route {#1274 …13}
+                              "HEADusers" => Illuminate\Routing\Route {#1109 …13}
+                              "HEADusers/create" => Illuminate\Routing\Route {#1111 …13}
+                              "POSTusers" => Illuminate\Routing\Route {#220 …13}
+                              "HEADusers/{user}" => Illuminate\Routing\Route {#144 …13}
+                              "HEADusers/{user}/edit" => Illuminate\Routing\Route {#60 …13}
+                              "PATCHusers/{user}" => Illuminate\Routing\Route {#222 …13}
+                              "DELETEusers/{user}" => Illuminate\Routing\Route {#242 …13}
+                              "HEADmedications" => Illuminate\Routing\Route {#231
+                                +uri: "medications"
+                                +methods: array:2 [
+                                  0 => "GET"
+                                  1 => "HEAD"
+                                ]
+                                +action: array:7 [
+                                  "middleware" => array:2 [ …2]
+                                  "as" => "medications.index"
+                                  "uses" => "App\Http\Controllers\MedicationController@index"
+                                  "controller" => "App\Http\Controllers\MedicationController@index"
+                                  "namespace" => "App\Http\Controllers"
+                                  "prefix" => null
+                                  "where" => []
+                                ]
+                                +isFallback: false
+                                +controller: App\Http\Controllers\MedicationController {#1410
+                                  #middleware: array:1 [ …1]
+                                }
+                                +defaults: []
+                                +wheres: []
+                                +parameters: []
+                                +parameterNames: []
+                                +computedMiddleware: array:2 [
+                                  0 => "web"
+                                  1 => "auth"
+                                ]
+                                +compiled: Symfony\Component\Routing\CompiledRoute {#985
+                                  -variables: []
+                                  -tokens: array:1 [ …1]
+                                  -staticPrefix: "/medications"
+                                  -regex: "#^/medications$#s"
+                                  -pathVariables: []
+                                  -hostVariables: []
+                                  -hostRegex: null
+                                  -hostTokens: []
+                                }
+                                #router: Illuminate\Routing\Router {#694}
+                                #container: Illuminate\Foundation\Application {#1079}
+                              }
+                              "HEADmedications/create" => Illuminate\Routing\Route {#2714 …13}
+                              "POSTmedications" => Illuminate\Routing\Route {#894 …13}
+                              "HEADmedications/{medication}" => Illuminate\Routing\Route {#881 …13}
+                              "HEADmedications/{medication}/edit" => Illuminate\Routing\Route {#905 …13}
+                              "PATCHmedications/{medication}" => Illuminate\Routing\Route {#903 …13}
+                              "DELETEmedications/{medication}" => Illuminate\Routing\Route {#1095 …13}
+                              "HEADpatients" => Illuminate\Routing\Route {#1122 …13}
+                              "HEADpatients/create" => Illuminate\Routing\Route {#1126 …13}
+                              "POSTpatients" => Illuminate\Routing\Route {#1127 …13}
+                              "HEADpatients/{patient}" => Illuminate\Routing\Route {#1035 …13}
+                              "HEADpatients/{patient}/edit" => Illuminate\Routing\Route {#51 …13}
+                              "PATCHpatients/{patient}" => Illuminate\Routing\Route {#439 …13}
+                              "DELETEpatients/{patient}" => Illuminate\Routing\Route {#618 …13}
+                              "HEADorders" => Illuminate\Routing\Route {#796 …13}
+                              "HEADorders/create" => Illuminate\Routing\Route {#789 …13}
+                              "POSTorders" => Illuminate\Routing\Route {#307 …13}
+                              "HEADorders/{order}" => Illuminate\Routing\Route {#755 …13}
+                              "HEADorders/{order}/edit" => Illuminate\Routing\Route {#723 …13}
+                              "PATCHorders/{order}" => Illuminate\Routing\Route {#147 …13}
+                              "DELETEorders/{order}" => Illuminate\Routing\Route {#669 …13}
+                              "HEADlabs" => Illuminate\Routing\Route {#526 …13}
+                              "HEADlabs/create" => Illuminate\Routing\Route {#1014 …13}
+                              "POSTlabs" => Illuminate\Routing\Route {#1048 …13}
+                              "HEADlabs/{lab}" => Illuminate\Routing\Route {#1027 …13}
+                              "HEADlabs/{lab}/edit" => Illuminate\Routing\Route {#901 …13}
+                              "PATCHlabs/{lab}" => Illuminate\Routing\Route {#695 …13}
+                              "DELETElabs/{lab}" => Illuminate\Routing\Route {#314 …13}
+                              "POSTmars" => Illuminate\Routing\Route {#615 …13}
+                              "PATCHmars/{mar}" => Illuminate\Routing\Route {#1031 …13}
+                              "HEADmars/create/{medical_record_number}" => Illuminate\Routing\Route {#1277 …13}
+                              "HEADassessments/{medical_record_number}" => Illuminate\Routing\Route {#725 …13}
+                              "POSTassessments/update" => Illuminate\Routing\Route {#476 …13}
+                            ]
+                            #nameList: array:49 [
+                              "login" => Illuminate\Routing\Route {#960 …13}
+                              "logout" => Illuminate\Routing\Route {#920 …13}
+                              "register" => Illuminate\Routing\Route {#727 …13}
+                              "password.request" => Illuminate\Routing\Route {#3531 …13}
+                              "password.email" => Illuminate\Routing\Route {#974 …13}
+                              "password.reset" => Illuminate\Routing\Route {#176 …13}
+                              "signatures.index" => Illuminate\Routing\Route {#977 …13}
+                              "signatures.delete" => Illuminate\Routing\Route {#1187 …13}
+                              "complete" => Illuminate\Routing\Route {#1020 …13}
+                              "users.index" => Illuminate\Routing\Route {#1109 …13}
+                              "users.create" => Illuminate\Routing\Route {#1111 …13}
+                              "users.store" => Illuminate\Routing\Route {#220 …13}
+                              "users.show" => Illuminate\Routing\Route {#144 …13}
+                              "users.edit" => Illuminate\Routing\Route {#60 …13}
+                              "users.update" => Illuminate\Routing\Route {#222 …13}
+                              "users.destroy" => Illuminate\Routing\Route {#242 …13}
+                              "medications.index" => Illuminate\Routing\Route {#231}
+                              "medications.create" => Illuminate\Routing\Route {#2714 …13}
+                              "medications.store" => Illuminate\Routing\Route {#894 …13}
+                              "medications.show" => Illuminate\Routing\Route {#881 …13}
+                              "medications.edit" => Illuminate\Routing\Route {#905 …13}
+                              "medications.update" => Illuminate\Routing\Route {#903 …13}
+                              "medications.destroy" => Illuminate\Routing\Route {#1095 …13}
+                              "patients.index" => Illuminate\Routing\Route {#1122 …13}
+                              "patients.create" => Illuminate\Routing\Route {#1126 …13}
+                              "patients.store" => Illuminate\Routing\Route {#1127 …13}
+                              "patients.show" => Illuminate\Routing\Route {#1035 …13}
+                              "patients.edit" => Illuminate\Routing\Route {#51 …13}
+                              "patients.update" => Illuminate\Routing\Route {#439 …13}
+                              "patients.destroy" => Illuminate\Routing\Route {#618 …13}
+                              "orders.index" => Illuminate\Routing\Route {#796 …13}
+                              "orders.create" => Illuminate\Routing\Route {#789 …13}
+                              "orders.store" => Illuminate\Routing\Route {#307 …13}
+                              "orders.show" => Illuminate\Routing\Route {#755 …13}
+                              "orders.edit" => Illuminate\Routing\Route {#723 …13}
+                              "orders.update" => Illuminate\Routing\Route {#147 …13}
+                              "orders.destroy" => Illuminate\Routing\Route {#669 …13}
+                              "labs.index" => Illuminate\Routing\Route {#526 …13}
+                              "labs.create" => Illuminate\Routing\Route {#1014 …13}
+                              "labs.store" => Illuminate\Routing\Route {#1048 …13}
+                              "labs.show" => Illuminate\Routing\Route {#1027 …13}
+                              "labs.edit" => Illuminate\Routing\Route {#901 …13}
+                              "labs.update" => Illuminate\Routing\Route {#695 …13}
+                              "labs.destroy" => Illuminate\Routing\Route {#314 …13}
+                              "mars.store" => Illuminate\Routing\Route {#615 …13}
+                              "mars.update" => Illuminate\Routing\Route {#1031 …13}
+                              "mars.create" => Illuminate\Routing\Route {#1277 …13}
+                              "assessments" => Illuminate\Routing\Route {#725 …13}
+                              "assessments.update" => Illuminate\Routing\Route {#476 …13}
+                            ]
+                            #actionList: array:57 [
+                              "App\Http\Controllers\MedicationController@verify" => Illuminate\Routing\Route {#50 …13}
+                              "App\Http\Controllers\PatientController@verify" => Illuminate\Routing\Route {#961 …13}
+                              "App\Http\Controllers\MedicationController@verifyBarcode" => Illuminate\Routing\Route {#958 …13}
+                              "App\Http\Controllers\Auth\LoginController@showLoginForm" => Illuminate\Routing\Route {#960 …13}
+                              "App\Http\Controllers\Auth\LoginController@login" => Illuminate\Routing\Route {#730 …13}
+                              "App\Http\Controllers\Auth\LoginController@logout" => Illuminate\Routing\Route {#1012 …13}
+                              "App\Http\Controllers\Auth\RegisterController@showRegistrationForm" => Illuminate\Routing\Route {#727 …13}
+                              "App\Http\Controllers\Auth\RegisterController@register" => Illuminate\Routing\Route {#71 …13}
+                              "App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm" => Illuminate\Routing\Route {#3531 …13}
+                              "App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail" => Illuminate\Routing\Route {#974 …13}
+                              "App\Http\Controllers\Auth\ResetPasswordController@showResetForm" => Illuminate\Routing\Route {#176 …13}
+                              "App\Http\Controllers\Auth\ResetPasswordController@reset" => Illuminate\Routing\Route {#728 …13}
+                              "App\Http\Controllers\HomeController@index" => Illuminate\Routing\Route {#1030 …13}
+                              "App\Http\Controllers\SignatureController@store" => Illuminate\Routing\Route {#966 …13}
+                              "App\Http\Controllers\SignatureController@index" => Illuminate\Routing\Route {#977 …13}
+                              "App\Http\Controllers\SignatureController@delete" => Illuminate\Routing\Route {#1187 …13}
+                              "App\Http\Controllers\OrderController@complete" => Illuminate\Routing\Route {#1020 …13}
+                              "App\Http\Controllers\UserController@index" => Illuminate\Routing\Route {#1109 …13}
+                              "App\Http\Controllers\UserController@create" => Illuminate\Routing\Route {#1111 …13}
+                              "App\Http\Controllers\UserController@store" => Illuminate\Routing\Route {#220 …13}
+                              "App\Http\Controllers\UserController@show" => Illuminate\Routing\Route {#144 …13}
+                              "App\Http\Controllers\UserController@edit" => Illuminate\Routing\Route {#60 …13}
+                              "App\Http\Controllers\UserController@update" => Illuminate\Routing\Route {#222 …13}
+                              "App\Http\Controllers\UserController@destroy" => Illuminate\Routing\Route {#242 …13}
+                              "App\Http\Controllers\MedicationController@index" => Illuminate\Routing\Route {#231}
+                              "App\Http\Controllers\MedicationController@create" => Illuminate\Routing\Route {#2714 …13}
+                              "App\Http\Controllers\MedicationController@store" => Illuminate\Routing\Route {#894 …13}
+                              "App\Http\Controllers\MedicationController@show" => Illuminate\Routing\Route {#881 …13}
+                              "App\Http\Controllers\MedicationController@edit" => Illuminate\Routing\Route {#905 …13}
+                              "App\Http\Controllers\MedicationController@update" => Illuminate\Routing\Route {#903 …13}
+                              "App\Http\Controllers\MedicationController@destroy" => Illuminate\Routing\Route {#1095 …13}
+                              "App\Http\Controllers\PatientController@index" => Illuminate\Routing\Route {#1122 …13}
+                              "App\Http\Controllers\PatientController@create" => Illuminate\Routing\Route {#1126 …13}
+                              "App\Http\Controllers\PatientController@store" => Illuminate\Routing\Route {#1127 …13}
+                              "App\Http\Controllers\PatientController@show" => Illuminate\Routing\Route {#1035 …13}
+                              "App\Http\Controllers\PatientController@edit" => Illuminate\Routing\Route {#51 …13}
+                              "App\Http\Controllers\PatientController@update" => Illuminate\Routing\Route {#439 …13}
+                              "App\Http\Controllers\PatientController@destroy" => Illuminate\Routing\Route {#618 …13}
+                              "App\Http\Controllers\OrderController@index" => Illuminate\Routing\Route {#796 …13}
+                              "App\Http\Controllers\OrderController@create" => Illuminate\Routing\Route {#789 …13}
+                              "App\Http\Controllers\OrderController@store" => Illuminate\Routing\Route {#307 …13}
+                              "App\Http\Controllers\OrderController@show" => Illuminate\Routing\Route {#755 …13}
+                              "App\Http\Controllers\OrderController@edit" => Illuminate\Routing\Route {#723 …13}
+                              "App\Http\Controllers\OrderController@update" => Illuminate\Routing\Route {#147 …13}
+                              "App\Http\Controllers\OrderController@destroy" => Illuminate\Routing\Route {#669 …13}
+                              "App\Http\Controllers\LabController@index" => Illuminate\Routing\Route {#526 …13}
+                              "App\Http\Controllers\LabController@create" => Illuminate\Routing\Route {#1014 …13}
+                              "App\Http\Controllers\LabController@store" => Illuminate\Routing\Route {#1048 …13}
+                              "App\Http\Controllers\LabController@show" => Illuminate\Routing\Route {#1027 …13}
+                              "App\Http\Controllers\LabController@edit" => Illuminate\Routing\Route {#901 …13}
+                              "App\Http\Controllers\LabController@update" => Illuminate\Routing\Route {#695 …13}
+                              "App\Http\Controllers\LabController@destroy" => Illuminate\Routing\Route {#314 …13}
+                              "App\Http\Controllers\MarEntryController@store" => Illuminate\Routing\Route {#615 …13}
+                              "App\Http\Controllers\MarEntryController@update" => Illuminate\Routing\Route {#1031 …13}
+                              "App\Http\Controllers\MarEntryController@create" => Illuminate\Routing\Route {#1277 …13}
+                              "App\Http\Controllers\AssessmentController@index" => Illuminate\Routing\Route {#725 …13}
+                              "App\Http\Controllers\AssessmentController@update" => Illuminate\Routing\Route {#476 …13}
+                            ]
+                          }
+                          #current: Illuminate\Routing\Route {#231}
+                          #currentRequest: Illuminate\Http\Request {#101}
+                          #middleware: array:5 [
+                            "auth.basic" => "Illuminate\Auth\Middleware\AuthenticateWithBasicAuth"
+                            "bindings" => "Illuminate\Routing\Middleware\SubstituteBindings"
+                            "can" => "Illuminate\Auth\Middleware\Authorize"
+                            "guest" => "App\Http\Middleware\RedirectIfAuthenticated"
+                            "throttle" => "Illuminate\Routing\Middleware\ThrottleRequests"
+                          ]
+                          #middlewareGroups: array:3 [
+                            "web" => array:6 [ …6]
+                            "api" => array:2 [ …2]
+                            "auth" => array:2 [ …2]
+                          ]
+                          +middlewarePriority: array:6 [
+                            0 => "Illuminate\Session\Middleware\StartSession"
+                            1 => "Illuminate\View\Middleware\ShareErrorsFromSession"
+                            2 => "Illuminate\Auth\Middleware\Authenticate"
+                            3 => "Illuminate\Session\Middleware\AuthenticateSession"
+                            4 => "Illuminate\Routing\Middleware\SubstituteBindings"
+                            5 => "Illuminate\Auth\Middleware\Authorize"
+                          ]
+                          #binders: []
+                          #patterns: []
+                          #groupStack: []
+                        }
+                        use: { …1}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/Router.php"
+                        line: "615 to 617"
+                      }
+                      +attributes: Symfony\Component\HttpFoundation\ParameterBag {#98
+                        #parameters: []
+                      }
+                      +request: Symfony\Component\HttpFoundation\ParameterBag {#100
+                        #parameters: []
+                      }
+                      +query: Symfony\Component\HttpFoundation\ParameterBag {#100}
+                      +server: Symfony\Component\HttpFoundation\ServerBag {#1321
+                        #parameters: array:16 [ …16]
+                      }
+                      +files: Symfony\Component\HttpFoundation\FileBag {#883
+                        #parameters: []
+                      }
+                      +cookies: Symfony\Component\HttpFoundation\ParameterBag {#1039
+                        #parameters: []
+                      }
+                      +headers: Symfony\Component\HttpFoundation\HeaderBag {#790
+                        #headers: array:5 [ …5]
+                        #cacheControl: []
+                      }
+                      #content: null
+                      #languages: null
+                      #charsets: null
+                      #encodings: null
+                      #acceptableContentTypes: null
+                      #pathInfo: "/medications"
+                      #requestUri: "/medications"
+                      #baseUrl: ""
+                      #basePath: null
+                      #method: "GET"
+                      #format: null
+                      #session: Illuminate\Session\Store {#1593
+                        #id: "XrmLPWzvmKlTcPITQ1mjd5NTlXdTBBQMvlDkLseE"
+                        #name: "laravel_session"
+                        #attributes: array:3 [
+                          "_token" => "xCUo8zFKzVocpPMivQwZIuqJpXkaH3fNIGNz0TfJ"
+                          "_previous" => array:1 [ …1]
+                          "_flash" => array:2 [ …2]
+                        ]
+                        #handler: Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler {#1556}
+                        #started: false
+                      }
+                      #locale: null
+                      #defaultLocale: "en"
+                      -isHostValid: true
+                      -isClientIpsValid: true
+                      -isForwardedValid: true
+                      basePath: ""
+                      format: "html"
+                    }
+                    "db.factory" => Illuminate\Database\Connectors\ConnectionFactory {#305
+                      #container: Illuminate\Foundation\Application {#1079}
+                    }
+                    "db" => Illuminate\Database\DatabaseManager {#1162
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #factory: Illuminate\Database\Connectors\ConnectionFactory {#305}
+                      #connections: array:1 [
+                        "sqlite" => Illuminate\Database\SQLiteConnection {#1269 …17}
+                      ]
+                      #extensions: []
+                    }
+                    "view.engine.resolver" => Illuminate\View\Engines\EngineResolver {#1299}
+                    "files" => Illuminate\Filesystem\Filesystem {#1270}
+                    "view" => Illuminate\View\Factory {#1267}
+                    "translation.loader" => Illuminate\Translation\FileLoader {#84
+                      #files: Illuminate\Filesystem\Filesystem {#1270}
+                      #path: "/home/chris/school/CSC-4990/vitae-net/resources/lang"
+                      #jsonPaths: []
+                      #hints: []
+                    }
+                    "translator" => Illuminate\Translation\Translator {#885
+                      #loader: Illuminate\Translation\FileLoader {#84}
+                      #locale: "en"
+                      #fallback: "en"
+                      #loaded: []
+                      #selector: null
+                      #parsed: []
+                    }
+                    "validation.presence" => Illuminate\Validation\DatabasePresenceVerifier {#843
+                      #db: Illuminate\Database\DatabaseManager {#1162}
+                      #connection: null
+                    }
+                    "validator" => Illuminate\Validation\Factory {#1264
+                      #translator: Illuminate\Translation\Translator {#885}
+                      #verifier: Illuminate\Validation\DatabasePresenceVerifier {#843}
+                      #container: Illuminate\Foundation\Application {#1079}
+                      #extensions: array:1 [
+                        "old_password" => Closure {#1047 …5}
+                      ]
+                      #implicitExtensions: []
+                      #dependentExtensions: []
+                      #replacers: []
+                      #fallbackMessages: array:1 [
+                        "old_password" => "This must be your current password"
+                      ]
+                      #resolver: null
+                    }
+                    "Illuminate\Contracts\Auth\Access\Gate" => Illuminate\Auth\Access\Gate {#855
+                      #container: Illuminate\Foundation\Application {#1079}
+                      #userResolver: Closure {#850
+                        class: "Illuminate\Auth\AuthServiceProvider"
+                        this: Illuminate\Auth\AuthServiceProvider {#794}
+                        use: { …1}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php"
+                        line: "71 to 73"
+                      }
+                      #abilities: []
+                      #policies: array:8 [
+                        "App\User" => "App\Policies\UserPolicy"
+                        "App\Medication" => "App\Policies\MedicationPolicy"
+                        "App\Order" => "App\Policies\OrderPolicy"
+                        "App\Lab" => "App\Policies\LabPolicy"
+                        "App\Patient" => "App\Policies\PatientPolicy"
+                        "App\MarEntry" => "App\Policies\MarEntryPolicy"
+                        "App\Signature" => "App\Policies\SignaturePolicy"
+                        "App\Assessment" => "App\Policies\AssessmentPolicy"
+                      ]
+                      #beforeCallbacks: []
+                      #afterCallbacks: []
+                    }
+                    "router" => Illuminate\Routing\Router {#694}
+                    "routes" => Illuminate\Routing\RouteCollection {#816}
+                    "url" => Illuminate\Routing\UrlGenerator {#803
+                      #routes: Illuminate\Routing\RouteCollection {#816}
+                      #request: Illuminate\Http\Request {#101}
+                      #forcedRoot: null
+                      #forceScheme: null
+                      #cachedRoot: "http://localhost"
+                      #cachedSchema: "http://"
+                      #rootNamespace: "App\Http\Controllers"
+                      #sessionResolver: Closure {#1046
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "71 to 73"
+                      }
+                      #formatHostUsing: null
+                      #formatPathUsing: null
+                      #routeGenerator: null
+                    }
+                    "cache" => Illuminate\Cache\CacheManager {#1125
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #stores: array:1 [
+                        "array" => Illuminate\Cache\Repository {#703
+                          #store: Illuminate\Cache\ArrayStore {#237
+                            #storage: []
+                          }
+                          #events: Illuminate\Events\Dispatcher {#741}
+                          #default: 60
+                        }
+                      ]
+                      #customCreators: []
+                    }
+                    "cache.store" => Illuminate\Cache\Repository {#703}
+                    "Illuminate\Console\Scheduling\Schedule" => Illuminate\Console\Scheduling\Schedule {#238
+                      #events: []
+                      #mutex: Illuminate\Console\Scheduling\CacheMutex {#1083
+                        +cache: Illuminate\Cache\Repository {#703}
+                      }
+                    }
+                    "Faker\Generator" => Faker\Generator {#1517
+                      #providers: array:20 [
+                        0 => Faker\Provider\Uuid {#1551 …2}
+                        1 => Faker\Provider\UserAgent {#1550 …2}
+                        2 => Faker\Provider\en_US\Text {#1549 …4}
+                        3 => Faker\Provider\en_US\PhoneNumber {#1548 …2}
+                        4 => Faker\Provider\en_US\Person {#1547 …2}
+                        5 => Faker\Provider\en_US\Payment {#1546 …2}
+                        6 => Faker\Provider\Miscellaneous {#1545 …2}
+                        7 => Faker\Provider\Lorem {#1544 …2}
+                        8 => Faker\Provider\Internet {#1543 …2}
+                        9 => Faker\Provider\Image {#1542 …2}
+                        10 => Faker\Provider\HtmlLorem {#1539 …3}
+                        11 => Faker\Provider\Internet {#1541 …2}
+                        12 => Faker\Provider\Lorem {#1540 …2}
+                        13 => Faker\Provider\File {#1538 …2}
+                        14 => Faker\Provider\DateTime {#1537 …2}
+                        15 => Faker\Provider\en_US\Company {#1536 …2}
+                        16 => Faker\Provider\Color {#1531 …2}
+                        17 => Faker\Provider\Biased {#1521 …2}
+                        18 => Faker\Provider\Barcode {#1519 …2}
+                        19 => Faker\Provider\en_US\Address {#1518 …2}
+                      ]
+                      #formatters: array:9 [
+                        "name" => array:2 [ …2]
+                        "firstNameMale" => array:2 [ …2]
+                        "lastName" => array:2 [ …2]
+                        "unique" => array:2 [ …2]
+                        "safeEmail" => array:2 [ …2]
+                        "randomElement" => array:2 [ …2]
+                        "word" => array:2 [ …2]
+                        "randomFloat" => array:2 [ …2]
+                        "sentence" => array:2 [ …2]
+                      ]
+                    }
+                    "Illuminate\Database\Eloquent\Factory" => Illuminate\Database\Eloquent\Factory {#1552
+                      #definitions: array:8 [
+                        "App\Medication" => array:1 [ …1]
+                        "App\Signature" => array:1 [ …1]
+                        "App\MarEntry" => array:1 [ …1]
+                        "App\Order" => array:1 [ …1]
+                        "App\Lab" => array:1 [ …1]
+                        "App\Patient" => array:1 [ …1]
+                        "App\User" => array:1 [ …1]
+                        "App\Assessment" => array:1 [ …1]
+                      ]
+                      #states: array:5 [
+                        "App\Medication" => array:5 [ …5]
+                        "App\MarEntry" => array:1 [ …1]
+                        "App\Order" => array:2 [ …2]
+                        "App\Patient" => array:2 [ …2]
+                        "App\User" => array:4 [ …4]
+                      ]
+                      #faker: Faker\Generator {#1517}
+                    }
+                    "hash" => Illuminate\Hashing\BcryptHasher {#1579
+                      #rounds: 10
+                    }
+                    "auth" => Illuminate\Auth\AuthManager {#1436
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #customCreators: []
+                      #guards: array:1 [
+                        "web" => Illuminate\Auth\SessionGuard {#1530 …11}
+                      ]
+                      #userResolver: Closure {#1373
+                        class: "Illuminate\Auth\AuthManager"
+                        this: Illuminate\Auth\AuthManager {#1436}
+                        parameters: { …1}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php"
+                        line: "200 to 202"
+                      }
+                      #customProviderCreators: []
+                    }
+                    "session" => Illuminate\Session\SessionManager {#1498
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #customCreators: []
+                      #drivers: array:1 [
+                        "array" => Illuminate\Session\Store {#1593}
+                      ]
+                    }
+                    "session.store" => Illuminate\Session\Store {#1593}
+                    "cookie" => Illuminate\Cookie\CookieJar {#1440
+                      #path: "/"
+                      #domain: null
+                      #secure: false
+                      #sameSite: null
+                      #queued: []
+                    }
+                    "Illuminate\Contracts\Http\Kernel" => App\Http\Kernel {#1342
+                      #middleware: array:5 [
+                        0 => "Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode"
+                        1 => "Illuminate\Foundation\Http\Middleware\ValidatePostSize"
+                        2 => "App\Http\Middleware\TrimStrings"
+                        3 => "Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull"
+                        4 => "App\Http\Middleware\TrustProxies"
+                      ]
+                      #middlewareGroups: array:3 [
+                        "web" => array:6 [ …6]
+                        "api" => array:2 [ …2]
+                        "auth" => array:2 [ …2]
+                      ]
+                      #routeMiddleware: array:5 [
+                        "auth.basic" => "Illuminate\Auth\Middleware\AuthenticateWithBasicAuth"
+                        "bindings" => "Illuminate\Routing\Middleware\SubstituteBindings"
+                        "can" => "Illuminate\Auth\Middleware\Authorize"
+                        "guest" => "App\Http\Middleware\RedirectIfAuthenticated"
+                        "throttle" => "Illuminate\Routing\Middleware\ThrottleRequests"
+                      ]
+                      #app: Illuminate\Foundation\Application {#1079}
+                      #router: Illuminate\Routing\Router {#694}
+                      #bootstrappers: array:6 [
+                        0 => "Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables"
+                        1 => "Illuminate\Foundation\Bootstrap\LoadConfiguration"
+                        2 => "Illuminate\Foundation\Bootstrap\HandleExceptions"
+                        3 => "Illuminate\Foundation\Bootstrap\RegisterFacades"
+                        4 => "Illuminate\Foundation\Bootstrap\RegisterProviders"
+                        5 => "Illuminate\Foundation\Bootstrap\BootProviders"
+                      ]
+                      #middlewarePriority: array:6 [
+                        0 => "Illuminate\Session\Middleware\StartSession"
+                        1 => "Illuminate\View\Middleware\ShareErrorsFromSession"
+                        2 => "Illuminate\Auth\Middleware\Authenticate"
+                        3 => "Illuminate\Session\Middleware\AuthenticateSession"
+                        4 => "Illuminate\Routing\Middleware\SubstituteBindings"
+                        5 => "Illuminate\Auth\Middleware\Authorize"
+                      ]
+                    }
+                    "Illuminate\Routing\Route" => Illuminate\Routing\Route {#231}
+                    "Illuminate\Routing\Contracts\ControllerDispatcher" => Illuminate\Routing\ControllerDispatcher {#1257
+                      #container: Illuminate\Foundation\Application {#1079}
+                    }
+                    "encrypter" => Illuminate\Encryption\Encrypter {#1016
+                      #key: b"¢\t'\x12ò┤Ã=yÅ·\x1A,╬£ª┤SD▄┼│¯òN¥<8Z¨▒Ê"
+                      #cipher: "AES-256-CBC"
+                    }
+                    "Illuminate\Session\Middleware\StartSession" => Illuminate\Session\Middleware\StartSession {#1632
+                      #manager: Illuminate\Session\SessionManager {#1498}
+                      #sessionHandled: true
+                    }
+                    "blade.compiler" => Illuminate\View\Compilers\BladeCompiler {#1647
+                      #extensions: []
+                      #customDirectives: []
+                      #conditions: []
+                      #path: null
+                      #compilers: array:4 [
+                        0 => "Comments"
+                        1 => "Extensions"
+                        2 => "Statements"
+                        3 => "Echos"
+                      ]
+                      #rawTags: array:2 [
+                        0 => "{!!"
+                        1 => "!!}"
+                      ]
+                      #contentTags: array:2 [
+                        0 => "{{"
+                        1 => "}}"
+                      ]
+                      #escapedTags: array:2 [
+                        0 => "{{{"
+                        1 => "}}}"
+                      ]
+                      #echoFormat: "e(%s)"
+                      #footer: []
+                      #rawPlaceholder: "@__raw-block__@"
+                      #rawBlocks: []
+                      #files: Illuminate\Filesystem\Filesystem {#1270}
+                      #cachePath: "/home/chris/school/CSC-4990/vitae-net/storage/framework/views"
+                      #firstCaseInSwitch: true
+                      -encodingOptions: 15
+                      #lastSection: null
+                      #forElseCounter: 0
+                    }
+                  ]
+                  #aliases: array:69 [
+                    "Illuminate\Foundation\Application" => "app"
+                    "Illuminate\Contracts\Container\Container" => "app"
+                    "Illuminate\Contracts\Foundation\Application" => "app"
+                    "Psr\Container\ContainerInterface" => "app"
+                    "Illuminate\Auth\AuthManager" => "auth"
+                    "Illuminate\Contracts\Auth\Factory" => "auth"
+                    "Illuminate\Contracts\Auth\Guard" => "auth.driver"
+                    "Illuminate\View\Compilers\BladeCompiler" => "blade.compiler"
+                    "Illuminate\Cache\CacheManager" => "cache"
+                    "Illuminate\Contracts\Cache\Factory" => "cache"
+                    "Illuminate\Cache\Repository" => "cache.store"
+                    "Illuminate\Contracts\Cache\Repository" => "cache.store"
+                    "Illuminate\Config\Repository" => "config"
+                    "Illuminate\Contracts\Config\Repository" => "config"
+                    "Illuminate\Cookie\CookieJar" => "cookie"
+                    "Illuminate\Contracts\Cookie\Factory" => "cookie"
+                    "Illuminate\Contracts\Cookie\QueueingFactory" => "cookie"
+                    "Illuminate\Encryption\Encrypter" => "encrypter"
+                    "Illuminate\Contracts\Encryption\Encrypter" => "encrypter"
+                    "Illuminate\Database\DatabaseManager" => "db"
+                    "Illuminate\Database\Connection" => "db.connection"
+                    "Illuminate\Database\ConnectionInterface" => "db.connection"
+                    "Illuminate\Events\Dispatcher" => "events"
+                    "Illuminate\Contracts\Events\Dispatcher" => "events"
+                    "Illuminate\Filesystem\Filesystem" => "files"
+                    "Illuminate\Filesystem\FilesystemManager" => "filesystem"
+                    "Illuminate\Contracts\Filesystem\Factory" => "filesystem"
+                    "Illuminate\Contracts\Filesystem\Filesystem" => "filesystem.disk"
+                    "Illuminate\Contracts\Filesystem\Cloud" => "filesystem.cloud"
+                    "Illuminate\Contracts\Hashing\Hasher" => "hash"
+                    "Illuminate\Translation\Translator" => "translator"
+                    "Illuminate\Contracts\Translation\Translator" => "translator"
+                    "Illuminate\Log\Writer" => "log"
+                    "Illuminate\Contracts\Logging\Log" => "log"
+                    "Psr\Log\LoggerInterface" => "log"
+                    "Illuminate\Mail\Mailer" => "mailer"
+                    "Illuminate\Contracts\Mail\Mailer" => "mailer"
+                    "Illuminate\Contracts\Mail\MailQueue" => "mailer"
+                    "Illuminate\Auth\Passwords\PasswordBrokerManager" => "auth.password"
+                    "Illuminate\Contracts\Auth\PasswordBrokerFactory" => "auth.password"
+                    "Illuminate\Auth\Passwords\PasswordBroker" => "auth.password.broker"
+                    "Illuminate\Contracts\Auth\PasswordBroker" => "auth.password.broker"
+                    "Illuminate\Queue\QueueManager" => "queue"
+                    "Illuminate\Contracts\Queue\Factory" => "queue"
+                    "Illuminate\Contracts\Queue\Monitor" => "queue"
+                    "Illuminate\Contracts\Queue\Queue" => "queue.connection"
+                    "Illuminate\Queue\Failed\FailedJobProviderInterface" => "queue.failer"
+                    "Illuminate\Routing\Redirector" => "redirect"
+                    "Illuminate\Redis\RedisManager" => "redis"
+                    "Illuminate\Contracts\Redis\Factory" => "redis"
+                    "Illuminate\Http\Request" => "request"
+                    "Symfony\Component\HttpFoundation\Request" => "request"
+                    "Illuminate\Routing\Router" => "router"
+                    "Illuminate\Contracts\Routing\Registrar" => "router"
+                    "Illuminate\Contracts\Routing\BindingRegistrar" => "router"
+                    "Illuminate\Session\SessionManager" => "session"
+                    "Illuminate\Session\Store" => "session.store"
+                    "Illuminate\Contracts\Session\Session" => "session.store"
+                    "Illuminate\Routing\UrlGenerator" => "url"
+                    "Illuminate\Contracts\Routing\UrlGenerator" => "url"
+                    "Illuminate\Validation\Factory" => "validator"
+                    "Illuminate\Contracts\Validation\Factory" => "validator"
+                    "Illuminate\View\Factory" => "view"
+                    "Illuminate\Contracts\View\Factory" => "view"
+                    "Illuminate\Contracts\Notifications\Dispatcher" => "Illuminate\Notifications\ChannelManager"
+                    "Illuminate\Contracts\Notifications\Factory" => "Illuminate\Notifications\ChannelManager"
+                    "Illuminate\Contracts\Broadcasting\Factory" => "Illuminate\Broadcasting\BroadcastManager"
+                    "Illuminate\Contracts\Bus\Dispatcher" => "Illuminate\Bus\Dispatcher"
+                    "Illuminate\Contracts\Bus\QueueingDispatcher" => "Illuminate\Bus\Dispatcher"
+                  ]
+                  #abstractAliases: array:37 [
+                    "app" => array:4 [
+                      0 => "Illuminate\Foundation\Application"
+                      1 => "Illuminate\Contracts\Container\Container"
+                      2 => "Illuminate\Contracts\Foundation\Application"
+                      3 => "Psr\Container\ContainerInterface"
+                    ]
+                    "auth" => array:2 [
+                      0 => "Illuminate\Auth\AuthManager"
+                      1 => "Illuminate\Contracts\Auth\Factory"
+                    ]
+                    "auth.driver" => array:1 [
+                      0 => "Illuminate\Contracts\Auth\Guard"
+                    ]
+                    "blade.compiler" => array:1 [
+                      0 => "Illuminate\View\Compilers\BladeCompiler"
+                    ]
+                    "cache" => array:2 [
+                      0 => "Illuminate\Cache\CacheManager"
+                      1 => "Illuminate\Contracts\Cache\Factory"
+                    ]
+                    "cache.store" => array:2 [
+                      0 => "Illuminate\Cache\Repository"
+                      1 => "Illuminate\Contracts\Cache\Repository"
+                    ]
+                    "config" => array:2 [
+                      0 => "Illuminate\Config\Repository"
+                      1 => "Illuminate\Contracts\Config\Repository"
+                    ]
+                    "cookie" => array:3 [
+                      0 => "Illuminate\Cookie\CookieJar"
+                      1 => "Illuminate\Contracts\Cookie\Factory"
+                      2 => "Illuminate\Contracts\Cookie\QueueingFactory"
+                    ]
+                    "encrypter" => array:2 [
+                      0 => "Illuminate\Encryption\Encrypter"
+                      1 => "Illuminate\Contracts\Encryption\Encrypter"
+                    ]
+                    "db" => array:1 [
+                      0 => "Illuminate\Database\DatabaseManager"
+                    ]
+                    "db.connection" => array:2 [
+                      0 => "Illuminate\Database\Connection"
+                      1 => "Illuminate\Database\ConnectionInterface"
+                    ]
+                    "events" => array:2 [
+                      0 => "Illuminate\Events\Dispatcher"
+                      1 => "Illuminate\Contracts\Events\Dispatcher"
+                    ]
+                    "files" => array:1 [
+                      0 => "Illuminate\Filesystem\Filesystem"
+                    ]
+                    "filesystem" => array:2 [
+                      0 => "Illuminate\Filesystem\FilesystemManager"
+                      1 => "Illuminate\Contracts\Filesystem\Factory"
+                    ]
+                    "filesystem.disk" => array:1 [
+                      0 => "Illuminate\Contracts\Filesystem\Filesystem"
+                    ]
+                    "filesystem.cloud" => array:1 [
+                      0 => "Illuminate\Contracts\Filesystem\Cloud"
+                    ]
+                    "hash" => array:1 [
+                      0 => "Illuminate\Contracts\Hashing\Hasher"
+                    ]
+                    "translator" => array:2 [
+                      0 => "Illuminate\Translation\Translator"
+                      1 => "Illuminate\Contracts\Translation\Translator"
+                    ]
+                    "log" => array:3 [
+                      0 => "Illuminate\Log\Writer"
+                      1 => "Illuminate\Contracts\Logging\Log"
+                      2 => "Psr\Log\LoggerInterface"
+                    ]
+                    "mailer" => array:3 [
+                      0 => "Illuminate\Mail\Mailer"
+                      1 => "Illuminate\Contracts\Mail\Mailer"
+                      2 => "Illuminate\Contracts\Mail\MailQueue"
+                    ]
+                    "auth.password" => array:2 [
+                      0 => "Illuminate\Auth\Passwords\PasswordBrokerManager"
+                      1 => "Illuminate\Contracts\Auth\PasswordBrokerFactory"
+                    ]
+                    "auth.password.broker" => array:2 [
+                      0 => "Illuminate\Auth\Passwords\PasswordBroker"
+                      1 => "Illuminate\Contracts\Auth\PasswordBroker"
+                    ]
+                    "queue" => array:3 [
+                      0 => "Illuminate\Queue\QueueManager"
+                      1 => "Illuminate\Contracts\Queue\Factory"
+                      2 => "Illuminate\Contracts\Queue\Monitor"
+                    ]
+                    "queue.connection" => array:1 [
+                      0 => "Illuminate\Contracts\Queue\Queue"
+                    ]
+                    "queue.failer" => array:1 [
+                      0 => "Illuminate\Queue\Failed\FailedJobProviderInterface"
+                    ]
+                    "redirect" => array:1 [
+                      0 => "Illuminate\Routing\Redirector"
+                    ]
+                    "redis" => array:2 [
+                      0 => "Illuminate\Redis\RedisManager"
+                      1 => "Illuminate\Contracts\Redis\Factory"
+                    ]
+                    "request" => array:2 [
+                      0 => "Illuminate\Http\Request"
+                      1 => "Symfony\Component\HttpFoundation\Request"
+                    ]
+                    "router" => array:3 [
+                      0 => "Illuminate\Routing\Router"
+                      1 => "Illuminate\Contracts\Routing\Registrar"
+                      2 => "Illuminate\Contracts\Routing\BindingRegistrar"
+                    ]
+                    "session" => array:1 [
+                      0 => "Illuminate\Session\SessionManager"
+                    ]
+                    "session.store" => array:2 [
+                      0 => "Illuminate\Session\Store"
+                      1 => "Illuminate\Contracts\Session\Session"
+                    ]
+                    "url" => array:2 [
+                      0 => "Illuminate\Routing\UrlGenerator"
+                      1 => "Illuminate\Contracts\Routing\UrlGenerator"
+                    ]
+                    "validator" => array:2 [
+                      0 => "Illuminate\Validation\Factory"
+                      1 => "Illuminate\Contracts\Validation\Factory"
+                    ]
+                    "view" => array:2 [
+                      0 => "Illuminate\View\Factory"
+                      1 => "Illuminate\Contracts\View\Factory"
+                    ]
+                    "Illuminate\Notifications\ChannelManager" => array:2 [
+                      0 => "Illuminate\Contracts\Notifications\Dispatcher"
+                      1 => "Illuminate\Contracts\Notifications\Factory"
+                    ]
+                    "Illuminate\Broadcasting\BroadcastManager" => array:1 [
+                      0 => "Illuminate\Contracts\Broadcasting\Factory"
+                    ]
+                    "Illuminate\Bus\Dispatcher" => array:2 [
+                      0 => "Illuminate\Contracts\Bus\Dispatcher"
+                      1 => "Illuminate\Contracts\Bus\QueueingDispatcher"
+                    ]
+                  ]
+                  #extenders: []
+                  #tags: []
+                  #buildStack: []
+                  #with: []
+                  +contextual: []
+                  #reboundCallbacks: array:2 [
+                    "request" => array:3 [
+                      0 => Closure {#325
+                        class: "Illuminate\Auth\AuthServiceProvider"
+                        this: Illuminate\Auth\AuthServiceProvider {#794}
+                        parameters: { …2}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php"
+                        line: "84 to 88"
+                      }
+                      1 => Closure {#917
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: { …2}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "93 to 95"
+                      }
+                      2 => Closure {#1399
+                        class: "Illuminate\Container\Container"
+                        this: Illuminate\Foundation\Application {#1079}
+                        parameters: { …2}
+                        use: { …2}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+                        line: "490 to 492"
+                      }
+                    ]
+                    "routes" => array:1 [
+                      0 => Closure {#953
+                        class: "Illuminate\Routing\RoutingServiceProvider"
+                        this: Illuminate\Routing\RoutingServiceProvider {#1017}
+                        parameters: { …2}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php"
+                        line: "78 to 80"
+                      }
+                    ]
+                  ]
+                  #globalResolvingCallbacks: []
+                  #globalAfterResolvingCallbacks: []
+                  #resolvingCallbacks: array:1 [
+                    "Illuminate\Foundation\Http\FormRequest" => array:1 [
+                      0 => Closure {#1295
+                        class: "Illuminate\Foundation\Providers\FormRequestServiceProvider"
+                        this: Illuminate\Foundation\Providers\FormRequestServiceProvider {#332}
+                        parameters: { …2}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/FormRequestServiceProvider.php"
+                        line: "34 to 38"
+                      }
+                    ]
+                  ]
+                  #afterResolvingCallbacks: array:1 [
+                    "Illuminate\Contracts\Validation\ValidatesWhenResolved" => array:1 [
+                      0 => Closure {#287
+                        class: "Illuminate\Foundation\Providers\FormRequestServiceProvider"
+                        this: Illuminate\Foundation\Providers\FormRequestServiceProvider {#332}
+                        parameters: { …1}
+                        file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Foundation/Providers/FormRequestServiceProvider.php"
+                        line: "30 to 32"
+                      }
+                    ]
+                  ]
+                }
+                #defer: false
+              }
+              file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php"
+              line: "110 to 112"
+            }
+            "php" => Closure {#1296
+              class: "Illuminate\View\ViewServiceProvider"
+              this: Illuminate\View\ViewServiceProvider {#1292}
+              file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php"
+              line: "123 to 125"
+            }
+            "blade" => Closure {#1281
+              class: "Illuminate\View\ViewServiceProvider"
+              this: Illuminate\View\ViewServiceProvider {#1292}
+              file: "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php"
+              line: "145 to 147"
+            }
+          ]
+          #resolved: array:1 [
+            "blade" => Illuminate\View\Engines\CompilerEngine {#1637
+              #compiler: Illuminate\View\Compilers\BladeCompiler {#1647}
+              #lastCompiled: []
+            }
+          ]
+        }
+        #finder: Illuminate\View\FileViewFinder {#1272
+          #files: Illuminate\Filesystem\Filesystem {#1270}
+          #paths: array:1 [
+            0 => "/home/chris/school/CSC-4990/vitae-net/resources/views"
+          ]
+          #views: array:7 [
+            "admin.medications" => "/home/chris/school/CSC-4990/vitae-net/resources/views/admin/medications.blade.php"
+            "partials.medication.header" => "/home/chris/school/CSC-4990/vitae-net/resources/views/partials/medication/header.blade.php"
+            "partials.medication.body" => "/home/chris/school/CSC-4990/vitae-net/resources/views/partials/medication/body.blade.php"
+            "layouts.app" => "/home/chris/school/CSC-4990/vitae-net/resources/views/layouts/app.blade.php"
+            "partials.nav.login" => "/home/chris/school/CSC-4990/vitae-net/resources/views/partials/nav/login.blade.php"
+            "layouts.base" => "/home/chris/school/CSC-4990/vitae-net/resources/views/layouts/base.blade.php"
+            "partials.nav.links" => "/home/chris/school/CSC-4990/vitae-net/resources/views/partials/nav/links.blade.php"
+          ]
+          #hints: array:2 [
+            "notifications" => array:1 [
+              0 => "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Notifications/resources/views"
+            ]
+            "pagination" => array:1 [
+              0 => "/home/chris/school/CSC-4990/vitae-net/vendor/laravel/framework/src/Illuminate/Pagination/resources/views"
+            ]
+          ]
+          #extensions: array:3 [
+            0 => "blade.php"
+            1 => "php"
+            2 => "css"
+          ]
+        }
+        #events: Illuminate\Events\Dispatcher {#741}
+        #container: Illuminate\Foundation\Application {#1079}
+        #shared: array:3 [
+          "__env" => Illuminate\View\Factory {#1267}
+          "app" => Illuminate\Foundation\Application {#1079}
+          "errors" => Illuminate\Support\ViewErrorBag {#1634
+            #bags: []
+          }
+        ]
+        #extensions: array:3 [
+          "blade.php" => "blade"
+          "php" => "php"
+          "css" => "file"
+        ]
+        #composers: []
+        #renderCount: 0
+        #componentStack: []
+        #componentData: []
+        #slots: []
+        #slotStack: []
+        #sections: []
+        #sectionStack: []
+        #loopsStack: []
+        #pushes: []
+        #prepends: []
+        #pushStack: []
+        #translationReplacements: []
+      }
+      #engine: Illuminate\View\Engines\CompilerEngine {#1637}
+      #view: "admin.medications"
+      #data: array:1 [
+        "medications" => Illuminate\Database\Eloquent\Collection {#1653
+          #items: array:1 [
+            0 => App\Medication {#1654
+              #primaryKey: "medication_id"
+              #fillable: array:7 [
+                0 => "name"
+                1 => "dosage_amount"
+                2 => "dosage_unit"
+                3 => "second_amount"
+                4 => "second_unit"
+                5 => "second_type"
+                6 => "comments"
+              ]
+              #connection: "sqlite"
+              #table: null
+              #keyType: "int"
+              +incrementing: true
+              #with: []
+              #withCount: []
+              #perPage: 15
+              +exists: true
+              +wasRecentlyCreated: false
+              #attributes: array:10 [
+                "medication_id" => "1"
+                "name" => "error"
+                "dosage_amount" => "857.22"
+                "dosage_unit" => "enim"
+                "second_amount" => "618.72"
+                "second_unit" => "labore"
+                "second_type" => "amount"
+                "comments" => "Maxime debitis eum neque voluptatum tempora in sapiente occaecati."
+                "created_at" => "2018-04-08 16:28:49"
+                "updated_at" => "2018-04-08 16:28:49"
+              ]
+              #original: array:10 [
+                "medication_id" => "1"
+                "name" => "error"
+                "dosage_amount" => "857.22"
+                "dosage_unit" => "enim"
+                "second_amount" => "618.72"
+                "second_unit" => "labore"
+                "second_type" => "amount"
+                "comments" => "Maxime debitis eum neque voluptatum tempora in sapiente occaecati."
+                "created_at" => "2018-04-08 16:28:49"
+                "updated_at" => "2018-04-08 16:28:49"
+              ]
+              #changes: []
+              #casts: []
+              #dates: []
+              #dateFormat: null
+              #appends: []
+              #dispatchesEvents: []
+              #observables: []
+              #relations: []
+              #touches: []
+              +timestamps: true
+              #hidden: []
+              #visible: []
+              #guarded: array:1 [
+                0 => "*"
+              ]
+            }
+          ]
+        }
+      ]
+      #path: "/home/chris/school/CSC-4990/vitae-net/resources/views/admin/medications.blade.php"
+    }
+    +exception: null
+  }
+}
