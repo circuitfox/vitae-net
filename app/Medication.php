@@ -114,26 +114,26 @@ class Medication extends Model
      */
     public function toString()
     {
-        $primary_amount = d($this->dosage_amount);
-        $secondary_amount = d($this->second_amount);
+        $primary_amount = number_format($this->dosage_amount, 2);
+        $secondary_amount = number_format($this->second_amount, 2);
 
         if ($this->second_type === 'combo') {
             return $this->primaryName()
-                . ' ' . $primary_amount . ' ' . $this->dosage_unit . ' / '
+                . " {$primary_amount} {$this->dosage_unit} / "
                 . $this->secondaryName()
-                . ' ' . $secondary_amount . ' ' . $this->second_unit;
+                . " {$secondary_amount} {$this->second_unit}";
         } elseif ($this->second_type === 'amount') {
             return $this->primaryName()
-                . ' ' . $primary_amount . ' ' . $this->dosage_unit . ' with '
-                . $secondary_amount . ' ' . $this->second_unit;
+                . " {$primary_amount} {$this->dosage_unit} with "
+                . "{$secondary_amount} {$this->second_unit}";
         } elseif ($this->second_type === 'in') {
             return $this->primaryName()
-                . ' ' . $primary_amount . ' ' . $this->dosage_unit . ' in '
+                . " {$primary_amount} {$this->dosage_unit} in "
                 . $this->secondaryName()
-                . ' ' . $secondary_amount . ' ' . $this->second_unit;
+                . " {$secondary_amount} {$this->second_unit}";
         } else {
             return $this->primaryName()
-                . ' ' . $primary_amount . ' ' . $this->dosage_unit;
+                . " {$primary_amount} {$this->dosage_unit}";
         }
     }
 
