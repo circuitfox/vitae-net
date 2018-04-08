@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lab extends Model
 {
-  protected $fillable = ['name', 'decription', 'patient_id'];
+  protected $fillable = ['name', 'description', 'patient_id'];
   public $timestamps = false;
 
   public function patient()

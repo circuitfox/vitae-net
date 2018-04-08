@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-  protected $fillable = ['name', 'decription', 'patient_id', 'completed'];
+  protected $fillable = ['name', 'description', 'patient_id', 'completed'];
   public $timestamps = false;
 
     public function patient()
