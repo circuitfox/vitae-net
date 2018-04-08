@@ -5,7 +5,7 @@
       <input type="hidden" name="_token" :value="csrfToken">
       <input type="hidden" name="id" :value="assessment.id">
       <div class="form-group">
-        <label class="col-md-4 control-label" for="student_name">Name:</label>
+        <label class="col-md-4 control-label" for="student_name">Nurse:</label>
         <div class="col-md-6">
           <input class="form-control" type="text" name="student_name" :value="assessment.student_name" required>
           <span class="help-block" v-if="errors['student_name']">
@@ -473,7 +473,7 @@
     <div class="clearfix"></div>
     <div class="col-md-offset-2 col-md-5">
       <div class="row">
-        <h4><b><u>Name: </u></b></h4>
+        <h4><b><u>Nurse: </u></b></h4>
         <p>{{ assessment.student_name }}</p>
       </div>
       <div class="row">
