@@ -286,7 +286,8 @@ class OrderControllerTest extends TestCase
     {
         $user = factory(User::class)->states('student')->create();
         $order = factory(Order::class)->states('incomplete')->create();
-        $response = $this->actingAs($user)->post('/orders/complete', ['order_id'=>$order->id] );
+        $response = $this->actingAs($user)->post('/orders/complete', ['order_id' => $order->id]);
+        $response->assertSessionHas('complete');
         $order = Order::find($order->id);
         $this->assertNotNull($order);
         $this->assertEquals(1, $order->completed);

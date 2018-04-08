@@ -12,6 +12,14 @@
       @include("partials.order.header", ["order" => $order])
     </div>
     <div class="panel-body">
+      @if (session('complete'))
+        <div id="completed-success" class="alert alert-success alert-dismissable" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{ session('complete') }}
+        </div>
+      @endif
       @include("partials.order.body", ["order" => $order])
       <div class="col-md-7" style="height:500px;">
         <object data="{{ $pdf }}" type="application/pdf" width="100%" height="100%">
