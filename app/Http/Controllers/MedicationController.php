@@ -47,17 +47,19 @@ class MedicationController extends Controller
     {
         $now = Carbon::now('utc')->toDateTimeString();
         $meds = $request->input('meds.*');
-        // We need to set timestamps for all of these, as insert won't do it for
-        // us.
-        foreach ($meds as &$med) {
-            if (isset($med['secondary_name'])) {
-                $med['name'] = $this->joinNames($med['name'], $med['secondary_name']);
+        if (isset($meds)) {
+            // We need to set timestamps for all of these, as insert won't do it for
+            // us.
+            foreach ($meds as &$med) {
+                if (isset($med['secondary_name'])) {
+                    $med['name'] = $this->joinNames($med['name'], $med['secondary_name']);
+                }
+                unset($med['secondary_name']);
+                $med['created_at'] = $now;
+                $med['updated_at'] = $now;
             }
-            unset($med['secondary_name']);
-            $med['created_at'] = $now;
-            $med['updated_at'] = $now;
+            Medication::insert($meds);
         }
-        Medication::insert($meds);
         return redirect()->route('medications.index');
     }
 
