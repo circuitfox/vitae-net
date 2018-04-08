@@ -326,6 +326,15 @@ class MedicationControllerTest extends TestCase
         $this->assertNull($med->comments);
     }
 
+    public function testStoreEmpty()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [],
+        ]);
+        $response->assertRedirect();
+    }
+
     public function testShow()
     {
         $user = factory(User::class)->create();
