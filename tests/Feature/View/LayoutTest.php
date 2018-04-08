@@ -69,14 +69,25 @@ class LayoutTest extends TestCase
         );
     }
 
-    public function testHasLinksAuthed()
+    public function testHasLinksAsAdmin()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->states('admin')->create();
         $response = $this->actingAs($user)->get('/patients');
         $response->assertSee('<li><a href="' . url('/patients') . '">Patients</a></li>');
         $response->assertSee('<li><a href="' . url('/orders') . '">Orders</a></li>');
         $response->assertSee('<li><a href="' . url('/labs') . '">Labs</a></li>');
         $response->assertSee('<li><a href="' . url('/medications') . '">Medications</a></li>');
+        $response->assertSee('<li><a href="' . url('/medication') . '">Scan Medication</a></li>');
+    }
+
+    public function testHasLinksAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertSee('<li><a href="' . url('/patients') . '">Patients</a></li>');
+        $response->assertDontSee('<li><a href="' . url('/orders') . '">Orders</a></li>');
+        $response->assertDontSee('<li><a href="' . url('/labs') . '">Labs</a></li>');
+        $response->assertDontSee('<li><a href="' . url('/medications') . '">Medications</a></li>');
         $response->assertSee('<li><a href="' . url('/medication') . '">Scan Medication</a></li>');
     }
 

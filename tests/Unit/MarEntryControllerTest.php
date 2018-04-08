@@ -238,6 +238,15 @@ class MarEntryControllerTest extends TestCase
 
     }
 
+    public function testStoreEmpty()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/mars', [
+            'mars' => [],
+        ]);
+        $response->assertRedirect();
+    }
+
     public function testUpdate()
     {
         $admin = factory(User::class)->states('admin')->create();

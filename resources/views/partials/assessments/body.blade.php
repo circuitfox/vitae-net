@@ -5,7 +5,7 @@
 </div>
 <hr>
 <div class="row">
-  <h5><b><u>Name:</u></b></h5>
+  <h5><b><u>Nurse:</u></b></h5>
   <p>{{ $assessment['student_name'] }}</p>
 </div>
 <div class="row">

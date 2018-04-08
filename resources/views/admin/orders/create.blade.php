@@ -22,6 +22,17 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="description" class="col-md-2 control-label">Description:</label>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="description" name="description" required>
+              @if ($errors->has('description'))
+                <span class="help-block">
+                  {{ $errors->first('description') }}
+                </span>
+              @endif
+            </div>
+          </div>
+          <div class="form-group">
             <label for="doc" class="col-md-2 control-label">Orders document:</label>
             <div class="col-md-6">
               <input type="file" id="doc" name="doc" required>
@@ -29,17 +40,6 @@
               @if ($errors->has('doc'))
                 <span class="help-block">
                   {{ $errors->first('doc') }}
-                </span>
-              @endif
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="description" class="col-md-2 control-label">Description:</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control" id="description" name="description" required>
-              @if ($errors->has('description'))
-                <span class="help-block">
-                  {{ $errors->first('description') }}
                 </span>
               @endif
             </div>

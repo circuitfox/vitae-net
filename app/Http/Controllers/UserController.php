@@ -58,7 +58,7 @@ class UserController extends Controller
             'role' => $request->input('role'),
             'reset_password' => true,
         ]);
-        return redirect('/home');
+        return redirect()->route('users.index');
     }
 
     /**
