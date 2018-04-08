@@ -114,26 +114,23 @@ class Medication extends Model
      */
     public function toString()
     {
-        $primary_amount = number_format($this->dosage_amount, 2);
-        $secondary_amount = number_format($this->second_amount, 2);
-
         if ($this->second_type === 'combo') {
             return $this->primaryName()
-                . " {$primary_amount} {$this->dosage_unit} / "
+                . " {$this->dosage_amount} {$this->dosage_unit} / "
                 . $this->secondaryName()
-                . " {$secondary_amount} {$this->second_unit}";
+                . " {$this->second_amount} {$this->second_unit}";
         } elseif ($this->second_type === 'amount') {
             return $this->primaryName()
-                . " {$primary_amount} {$this->dosage_unit} with "
-                . "{$secondary_amount} {$this->second_unit}";
+                . " {$this->dosage_amount} {$this->dosage_unit} with "
+                . "{$this->second_amount} {$this->second_unit}";
         } elseif ($this->second_type === 'in') {
             return $this->primaryName()
-                . " {$primary_amount} {$this->dosage_unit} in "
+                . " {$this->dosage_amount} {$this->dosage_unit} in "
                 . $this->secondaryName()
-                . " {$secondary_amount} {$this->second_unit}";
+                . " {$this->second_amount} {$this->second_unit}";
         } else {
             return $this->primaryName()
-                . " {$primary_amount} {$this->dosage_unit}";
+                . " {$this->dosage_amount} {$this->dosage_unit}";
         }
     }
 
