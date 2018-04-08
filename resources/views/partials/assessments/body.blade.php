@@ -30,7 +30,7 @@
 </div>
 <div class="row">
   <h5><b><u>Temperature:</u></b></h5>
-  <p>{{ number_format($assessment['temperature'], 2) }}</p>
+  <p>{{ $assessment['temperature'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>Blood pressure:</u></b></h5>
