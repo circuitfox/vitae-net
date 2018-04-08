@@ -49,7 +49,7 @@ class PatientController extends Controller
     public function store(Requests\CreatePatient $request)
     {
         Patient::create($request->all());
-        return redirect('/home');
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -123,7 +123,7 @@ class PatientController extends Controller
         ]);
         $data = $request->all();
         Patient::findOrFail($id)->update($data);
-        return redirect('/home');
+        return redirect()->route('patients.index');
     }
 
     /**

@@ -58,7 +58,7 @@ class MedicationController extends Controller
             $med['updated_at'] = $now;
         }
         Medication::insert($meds);
-        return redirect('/home');
+        return redirect()->route('medications.index');
     }
 
     /**
@@ -101,7 +101,7 @@ class MedicationController extends Controller
         }
         unset($data['secondary_name']);
         $med->update($data);
-        return redirect('/home');
+        return redirect()->route('medications.index');
     }
 
     /**
