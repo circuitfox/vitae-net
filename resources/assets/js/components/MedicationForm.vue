@@ -13,7 +13,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label" :for="`meds[${id}][dosage_amount]`">Dosage:</label>
       <div class="col-md-3">
-        <input class="form-control" type="number" :name="`meds[${id}][dosage_amount]`" step="0.01" :value="item.dosage_amount" :id="`med-dosage-amount-${id}`" required>
+        <input class="form-control" type="number" :name="`meds[${id}][dosage_amount]`" min="0" step="0.01" :value="item.dosage_amount" :id="`med-dosage-amount-${id}`" required>
         <span class="help-block" v-if="errors[`meds.${id}.dosage_amount`]">
           {{ errors[`meds.${id}.dosage_amount`][0] }}
         </span>
@@ -64,7 +64,7 @@ If none of these conditions apply, leave these fields blank.">
     <div class="form-group">
       <label class="col-md-2 control-label" :for="`meds[${id}][second_amount]`">Amount:</label>
       <div class="col-md-3">
-        <input class="form-control" type="number" :name="`meds[${id}][second_amount]`" step="0.01" :value="item.second_amount" :id="`med-second-amount-${id}`">
+        <input class="form-control" type="number" :name="`meds[${id}][second_amount]`" min="0" step="0.01" :value="item.second_amount" :id="`med-second-amount-${id}`">
         <span class="help-block" v-if="errors[`meds.${id}.second_amount`]">
           {{ errors[`meds.${id}.second_amount`][0] }}
         </span>
