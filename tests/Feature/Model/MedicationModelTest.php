@@ -62,7 +62,7 @@ class MedicationModelTest extends TestCase
     public function testToString()
     {
         $medication = factory(\App\Medication::class)->states(['no_secondary'])->create();
-        $primary_amount = number_format($medication->dosage_amount, 2);
+        $primary_amount = $medication->dosage_amount;
         $this->assertEquals(
             "{$medication->name} {$primary_amount} {$medication->dosage_unit}",
             $medication->toString()
@@ -74,8 +74,8 @@ class MedicationModelTest extends TestCase
         $comboMedication = factory(\App\Medication::class)
             ->states(['secondary_name', 'combo'])
             ->create();
-        $primary_amount = number_format($comboMedication->dosage_amount, 2);
-        $secondary_amount = number_format($comboMedication->second_amount, 2);
+        $primary_amount = $comboMedication->dosage_amount;
+        $secondary_amount = $comboMedication->second_amount;
         $this->assertEquals(
             $comboMedication->primaryName()
             . " {$primary_amount} {$comboMedication->dosage_unit} / "
@@ -90,8 +90,8 @@ class MedicationModelTest extends TestCase
         $amountMedication = factory(\App\Medication::class)
             ->states(['secondary_name', 'amount'])
             ->create();
-        $primary_amount = number_format($amountMedication->dosage_amount, 2);
-        $secondary_amount = number_format($amountMedication->second_amount, 2);
+        $primary_amount = $amountMedication->dosage_amount;
+        $secondary_amount = $amountMedication->second_amount;
         $this->assertEquals(
             $amountMedication->primaryName()
             . " {$primary_amount} {$amountMedication->dosage_unit} with "
@@ -105,8 +105,8 @@ class MedicationModelTest extends TestCase
         $inMedication = factory(\App\Medication::class)
             ->states(['secondary_name', 'in'])
             ->create();
-        $primary_amount = number_format($inMedication->dosage_amount, 2);
-        $secondary_amount = number_format($inMedication->second_amount, 2);
+        $primary_amount = $inMedication->dosage_amount;
+        $secondary_amount = $inMedication->second_amount;
         $this->assertEquals(
             $inMedication->primaryName()
             . " {$primary_amount} {$inMedication->dosage_unit} in "

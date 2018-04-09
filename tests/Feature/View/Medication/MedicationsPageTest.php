@@ -18,7 +18,7 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
         $response->assertSee('<p>' . $medication->primaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
-        $response->assertSee('<p>' . number_format($medication->dosage_amount, 2) . ' ' . $medication->dosage_unit . '</p>');
+        $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
@@ -36,11 +36,11 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
         $response->assertSee('<p>' . $medication->primaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
-        $response->assertSee('<p>' . number_format($medication->dosage_amount, 2) . ' ' . $medication->dosage_unit . '</p>');
+        $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
         $response->assertSee('<h5><b><u>Second Medication Name:</u></b></h5>');
         $response->assertSee('<p>' . $medication->secondaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
-        $response->assertSee('<p>' . number_format($medication->second_amount, 2) . ' ' . $medication->second_unit . '</p>');
+        $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
@@ -58,9 +58,9 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
         $response->assertSee('<p>' . $medication->primaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
-        $response->assertSee('<p>' . number_format($medication->dosage_amount, 2) . ' ' . $medication->dosage_unit . '</p>');
+        $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
         $response->assertSee('<h5><b><u>With:</u></b></h5>');
-        $response->assertSee('<p>' . number_format($medication->second_amount, 2) . ' ' . $medication->second_unit . '</p>');
+        $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
@@ -78,11 +78,11 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h5><b><u>Name:</u></b></h5>');
         $response->assertSee('<p>' . $medication->primaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
-        $response->assertSee('<p>' . number_format($medication->dosage_amount, 2) . ' ' . $medication->dosage_unit . '</p>');
+        $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
         $response->assertSee('<h5><b><u>In:</u></b></h5>');
         $response->assertSee('<p>' . $medication->secondaryName() . '</p>');
         $response->assertSee('<h5><b><u>Amount:</u></b></h5>');
-        $response->assertSee('<p>' . number_format($medication->second_amount, 2) . ' ' . $medication->second_unit . '</p>');
+        $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
         $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
         $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
