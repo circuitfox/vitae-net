@@ -50,7 +50,7 @@ class MedicationControllerTest extends TestCase
                 'comments' => '',
             ]],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
@@ -81,7 +81,7 @@ class MedicationControllerTest extends TestCase
                 'comments' => 'not more than four a day',
             ]],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
             'name' => 'acetominophin|hydrocodeine',
             'dosage_amount' => 10,
@@ -111,7 +111,7 @@ class MedicationControllerTest extends TestCase
                 'comments' => '',
             ]],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
             'name' => 'ancef|normal saline',
             'dosage_amount' => 10,
@@ -140,7 +140,7 @@ class MedicationControllerTest extends TestCase
                 'comments' => '',
             ]],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
             'name' => 'regular insulin',
             'dosage_amount' => 10,
@@ -168,7 +168,7 @@ class MedicationControllerTest extends TestCase
                 'name' => 'Wellbutrin',
             ]],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
             'name' => 'Wellbutrin',
         ])->first();
@@ -195,7 +195,7 @@ class MedicationControllerTest extends TestCase
                 'comments' => '',
             ]],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
@@ -237,7 +237,7 @@ class MedicationControllerTest extends TestCase
                 ],
             ],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
@@ -287,7 +287,7 @@ class MedicationControllerTest extends TestCase
                 ],
             ],
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med = Medication::where([
           'name' => 'ancef|normal saline',
           'dosage_amount' => 10,
@@ -324,6 +324,15 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->second_unit, 'mg');
         $this->assertEquals($med->second_type, 'combo');
         $this->assertNull($med->comments);
+    }
+
+    public function testStoreEmpty()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/medications', [
+            'meds' => [],
+        ]);
+        $response->assertRedirect();
     }
 
     public function testShow()
@@ -366,7 +375,7 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => $med->dosage_unit,
             'comments' => '',
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med1 = Medication::find($med->medication_id);
         $this->assertEquals($med1->name, $med->name);
         $this->assertEquals($med1->dosage_amount, 50);
@@ -389,7 +398,7 @@ class MedicationControllerTest extends TestCase
             'dosage_unit' => $med->dosage_unit,
             'secondary_name' => $med->primaryName(),
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med1 = Medication::find($med->medication_id);
         $this->assertEquals($med1->name, $med->secondaryName() . Medication::NAME_SEPARATOR . $med->primaryName());
         $this->assertEquals($med1->dosage_amount, $med->dosage_amount);
@@ -413,7 +422,7 @@ class MedicationControllerTest extends TestCase
             'secondary_name' => $med->secondaryName(),
             'second_type' => 'combo',
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $med1 = Medication::find($med->medication_id);
         $this->assertEquals($med1->name, $med->name);
         $this->assertEquals($med1->dosage_amount, $med->dosage_amount);

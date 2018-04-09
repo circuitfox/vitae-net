@@ -13,7 +13,7 @@
     </div>
     <div class="panel-body">
       @include("partials.lab.body", ["lab" => $lab])
-      <div class="col-md-7" style="height:500px;">
+      <div class="col-md-9" style="height:500px;">
         <object data="{{ $pdf }}" type="application/pdf" width="100%" height="100%">
           <iframe src="{{ $pdf }}" width="100%" height="100%" style="border:none;">
             This browser does not support embedding PDF documents. Please download

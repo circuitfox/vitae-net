@@ -41,7 +41,7 @@ class UserControllerTest extends TestCase
             'email' => 'jsmith@example.com',
             'role' => 'instructor',
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $user = User::where([
             'name' => 'jsmith',
             'email' => 'jsmith@example.com',

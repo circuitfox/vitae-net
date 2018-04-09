@@ -17,7 +17,7 @@ class AssessmentsPageTest extends TestCase
       $this->faker_escape($assessment->patient->first_name . ' ' . $assessment->patient->last_name);
     $response = $this->actingAs($user)->get('/assessments/' . $assessment->medical_record_number);
     $response->assertSee('Assessments for ' . $name);
-    $response->assertSee('<h5><b><u>Name:</u></b></h5>');
+    $response->assertSee('<h5><b><u>Nurse:</u></b></h5>');
     $response->assertSee('<p>'. $this->faker_escape($assessment->student_name) .'</p>');
     $response->assertSee('<h5><b><u>Date:</u></b></h5>');
     $response->assertSee('<p>' . $assessment->date . '</p>');
