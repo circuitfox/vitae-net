@@ -63,4 +63,18 @@ class OrderPageTest extends TestCase
         $response->assertSee('<div id="reminder" class="alert alert-warning">');
         $response->assertSee('<h4 class="text-center">Click "Scan Medication" above before administering medication.</h4>');
     }
+
+    public function testHasModal()
+    {
+      $user = factory(\App\User::class)->states('student')->create();
+      $order = factory(\App\Order::class)->create();
+      $response = $this->actingAs($user)->get('/orders/' . $order->id);
+      $response->assertSee('<button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span></button>');
+      $response->assertSee('<h4 class="modal-title">Complete Order</h4>');
+      $response->assertSee('<p>Would you like to complete this order?</p>');
+      $response->assertSee('<button type="button" class="btn btn-default col-md-offset-7 col-md-2" data-dismiss="modal">No</button>');
+      $response->assertSee('<form method="POST" action="' . route('complete') . '">');
+      $response->assertSee('<input id="complete-id" type="hidden" name="order_id" value="">');
+      $response->assertSee('<button type="submit" class="btn btn-primary col-md-3">Complete Order</button>');
+    }
 }

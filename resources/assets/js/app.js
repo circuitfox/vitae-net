@@ -82,15 +82,6 @@ function deleteModal($, modelName) {
     });
 }
 
-
-$(`#order-complete-modal`).on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var id = button.data('id');
-    var modal = $(this)
-    modal.find(`#complete-id`).attr('value', id);
-});
-
-
 function onScanComplete($, barcode, qty) {
     let obj = parser.parse(barcode, START_CHAR, END_CHAR);
     let code_ver = 'v1';
@@ -163,6 +154,13 @@ $(() => {
 
     $('#add-mar').on('click', () => {
         marForm.$emit('add-mar', {instructions: '', stat: 0});
+    });
+
+    $(`#order-complete-modal`).on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var modal = $(this)
+        modal.find(`#complete-id`).attr('value', id);
     });
 
     deleteModal($, 'user');
