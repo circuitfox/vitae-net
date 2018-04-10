@@ -52,7 +52,7 @@ class OrderPageTest extends TestCase
         $response->assertSee('<p>' . $order->patient_id . '</p>');
         $response->assertSee('<h5><b><u>Completed:</u></b></h5>');
         $response->assertSee('<p>' . ($order->completed ? 'Yes': 'No') . '</p>');
-        $response->assertSee('<button type="submit" class="btn btn-primary">Complete Order</button>');
+        $response->assertSee('<button type="button" class="btn btn-success" data-toggle="modal" data-target="#order-complete-modal" data-id="{{ $order->id }}">Complete</button>');
     }
 
     public function testHasWarning()
