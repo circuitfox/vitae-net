@@ -32,4 +32,5 @@
     </div>
   </div>
 </div>
+@include("partials.order.complete-modal")
 @endsection
