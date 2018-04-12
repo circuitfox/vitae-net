@@ -17,12 +17,6 @@ $factory->define(App\Lab::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(App\Lab::class, 'assigned', [
-    'patient_id' => function() {
-        return factory(App\Patient::class)->create()->medical_record_number;
-    },
-]);
-
 $factory->state(App\Lab::class, 'unassigned', [
     'patient_id' => null,
 ]);

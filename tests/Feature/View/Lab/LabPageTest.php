@@ -48,9 +48,9 @@ class LabPageTest extends TestCase
     public function testHasButtonIfAssigned()
     {
         $user = factory(\App\User::class)->states('admin')->create();
-        $lab = factory(\App\Lab::class)->states('assigned')->create();
+        $lab = factory(\App\Lab::class)->create();
         $response = $this->actingAs($user)->get('/labs/' . $lab->id);
-        $response->assertSee('<a class="btn btn-primary" href="/patients/' . $lab->patient_id . '">Back to Patient</a>');
+        $response->assertSee('<a class="pull-right btn btn-primary" href="/patients/' . $lab->patient_id . '" style="margin-top:10px;">Back to Patient</a>');
         $response->assertSee('<p>' . $lab->patient_id . '</p>');
     }
 
@@ -59,7 +59,7 @@ class LabPageTest extends TestCase
         $user = factory(\App\User::class)->states('admin')->create();
         $lab = factory(\App\Lab::class)->states('unassigned')->create();
         $response = $this->actingAs($user)->get('/labs/' . $lab->id);
-        $response->assertDontSee('<a class="btn btn-primary" href="/patients/' . $lab->patient_id . '">Back to Patient</a>');
+        $response->assertDontSee('<a class="pull-right btn btn-primary" href="/patients/' . $lab->patient_id . '" style="margin-top:10px;">Back to Patient</a>');
         $response->assertSee('<p>Not assigned to patient</p>');
     }
 }

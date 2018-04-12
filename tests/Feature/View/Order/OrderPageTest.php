@@ -67,9 +67,9 @@ class OrderPageTest extends TestCase
     public function testHasButtonsIfAssigned()
     {
         $user = factory(\App\User::class)->states('admin')->create();
-        $order = factory(\App\Order::class)->states('assigned')->create();
+        $order = factory(\App\Order::class)->create();
         $response = $this->actingAs($user)->get('/orders/' . $order->id);
-        $response->assertSee('<a class="btn btn-primary" href="/patients/' . $order->patient_id . '">Back to Patient</a>');
+        $response->assertSee('<a class="pull-right btn btn-primary" href="/patients/' . $order->patient_id . '" style="margin-top:10px;">Back to Patient</a>');
         $response->assertSee('<button type="submit" class="btn btn-primary">Complete Order</button>');
         $response->assertSee('<p>' . $order->patient_id . '</p>');
     }
@@ -79,7 +79,7 @@ class OrderPageTest extends TestCase
         $user = factory(\App\User::class)->states('admin')->create();
         $order = factory(\App\Order::class)->states('unassigned')->create();
         $response = $this->actingAs($user)->get('/orders/' . $order->id);
-        $response->assertDontSee('<a class="btn btn-primary" href="/patients/' . $order->patient_id . '">Back to Patient</a>');
+        $response->assertDontSee('<a class="pull-right btn btn-primary" href="/patients/' . $order->patient_id . '" style="margin-top:10px;">Back to Patient</a>');
         $response->assertDontSee('<button type="submit" class="btn btn-primary">Complete Order</button>');
         $response->assertSee('<p>Not assigned to patient</p>');
     }
