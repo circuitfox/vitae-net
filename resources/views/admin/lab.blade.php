@@ -9,6 +9,9 @@
 <div class="col-panel">
   <div id="lab" class="panel panel-default">
     <div class="panel-heading">
+      @if($lab->patient_id != null)
+        <a class="pull-right btn btn-primary" href="/patients/{{ $lab->patient_id }}" style="margin-top:10px;">Back to Patient</a>
+      @endif
       @include("partials.lab.header", ["lab" => $lab])
     </div>
     <div class="panel-body">

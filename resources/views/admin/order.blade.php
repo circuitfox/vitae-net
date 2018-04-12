@@ -9,6 +9,9 @@
 <div class="col-panel">
   <div id="order" class="panel panel-default">
     <div class="panel-heading">
+      @if($order->patient_id != null)
+        <a class="pull-right btn btn-primary" href="/patients/{{ $order->patient_id }}" style="margin-top:10px;">Back to Patient</a>
+      @endif
       @include("partials.order.header", ["order" => $order])
     </div>
     <div class="panel-body">
