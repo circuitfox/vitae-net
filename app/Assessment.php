@@ -9,6 +9,8 @@ class Assessment extends Model
 {
     protected $guarded = ['id'];
 
+    protected $casts = ['temperature' => 'float'];
+
     public function patient()
     {
         return $this->belongsTo('App\Patient', 'medical_record_number');

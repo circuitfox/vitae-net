@@ -43,6 +43,11 @@ class Medication extends Model
       'comments',
     ];
 
+    protected $casts = [
+        'dosage_amount' => 'float',
+        'second_amount' => 'float',
+    ];
+
     /**
      * Converts this medication's attributes into an array for use with the
      * /verify api route.
@@ -114,8 +119,8 @@ class Medication extends Model
      */
     public function toString()
     {
-        $primary_amount = number_format($this->dosage_amount, 2);
-        $secondary_amount = number_format($this->second_amount, 2);
+        $primary_amount = $this->dosage_amount;
+        $secondary_amount = $this->second_amount;
 
         if ($this->second_type === 'combo') {
             return $this->primaryName()
