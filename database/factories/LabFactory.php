@@ -16,3 +16,7 @@ $factory->define(App\Lab::class, function (Faker $faker) {
       },
     ];
 });
+
+$factory->state(App\Lab::class, 'unassigned', [
+    'patient_id' => null,
+]);

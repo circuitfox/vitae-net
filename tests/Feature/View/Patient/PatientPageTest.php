@@ -85,7 +85,18 @@ class PatientPageTest extends TestCase
         $user = factory(\App\User::class)->states('admin')->create();
         $lab = factory(\App\Lab::class)->create();
         $response = $this->actingAs($user)->get('/patients/' . $lab->patient_id);
-        $response->assertSee('<a class="list-group-item" href="'
+        $response->assertSee('<a class="list-group-item list-group-item-danger" href="'
+            . route('labs.show', ['id' => $lab->id]) . '">'
+            . $lab->name . '</a>');
+    }
+
+    public function testHasVisitedLabs()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $lab = factory(\App\Lab::class)->create();
+        $this->actingAs($user)->get('/labs/' . $lab->id);
+        $response = $this->actingAs($user)->get('/patients/' . $lab->patient_id);
+        $response->assertSee('<a class="list-group-item list-group-item-success" href="'
             . route('labs.show', ['id' => $lab->id]) . '">'
             . $lab->name . '</a>');
     }

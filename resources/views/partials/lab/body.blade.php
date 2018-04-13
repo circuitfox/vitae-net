@@ -5,5 +5,9 @@
   <h5><b><u>Description:</u></b></h5>
   <p>{{ $lab->description }}</p>
   <h5><b><u>Patient MRN:</u></b></h5>
-  <p>{{ $lab->patient_id }}</p>
+  @if($lab->patient_id == null)
+    <p>Not assigned to patient</p>
+  @else
+    <p>{{ $lab->patient_id }}</p>
+  @endif
 </div>

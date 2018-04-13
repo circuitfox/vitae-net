@@ -40,14 +40,16 @@ class MarEntryController extends Controller
     public function store(Requests\CreateMarEntry $request)
     {
         $mars = $request->input('mars.*');
-        foreach ($mars as &$mar) {
-            if (isset($mar['given_at'])) {
-                $mar['given_at'] = MarEntry::timesToInteger($mar['given_at']);
-            } else {
-                $mar['given_at'] = 0;
-            }
-            if (!isset($mar['stat'])) {
-                $mar['stat'] = false;
+        if (isset($mars)) {
+            foreach ($mars as &$mar) {
+                if (isset($mar['given_at'])) {
+                    $mar['given_at'] = MarEntry::timesToInteger($mar['given_at']);
+                } else {
+                    $mar['given_at'] = 0;
+                }
+                if (!isset($mar['stat'])) {
+                    $mar['stat'] = false;
+                }
             }
         }
         MarEntry::insert($mars);

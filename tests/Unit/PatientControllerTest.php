@@ -53,7 +53,7 @@ class PatientControllerTest extends TestCase
             'physician' => 'dr. jones',
             'room' => '3a',
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $patient = Patient::find(1234);
         $this->assertNotNull($patient);
         $this->assertEquals($patient->medical_record_number, 1234);
@@ -107,7 +107,7 @@ class PatientControllerTest extends TestCase
             'physician' => $patient->physician,
             'room' => $patient->room,
         ]);
-        $response->assertRedirect('/home');
+        $response->assertRedirect();
         $patient1 = Patient::find($patient->medical_record_number);
         $this->assertEquals($patient1->first_name, 'joe');
         $this->assertEquals($patient1->last_name, 'smith');

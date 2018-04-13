@@ -156,6 +156,13 @@ $(() => {
         marForm.$emit('add-mar', {instructions: '', stat: 0});
     });
 
+    $(`#order-complete-modal`).on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var modal = $(this)
+        modal.find(`#complete-id`).attr('value', id);
+    });
+
     deleteModal($, 'user');
     deleteModal($, 'patient');
     deleteModal($, 'medication');
