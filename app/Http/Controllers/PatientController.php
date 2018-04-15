@@ -80,6 +80,10 @@ class PatientController extends Controller
                 $assessment = ['id' => 0];
             }
         }
+        $complete = session('complete.' . $patient->medical_record_number);
+        if ($complete === null) {
+            $complete = [];
+        }
         return view('admin.patient', [
             'patient' => $patient,
             'labs' => $labs,
@@ -88,6 +92,7 @@ class PatientController extends Controller
             'statMeds' => $statMeds,
             'meds' => $entryMeds,
             'assessment' => $assessment,
+            'complete' => json_encode($complete),
         ]);
     }
 

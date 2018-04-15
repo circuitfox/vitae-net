@@ -22,6 +22,7 @@
   "prescriptions" => $prescriptions,
   "statMeds" => $statMeds,
   "meds" => $meds,
+  "complete" => $complete,
 ])
 <div class="col-panel">
   <div class="panel-group" role="tablist">

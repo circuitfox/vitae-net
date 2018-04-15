@@ -32,7 +32,9 @@
   <tr v-else>
     <td>{{ marEntry.name }}</td>
     <td>{{ marEntry.instructions }}</td>
-    <td v-for="time in marEntry.times" :class="isStat(time)"></td>
+    <td v-for="(time, index) in marEntry.times" :class="isStat(time)">
+      <span v-if="isComplete(index)" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    </td>
     <td v-if="isAdmin">
       <button class="btn btn-primary col-md-12" @click="setEdit">Edit</button>
     </td>
@@ -58,6 +60,10 @@
                 type: String,
                 required: true
             },
+            complete: {
+                type: Array,
+                default: [],
+            },
         },
         data: function() {
             return {
@@ -82,6 +88,14 @@
             isChecked(time) {
                 return time ? 'checked' : '';
             },
+            isComplete(index) {
+                let hour = index + 7;
+                let checkTime = this.complete.find(e => {
+                    let date = new Date(e.time);
+                    return date.getHours() === hour
+                });
+                return checkTime !== undefined;
+            }
         },
     }
 </script>

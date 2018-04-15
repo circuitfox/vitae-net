@@ -41,7 +41,8 @@
               :meds="{{ json_encode($meds) }}"
               :mar-entry="{{ $prescription->toJsonArray() }}"
               :is-admin="{{ json_encode(Auth::user()->isPrivileged()) }}"
-              route="{{ route('mars.update', ['id' => $prescription->id]) }}">
+              route="{{ route('mars.update', ['id' => $prescription->id]) }}"
+              :complete="{{ $complete }}">
           </tr>
         @endforeach
         @if (!$statMeds->isEmpty())
@@ -51,7 +52,8 @@
                 :meds="{{ json_encode($meds) }}"
                 :mar-entry="{{ $statMed->toJsonArray() }}"
                 :is-admin="{{ json_encode(Auth::user()->isAdmin()) }}"
-                route="{{ route('mars.update', ['id' => $statMed->id]) }}">
+                route="{{ route('mars.update', ['id' => $statMed->id]) }}"
+                :complete="{{ $complete }}">
             </tr>
           @endforeach
         @endif
