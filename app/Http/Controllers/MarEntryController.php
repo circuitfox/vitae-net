@@ -52,7 +52,7 @@ class MarEntryController extends Controller
             'prescriptions' => $prescriptions,
             'statMeds' => $statMeds,
             'meds' => $entryMeds,
-            'complete' => $complete,
+            'complete' => json_encode($complete),
         ]);
     }
     /**

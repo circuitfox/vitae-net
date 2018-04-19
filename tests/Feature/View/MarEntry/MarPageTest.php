@@ -26,7 +26,7 @@ class MarPageTest extends TestCase
         $response->assertSee(':meds="' . $this->faker_escape(json_encode($meds)) . '"');
         $response->assertSee(':mar-entry="' . $this->faker_escape($marEntry->toJsonArray()) . '"');
         $response->assertSee(':is-admin="' . $this->faker_escape(json_encode($user->isAdmin())) . '"');
-        $response->assertSee('route="' . route('mars.update', ['id' => $marEntry->id]) . '">');
+        $response->assertSee('route="' . route('mars.update', ['id' => $marEntry->id]) . '"');
         $response->assertSee(':complete="' . $this->faker_escape(json_encode($complete)) . '">');
     }
 }

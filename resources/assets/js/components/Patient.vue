@@ -40,6 +40,11 @@
         <h5><b><u>Room:</u></b></h5> {{ patient.room }}
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-2" style="margin-top: 10px">
+        <a class="btn btn-primary" target="_blank" :href="`/mars/${patient.medical_record_number}`">MAR</a>
+      </div>
+    </div>
     <hr>
     <div v-if="form">
       <input type="hidden" name="first_name" :value="patient.first_name" id="patient-first-name">
