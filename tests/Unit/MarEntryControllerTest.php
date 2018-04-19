@@ -343,4 +343,12 @@ class MarEntryControllerTest extends TestCase
         ])->first();
         $this->assertNull($updated_mar_entry);
     }
+
+    public function testShow()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $marEntry = factory(\App\MarEntry::class)->create();
+        $response = $this->actingAs($admin)->get('/mars/' . $marEntry->patient->medical_record_number);
+        $response->assertViewIs('admin.mar');
+    }
 }

@@ -137,12 +137,17 @@ class PatientPageTest extends TestCase
         $user = factory(\App\User::class)->states('admin')->create();
         $marEntry = factory(\App\MarEntry::class)->create();
         $meds = [$marEntry->Medication->toMarArray()];
+        $complete = session('complete.' . $marEntry->medical_record_number);
+        if ($complete === null) {
+            $complete = [];
+        }
         $response = $this->actingAs($user)->get('/patients/' . $marEntry->medical_record_number);
         $response->assertSee('<tr is="mar-entry"');
         $response->assertSee(':meds="' . $this->faker_escape(json_encode($meds)) . '"');
         $response->assertSee(':mar-entry="' . $this->faker_escape($marEntry->toJsonArray()) . '"');
         $response->assertSee(':is-admin="' . $this->faker_escape(json_encode($user->isAdmin())) . '"');
-        $response->assertSee('route="' . route('mars.update', ['id' => $marEntry->id]) . '">');
+        $response->assertSee('route="' . route('mars.update', ['id' => $marEntry->id]) . '"');
+        $response->assertSee(':complete="' . $this->faker_escape(json_encode($complete)) . '">');
     }
 
     public function testHasAssessmentForm()

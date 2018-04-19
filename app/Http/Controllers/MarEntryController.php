@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\MarEntry;
+use App\Medication;
+use App\Patient;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,8 +19,8 @@ class MarEntryController extends Controller
     public function create($medical_record_number)
     {
         $this->authorize('create', MarEntry::class);
-        $patient = \App\Patient::find($medical_record_number);
-        $meds = json_encode(\App\Medication::all()->map(function ($med) {
+        $patient = Patient::find($medical_record_number);
+        $meds = json_encode(Medication::all()->map(function ($med) {
             return $med->toMarArray();
         }));
         if ($patient === null) {
@@ -31,6 +33,28 @@ class MarEntryController extends Controller
         ]);
     }
 
+    public function show($medical_record_number)
+    {
+        $patient = Patient::find($medical_record_number);
+        $marEntries = MarEntry::where('medical_record_number', $patient->medical_record_number)->get();
+        list($statMeds, $prescriptions) = $marEntries->partition(function($entry) {
+            return $entry->stat;
+        });
+        $entryMeds = $marEntries->map(function($entry) {
+            return $entry->medication->toMarArray();
+        })->unique();
+        $complete = session('complete.' . $patient->medical_record_number);
+        if ($complete === null) {
+            $complete = [];
+        }
+        return view('admin.mar', [
+            'patient' => $patient,
+            'prescriptions' => $prescriptions,
+            'statMeds' => $statMeds,
+            'meds' => $entryMeds,
+            'complete' => json_encode($complete),
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *
