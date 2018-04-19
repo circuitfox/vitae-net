@@ -62,6 +62,10 @@ Route::middleware('auth')
     ->name('mars.create');
 
 Route::middleware('auth')
+    ->get('/mars/{medical_record_number}', 'MarEntryController@show')
+    ->name('mars.show');
+
+Route::middleware('auth')
     ->get('/assessments/{medical_record_number}', 'AssessmentController@index')
     ->name('assessments');
 
