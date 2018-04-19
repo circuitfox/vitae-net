@@ -11,5 +11,6 @@
   "prescriptions" => $prescriptions,
   "statMeds" => $statMeds,
   "meds" => $meds,
+  "complete" => $complete,
 ])
 @endsection

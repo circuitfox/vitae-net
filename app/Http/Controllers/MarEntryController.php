@@ -43,11 +43,16 @@ class MarEntryController extends Controller
         $entryMeds = $marEntries->map(function($entry) {
             return $entry->medication->toMarArray();
         })->unique();
+        $complete = session('complete.' . $patient->medical_record_number);
+        if ($complete === null) {
+            $complete = [];
+        }
         return view('admin.mar', [
             'patient' => $patient,
             'prescriptions' => $prescriptions,
             'statMeds' => $statMeds,
             'meds' => $entryMeds,
+            'complete' => $complete,
         ]);
     }
     /**
