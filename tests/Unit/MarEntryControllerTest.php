@@ -238,6 +238,15 @@ class MarEntryControllerTest extends TestCase
 
     }
 
+    public function testStoreEmpty()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($admin)->post('/mars', [
+            'mars' => [],
+        ]);
+        $response->assertRedirect();
+    }
+
     public function testUpdate()
     {
         $admin = factory(User::class)->states('admin')->create();
@@ -333,5 +342,13 @@ class MarEntryControllerTest extends TestCase
             'given_at' => 0xaaa,
         ])->first();
         $this->assertNull($updated_mar_entry);
+    }
+
+    public function testShow()
+    {
+        $admin = factory(User::class)->states('admin')->create();
+        $marEntry = factory(\App\MarEntry::class)->create();
+        $response = $this->actingAs($admin)->get('/mars/' . $marEntry->patient->medical_record_number);
+        $response->assertViewIs('admin.mar');
     }
 }

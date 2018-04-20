@@ -69,6 +69,9 @@ class LabController extends Controller
     {
         $lab = Lab::findOrFail($id);
         $pdf = asset('storage/' . $lab->file_path);
+        if (session("lab" . $id) === null) {
+            session(["lab" . $id => $id]);
+        }
         return view('admin.lab', ['lab' => $lab, 'pdf' => $pdf]);
     }
 

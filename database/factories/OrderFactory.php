@@ -28,3 +28,7 @@ $factory->state(App\Order::class, 'complete', function (Faker $faker) {
         'completed' => true,
     ];
 });
+
+$factory->state(App\Order::class, 'unassigned', [
+    'patient_id' => null,
+]);

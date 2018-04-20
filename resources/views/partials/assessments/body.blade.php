@@ -5,7 +5,7 @@
 </div>
 <hr>
 <div class="row">
-  <h5><b><u>Name:</u></b></h5>
+  <h5><b><u>Nurse:</u></b></h5>
   <p>{{ $assessment['student_name'] }}</p>
 </div>
 <div class="row">
@@ -30,7 +30,7 @@
 </div>
 <div class="row">
   <h5><b><u>Temperature:</u></b></h5>
-  <p>{{ number_format($assessment['temperature'], 2) }}</p>
+  <p>{{ $assessment['temperature'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>Blood pressure:</u></b></h5>

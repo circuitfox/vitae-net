@@ -28,10 +28,10 @@ class UpdateMedication extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'dosage_amount' => 'numeric|nullable',
+            'dosage_amount' => 'numeric|nullable|min:0',
             'dosage_unit' => 'string|nullable',
             'secondary_name' => 'string|nullable',
-            'second_amount' => 'numeric|nullable',
+            'second_amount' => 'numeric|nullable|min:0',
             'second_unit' => 'string|nullable',
             'second_type' => [
                 'nullable',

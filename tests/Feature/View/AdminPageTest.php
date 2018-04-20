@@ -23,7 +23,7 @@ class AdminPageTest extends TestCase
         $response = $this->actingAs($user)->get('/home');
         $response->assertSee('<div class="panel-heading"><h3>Administrator Dashboard</h3></div>');
         $response->assertSee('<a class="btn btn-primary" href="' . url('/users') . '">View Users</a>');
-        $response->assertSee('View and edit existing users.');
+        $response->assertSee('View existing users.');
         $response->assertSee('<a class="btn btn-primary" href="' . url('/users/create') . '">Create User</a>');
         $response->assertSee('Create new user.');
         $response->assertSee('<a class="btn btn-primary" href="' . url('/medications') . '">View Medications</a>');
@@ -62,7 +62,7 @@ class AdminPageTest extends TestCase
         $response = $this->actingAs($user)->get('/home');
         $response->assertSee('<div class="panel-heading"><h3>Administrator Dashboard</h3></div>');
         $response->assertDontSee('<a class="btn btn-primary" href="' . url('/users') . '">View Users</a>');
-        $response->assertDontSee('View and edit existing users.');
+        $response->assertDontSee('View existing users.');
         $response->assertDontSee('<a class="btn btn-primary" href="' . url('/users/create') . '">Create User</a>');
         $response->assertDontSee('Create new user.');
         $response->assertSee('<a class="btn btn-primary" href="' . url('/medications') . '">View Medications</a>');

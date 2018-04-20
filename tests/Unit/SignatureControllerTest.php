@@ -43,6 +43,7 @@ class SignatureControllerTest extends TestCase
             ]],
         ]);
         $response->assertRedirect();
+        $response->assertSessionHas('complete.' . $patient->medical_record_number);
         $signature = Signature::where([
             'student_name' => $admin->name,
             'time' => '8:00 AM' . ' ' . $date->format('m/d/Y'),

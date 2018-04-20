@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-6">
             <a class="btn btn-primary" href="{{ url('/users') }}">View Users</a>
-            <h4>View and edit existing users.</h4>
+            <h4>View existing users.</h4>
           </div>
         </div>
         <div class="row">

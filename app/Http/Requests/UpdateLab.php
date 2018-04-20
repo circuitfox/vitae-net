@@ -29,7 +29,7 @@ class UpdateLab extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'doc' => 'nullable|mimetypes:application/pdf',
-            'patient_id' => 'numeric|nullable',
+            'patient_id' => 'integer|exists:patients,medical_record_number|nullable',
         ];
     }
 }

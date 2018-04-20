@@ -49,7 +49,7 @@ class PatientController extends Controller
     public function store(Requests\CreatePatient $request)
     {
         Patient::create($request->all());
-        return redirect('/home');
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -80,6 +80,10 @@ class PatientController extends Controller
                 $assessment = ['id' => 0];
             }
         }
+        $complete = session('complete.' . $patient->medical_record_number);
+        if ($complete === null) {
+            $complete = [];
+        }
         return view('admin.patient', [
             'patient' => $patient,
             'labs' => $labs,
@@ -88,6 +92,7 @@ class PatientController extends Controller
             'statMeds' => $statMeds,
             'meds' => $entryMeds,
             'assessment' => $assessment,
+            'complete' => json_encode($complete),
         ]);
     }
 
@@ -123,7 +128,7 @@ class PatientController extends Controller
         ]);
         $data = $request->all();
         Patient::findOrFail($id)->update($data);
-        return redirect('/home');
+        return redirect()->route('patients.index');
     }
 
     /**

@@ -32,14 +32,23 @@ class SignatureController extends Controller
         $date = new DateTime('now', new DateTimeZone('America/Chicago'));
         $data = $request->all();
         $sigs = [];
+        $complete = $request->session()->get('complete.' . $data['medical_record_number']);
+        if ($complete === null) {
+            $complete = [];
+        }
         if (isset($data['medications'])) {
             foreach ($data['medications'] as $idx => $med) {
                 $sigs[$idx]['medical_record_number'] = $data['medical_record_number'];
                 $sigs[$idx]['medication_id'] = $med['medication_id'];
                 $sigs[$idx]['student_name'] = $data['student_name'];
                 $sigs[$idx]['time'] = $data['time'] . ' ' . $date->format('m/d/Y');
+                array_push($complete, [
+                    'medication_id' => $med['medication_id'],
+                    'time' => $sigs[$idx]['time'],
+                ]);
             }
         }
+        $request->session()->put('complete.' . $data['medical_record_number'], $complete);
         Signature::insert($sigs);
         return back();
     }
