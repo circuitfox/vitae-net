@@ -22,21 +22,26 @@
         <dt>Amount:</dt>
         <dd>{{ item.second_amount }} {{ item.second_unit }}</dd>
       </div>
-      <dt>Comments:</dt>
-      <dd>{{ item.comments }}</dd>
     </dl>
-    <hr>
     <div v-if="form">
+      <div class="row">
+        <div class="form-group">
+          <label class="col-md-3 control-label" :for="`medications[${id}][comments]`">Comments:</label>
+          <div class="col-md-3">
+            <textarea class="form-control" rows="3" :name="`medications[${id}][comments]`" :id="`med-comments-${id}`"></textarea>
+          </div>
+        </div>
+      </div>
       <input type="hidden" :name="`medications[${id}][medication_id]`" :value="item.medication_id" :id="`med-id-${id}`">
       <input type="hidden" :name="`medications[${id}][name]`" :value="item.name" :id="`med-name-${id}`">
       <input type="hidden" :name="`medications[${id}][dosage_amount]`" :value="item.dosage_amount" :id="`med-dosage-amount-${id}`">
       <input type="hidden" :name="`medications[${id}][dosage_unit]`" :value="item.dosage_unit" :id="`med-dosage-unit-${id}`">
       <input type="hidden" :name="`medications[${id}][secondary_name]`" :value="item.secondary_name" :id="`med-secondary-name-${id}`">
       <input type="hidden" :name="`medications[${id}][second_amount]`" :value="item.second_amount" :id="`med-second-amount-${id}`">
-      <input type="hidden" :name="`medications[${id}][second_unit]`" :value="item.second_unit" :id="`med-second-type-${id}`">
+      <input type="hidden" :name="`medications[${id}][second_unit]`" :value="item.second_unit" :id="`med-second-unit-${id}`">
       <input type="hidden" :name="`medications[${id}][second_type]`" :value="item.second_type" :id="`med-second-type-${id}`">
-      <input type="hidden" :name="`medications[${id}][comments]`" :value="item.comments" :id="`med-comments-${id}`">
     </div>
+    <hr>
   </div>
 </template>
 

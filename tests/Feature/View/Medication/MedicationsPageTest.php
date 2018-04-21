@@ -19,8 +19,6 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->primaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
         $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
         $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
@@ -41,8 +39,6 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->secondaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
         $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
@@ -61,8 +57,6 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
         $response->assertSee('<h5><b><u>With:</u></b></h5>');
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
         $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }
@@ -83,8 +77,6 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<p>' . $medication->secondaryName() . '</p>');
         $response->assertSee('<h5><b><u>Amount:</u></b></h5>');
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
         $response->assertSee('<a href="/medications/' . $medication->medication_id . '/edit" class="btn btn-primary">Edit</a>');
         $response->assertSee('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#medication-delete-modal" data-id="' . $medication->medication_id . '">Delete</button>');
     }

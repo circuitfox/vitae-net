@@ -27,6 +27,7 @@ class CreateSignature extends FormRequest
         return [
             'medical_record_number' => 'required|integer|exists:patients,medical_record_number',
             'medications.*.medication_id' => 'required|integer|exists:medications,medication_id',
+            'medications.*.comments' => 'string|nullable',
             'student_name' => 'required|string',
             'time' => 'required|string',
         ];

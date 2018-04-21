@@ -8,7 +8,7 @@ class Signature extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-      'medical_record_number', 'medication_id', 'time',
+      'medical_record_number', 'medication_id', 'comments', 'time',
        'student_name',
     ];
 

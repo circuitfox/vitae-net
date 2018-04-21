@@ -79,15 +79,6 @@ If none of these conditions apply, leave these fields blank.">
         </span>
       </div>
     </div>
-    <div class="form-group">
-      <label class="col-md-2 control-label" :for="`meds[${id}][comments]`">Comments:</label>
-      <div class="col-md-6">
-        <textarea class="form-control" rows="3" :name="`meds[${id}][comments]`" :id="`med-comments-${id}`" :value="item.comments"></textarea>
-        <span class="help-block" v-if="errors[`meds.${id}.comments`]">
-          {{ errors[`meds.${id}.comments`][0] }}
-        </span>
-      </div>
-    </div>
     <hr>
   </div>
 </template>

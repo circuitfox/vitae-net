@@ -40,6 +40,7 @@ class SignatureControllerTest extends TestCase
             'medical_record_number' => $patient->medical_record_number,
             'medications' => [[
                 'medication_id' => $medication->medication_id,
+                'comments' => 'half-dose',
             ]],
         ]);
         $response->assertRedirect();
@@ -56,6 +57,7 @@ class SignatureControllerTest extends TestCase
         $this->assertEquals($admin->name, $signature->student_name);
         $this->assertEquals('8:00 AM' . ' ' . $date->format('m/d/Y'), $signature->time);
         $this->assertEquals($patient->medical_record_number, $signature->patient->medical_record_number);
+        $this->assertEquals('half-dose', $signature->comments);
         $this->assertEquals($medication->medication_id, $signature->medication->medication_id);
     }
 
@@ -88,6 +90,7 @@ class SignatureControllerTest extends TestCase
         $this->assertNotNull($signature->medication);
         $this->assertEquals($admin->name, $signature->student_name);
         $this->assertEquals('8:00 AM' . ' ' . $date->format('m/d/Y'), $signature->time);
+        $this->assertNull($signature->comments);
         $this->assertEquals($patient->medical_record_number, $signature->patient->medical_record_number);
         $this->assertEquals($medications[0]->medication_id, $signature->medication->medication_id);
 
@@ -102,6 +105,7 @@ class SignatureControllerTest extends TestCase
         $this->assertNotNull($signature->medication);
         $this->assertEquals($admin->name, $signature->student_name);
         $this->assertEquals('8:00 AM' . ' ' . $date->format('m/d/Y'), $signature->time);
+        $this->assertNull($signature->comments);
         $this->assertEquals($patient->medical_record_number, $signature->patient->medical_record_number);
         $this->assertEquals($medications[1]->medication_id, $signature->medication->medication_id);
     }

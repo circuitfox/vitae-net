@@ -38,7 +38,6 @@ class CreateMedication extends FormRequest
                 'nullable',
                 Rule::in(Medication::SECOND_TYPES),
             ],
-            'meds.*.comments' => 'string|nullable',
         ];
     }
 }

@@ -40,6 +40,7 @@ class SignatureController extends Controller
             foreach ($data['medications'] as $idx => $med) {
                 $sigs[$idx]['medical_record_number'] = $data['medical_record_number'];
                 $sigs[$idx]['medication_id'] = $med['medication_id'];
+                $sigs[$idx]['comments'] = $med['comments'];
                 $sigs[$idx]['student_name'] = $data['student_name'];
                 $sigs[$idx]['time'] = $data['time'] . ' ' . $date->format('m/d/Y');
                 array_push($complete, [

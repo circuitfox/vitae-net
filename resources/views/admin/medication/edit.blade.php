@@ -115,21 +115,6 @@ If none of these conditions apply, leave these fields blank.">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-2 control-label" for="comments">Comments:</label>
-            <div class="col-md-6">
-              <textarea class="form-control" rows="3" name="comments" id="med-comments" value="{{ $medication->comments or old('comments') }}"></textarea>
-              @if ($errors->has('comments'))
-                <span class="help-block">
-                  {{ $errors->first('comments') }}
-                </span>
-              @endif
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="checkbox col-md-offset-2 col-md-2">
-            </div>
-          </div>
-          <div class="form-group">
             <div class="col-md-offset-2 col-md-4">
               <a class="btn btn-default" href="{{ url()->previous() }}">Cancel</a>
               <button class="btn btn-primary" type="submit">Submit</button>
