@@ -12,7 +12,6 @@ $factory->define(App\Medication::class, function (Faker $faker) {
         'second_amount' => $faker->randomFloat(2, 0, 999),
         'second_unit' => $faker->word,
         'second_type' => $faker->randomElement($array = ['combo', 'amount', 'in']),
-        'comments' => $faker->sentence,
     ];
 });
 

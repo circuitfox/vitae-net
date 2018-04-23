@@ -41,6 +41,7 @@ class SignatureControllerTest extends TestCase
             'medications' => [[
                 'medication_id' => $medication->medication_id,
             ]],
+            'comments' => null,
         ]);
         $response->assertRedirect();
         $signature = Signature::where([
@@ -48,6 +49,7 @@ class SignatureControllerTest extends TestCase
             'time' => '8:00 AM' . ' ' . $date->format('m/d/Y'),
             'medical_record_number' => $patient->medical_record_number,
             'medication_id' => $medication->medication_id,
+            'comments' => null,
         ])->first();
         $this->assertNotNull($signature);
         $this->assertNotNull($signature->patient);
@@ -74,6 +76,7 @@ class SignatureControllerTest extends TestCase
             [
                 'medication_id' => $medications[1]->medication_id,
             ]],
+            'comments' => null,
         ]);
         $response->assertRedirect();
         $signature = Signature::where([
@@ -81,6 +84,7 @@ class SignatureControllerTest extends TestCase
             'time' => '8:00 AM' . ' ' . $date->format('m/d/Y'),
             'medical_record_number' => $patient->medical_record_number,
             'medication_id' => $medications[0]->medication_id,
+            'comments' => null,
         ])->first();
         $this->assertNotNull($signature);
         $this->assertNotNull($signature->patient);
@@ -95,6 +99,7 @@ class SignatureControllerTest extends TestCase
             'time' => '8:00 AM' . ' ' . $date->format('m/d/Y'),
             'medical_record_number' => $patient->medical_record_number,
             'medication_id' => $medications[1]->medication_id,
+            'comments' => null,
         ])->first();
         $this->assertNotNull($signature);
         $this->assertNotNull($signature->patient);

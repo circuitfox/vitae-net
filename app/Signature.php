@@ -9,7 +9,7 @@ class Signature extends Model
     public $timestamps = false;
     protected $fillable = [
       'medical_record_number', 'medication_id', 'time',
-       'student_name',
+       'student_name', 'comments',
     ];
 
     public function patient()

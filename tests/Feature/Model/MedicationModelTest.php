@@ -26,7 +26,6 @@ class MedicationModelTest extends TestCase
         $this->assertEquals($arr['second_amount'], $medication->second_amount);
         $this->assertEquals($arr['second_unit'], $medication->second_unit);
         $this->assertEquals($arr['second_type'], $medication->second_type);
-        $this->assertEquals($arr['comments'], $medication->comments);
     }
 
     public function testToApiArrayWithSecondaryName()
@@ -40,7 +39,6 @@ class MedicationModelTest extends TestCase
         $this->assertEquals($arr['second_amount'], $medication->second_amount);
         $this->assertEquals($arr['second_unit'], $medication->second_unit);
         $this->assertEquals($arr['second_type'], $medication->second_type);
-        $this->assertEquals($arr['comments'], $medication->comments);
     }
 
     public function testPrimaryName()
