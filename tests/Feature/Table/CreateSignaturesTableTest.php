@@ -39,4 +39,9 @@ class CreateSignaturesTableTest extends TestCase
     {
         $this->assertTrue(Schema::hasColumn('signatures', 'student_name'));
     }
+
+    public function testHasCommentsColumn()
+    {
+        $this->assertTrue(Schema::hasColumn('signatures', 'comments'));
+    }
 }

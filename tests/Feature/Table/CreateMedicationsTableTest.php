@@ -36,10 +36,4 @@ class CreateMedicationsTableTest extends TestCase
     {
         $this->assertTrue(Schema::hasColumn("medications", "dosage_unit"));
     }
-
-    public function testHasCommentsColumn()
-    {
-        $this->assertTrue(Schema::hasColumn("medications", "comments"));
-    }
-
 }

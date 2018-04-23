@@ -29,6 +29,7 @@ class CreateSignature extends FormRequest
             'medications.*.medication_id' => 'required|integer|exists:medications,medication_id',
             'student_name' => 'required|string',
             'time' => 'required|string',
+            'comments' => 'string|nullable',
         ];
     }
 }

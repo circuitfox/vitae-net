@@ -22,7 +22,6 @@ class CreateMedicationsTable extends Migration
             $table->decimal('second_amount', 5, 2)->nullable();
             $table->string('second_unit')->nullable();
             $table->string('second_type')->nullable();
-            $table->string('comments')->nullable();
             $table->timestamps();
         });
     }

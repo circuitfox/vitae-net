@@ -47,7 +47,6 @@ class MedicationControllerTest extends TestCase
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'comments' => '',
             ]],
         ]);
         $response->assertRedirect();
@@ -55,7 +54,6 @@ class MedicationControllerTest extends TestCase
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
             'dosage_unit' => 'mg',
-            'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
@@ -64,7 +62,6 @@ class MedicationControllerTest extends TestCase
         $this->assertNull($med->second_amount);
         $this->assertNull($med->second_unit);
         $this->assertNull($med->second_type);
-        $this->assertNull($med->comments);
     }
 
     public function testStoreWithSecondaries()
@@ -78,7 +75,6 @@ class MedicationControllerTest extends TestCase
                 'second_amount' => 20,
                 'second_unit' => 'mg',
                 'second_type' => 'combo',
-                'comments' => 'not more than four a day',
             ]],
         ]);
         $response->assertRedirect();
@@ -89,7 +85,6 @@ class MedicationControllerTest extends TestCase
             'second_amount' => 20,
             'second_unit' => 'mg',
             'second_type' => 'combo',
-            'comments' => 'not more than four a day',
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->primaryName(), 'acetominophin');
@@ -99,7 +94,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->second_amount, 20);
         $this->assertEquals($med->second_unit, 'mg');
         $this->assertEquals($med->second_type, 'combo');
-        $this->assertEquals($med->comments, 'not more than four a day');
         $response = $this->actingAs($admin)->post('/medications', [
             'meds' => [[
                 'name' => 'ancef|normal saline',
@@ -108,7 +102,6 @@ class MedicationControllerTest extends TestCase
                 'second_amount' => 100,
                 'second_unit' => 'mL',
                 'second_type' => 'in',
-                'comments' => '',
             ]],
         ]);
         $response->assertRedirect();
@@ -119,7 +112,6 @@ class MedicationControllerTest extends TestCase
             'second_amount' => 100,
             'second_unit' => 'mL',
             'second_type' => 'in',
-            'comments' => null,
         ])->first();
         $this->assertEquals($med->primaryName(), 'ancef');
         $this->assertEquals($med->secondaryName(), 'normal saline');
@@ -128,7 +120,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->second_amount, 100);
         $this->assertEquals($med->second_unit, 'mL');
         $this->assertEquals($med->second_type, 'in');
-        $this->assertNull($med->comments);
         $response = $this->actingAs($admin)->post('/medications', [
             'meds' => [[
                 'name' => 'regular insulin',
@@ -137,7 +128,6 @@ class MedicationControllerTest extends TestCase
                 'second_amount' => 100,
                 'second_unit' => 'units/mL',
                 'second_type' => 'amount',
-                'comments' => '',
             ]],
         ]);
         $response->assertRedirect();
@@ -148,7 +138,6 @@ class MedicationControllerTest extends TestCase
             'second_amount' => 100,
             'second_unit' => 'units/mL',
             'second_type' => 'amount',
-            'comments' => null,
         ])->first();
         $this->assertEquals($med->primaryName(), 'regular insulin');
         $this->assertEquals($med->dosage_amount, 10);
@@ -157,7 +146,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->second_unit, 'units/mL');
         $this->assertEquals($med->second_type, 'amount');
         $this->assertEquals($med->secondaryName(), '');
-        $this->assertNull($med->comments);
     }
 
     public function testStoreNullables()
@@ -179,7 +167,6 @@ class MedicationControllerTest extends TestCase
         $this->assertNull($med->second_amount);
         $this->assertNull($med->second_unit);
         $this->assertNull($med->second_type);
-        $this->assertNull($med->comments);
 
     }
 
@@ -192,7 +179,6 @@ class MedicationControllerTest extends TestCase
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'comments' => '',
             ]],
         ]);
         $response->assertRedirect();
@@ -200,19 +186,16 @@ class MedicationControllerTest extends TestCase
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
             'dosage_unit' => 'mg',
-            'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
         $this->assertEquals($med->dosage_amount, 10);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertNull($med->comments);
         $response = $this->actingAs($user)->post('/medications', [
             'meds' => [[
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'comments' => '',
             ]],
         ]);
         $response->assertStatus(403);
@@ -227,13 +210,11 @@ class MedicationControllerTest extends TestCase
                 'name' => 'Wellbutrin',
                 'dosage_amount' => 10,
                 'dosage_unit' => 'mg',
-                'comments' => '',
                 ],
                 [
                 'name' => 'Aspirin',
                 'dosage_amount' => 50,
                 'dosage_unit' => 'mg',
-                'comments' => '',
                 ],
             ],
         ]);
@@ -242,24 +223,20 @@ class MedicationControllerTest extends TestCase
             'name' => 'Wellbutrin',
             'dosage_amount' => 10,
             'dosage_unit' => 'mg',
-            'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Wellbutrin');
         $this->assertEquals($med->dosage_amount, 10);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertNull($med->comments);
         $med = Medication::where([
             'name' => 'Aspirin',
             'dosage_amount' => 50,
             'dosage_unit' => 'mg',
-            'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->name, 'Aspirin');
         $this->assertEquals($med->dosage_amount, 50);
         $this->assertEquals($med->dosage_unit, 'mg');
-        $this->assertNull($med->comments);
     }
 
     public function testStoreMultipleWithSecondaries()
@@ -274,7 +251,6 @@ class MedicationControllerTest extends TestCase
                 'second_amount' => 100,
                 'second_unit' => 'mL',
                 'second_type' => 'in',
-                'comments' => '',
                 ],
                 [
                 'name' => 'acetominophin|aspirin',
@@ -283,7 +259,6 @@ class MedicationControllerTest extends TestCase
                 'second_amount' => 100,
                 'second_unit' => 'mg',
                 'second_type' => 'combo',
-                'comments' => '',
                 ],
             ],
         ]);
@@ -295,7 +270,6 @@ class MedicationControllerTest extends TestCase
           'second_amount' => 100,
           'second_unit' => 'mL',
           'second_type' => 'in',
-          'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->primaryName(), 'ancef');
@@ -305,7 +279,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->second_amount, 100);
         $this->assertEquals($med->second_unit, 'mL');
         $this->assertEquals($med->second_type, 'in');
-        $this->assertNull($med->comments);
         $med = Medication::where([
           'name' => 'acetominophin|aspirin',
           'dosage_amount' => 50,
@@ -313,7 +286,6 @@ class MedicationControllerTest extends TestCase
           'second_amount' => 100,
           'second_unit' => 'mg',
           'second_type' => 'combo',
-          'comments' => null,
         ])->first();
         $this->assertNotNull($med);
         $this->assertEquals($med->primaryName(), 'acetominophin');
@@ -323,7 +295,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med->second_amount, 100);
         $this->assertEquals($med->second_unit, 'mg');
         $this->assertEquals($med->second_type, 'combo');
-        $this->assertNull($med->comments);
     }
 
     public function testStoreEmpty()
@@ -373,7 +344,6 @@ class MedicationControllerTest extends TestCase
             'name' => $med->name,
             'dosage_amount' => 50,
             'dosage_unit' => $med->dosage_unit,
-            'comments' => '',
         ]);
         $response->assertRedirect();
         $med1 = Medication::find($med->medication_id);
@@ -383,7 +353,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med1->second_amount, $med->second_amount);
         $this->assertEquals($med1->second_unit, $med->second_unit);
         $this->assertEquals($med1->second_type, $med->second_type);
-        $this->assertEquals($med1->comments, null);
     }
 
     public function testUpdateSecondaryName()
@@ -406,7 +375,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med1->second_amount, $med->second_amount);
         $this->assertEquals($med1->second_unit, $med->second_unit);
         $this->assertEquals($med1->second_type, $med->second_type);
-        $this->assertEquals($med1->comments, $med->comments);
     }
 
     public function testUpdateSecondaryType()
@@ -430,7 +398,6 @@ class MedicationControllerTest extends TestCase
         $this->assertEquals($med1->second_amount, $med->second_amount);
         $this->assertEquals($med1->second_unit, $med->second_unit);
         $this->assertEquals($med1->second_type, 'combo');
-        $this->assertEquals($med1->comments, $med->comments);
     }
 
     public function testDelete()
@@ -493,7 +460,6 @@ class MedicationControllerTest extends TestCase
             'second_amount' => $med->second_amount,
             'second_unit' => $med->second_unit,
             'second_type' => $med->second_type,
-            'comments' => $med->comments,
         ]);
         $response->assertStatus(200)->assertJson([
             'status' => 'success',
@@ -505,7 +471,6 @@ class MedicationControllerTest extends TestCase
                 'second_amount' => $med->second_amount,
                 'second_unit' => $med->second_unit,
                 'second_type' => $med->second_type,
-                'comments' => $med->comments,
             ]
         ]);
     }
@@ -540,7 +505,6 @@ class MedicationControllerTest extends TestCase
                 'second_amount' => $med->second_amount,
                 'second_unit' => $med->second_unit,
                 'second_type' => $med->second_type,
-                'comments' => $med->comments,
             ]
         ]);
     }
