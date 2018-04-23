@@ -30,6 +30,6 @@ wiki.
 
 ## License
 
-Vitae NET is released under the MIT license ([](LICENSE) or
-[](http://opensource.org/licenses/MIT)).
+Vitae NET is released under the MIT license ([LICENSE](LICENSE) or
+[http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT)).
 
