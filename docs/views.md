@@ -1,17 +1,17 @@
-#Views
+# Views
 
 This documentation serves to describe the functions of the views stored in
-vitae-net/resources/views.  This document provides an explanation for the layout 
+vitae-net/resources/views.  This document provides an explanation for the layout
 of the 'views' folder.
 
-Sub-directories:
+### Sub-directories:
 
 The 'views' folder contains 4 sub-directories; 'admin', 'auth', 'layouts', and
 'partials'. Additionally, at the top of the file tree in 'views', there are
 5 php files. One is the administrator view, one serves to change the time in
 the summary page to 24-hours, and the remaining 3 are basic panel headings.
 
-admin:
+### admin:
 
 The 'admin' sub-directory contains the primary views for every page in vitae-net
 These views are stored at the top of the file tree in 'admin'. Additionally,
@@ -20,7 +20,7 @@ sub-directories are organized by type of view. For instance, the 'medication'
 sub-directory contains the edit view for medications. Likewise the 'medications'
 sub-directory contains the create view for medications.
 
-auth:
+### auth:
 
 The 'auth' sub-directory contains the user account related views. This includes
 the views for the log-in and register pages, which are stored at the top of the
@@ -28,12 +28,12 @@ file tree in 'auth'. Additionally, there is a 'passwords' sub-directory
 containing the password reset view for first time users, as well as a similar
 reset view for users who have forgotten their password.
 
-layouts:
+### layouts:
 
 The 'layouts' sub-directory is simple, containing only the headers for all other
 layout files.
 
-partials:
+### partials:
 
 The 'partials' sub-directory contains all page partials that are used in each
 of the views in vitae-net. These partials are referenced in the views stored at

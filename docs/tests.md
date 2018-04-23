@@ -4,7 +4,7 @@ This documentation serves to describe the functions of the tests code stored in
 vitae-net/test.  This document provides an explanation for the layout of the
 'test' folder.
 
-Sub-directories:
+### Sub-directories:
 
 There are 3 sub-directories within 'test'. These directories are 'Feature',
 'Javascript', and 'Unit'. Each sub-directory holds different types of tests.
@@ -13,7 +13,7 @@ instead located at the top of the 'test' tree. These tests are
 'CreatesApplication.php', which creates a base test application, and
 'TestCase.php' which escapes special characters in faker names.
 
-Feature:
+### Feature:
 
 The 'Feature' sub-directory, the largest of the three, contains tests for each
 view and database object. Within 'Feature' are another 3 sub-directories:
@@ -29,14 +29,14 @@ formatting medications. 'Feature' also contains tests for the landing page,
 basic page layout, admin page, summary page, signatures page, and Mar create
 page.
 
-Javascript:
+### Javascript:
 
 The 'Javascript' sub-directory contains only 2 tests. The tests are used for the barcode scanning process. The first is a test for the parser, which sorts the
 various information the scanner receives from the barcode. The second test
 merely loads the required setup information.
 
-Unit:
+### Unit:
 
 The 'Unit' sub-directory primarily contains tests for page controllers.
 Additionally, 'Unit' contains a test for the reset password function should a
-user forget their password. 
+user forget their password.
