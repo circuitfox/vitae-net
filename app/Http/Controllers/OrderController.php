@@ -118,7 +118,7 @@ class OrderController extends Controller
     {
         $id = $request->order_id;
         Order::findOrFail($id)->update(['completed' => 1]);
-        return back()->with('complete', 'Order completed successfully');
+        return back()->with('completed', 'Order completed successfully');
     }
 
     /**
