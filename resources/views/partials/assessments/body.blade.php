@@ -93,6 +93,10 @@
   <p>{{ $assessment['accommodation'] }}</p>
 </div>
 <div class="row">
+  <h4><b>Pain:</b></h4>
+</div>
+<hr>
+<div class="row">
   <h5><b><u>Pain Scale:</u></b></h5>
   <p>{{ $assessment['pain_scale'] }}</p>
 </div>
@@ -100,6 +104,14 @@
   <h5><b><u>Pain Location:</u></b></h5>
   <p>{{ $assessment['pain_location'] }}</p>
 </div>
+<div class="row">
+  <h5><b><u>Pain Description:</u></b></h5>
+  <p>{{ $assessment['pain'] }}</p>
+</div>
+<div class="row">
+  <h4><b>Skin:</b></h4>
+</div>
+<hr>
 <div class="row">
   <h5><b><u>Skin color:</u></b></h5>
   <p>{{ $assessment['skincolor'] }}</p>
@@ -129,6 +141,10 @@
   <p>{{ $assessment['centrallines'] }}</p>
 </div>
 <div class="row">
+  <h4><b>Circulatory:</b></h4>
+</div>
+<hr>
+<div class="row">
   <h5><b><u>Heart Rhythm:</u></b></h5>
   <p>{{ $assessment['heartrhythm'] }}</p>
 </div>
@@ -148,6 +164,10 @@
   <h5><b><u>Temperature/color of upper left extremity:</u></b></h5>
   <p>{{ $assessment['left_upper'] }}</p>
 </div>
+<div class="row">
+  <h4><b>Respiratory:</b></h4>
+</div>
+<hr>
 <div class="row">
   <h5><b><u>Right breath sounds/rhythm:</u></b></h5>
   <p>{{ $assessment['right_breath'] }}</p>
@@ -173,8 +193,16 @@
   <p>{{ $assessment['liters_per_minute'] }}</p>
 </div>
 <div class="row">
+  <h4><b>Gastrointestinal:</b></h4>
+</div>
+<hr>
+<div class="row">
   <h5><b><u>Diet:</u></b></h5>
   <p>{{ $assessment['diet'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Tolerated/Nausea/Vomiting:</u></b></h5>
+  <p>{{ $assessment['nausea'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>Appearance of abdomen:</u></b></h5>
@@ -193,7 +221,7 @@
   <p>{{ $assessment['tubefeeding'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Continent/Incontinent/Foley, describe urine characteristics:</u></b></h5>
+  <h5><b><u>GU:</u></b></h5>
   <p>{{ $assessment['genitourinary'] }}</p>
 </div>
 <div class="row">
@@ -208,6 +236,10 @@
   <h5><b><u>Muscle mass/strength:</u></b></h5>
   <p>{{ $assessment['muscle'] }}</p>
 </div>
+<div class="row">
+  <h4><b>Lower Extremities:</b></h4>
+</div>
+<hr>
 <div class="row">
   <h5><b><u>Right pedal pulse, D.P. and/or P.T., Femoral if applicable:</u></b></h5>
   <p>{{ $assessment['right_pedal'] }}</p>
@@ -241,6 +273,10 @@
   <p>{{ $assessment['drainage'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Activity-Bedrest/BRP/up with/without assistance:</u></b></h5>
+  <h4><b>Assistance:</b></h4>
+</div>
+<hr>
+<div class="row">
+  <h5><b><u>Ambulatory:</u></b></h5>
   <p>{{ $assessment['activity'] }}</p>
 </div>

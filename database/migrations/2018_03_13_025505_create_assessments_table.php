@@ -42,6 +42,7 @@ class CreateAssessmentsTable extends Migration
             $table->string('accommodation')->nullable();
             $table->string('pain_scale')->nullable();
             $table->string('pain_location')->nullable();
+            $table->string('pain')->nullable();
             $table->string('skincolor')->nullable();
             $table->string('skintemp')->nullable();
             $table->string('hydration')->nullable();
@@ -61,6 +62,7 @@ class CreateAssessmentsTable extends Migration
             $table->string('supplemental')->nullable();
             $table->string('liters_per_minute')->nullable();
             $table->string('diet')->nullable();
+            $table->string('nausea')->nullable();
             $table->string('abdomen')->nullable();
             $table->string('bowel')->nullable();
             $table->string('stool')->nullable();

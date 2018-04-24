@@ -65,6 +65,8 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<p>' . $assessment->pain_scale . '</p>');
     $response->assertSee('<h5><b><u>Pain Location:</u></b></h5>');
     $response->assertSee('<p>' . $assessment->pain_location . '</p>');
+    $response->assertSee('<h5><b><u>Pain Description:</u></b></h5>');
+    $response->assertSee('<p>' . $assessment->pain . '</p>');
     $response->assertSee('<h5><b><u>Skin color:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->skincolor .'</p>');
     $response->assertSee('<h5><b><u>Skin temp/moisture:</u></b></h5>');
@@ -103,6 +105,8 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<p>' . $assessment->liters_per_minute . '</p>');
     $response->assertSee('<h5><b><u>Diet:</u></b></h5>');
     $response->assertSee('<p>' . $assessment->diet . '</p>');
+    $response->assertSee('<h5><b><u>Tolerated/Nausea/Vomiting:</u></b></h5>');
+    $response->assertSee('<p>' . $assessment->nausea . '</p>');
     $response->assertSee('<h5><b><u>Appearance of abdomen:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->abdomen .'</p>');
     $response->assertSee('<h5><b><u>Bowel sounds:</u></b></h5>');
@@ -111,7 +115,7 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<p>'. $assessment->stool .'</p>');
     $response->assertSee('<h5><b><u>Tube feedings/Ostomy:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->tubefeeding .'</p>');
-    $response->assertSee('<h5><b><u>Continent/Incontinent/Foley, describe urine characteristics:</u></b></h5>');
+    $response->assertSee('<h5><b><u>GU:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->genitourinary .'</p>');
     $response->assertSee('<h5><b><u>Urine characteristics:</u></b></h5>');
     $response->assertSee('<p>' . $assessment->urine . '</p>');
@@ -135,7 +139,7 @@ class AssessmentsPageTest extends TestCase
     $response->assertSee('<p>'. $assessment->ted .'</p>');
     $response->assertSee('<h5><b><u>Drainage/Drains:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->drainage .'</p>');
-    $response->assertSee('<h5><b><u>Activity-Bedrest/BRP/up with/without assistance:</u></b></h5>');
+    $response->assertSee('<h5><b><u>Ambulatory:</u></b></h5>');
     $response->assertSee('<p>'. $assessment->activity .'</p>');
   }
 
