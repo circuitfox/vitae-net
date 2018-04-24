@@ -81,8 +81,24 @@
   <p>{{ $assessment['pupillary'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Pain assessment/characteristics:</u></b></h5>
-  <p>{{ $assessment['pain'] }}</p>
+  <h5><b><u>Pupil size:</u></b></h5>
+  <p>{{ $assessment['pupil_size'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Pupil shape:</u></b></h5>
+  <p>{{ $assessment['pupil_shape'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Accommodation:</u></b></h5>
+  <p>{{ $assessment['accommodation'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Pain Scale:</u></b></h5>
+  <p>{{ $assessment['pain_scale'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Pain Location:</u></b></h5>
+  <p>{{ $assessment['pain_location'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>Skin color:</u></b></h5>
@@ -125,15 +141,23 @@
   <p>{{ $assessment['capillary'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Temperature/color of upper extremities:</u></b></h5>
-  <p>{{ $assessment['upper'] }}</p>
+  <h5><b><u>Temperature/color of upper right extremity:</u></b></h5>
+  <p>{{ $assessment['right_upper'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Breath sounds/rhythm:</u></b></h5>
-  <p>{{ $assessment['breathrhythm'] }}</p>
+  <h5><b><u>Temperature/color of upper left extremity:</u></b></h5>
+  <p>{{ $assessment['left_upper'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Breath sounds/cough:</u></b></h5>
+  <h5><b><u>Right breath sounds/rhythm:</u></b></h5>
+  <p>{{ $assessment['right_breath'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Left breath sounds/rhythm:</u></b></h5>
+  <p>{{ $assessment['left_breath'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Cough:</u></b></h5>
   <p>{{ $assessment['cough'] }}</p>
 </div>
 <div class="row">
@@ -141,12 +165,16 @@
   <p>{{ $assessment['secretions'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Room air (or describe supplemental oxygen):</u></b></h5>
-  <p>{{ $assessment['roomair'] }}</p>
+  <h5><b><u>Supplemental oxygen:</u></b></h5>
+  <p>{{ $assessment['supplemental'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Nausea/Vomiting/Tolerate Diet:</u></b></h5>
-  <p>{{ $assessment['nausea'] }}</p>
+  <h5><b><u>Liters/Minute of Oxygen:</u></b></h5>
+  <p>{{ $assessment['liters_per_minute'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Diet:</u></b></h5>
+  <p>{{ $assessment['diet'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>Appearance of abdomen:</u></b></h5>
@@ -169,6 +197,10 @@
   <p>{{ $assessment['genitourinary'] }}</p>
 </div>
 <div class="row">
+  <h5><b><u>Urine characteristics:</u></b></h5>
+  <p>{{ $assessment['urine'] }}</p>
+</div>
+<div class="row">
   <h5><b><u>Range of motion/mobility:</u></b></h5>
   <p>{{ $assessment['motion'] }}</p>
 </div>
@@ -177,24 +209,32 @@
   <p>{{ $assessment['muscle'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Pedal pulses (Rt. and Lt.), D.P. and/or P.T., Femoral if applicable:</u></b></h5>
-  <p>{{ $assessment['pedal'] }}</p>
+  <h5><b><u>Right pedal pulse, D.P. and/or P.T., Femoral if applicable:</u></b></h5>
+  <p>{{ $assessment['right_pedal'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Temp/color of lower extremities:</u></b></h5>
-  <p>{{ $assessment['lower'] }}</p>
+  <h5><b><u>Left pedal pulse, D.P. and/or P.T., Femoral if applicable:</u></b></h5>
+  <p>{{ $assessment['left_pedal'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Peripheral edema/Calf tenderness/pain/erythema:</u></b></h5>
+  <h5><b><u>Temp/color of right lower extremity:</u></b></h5>
+  <p>{{ $assessment['right_lower'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Temp/color of left lower extremity:</u></b></h5>
+  <p>{{ $assessment['left_lower'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Peripheral edema:</u></b></h5>
   <p>{{ $assessment['peripheral'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Calf tenderness/pain/erythema:</u></b></h5>
+  <p>{{ $assessment['calf'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>TED hose/SCD's:</u></b></h5>
   <p>{{ $assessment['ted'] }}</p>
-</div>
-<div class="row">
-  <h5><b><u>Restraints/Casts:</u></b></h5>
-  <p>{{ $assessment['restraints'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>Drainage/Drains:</u></b></h5>
