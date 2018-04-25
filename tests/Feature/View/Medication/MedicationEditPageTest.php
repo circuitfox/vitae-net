@@ -26,7 +26,6 @@ class MedicationEditPageTest extends TestCase
         $response->assertSee('<input class="form-control" type="text" name="second_unit" value="' . $medication->second_unit . '" id="med-second-unit">');
         $response->assertSee('<option value="' . $medication->second_type . '" selected>');
         $response->assertSee(Medication::type_option($medication->second_type));
-        $response->assertSee('<textarea class="form-control" rows="3" name="comments" id="med-comments" value="' . $medication->comments . '"></textarea>');
         $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
         $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
     }
@@ -48,7 +47,6 @@ class MedicationEditPageTest extends TestCase
         $response->assertSee('<input class="form-control" type="number" name="second_amount" min="0" step="0.01" value="' . $medication->second_amount . '" id="med-second-amount">');
         $response->assertSee('<option value="' . $medication->second_type . '" selected>');
         $response->assertSee(Medication::type_option($medication->second_type));
-        $response->assertSee('<textarea class="form-control" rows="3" name="comments" id="med-comments" value="' . $medication->comments . '"></textarea>');
         $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
         $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
     }
@@ -70,7 +68,6 @@ class MedicationEditPageTest extends TestCase
         $response->assertSee('<input class="form-control" type="number" name="second_amount" min="0" step="0.01" value="' . $medication->second_amount . '" id="med-second-amount">');
         $response->assertSee('<option value="combo" selected>');
         $response->assertSee(Medication::type_option('combo'));
-        $response->assertSee('<textarea class="form-control" rows="3" name="comments" id="med-comments" value="' . $medication->comments . '"></textarea>');
         $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
         $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
     }
@@ -93,7 +90,6 @@ class MedicationEditPageTest extends TestCase
         $response->assertSee('<input class="form-control" type="text" name="second_unit" value="' . $medication->second_unit . '" id="med-second-unit">');
         $response->assertSee('<option value="amount" selected>');
         $response->assertSee(Medication::type_option('amount'));
-        $response->assertSee('<textarea class="form-control" rows="3" name="comments" id="med-comments" value="' . $medication->comments . '"></textarea>');
         $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
         $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
     }
@@ -116,7 +112,6 @@ class MedicationEditPageTest extends TestCase
         $response->assertSee('<input class="form-control" type="text" name="second_unit" value="' . $medication->second_unit . '" id="med-second-unit">');
         $response->assertSee('<option value="in" selected>');
         $response->assertSee(Medication::type_option('in'));
-        $response->assertSee('<textarea class="form-control" rows="3" name="comments" id="med-comments" value="' . $medication->comments . '"></textarea>');
         $response->assertSee('<a class="btn btn-default" href="' . url('/') . '">Cancel</a>');
         $response->assertSee('<button class="btn btn-primary" type="submit">Submit</button>');
     }
