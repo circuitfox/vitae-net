@@ -17,5 +17,3 @@
   <h5><b><u>Amount:</u></b></h5>
   <p>{{ $medication->second_amount }} {{ $medication->second_unit }}</p>
 @endif
-<h5><b><u>Comments:</u></b></h5>
-<p>{{ $medication->comments }}</p>

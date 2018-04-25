@@ -19,8 +19,6 @@ class MedicationPageTest extends TestCase
         $response->assertSee('<p>' . $medication->primaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
         $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
     }
 
     public function testHasComboMedication()
@@ -39,8 +37,6 @@ class MedicationPageTest extends TestCase
         $response->assertSee('<p>' . $medication->secondaryName() . '</p>');
         $response->assertSee('<h5><b><u>Dosage:</u></b></h5>');
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
     }
 
     public function testHasAmountMedication()
@@ -57,9 +53,6 @@ class MedicationPageTest extends TestCase
         $response->assertSee('<p>' . $medication->dosage_amount . ' ' . $medication->dosage_unit . '</p>');
         $response->assertSee('<h5><b><u>With:</u></b></h5>');
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
-
     }
 
     public function testHasInMedication()
@@ -78,8 +71,5 @@ class MedicationPageTest extends TestCase
         $response->assertSee('<p>' . $medication->secondaryName() . '</p>');
         $response->assertSee('<h5><b><u>Amount:</u></b></h5>');
         $response->assertSee('<p>' . $medication->second_amount . ' ' . $medication->second_unit . '</p>');
-        $response->assertSee('<h5><b><u>Comments:</u></b></h5>');
-        $response->assertSee('<p>' . $medication->comments . '</p>');
-
     }
 }

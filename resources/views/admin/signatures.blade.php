@@ -22,6 +22,7 @@
               <th>Name</th>
               <th>Patient</th>
               <th>Medication</th>
+              <th>Comments</th>
               <th>Time</th>
               <th>Delete</th>
             <tr>
@@ -32,6 +33,7 @@
                 <td>{{ $signature->student_name }}</td>
                 <td>{{ $signature->patient->first_name }} {{ $signature->patient->last_name }}</td>
                 <td>{{ $signature->medication->toString() }}</td>
+                <td>{{ $signature->comments }}</td>
                 <td>{{ $signature->time }}</td>
                 <td><input type="checkbox" name="ids[{{ $signature->id }}]" value="{{ $signature->id }}"></td>
               </tr>

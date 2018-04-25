@@ -40,7 +40,6 @@ class Medication extends Model
     protected $fillable = [
       'name', 'dosage_amount', 'dosage_unit',
       'second_amount', 'second_unit', 'second_type',
-      'comments',
     ];
 
     protected $casts = [
@@ -65,7 +64,6 @@ class Medication extends Model
             'second_amount' => $this->second_amount,
             'second_unit' => $this->second_unit,
             'second_type' => $this->second_type,
-            'comments' => $this->comments,
         ];
     }
 

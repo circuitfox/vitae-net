@@ -20,6 +20,7 @@ class CreateSignaturesTable extends Migration
             $table->integer('medical_record_number');
             $table->string('time');
             $table->string('student_name');
+            $table->string('comments')->nullable();
             //keys
             $table->foreign('medical_record_number')
                 ->references('medical_record_number')

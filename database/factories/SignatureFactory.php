@@ -14,5 +14,6 @@ $factory->define(App\Signature::class, function (Faker $faker) {
       },
       'time' => $faker->numberBetween($min = 7, $max = 19) . ':' . $faker->numberBetween($min = 0, $max = 59),
       'student_name' => $faker->firstName . ' ' . $faker->lastName,
+      'comments' => $faker->sentence,
     ];
 });
