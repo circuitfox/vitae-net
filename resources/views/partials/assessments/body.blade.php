@@ -81,9 +81,37 @@
   <p>{{ $assessment['pupillary'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Pain assessment/characteristics:</u></b></h5>
+  <h5><b><u>Pupil size:</u></b></h5>
+  <p>{{ $assessment['pupil_size'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Pupil shape:</u></b></h5>
+  <p>{{ $assessment['pupil_shape'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Accommodation:</u></b></h5>
+  <p>{{ $assessment['accommodation'] }}</p>
+</div>
+<div class="row">
+  <h4><b>Pain:</b></h4>
+</div>
+<hr>
+<div class="row">
+  <h5><b><u>Pain Scale:</u></b></h5>
+  <p>{{ $assessment['pain_scale'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Pain Location:</u></b></h5>
+  <p>{{ $assessment['pain_location'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Pain Description:</u></b></h5>
   <p>{{ $assessment['pain'] }}</p>
 </div>
+<div class="row">
+  <h4><b>Skin:</b></h4>
+</div>
+<hr>
 <div class="row">
   <h5><b><u>Skin color:</u></b></h5>
   <p>{{ $assessment['skincolor'] }}</p>
@@ -113,6 +141,10 @@
   <p>{{ $assessment['centrallines'] }}</p>
 </div>
 <div class="row">
+  <h4><b>Circulatory:</b></h4>
+</div>
+<hr>
+<div class="row">
   <h5><b><u>Heart Rhythm:</u></b></h5>
   <p>{{ $assessment['heartrhythm'] }}</p>
 </div>
@@ -125,15 +157,27 @@
   <p>{{ $assessment['capillary'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Temperature/color of upper extremities:</u></b></h5>
-  <p>{{ $assessment['upper'] }}</p>
+  <h5><b><u>Temperature/color of upper right extremity:</u></b></h5>
+  <p>{{ $assessment['right_upper'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Breath sounds/rhythm:</u></b></h5>
-  <p>{{ $assessment['breathrhythm'] }}</p>
+  <h5><b><u>Temperature/color of upper left extremity:</u></b></h5>
+  <p>{{ $assessment['left_upper'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Breath sounds/cough:</u></b></h5>
+  <h4><b>Respiratory:</b></h4>
+</div>
+<hr>
+<div class="row">
+  <h5><b><u>Right breath sounds/rhythm:</u></b></h5>
+  <p>{{ $assessment['right_breath'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Left breath sounds/rhythm:</u></b></h5>
+  <p>{{ $assessment['left_breath'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Cough:</u></b></h5>
   <p>{{ $assessment['cough'] }}</p>
 </div>
 <div class="row">
@@ -141,11 +185,23 @@
   <p>{{ $assessment['secretions'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Room air (or describe supplemental oxygen):</u></b></h5>
-  <p>{{ $assessment['roomair'] }}</p>
+  <h5><b><u>Supplemental oxygen:</u></b></h5>
+  <p>{{ $assessment['supplemental'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Nausea/Vomiting/Tolerate Diet:</u></b></h5>
+  <h5><b><u>Liters/Minute of Oxygen:</u></b></h5>
+  <p>{{ $assessment['liters_per_minute'] }}</p>
+</div>
+<div class="row">
+  <h4><b>Gastrointestinal:</b></h4>
+</div>
+<hr>
+<div class="row">
+  <h5><b><u>Diet:</u></b></h5>
+  <p>{{ $assessment['diet'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Tolerated/Nausea/Vomiting:</u></b></h5>
   <p>{{ $assessment['nausea'] }}</p>
 </div>
 <div class="row">
@@ -165,8 +221,12 @@
   <p>{{ $assessment['tubefeeding'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Continent/Incontinent/Foley, describe urine characteristics:</u></b></h5>
+  <h5><b><u>GU:</u></b></h5>
   <p>{{ $assessment['genitourinary'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Urine characteristics:</u></b></h5>
+  <p>{{ $assessment['urine'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>Range of motion/mobility:</u></b></h5>
@@ -177,30 +237,46 @@
   <p>{{ $assessment['muscle'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Pedal pulses (Rt. and Lt.), D.P. and/or P.T., Femoral if applicable:</u></b></h5>
-  <p>{{ $assessment['pedal'] }}</p>
+  <h4><b>Lower Extremities:</b></h4>
+</div>
+<hr>
+<div class="row">
+  <h5><b><u>Right pedal pulse, D.P. and/or P.T., Femoral if applicable:</u></b></h5>
+  <p>{{ $assessment['right_pedal'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Temp/color of lower extremities:</u></b></h5>
-  <p>{{ $assessment['lower'] }}</p>
+  <h5><b><u>Left pedal pulse, D.P. and/or P.T., Femoral if applicable:</u></b></h5>
+  <p>{{ $assessment['left_pedal'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Peripheral edema/Calf tenderness/pain/erythema:</u></b></h5>
+  <h5><b><u>Temp/color of right lower extremity:</u></b></h5>
+  <p>{{ $assessment['right_lower'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Temp/color of left lower extremity:</u></b></h5>
+  <p>{{ $assessment['left_lower'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Peripheral edema:</u></b></h5>
   <p>{{ $assessment['peripheral'] }}</p>
+</div>
+<div class="row">
+  <h5><b><u>Calf tenderness/pain/erythema:</u></b></h5>
+  <p>{{ $assessment['calf'] }}</p>
 </div>
 <div class="row">
   <h5><b><u>TED hose/SCD's:</u></b></h5>
   <p>{{ $assessment['ted'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Restraints/Casts:</u></b></h5>
-  <p>{{ $assessment['restraints'] }}</p>
-</div>
-<div class="row">
   <h5><b><u>Drainage/Drains:</u></b></h5>
   <p>{{ $assessment['drainage'] }}</p>
 </div>
 <div class="row">
-  <h5><b><u>Activity-Bedrest/BRP/up with/without assistance:</u></b></h5>
+  <h4><b>Assistance:</b></h4>
+</div>
+<hr>
+<div class="row">
+  <h5><b><u>Ambulatory:</u></b></h5>
   <p>{{ $assessment['activity'] }}</p>
 </div>

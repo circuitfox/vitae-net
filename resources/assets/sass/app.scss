@@ -59,3 +59,13 @@ td.stat-header {
         }
     }
 }
+
+.form-group.required {
+  .control-label:after {
+    content: '*';
+    color: red;
+  }
+  .control-label.normal:after {
+    content: '';
+  }
+}

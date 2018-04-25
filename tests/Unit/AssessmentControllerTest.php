@@ -19,10 +19,6 @@ class AssessmentControllerTest extends TestCase
         $assessment = factory(Assessment::class)->create();
         $response = $this->actingAs($user)->get('/assessments/' . $assessment->medical_record_number);
         $response->assertViewIs('admin.assessments');
-        // make sure the data is correctly formatted
-        $content = $response->getOriginalContent();
-        $date = Carbon::parse($assessment->date)->toFormattedDateString();
-        $this->assertEquals($assessment->toArray(), $content->getData()['assessments'][$date][0]);
     }
 
     public function testIndexInstructorOrAdmin()
