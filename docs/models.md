@@ -59,12 +59,10 @@ Medications and MarEntries.
 Medications and Signatures.
 - `public function toMarArray()`: returns the string representation of a medication and its
 medication_id to be used in the MAR.
-- `public function generateBarcode()`: calls and returns the result of the
-`generateBarcodeWithFormat(string $type, int $id)` function, which generates a barcode with the
+- `public function generateBarcode()`: generates a barcode with the
 medication type tag and id.
-- `public function generateDownloadButton()`: calls and returns the result of the
-`generateDownloadButtonWithFormat(string $type, int $id, string $fileName)` function, which
-generates a download button for a barcode with the medication type tag and id.
+- `public function generateDownloadButton()`: generates a download button for a barcode with
+the medication type tag and id.
 
 ## Patient Model
 
@@ -80,12 +78,10 @@ Patients and Signatures.
 Patients and Assessments.
 - `public function toApiArray()`: converts a patient's attributes into an array for use with
 the /verify api route.
-- `public function generateBarcode()`: calls and returns the result of the
-`generateBarcodeWithFormat(string $type, int $id)` function, which generates a barcode with the
+- `public function generateBarcode()`: generates a barcode with the
 patient type tag and id.
-- `public function generateDownloadButton()`: calls and returns the result of the
-`generateDownloadButtonWithFormat(string $type, int $id, string $fileName)` function, which
-generates a download button for a barcode with the patient type tag and id.
+- `public function generateDownloadButton()`: generates a download button for a barcode with
+the patient type tag and id.
 
 ## Signature Model
 
