@@ -63,10 +63,20 @@ const assessmentForm = new Vue({
     }
 });
 
-function showAlert(message) {
+function showErrorAlert(message) {
     $('#scan-error-alert').html(`
     <div class="alert alert-danger alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <span>${message}</span>
+    </div>`);
+}
+
+function showMedAlert(message) {
+    $('#scan-med-alert').html(`
+    <div class="alert alert-info alert-dismissable">
+      <button class="close" type="button" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
       <span>${message}</span>
@@ -82,52 +92,52 @@ function deleteModal($, modelName) {
     });
 }
 
-function onScanComplete($, barcode, qty) {
-    let obj = parser.parse(barcode, START_CHAR, END_CHAR);
+function verify(model, obj, eventStr, ifVerified = undefined) {
+    let verified = false;
     let code_ver = 'v1';
     if (obj.code === 'barcode') {
         code_ver = 'v2';
     }
+    console.log(obj.data);
+    axios.post(`/api/${code_ver}/${model}/verify`, obj.data).then(response => {
+        let data = response.data;
+        if (data.status === 'success') {
+            summaryPage.$emit(eventStr, data.data);
+            if (ifVerified !== undefined) {
+                ifVerified();
+            }
+        } else if (data.status === 'error') {
+            showErrorAlert(`Could not find this ${obj.type} in the database.`);
+            console.log(data.data);
+        }
+    }).catch(error => {
+        showErrorAlert(`Could not find this ${obj.type} in the database.`);
+        console.error(error);
+    });
+    return verified;
+}
+
+function onScanComplete($, barcode, qty) {
+    let obj = parser.parse(barcode, START_CHAR, END_CHAR);
     if (obj.type === 'patient') {
         if ($('#summary-page').length) {
-            console.log(obj.data);
-            axios.post(`/api/${code_ver}/patients/verify`, obj.data).then(response => {
-                let data = response.data;
-                if (data.status === 'success') {
-                    summaryPage.$emit('set-patient', data.data);
-                } else if (data.status === 'error') {
-                    showAlert('Could not find this patient in the database.');
-                    console.log(data.data);
-                }
-            }).catch(error => {
-                showAlert('Could not find this patient in the database');
-                console.error(error);
+            let verified = verify('patients', obj, 'set-patient', () => {
+                showMedAlert("Scan medication for patient");
             });
+            console.log(verified);
         } else {
             console.log(obj.data);
             addPatientPage.$emit('set-patient', obj.data);
         }
     } else if (obj.type === 'medication') {
         if ($('#summary-page').length) {
-            axios.post(`/api/${code_ver}/medications/verify`, obj.data).then(response => {
-                let data = response.data;
-                if (data.status === 'success') {
-                    summaryPage.$emit('add-medication', data.data);
-                    $('#form-extra').show();
-                } else if (data.status === 'error') {
-                    showAlert('Could not find this medication in the database.');
-                    console.log(data.data);
-                }
-            }).catch(error => {
-                showAlert('Could not find this medication in the database.');
-                console.error(error);
-            });
+            let verified = verify('medications', obj, 'add-medication');
         } else {
             console.log(obj.data);
             medicationForm.$emit('add-medication', obj.data);
         }
     } else {
-        showAlert('Scanning failed. Unknown code format');
+        showErrorAlert('Scanning failed. Unknown code format');
         console.error(obj.error);
         console.log(barcode);
         console.log(obj);

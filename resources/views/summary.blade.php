@@ -7,6 +7,7 @@
       <div class="panel-heading"><h3>Scan</h3></div>
       <div class="panel-body">
         <div id="scan-error-alert"></div>
+        <div id="scan-med-alert"></div>
         <form id="scan-form" class="form-horizontal" action="{{ url('/scan') }}" method="POST">
           {{ csrf_field() }}
           <patient :form="true"></patient>
