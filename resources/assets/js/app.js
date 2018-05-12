@@ -92,6 +92,11 @@ function deleteModal($, modelName) {
     });
 }
 
+/*
+ * Verify the information scanned for the given model,
+ * emitting an event and potentially calling a function if
+ * verified.
+ */
 function verify(model, obj, eventStr, ifVerified = undefined) {
     let verified = false;
     let code_ver = 'v1';
