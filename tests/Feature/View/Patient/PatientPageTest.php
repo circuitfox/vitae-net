@@ -123,13 +123,22 @@ class PatientPageTest extends TestCase
         $response->assertSee('</a>');
     }
 
-    public function testHasBarcode()
+    public function testHasBarcodeAsPrivileged()
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $patient = factory(\App\Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients');
         $response->assertSee('<h5><b><u>Bar Code</u></b></h5>');
         $response->assertSee($patient->generateBarcode());
+    }
+
+    public function testNoBarcodeAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertDontSee('<h5><b><u>Bar Code</u></b></h5>');
+        $response->assertDontSee($patient->generateBarcode());
     }
 
     public function testHasMarEntry()

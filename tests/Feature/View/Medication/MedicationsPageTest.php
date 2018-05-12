@@ -102,7 +102,7 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<a href="' . route('medications.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>');
     }
 
-    public function testHasNoAddButtonIfEmptyAsStudent()
+    public function testNoAddButtonIfEmptyAsStudent()
     {
         $user = factory(\App\User::class)->states('student')->create();
         $response = $this->actingAs($user)->get('/medications');
@@ -110,13 +110,22 @@ class MedicationsPageTest extends TestCase
         $response->assertDontSee('<a href="' . route('medications.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Medications</a>');
     }
 
-    public function testHasBarcode()
+    public function testHasBarcodeAsPrivileged()
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $medication = factory(\App\Medication::class)->create();
         $response = $this->actingAs($user)->get('/medications');
         $response->assertSee('<h5><b><u>Bar Code</u></b></h5>');
         $response->assertSee($medication->generateBarcode());
+    }
+
+    public function testNoBarcodeAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $medication = factory(\App\Medication::class)->create();
+        $response = $this->actingAs($user)->get('/medications');
+        $response->assertDontSee('<h5><b><u>Bar Code</u></b></h5>');
+        $response->assertDontSee($medication->generateBarcode());
     }
 
     public function testHasDownloadButton()
@@ -136,7 +145,7 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h2>Medications</h2>');
     }
 
-    public function testNoAddIfStudent()
+    public function testNoAddButtonAsStudent()
     {
         $user = factory(\App\User::class)->states('student')->create();
         $medication = factory(\App\Medication::class)->create();
@@ -145,7 +154,7 @@ class MedicationsPageTest extends TestCase
         $response->assertSee('<h2>Medications</h2>');
     }
 
-    public function testNoEditDeleteIfStudent()
+    public function testNoEditDeleteAsStudent()
     {
         $user = factory(\App\User::class)->states('student')->create();
         $medication = factory(\App\Medication::class)->create();
