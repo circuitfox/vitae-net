@@ -48,7 +48,7 @@
                   @include("partials/patient/body", ["patient" => $patient])
                 </div>
               </div>
-              @if (Auth::user->isPrivileged())
+              @if (Auth::user()->isPrivileged())
                 <div class="row">
                   <div class="col-sm-8">
                     <h5><b><u>Bar Code</u></b></h5>
