@@ -72,12 +72,20 @@ class PatientsPageTest extends TestCase
         $response->assertDontSee($patient->generateBarcode());
     }
 
-    public function testHasDownloadButton()
+    public function testHasDownloadButtonAsPrivileged()
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $patient = factory(\App\Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients');
         $response->assertSee($patient->generateDownloadButton());
+    }
+
+    public function testNoDownloadButtonAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertDontSee($patient->generateDownloadButton());
     }
 
     public function testHasAddButtonIfEmpty()

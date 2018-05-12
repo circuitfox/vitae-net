@@ -55,12 +55,12 @@
                     <?php echo $patient->generateBarcode(); ?>
                   </div>
                 </div>
-              @endif
-              <div class="row">
-                <div class="col-sm-4" style="margin-top:10px;">
-                  <?php echo $patient->generateDownloadButton(); ?>
+                <div class="row">
+                  <div class="col-sm-4" style="margin-top:10px;">
+                    <?php echo $patient->generateDownloadButton(); ?>
+                  </div>
                 </div>
-              </div>
+              @endif
             </div>
           </div>
         </div>
