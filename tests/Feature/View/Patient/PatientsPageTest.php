@@ -54,7 +54,7 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<button type="submit" class="btn btn-danger col-md-2">Yes</button>');
     }
 
-    public function testHasBarcode()
+    public function testHasBarcodeAsPrivileged()
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $patient = factory(\App\Patient::class)->create();
@@ -63,12 +63,29 @@ class PatientsPageTest extends TestCase
         $response->assertSee($patient->generateBarcode());
     }
 
-    public function testHasDownloadButton()
+    public function testNoBarcodeAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertDontSee('<h5><b><u>Bar Code</u></b></h5>');
+        $response->assertDontSee($patient->generateBarcode());
+    }
+
+    public function testHasDownloadButtonAsPrivileged()
     {
         $user = factory(\App\User::class)->states('admin')->create();
         $patient = factory(\App\Patient::class)->create();
         $response = $this->actingAs($user)->get('/patients');
         $response->assertSee($patient->generateDownloadButton());
+    }
+
+    public function testNoDownloadButtonAsStudent()
+    {
+        $user = factory(\App\User::class)->states('student')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients');
+        $response->assertDontSee($patient->generateDownloadButton());
     }
 
     public function testHasAddButtonIfEmpty()
@@ -79,7 +96,7 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<a href="' . route('patients.create') . '" class="col-md-offset-5 col-md-2 btn btn-default h3">Add Patients</a>');
     }
 
-    public function testHasNoAddButtonIfEmptyAsStudent()
+    public function testNoAddButtonIfEmptyAsStudent()
     {
         $user = factory(\App\User::class)->states('student')->create();
         $response = $this->actingAs($user)->get('/patients');
@@ -96,7 +113,7 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<h2>Patients</h2>');
     }
 
-    public function testNoAddIfStudent()
+    public function testNoAddButtonAsStudent()
     {
         $user = factory(\App\User::class)->states('student')->create();
         $patient = factory(\App\Patient::class)->create();
@@ -105,7 +122,7 @@ class PatientsPageTest extends TestCase
         $response->assertSee('<h2>Patients</h2>');
     }
 
-    public function testNoEditDeleteIfStudent()
+    public function testNoEditDeleteAsStudent()
     {
         $user = factory(\App\User::class)->states('student')->create();
         $patient = factory(\App\Patient::class)->create();
