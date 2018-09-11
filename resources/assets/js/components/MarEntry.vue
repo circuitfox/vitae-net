@@ -26,6 +26,13 @@
       </td>
       <td>
         <button :form="marEntry.id" class="col-md-12 btn btn-primary" type="submit">Submit</button>
+        <a type="button"
+           class="col-md-12 btn btn-danger"
+           data-toggle="modal"
+           data-target="#mar-delete-modal"
+           :data-id="marEntry.id">
+           Delete
+         </a>
       </td>
     </form>
   </tr>

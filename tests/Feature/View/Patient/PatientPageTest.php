@@ -159,6 +159,19 @@ class PatientPageTest extends TestCase
         $response->assertSee(':complete="' . $this->faker_escape(json_encode($complete)) . '">');
     }
 
+    public function testHasMarEntryDeleteModal()
+    {
+        $user = factory(\App\User::class)->states('admin')->create();
+        $patient = factory(\App\Patient::class)->create();
+        $response = $this->actingAs($user)->get('/patients/' . $patient->medical_record_number);
+        $response->assertSee('<button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span></button>');
+        $response->assertSee('<h4 class="modal-title">Delete MAR entry</h4>');
+        $response->assertSee('<p>Are you sure you want to delete this MAR entry?</p>');
+        $response->assertSee('<button type="button" class="btn btn-default col-md-offset-8 col-md-2" data-dismiss="modal">No</button>');
+        $response->assertSee('<form name="delete-mar" action="" method="post" id="delete-mar">');
+        $response->assertSee('<button type="submit" class="btn btn-danger col-md-2">Yes</button>');
+    }
+
     public function testHasAssessmentForm()
     {
         $user = factory(\App\User::class)->states('student')->create();

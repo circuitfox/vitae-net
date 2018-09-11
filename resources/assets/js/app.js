@@ -183,4 +183,5 @@ $(() => {
     deleteModal($, 'medication');
     deleteModal($, 'order');
     deleteModal($, 'lab');
+    deleteModal($, 'mar');
 });

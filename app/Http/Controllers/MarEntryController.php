@@ -115,4 +115,17 @@ class MarEntryController extends Controller
         $mar->update($data);
         return back();
     }
+
+    /**
+     * Delete the specified MAR entry
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+     public function destroy($id) {
+         $mar = MarEntry::findOrFail($id);
+         $this->authorize('delete', MarEntry::class);
+         $mar->delete();
+         return back();
+     }
 }

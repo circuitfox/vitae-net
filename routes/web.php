@@ -54,7 +54,7 @@ Route::middleware('auth')->resource('orders', 'OrderController');
 Route::middleware('auth')->resource('labs', 'LabController');
 
 Route::middleware('auth')->resource('mars', 'MarEntryController', ['only' => [
-    'store', 'update'
+    'store', 'update', 'destroy'
 ]]);
 
 Route::middleware('auth')

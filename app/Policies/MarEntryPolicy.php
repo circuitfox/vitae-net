@@ -36,4 +36,16 @@ class MarEntryPolicy
     {
         return in_array($user->role, ['instructor', 'admin']);
     }
+
+    /**
+     * Determine whether the user can delete models.
+     *
+     * An instructor or admin can delete MAR entries.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function delete(User $user) {
+        return in_array($user->role, ['instructor', 'admin']);
+    }
 }

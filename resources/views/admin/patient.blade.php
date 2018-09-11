@@ -92,4 +92,7 @@
   "medical_record_number" => $patient->medical_record_number,
   "assessment" => $assessment,
 ])
+@if(Auth::user()->isPrivileged())
+  @include("partials.mar.delete-modal")
+@endif
 @endsection
