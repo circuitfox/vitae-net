@@ -13,4 +13,7 @@
   "meds" => $meds,
   "complete" => $complete,
 ])
+@if(Auth::user()->isPrivileged())
+  @include("partials.mar.delete-modal")
+@endif
 @endsection

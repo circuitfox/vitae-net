@@ -51,7 +51,7 @@
             <tr is="mar-entry"
                 :meds="{{ json_encode($meds) }}"
                 :mar-entry="{{ $statMed->toJsonArray() }}"
-                :is-admin="{{ json_encode(Auth::user()->isAdmin()) }}"
+                :is-admin="{{ json_encode(Auth::user()->isPrivileged()) }}"
                 route="{{ route('mars.update', ['id' => $statMed->id]) }}"
                 :complete="{{ $complete }}">
             </tr>

@@ -48,17 +48,19 @@
                   @include("partials/patient/body", ["patient" => $patient])
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-8">
-                  <h5><b><u>Bar Code</u></b></h5>
-                  <?php echo $patient->generateBarcode(); ?>
+              @if (Auth::user()->isPrivileged())
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h5><b><u>Bar Code</u></b></h5>
+                    <?php echo $patient->generateBarcode(); ?>
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4" style="margin-top:10px;">
-                  <?php echo $patient->generateDownloadButton(); ?>
+                <div class="row">
+                  <div class="col-sm-4" style="margin-top:10px;">
+                    <?php echo $patient->generateDownloadButton(); ?>
+                  </div>
                 </div>
-              </div>
+              @endif
             </div>
           </div>
         </div>
