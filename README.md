@@ -8,7 +8,7 @@ use in simulated environments by student nurses.
 Vitae NET is a Laravel 5.5 application, and as such requires:
 
 - PHP 7.0 or higher
-- OpenSLL PHP extension
+- OpenSSL PHP extension
 - PDO PHP extension
 - Mbstring PHP extension
 - Tokenizer PHP extension
