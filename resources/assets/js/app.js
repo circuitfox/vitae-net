@@ -137,6 +137,7 @@ function onScanComplete($, barcode, qty) {
     } else if (obj.type === 'medication') {
         if ($('#summary-page').length) {
             let verified = verify('medications', obj, 'add-medication');
+            $('#form-extra').show()
         } else {
             console.log(obj.data);
             medicationForm.$emit('add-medication', obj.data);
