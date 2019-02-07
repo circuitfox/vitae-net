@@ -2,12 +2,15 @@
 
 namespace Tests\Unit;
 
+use App\Events\LabAdded;
+use App\Events\LabRemoved;
 use App\Lab;
 use App\Patient;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Event;
 
 class LabControllerTest extends TestCase
 {
@@ -154,6 +157,7 @@ class LabControllerTest extends TestCase
 
     public function testUpdatePatient()
     {
+        Event::fake();
         $admin = factory(User::class)->states('admin')->create();
         $lab = factory(Lab::class)->create();
         $patient = factory(Patient::class)->create();
@@ -172,6 +176,15 @@ class LabControllerTest extends TestCase
         $this->assertNotEquals($lab1->patient, $lab->patient);
         $this->assertNotEquals($lab1->patient->medical_record_number, $lab->patient->medical_record_number);
         $this->assertEquals($lab1->patient->medical_record_number, $patient->medical_record_number);
+        // check events fired
+        Event::assertDispatched(LabRemoved::class, function($e) use ($lab) {
+            return $e->lab->id === $lab->id
+                && $e->patient_id === $lab->patient_id;
+        });
+        Event::assertDispatched(LabAdded::class, function($e) use ($lab1) {
+            return $e->lab->id === $lab1->id
+                && $e->patient_id === $lab1->patient_id;
+        });
     }
 
     public function testUpdateFile()
@@ -264,5 +277,118 @@ class LabControllerTest extends TestCase
         $response = $this->actingAs($instructor)->delete('/labs/' . $lab1->id);
         $response->assertRedirect();
         $this->assertNull(Lab::find($lab1->id));
+    }
+
+    public function testEventBroadcastIfNew()
+    {
+        Event::fake();
+        $user = factory(User::class)->states('admin')->create();
+        $patient = factory(Patient::class)->create();
+        $response = $this->actingAs($user)->post('/labs', [
+            'name' => 'test',
+            'description' => 'description',
+            'patient_id' => $patient->medical_record_number,
+            'doc' => UploadedFile::fake()->create('test.pdf'),
+            'completed' => false,
+        ]);
+        $response->assertRedirect();
+        $lab = Lab::where([
+            'name' => 'test',
+            'description' => 'description',
+            'patient_id' => $patient->medical_record_number
+        ])->first();
+        Event::assertDispatched(LabAdded::class, function($e) use ($lab) {
+            return $e->lab->id === $lab->id;
+        });
+    }
+
+    public function testNoNewEventBroadcastIfNoPatient()
+    {
+        Event::fake();
+        $user = factory(User::class)->states('admin')->create();
+        $response = $this->actingAs($user)->post('/labs', [
+            'name' => 'test',
+            'description' => 'description',
+            'patient_id' => '',
+            'doc' => UploadedFile::fake()->create('test.pdf'),
+            'completed' => false,
+        ]);
+        $response->assertRedirect();
+        $lab = Lab::where([
+            'name' => 'test',
+            'description' => 'description',
+            'patient_id' => null,
+        ])->first();
+        Event::assertNotDispatched(LabAdded::class, function($e) use ($lab) {
+            return $e->lab->id === $lab->id;
+        });
+    }
+
+    public function testUpdateNoRemoveBroadcastWithNoOldPatient()
+    {
+        Event::fake();
+        $admin = factory(User::class)->states('admin')->create();
+        $lab = factory(Lab::class)->create();
+        $lab->patient_id = null;
+        $lab->save();
+        $lab->refresh();
+        $patient = factory(Patient::class)->create();
+        $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
+            'description' => $lab->description,
+            'name' => $lab->name,
+            'patient_id' => $patient->medical_record_number,
+            'completed' => !$lab->completed,
+        ]);
+        $lab1 = Lab::find($lab->id);
+        Event::assertNotDispatched(LabRemoved::class, function($e) use ($lab) {
+            return $e->lab->id === $lab->id;
+        });
+        Event::assertDispatched(LabAdded::class, function($e) use ($lab1) {
+            return $e->lab->id === $lab1->id
+                && $e->patient_id === $lab1->patient_id;
+        });
+    }
+
+    public function testUpdateNoAddBroadcastWithNoNewPatient()
+    {
+        Event::fake();
+        $admin = factory(User::class)->states('admin')->create();
+        $lab = factory(Lab::class)->create();
+        $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
+            'description' => $lab->description,
+            'name' => $lab->name,
+            'patient_id' => '',
+            'completed' => !$lab->completed,
+        ]);
+        $lab1 = Lab::find($lab->id);
+        Event::assertDispatched(LabRemoved::class, function($e) use ($lab) {
+            return $e->lab->id === $lab->id
+                && $e->patient_id === $lab->patient_id;
+        });
+        Event::assertNotDispatched(LabAdded::class, function($e) use ($lab1) {
+            return $e->lab->id === $lab1->id;
+        });
+    }
+
+    public function testUpdateNoRemoveBroadcastWithNoPatient()
+    {
+        Event::fake();
+        $admin = factory(User::class)->states('admin')->create();
+        $lab = factory(Lab::class)->create();
+        $lab->patient_id = null;
+        $lab->save();
+        $lab->refresh();
+        $response = $this->actingAs($admin)->put('/labs/' . $lab->id, [
+            'description' => $lab->description,
+            'name' => $lab->name,
+            'completed' => !$lab->completed,
+        ]);
+        $lab1 = Lab::find($lab->id);
+        Event::assertNotDispatched(LabRemoved::class, function($e) use ($lab) {
+            return $e->lab->id === $lab->id;
+        });
+        Event::assertNotDispatched(LabAdded::class, function($e) use ($lab1) {
+            return $e->lab->id === $lab1->id;
+        });
     }
 }

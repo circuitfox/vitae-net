@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LabAdded;
+use App\Events\LabRemoved;
 use App\Http\Requests;
 use App\Patient;
 use App\Lab;
@@ -42,7 +44,7 @@ class LabController extends Controller
         $file = request('doc');
 
         $lab = new \App\Lab;
-        $path = 'orders/';
+        $path = 'labs/';
         $fileName = str_replace(' ', '-', $name) . rand(1111, 9999) . '.pdf';
         $pathInStorage = $path . $fileName;
         $lab->name = $name;
@@ -54,6 +56,10 @@ class LabController extends Controller
 
         // write pdf to storage
         Storage::disk('public')->putFileAs($path, $file, $fileName);
+
+        if ($lab->patient_id) {
+            event(new LabAdded($lab));
+        }
 
         // redirect to home page
         return redirect()->route('labs.index')->with('message','Lab has been added successfully');
@@ -97,6 +103,7 @@ class LabController extends Controller
     public function update(Requests\UpdateLab $request, $id)
     {
         $lab = Lab::find($id);
+        $oldPatient = $lab->patient;
         $file = $request->doc;
         $data = $request->all();
         if (isset($data['doc'])) {
@@ -107,6 +114,14 @@ class LabController extends Controller
             unset($data['doc']);
         }
         $lab->update($data);
+        $newLab = $lab->fresh();
+        if ($oldPatient) {
+            event(LabRemoved::newWithPatient($lab, $oldPatient));
+        }
+        if ($newLab->patient_id) {
+            event(new LabAdded($newLab));
+        }
+
         return redirect()->route('labs.index')->with('message','Lab has been updated successfully');
     }
 

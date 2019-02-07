@@ -12,3 +12,4 @@
 */
 
 Broadcast::channel('orders');
+Broadcast::channel('labs');
