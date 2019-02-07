@@ -44,7 +44,7 @@ class LabAdded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('lab.', $this->lab->patient->medical_record_number);
+        return new Channel('labs');
     }
 
     public function broadcastWhen()

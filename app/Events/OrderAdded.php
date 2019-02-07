@@ -44,7 +44,7 @@ class OrderAdded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('order.', $this->order->patient->medical_record_number);
+        return new Channel('orders');
     }
 
     public function broadcastWhen()
