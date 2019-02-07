@@ -30,6 +30,8 @@
     "dependencies": {
         "ajv": "^6.5.5",
         "imagemin": "^6.0.0",
-        "laravel-echo-server": "^1.4.2"
+        "laravel-echo": "^1.5.2",
+        "laravel-echo-server": "^1.4.2",
+        "socket.io-client": "^2.2.0"
     }
 }
