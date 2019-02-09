@@ -63,27 +63,11 @@
         </div>
       </div>
       <div id="orders" class="panel-collapse collapse in" role="tabpanel">
-        @if ($orders->isEmpty())
-          <div class="panel-body">
-            <h5 class="text-center text-muted">No Orders for
-              <span class="text-capitalize">{{ $patient->first_name }} {{ $patient->last_name }}</span>
-            </h5>
-          </div>
-        @else
-          <ul class="list-group">
-            @foreach ($orders as $order)
-              @if ($order->completed)
-                <a class="list-group-item list-group-item-success" href="{{ route('orders.show', ['id' => $order->id]) }}">
-                  {{ $order->name }}
-                </a>
-              @else
-                <a class="list-group-item list-group-item-danger" href="{{ route('orders.show', ['id' => $order->id]) }}">
-                  {{ $order->name }}
-                </a>
-              @endif
-            @endforeach
-          </ul>
-        @endif
+        <order-list id="order-list"
+          :orders="{{ json_encode($orders) }}"
+          name="{{ $patient->first_name }} {{ $patient->last_name }}"
+          :mrn="{{ $patient->medical_record_number }}"
+          route="{{ route('orders.index') }}"></orders-list>
       </div>
     </div>
   </div>
