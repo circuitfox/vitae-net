@@ -116,7 +116,7 @@ class LabController extends Controller
         $lab->update($data);
         $newLab = $lab->fresh();
         if ($oldPatient) {
-            event(LabRemoved::newWithPatient($lab, $oldPatient));
+            event(new LabRemoved($lab, $oldPatient));
         }
         if ($newLab->patient_id) {
             event(new LabAdded($newLab));

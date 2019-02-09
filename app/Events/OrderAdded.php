@@ -30,13 +30,6 @@ class OrderAdded implements ShouldBroadcast
         $this->patient_id = $order->patient_id;
     }
 
-    public static function newWithPatient(Order $order, Patient $patient)
-    {
-        $event = new OrderAdded($order);
-        $event->patient_id = $patient->medical_record_number;
-        return $event;
-    }
-
     /**
      * Get the channels the event should broadcast on.
      *
@@ -44,7 +37,7 @@ class OrderAdded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('orders');
+        return new Channel('orders.' . $this->patient_id);
     }
 
     public function broadcastWhen()

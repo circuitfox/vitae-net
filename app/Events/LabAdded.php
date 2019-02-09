@@ -30,13 +30,6 @@ class LabAdded implements ShouldBroadcast
         $this->patient_id = $lab->patient_id;
     }
 
-    public static function newWithPatient(Lab $lab, Patient $patient)
-    {
-        $event = new LabAdded($lab);
-        $event->patient_id = $patient->medical_record_number;
-        return $event;
-    }
-
     /**
      * Get the channels the event should broadcast on.
      *
@@ -44,7 +37,7 @@ class LabAdded implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('labs');
+        return new Channel('labs.' . $this->patient_id);
     }
 
     public function broadcastWhen()

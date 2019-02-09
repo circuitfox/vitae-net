@@ -17,22 +17,17 @@ class OrderRemoved implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $order;
+    public $patient_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order, Patient $patient)
     {
         $this->order = $order;
-    }
-
-    public static function newWithPatient(Order $order, Patient $patient)
-    {
-        $event = new OrderRemoved($order);
-        $event->patient_id = $patient->medical_record_number;
-        return $event;
+        $this->patient_id = $patient->medical_record_number;
     }
 
     /**
@@ -42,7 +37,7 @@ class OrderRemoved implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('orders');
+        return new Channel('orders.' . $this->patient_id);
     }
 
     public function broadcastWhen()

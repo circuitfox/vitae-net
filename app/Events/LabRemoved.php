@@ -17,22 +17,17 @@ class LabRemoved implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $lab;
+    public $patient_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Lab $lab)
+    public function __construct(Lab $lab, Patient $patient)
     {
         $this->lab = $lab;
-    }
-
-    public static function newWithPatient(Lab $lab, Patient $patient)
-    {
-        $event = new LabRemoved($lab);
-        $event->patient_id = $patient->medical_record_number;
-        return $event;
+        $this->patient_id = $patient->medical_record_number;
     }
 
     /**
@@ -42,7 +37,7 @@ class LabRemoved implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('lab.', $this->lab->patient->medical_record_number);
+        return new Channel('labs.' . $this->patient_id);
     }
 
     public function broadcastWhen()

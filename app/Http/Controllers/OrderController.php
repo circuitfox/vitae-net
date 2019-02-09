@@ -121,7 +121,7 @@ class OrderController extends Controller
         $order->update($orderUpdate);
         $newOrder = $order->fresh();
         if ($oldPatient) {
-            event(OrderRemoved::newWithPatient($order, $oldPatient));
+            event(new OrderRemoved($order, $oldPatient));
         }
         if ($newOrder->patient_id) {
             event(new OrderAdded($newOrder));

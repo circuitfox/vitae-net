@@ -11,5 +11,5 @@
 |
 */
 
-Broadcast::channel('orders');
-Broadcast::channel('labs');
+Broadcast::channel('orders.{mrn}');
+Broadcast::channel('labs.{mrn}');
