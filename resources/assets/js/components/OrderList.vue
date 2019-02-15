@@ -53,10 +53,15 @@ export default {
   created() {
     Echo.channel('orders.' + this.mrn)
       .listen('OrderAdded', e => {
-        this.items.push(e.order);
+        let index = this.findItem(e.order.id);
+        if (index !== -1) {
+          this.items.splice(this.findItem(e.order.id), 1, e.order);
+        } else {
+          this.items.push(e.order)
+        }
       })
       .listen('OrderRemoved', e => {
-        this.items.splice(this.findItem(e.order.id));
+        this.items.splice(this.findItem(e.order.id), 1);
       });
   }
 }

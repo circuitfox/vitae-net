@@ -57,10 +57,15 @@ export default {
   created() {
     Echo.channel('labs.' + this.mrn)
       .listen('LabAdded', e => {
-        this.items.push(e.lab);
+        let index = this.findItem(e.lab.id);
+        if (index !== -1) {
+          this.items.splice(this.findItem(e.lab.id), 1, e.lab);
+        } else {
+          this.items.push(e.lab)
+        }
       })
       .listen('LabRemoved', e => {
-        this.items.splice(this.findItem(e.lab.id));
+        this.items.splice(this.findItem(e.lab.id), 1);
       });
   }
 }
