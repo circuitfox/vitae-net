@@ -8,7 +8,7 @@
     <link-entry v-for="(item, index) in items"
                 :name="item.name"
                 :id="item.id"
-                :success="item.completed"
+                :success="item.completed !== 0"
                 :head="route"
                 :key="item.id"
                 @remove="items.splice(index, 1)"></link-entry>

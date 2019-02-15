@@ -1,10 +1,5 @@
 <template>
-  <div v-if="success">
-    <a class="list-group-item list-group-item-success" :href="linkRoute">{{ name }}</a>
-  </div>
-  <div v-else>
-    <a class="list-group-item list-group-item-danger" :href="linkRoute">{{ name }}</a>
-  </div>
+  <a class="list-group-item" v-bind:class="styles" :href="linkRoute">{{ name }}</a>
 </template>
 
 <script>
@@ -19,7 +14,7 @@ export default {
       required: true,
     },
     success: {
-      type: Number,
+      type: Boolean,
       default: false,
     },
     head: {
@@ -30,6 +25,12 @@ export default {
   computed: {
     linkRoute: function() {
       return this.head + '/' + this.id;
+    },
+    styles: function() {
+      return {
+        'list-group-item-success': this.success,
+        'list-group-item-danger': !this.success,
+      };
     }
   }
 }
