@@ -70,6 +70,13 @@ const orderList = new Vue({
     }
 });
 
+const labList = new Vue({
+    el: '#lab-list',
+    components: {
+        'lab-list': require('./components/LabList.vue')
+    }
+});
+
 function showErrorAlert(message) {
     $('#scan-error-alert').html(`
     <div class="alert alert-danger alert-dismissable">

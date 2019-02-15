@@ -35,23 +35,12 @@
         </div>
       </div>
       <div id="labs" class="panel-collapse collapse in" role="tabpanel">
-        @if ($labs->isEmpty())
-          <div class="panel-body">
-            <h5 class="text-center text-muted">No Labs for
-              <span class="text-capitalize">{{ $patient->first_name }} {{ $patient->last_name }}</span>
-            </h5>
-          </div>
-        @else
-          <ul class="list-group">
-            @foreach ($labs as $lab)
-              @if (session('lab' . $lab->id) !== null)
-                <a class="list-group-item list-group-item-success" href="{{ route('labs.show', ['id' => $lab->id]) }}">{{ $lab->name }}</a>
-              @else
-                <a class="list-group-item list-group-item-danger" href="{{ route('labs.show', ['id' => $lab->id]) }}">{{ $lab->name }}</a>
-              @endif
-            @endforeach
-          </ul>
-        @endif
+        <lab-list id="lab-list"
+          :labs="{{ json_encode($labs) }}"
+          :lab-views="{{ json_encode($lab_views) }}"
+          name="{{ $patient->first_name }} {{ $patient->last_name }}"
+          :mrn="{{ $patient->medical_record_number }}"
+          route="{{ route('labs.index') }}"></lab-list>
       </div>
     </div>
   </div>
@@ -67,7 +56,7 @@
           :orders="{{ json_encode($orders) }}"
           name="{{ $patient->first_name }} {{ $patient->last_name }}"
           :mrn="{{ $patient->medical_record_number }}"
-          route="{{ route('orders.index') }}"></orders-list>
+          route="{{ route('orders.index') }}"></order-list>
       </div>
     </div>
   </div>

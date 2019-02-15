@@ -84,9 +84,14 @@ class PatientController extends Controller
         if ($complete === null) {
             $complete = [];
         }
+        $lab_views = session('labs');
+        if ($lab_views === null) {
+            $lab_views = [];
+        }
         return view('admin.patient', [
             'patient' => $patient,
             'labs' => $labs,
+            'lab_views' => $lab_views,
             'orders' => $orders,
             'prescriptions' => $prescriptions,
             'statMeds' => $statMeds,
