@@ -37,7 +37,7 @@
       <div id="labs" class="panel-collapse collapse in" role="tabpanel">
         <lab-list id="lab-list"
           :labs="{{ json_encode($labs) }}"
-          :lab-views="{{ json_encode($lab_views) }}"
+          :lab-views="{{ json_encode($lab_views, JSON_FORCE_OBJECT) }}"
           name="{{ $patient->first_name }} {{ $patient->last_name }}"
           :mrn="{{ $patient->medical_record_number }}"
           route="{{ route('labs.index') }}"></lab-list>
