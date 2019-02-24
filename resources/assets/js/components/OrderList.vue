@@ -17,6 +17,7 @@
 
 <script>
 import LinkEntry from './LinkEntry.vue';
+import { eventListener } from './mixins/eventListener.js';
 
 export default {
   props: {
@@ -40,29 +41,15 @@ export default {
   components: {
     'link-entry': LinkEntry
   },
-  methods: {
-    findItem(id) {
-      return this.items.findIndex(e => e.id === id);
-    }
-  },
+  mixins: [eventListener],
   data() {
     return {
-      items: this.orders
+      items: this.orders,
+      channel: 'orders.' + this.mrn,
+      eventAdded: 'OrderAdded',
+      eventRemoved: 'OrderRemoved',
+      eventItem: 'order',
     }
   },
-  created() {
-    Echo.channel('orders.' + this.mrn)
-      .listen('OrderAdded', e => {
-        let index = this.findItem(e.order.id);
-        if (index !== -1) {
-          this.items.splice(this.findItem(e.order.id), 1, e.order);
-        } else {
-          this.items.push(e.order)
-        }
-      })
-      .listen('OrderRemoved', e => {
-        this.items.splice(this.findItem(e.order.id), 1);
-      });
-  }
 }
 </script>
