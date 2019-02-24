@@ -12,3 +12,4 @@ yarn-error.log
 .env
 .DS_Store
 **/id_travis
+laravel-echo-server.json

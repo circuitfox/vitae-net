@@ -35,23 +35,12 @@
         </div>
       </div>
       <div id="labs" class="panel-collapse collapse in" role="tabpanel">
-        @if ($labs->isEmpty())
-          <div class="panel-body">
-            <h5 class="text-center text-muted">No Labs for
-              <span class="text-capitalize">{{ $patient->first_name }} {{ $patient->last_name }}</span>
-            </h5>
-          </div>
-        @else
-          <ul class="list-group">
-            @foreach ($labs as $lab)
-              @if (session('lab' . $lab->id) !== null)
-                <a class="list-group-item list-group-item-success" href="{{ route('labs.show', ['id' => $lab->id]) }}">{{ $lab->name }}</a>
-              @else
-                <a class="list-group-item list-group-item-danger" href="{{ route('labs.show', ['id' => $lab->id]) }}">{{ $lab->name }}</a>
-              @endif
-            @endforeach
-          </ul>
-        @endif
+        <lab-list id="lab-list"
+          :labs="{{ json_encode($labs) }}"
+          :lab-views="{{ json_encode($lab_views, JSON_FORCE_OBJECT) }}"
+          name="{{ $patient->first_name }} {{ $patient->last_name }}"
+          :mrn="{{ $patient->medical_record_number }}"
+          route="{{ route('labs.index') }}"></lab-list>
       </div>
     </div>
   </div>
@@ -63,27 +52,11 @@
         </div>
       </div>
       <div id="orders" class="panel-collapse collapse in" role="tabpanel">
-        @if ($orders->isEmpty())
-          <div class="panel-body">
-            <h5 class="text-center text-muted">No Orders for
-              <span class="text-capitalize">{{ $patient->first_name }} {{ $patient->last_name }}</span>
-            </h5>
-          </div>
-        @else
-          <ul class="list-group">
-            @foreach ($orders as $order)
-              @if ($order->completed)
-                <a class="list-group-item list-group-item-success" href="{{ route('orders.show', ['id' => $order->id]) }}">
-                  {{ $order->name }}
-                </a>
-              @else
-                <a class="list-group-item list-group-item-danger" href="{{ route('orders.show', ['id' => $order->id]) }}">
-                  {{ $order->name }}
-                </a>
-              @endif
-            @endforeach
-          </ul>
-        @endif
+        <order-list id="order-list"
+          :orders="{{ json_encode($orders) }}"
+          name="{{ $patient->first_name }} {{ $patient->last_name }}"
+          :mrn="{{ $patient->medical_record_number }}"
+          route="{{ route('orders.index') }}"></order-list>
       </div>
     </div>
   </div>

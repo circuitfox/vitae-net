@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderAdded;
+use App\Events\OrderRemoved;
 use App\Http\Requests;
 use App\Patient;
 use App\Order;
@@ -62,6 +64,11 @@ class OrderController extends Controller
         // store the pdf
         Storage::disk('public')->putFileAs($path, $file, $fileName);
 
+        // broadcast that there's a new order if we have a patient, don't bother
+        // if we never set one
+        if ($order->patient_id) {
+            event(new OrderAdded($order));
+        }
         // redirect to home page
         return redirect()->route('orders.index')->with('message','Order has been added successfully');
     }
@@ -101,6 +108,7 @@ class OrderController extends Controller
     public function update(Requests\UpdateOrder $request, $id)
     {
         $order = Order::find($id);
+        $oldPatient = $order->patient;
         $file = $request->doc;
         $orderUpdate = $request->all();
         if (isset($orderUpdate['doc'])) {
@@ -111,6 +119,13 @@ class OrderController extends Controller
             unset($orderUpdate['doc']);
         }
         $order->update($orderUpdate);
+        $newOrder = $order->fresh();
+        if ($oldPatient) {
+            event(new OrderRemoved($order, $oldPatient));
+        }
+        if ($newOrder->patient_id) {
+            event(new OrderAdded($newOrder));
+        }
         return redirect()->route('orders.index')->with('message','Order has been updated successfully');
     }
 
