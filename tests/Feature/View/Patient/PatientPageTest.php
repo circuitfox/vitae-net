@@ -80,49 +80,6 @@ class PatientPageTest extends TestCase
         $response->assertSee('<td colspan="16" class="stat-header"><b> STAT/PRN </b></td>');
     }
 
-    public function testHasLabs()
-    {
-        $user = factory(\App\User::class)->states('admin')->create();
-        $lab = factory(\App\Lab::class)->create();
-        $response = $this->actingAs($user)->get('/patients/' . $lab->patient_id);
-        $response->assertSee('<a class="list-group-item list-group-item-danger" href="'
-            . route('labs.show', ['id' => $lab->id]) . '">'
-            . $lab->name . '</a>');
-    }
-
-    public function testHasVisitedLabs()
-    {
-        $user = factory(\App\User::class)->states('admin')->create();
-        $lab = factory(\App\Lab::class)->create();
-        $this->actingAs($user)->get('/labs/' . $lab->id);
-        $response = $this->actingAs($user)->get('/patients/' . $lab->patient_id);
-        $response->assertSee('<a class="list-group-item list-group-item-success" href="'
-            . route('labs.show', ['id' => $lab->id]) . '">'
-            . $lab->name . '</a>');
-    }
-
-    public function testHasIncompleteOrder()
-    {
-        $user = factory(\App\User::class)->states('admin')->create();
-        $order = factory(\App\Order::class)->states('incomplete')->create();
-        $response = $this->actingAs($user)->get('/patients/' . $order->patient_id);
-        $response->assertSee('<a class="list-group-item list-group-item-danger" href="'
-            . route('orders.show', ['id' => $order->id]) . '">');
-        $response->assertSee($order->name);
-        $response->assertSee('</a>');
-    }
-
-    public function testHasCompleteOrder()
-    {
-        $user = factory(\App\User::class)->states('admin')->create();
-        $order = factory(\App\Order::class)->states('complete')->create();
-        $response = $this->actingAs($user)->get('/patients/' . $order->patient_id);
-        $response->assertSee('<a class="list-group-item list-group-item-success" href="'
-            . route('orders.show', ['id' => $order->id]) . '">');
-        $response->assertSee($order->name);
-        $response->assertSee('</a>');
-    }
-
     public function testHasBarcodeAsPrivileged()
     {
         $user = factory(\App\User::class)->states('admin')->create();
