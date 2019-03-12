@@ -3,6 +3,13 @@ set -ev
 
 systemctl stop rh-php71-php-fpm
 systemctl stop nginx
+systemctl stop redis
+if [ systemctl is-active laravel-echo-server ]; then
+    systemctl stop laravel-echo-server
+fi
+if [ systemctl is-active vitae-net-queue ]; then
+    systemctl stop vitae-net-queue
+fi
 
 # fix php configs
 sed -i -e 's/;cgi\.fix_pathinfo=1/cgi.fix_pathinfo=0/' /etc/opt/rh/rh-php71/php.ini
@@ -11,9 +18,13 @@ sed -i -e 's/;listen.acl_users = apache/listen.acl_users = nginx/' /etc/opt/rh/r
 sed -i -e 's/user = apache/user = nginx/' /etc/opt/rh/rh-php71/php-fpm.d/www.conf
 sed -i -e 's/group = apache/group = nginx/' /etc/opt/rh/rh-php71/php-fpm.d/www.conf
 
-# copy nginx config and app
+# copy nginx config, systemd units, and app
 /usr/bin/cp -u /home/git/vitae-net-build/deploy/nginx.conf /etc/nginx/nginx.conf
+/usr/bin/cp -u /home/git/vitae-net-build/deploy/laravel-echo-server.service /usr/lib/systemd/system
+/usr/bin/cp -u /home/git/vitae-net-build/deploy/vitae-net-queue.service /usr/lib/systemd/system
 chown root:root /etc/nginx/nginx.conf
+chown root:root /usr/lib/systemd/system/laravel-echo-server.service
+chown root:root /usr/lib/systemd/system/vitae-net-queue.service
 mkdir -p /var/www
 /usr/bin/cp -ruf /home/git/vitae-net-build/. /var/www/vitae-net
 cd /var/www/vitae-net
@@ -32,5 +43,8 @@ restorecon -Riv /var/www/vitae-net/boostrap/cache
 
 systemctl start nginx
 systemctl start rh-php71-php-fpm
+systemctl start redis
+systemctl start laravel-echo-server
+systemctl start vitae-net-queue
 
 exit 0
