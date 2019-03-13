@@ -21,7 +21,7 @@ The [deployment guide](docs/deployment.md) provides information about how to
 deploy Vitae NET onto a CentOS server using Nginx as a webserver.
 
 Additionally, to compile the Javascript and SASS assets, NodeJS and NPM are
-required.
+required. To use event broadcasting, [Redis](https://redis.io) is also required.
 
 ## Documentation
 

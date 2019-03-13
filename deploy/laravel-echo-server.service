@@ -1,0 +1,13 @@
+[Unit]
+Description=Start laravel-echo-server
+After=network.target
+
+[service]
+User=nginx
+Group=nginx
+WorkingDirectory=/var/www/vitae-net
+ExecStart=/usr/bin/laravel-echo-server start
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

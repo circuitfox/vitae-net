@@ -63,6 +63,20 @@ const assessmentForm = new Vue({
     }
 });
 
+const orderList = new Vue({
+    el: '#order-list',
+    components: {
+        'order-list': require('./components/OrderList.vue')
+    }
+});
+
+const labList = new Vue({
+    el: '#lab-list',
+    components: {
+        'lab-list': require('./components/LabList.vue')
+    }
+});
+
 function showErrorAlert(message) {
     $('#scan-error-alert').html(`
     <div class="alert alert-danger alert-dismissable">
