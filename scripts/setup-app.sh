@@ -39,6 +39,7 @@ fi
 cd "$1-build"
 git pull
 cp deploy/env .env
+cp deploy/laravel-echo-server.json laravel-echo-server.json
 sed -i -e "s/MIGRATE_PASSWORD=/&$2/" .env
 sed -i -e "s/DB_PASSWORD=/&$3/" .env
 

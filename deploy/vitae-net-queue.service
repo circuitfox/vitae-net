@@ -1,0 +1,14 @@
+[Unit]
+Description="Vitae NET Queue Worker"
+Requires=redis.service
+After=network.target
+
+[Service]
+User=nginx
+Group=nginx
+WorkingDirectory=/var/www/vitae-net
+ExecStart=/usr/bin/php /var/www/vitae-net/artisan queue:work
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
