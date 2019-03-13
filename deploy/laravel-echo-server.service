@@ -2,7 +2,7 @@
 Description=Start laravel-echo-server
 After=network.target
 
-[service]
+[Service]
 User=nginx
 Group=nginx
 WorkingDirectory=/var/www/vitae-net
