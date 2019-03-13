@@ -4,10 +4,10 @@ set -ev
 systemctl stop rh-php71-php-fpm
 systemctl stop nginx
 systemctl stop redis
-if [ systemctl is-active laravel-echo-server ]; then
+if systemctl is-active laravel-echo-server; then
     systemctl stop laravel-echo-server
 fi
-if [ systemctl is-active vitae-net-queue ]; then
+if systemctl is-active vitae-net-queue; then
     systemctl stop vitae-net-queue
 fi
 
