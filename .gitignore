@@ -13,3 +13,4 @@ yarn-error.log
 .DS_Store
 **/id_travis
 laravel-echo-server.json
+!deploy/laravel-echo-server.json
