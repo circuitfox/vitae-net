@@ -45,6 +45,7 @@ class SignatureController extends Controller
                 $sigs[$idx]['time'] = $data['time'] . ' ' . $date->format('m/d/Y');
                 array_push($complete, [
                     'medication_id' => $med['medication_id'],
+                    'student_name' => $sigs[$idx]['student_name'],
                     'time' => $sigs[$idx]['time'],
                 ]);
             }

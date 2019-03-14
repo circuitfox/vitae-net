@@ -2,6 +2,10 @@
 
 This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.1] - 2019-03-14
+### Fixed
+- MAR scanning status is now checked for med id, and initials are used in place
+  of checks
 ## [0.8.0] - 2019-03-12
 ### Added
 - Changing the patient for orders or labs is broadcast as an event and
