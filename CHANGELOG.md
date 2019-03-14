@@ -2,7 +2,7 @@
 
 This project adheres to [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.8.1] - 2019-03-14
 ### Fixed
 - MAR scanning status is now checked for med id, and initials are used in place
   of checks
